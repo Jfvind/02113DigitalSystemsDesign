@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ["sbt.Task[scala.collection.Seq[java.nio.file.Path]]",["C:\\DTU-local\\Repos\\02113DigitalSystemsDesign\\project\\target\\scala-2.12\\sbt-1.0\\zinc\\inc_compile_2.12.zip"]]
+=======
+["sbt.Task[scala.collection.Seq[java.nio.file.Path]]",["/Users/frederikholm/Documents/GitHub/02113DigitalSystemsDesign/project/target/scala-2.12/sbt-1.0/zinc/inc_compile_2.12.zip"]]
+>>>>>>> bc911ebb0128ebb2d721a773ec7d290aabeb7889
