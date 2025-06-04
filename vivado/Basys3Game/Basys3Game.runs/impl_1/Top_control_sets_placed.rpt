@@ -1,0 +1,94 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
+| Date         : Wed Jun  4 11:58:26 2025
+| Host         : Jeppe2024 running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file Top_control_sets_placed.rpt
+| Design       : Top
+| Device       : xc7a35t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    16 |
+|    Minimum number of control sets                        |    16 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    67 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    16 |
+| >= 0 to < 4        |     0 |
+| >= 4 to < 6        |     1 |
+| >= 6 to < 8        |     1 |
+| >= 8 to < 10       |     1 |
+| >= 10 to < 12      |     3 |
+| >= 12 to < 14      |     4 |
+| >= 14 to < 16      |     0 |
+| >= 16              |     6 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              83 |           23 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              93 |           31 |
+| Yes          | No                    | No                     |               0 |            0 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |             109 |           37 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++------------------+-------------------------------------------------------+---------------------------------------------------------------+------------------+----------------+--------------+
+|   Clock Signal   |                     Enable Signal                     |                        Set/Reset Signal                       | Slice Load Count | Bel Load Count | Bels / Slice |
++------------------+-------------------------------------------------------+---------------------------------------------------------------+------------------+----------------+--------------+
+|  clock_IBUF_BUFG | gameTop/debounceSampleEn                              | gameTop/gameTop_reset                                         |                3 |              4 |         1.33 |
+|  clock_IBUF_BUFG |                                                       | gameTop/graphicEngineVGA/backBufferMemory/ramsSpWf/p_0_out[6] |                3 |              6 |         2.00 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/sprite0YReg[9]_i_1_n_0              | gameTop/graphicEngineVGA/graphicEngineVGA_reset               |                3 |              9 |         3.00 |
+|  clock_IBUF_BUFG | gameTop/graphicEngineVGA/CounterXReg[4]_i_1_n_0       | gameTop/graphicEngineVGA/graphicEngineVGA_reset               |                4 |             10 |         2.50 |
+|  clock_IBUF_BUFG | gameTop/graphicEngineVGA/CounterYReg[4]_i_1_n_0       | gameTop/graphicEngineVGA/graphicEngineVGA_reset               |                4 |             10 |         2.50 |
+|  clock_IBUF_BUFG | gameTop/gameLogic/sprite0XReg[10]_i_1_n_0             | gameTop/graphicEngineVGA/graphicEngineVGA_reset               |                3 |             10 |         3.33 |
+|  clock_IBUF_BUFG |                                                       | gameTop/graphicEngineVGA/io_vgaRed_REG[3]_i_1_n_0             |                3 |             12 |         4.00 |
+|  clock_IBUF_BUFG |                                                       | gameTop/gameTop_reset                                         |                3 |             12 |         4.00 |
+|  clock_IBUF_BUFG | gameTop/graphicEngineVGA/_T_7                         | gameTop/graphicEngineVGA/clear                                |                3 |             12 |         4.00 |
+|  clock_IBUF_BUFG | gameTop/graphicEngineVGA/restoreEnabled               | gameTop/graphicEngineVGA/graphicEngineVGA_reset               |                3 |             12 |         4.00 |
+|  clock_IBUF_BUFG | gameTop/graphicEngineVGA/graphicEngineVGA_io_newFrame | gameTop/graphicEngineVGA/graphicEngineVGA_reset               |                8 |             20 |         2.50 |
+|  clock_IBUF_BUFG |                                                       | gameTop/graphicEngineVGA/graphicEngineVGA_reset               |               10 |             21 |         2.10 |
+|  clock_IBUF_BUFG |                                                       | gameTop/graphicEngineVGA/frameClockCount[0]_i_1_n_0           |                6 |             21 |         3.50 |
+|  clock_IBUF_BUFG |                                                       | gameTop/debounceCounter[0]_i_1_n_0                            |                6 |             21 |         3.50 |
+|  clock_IBUF_BUFG | gameTop/graphicEngineVGA/graphicEngineVGA_reset       | gameTop/gameTop_reset                                         |                6 |             22 |         3.67 |
+|  clock_IBUF_BUFG |                                                       |                                                               |               23 |             86 |         3.74 |
++------------------+-------------------------------------------------------+---------------------------------------------------------------+------------------+----------------+--------------+
+
+
