@@ -131,6 +131,9 @@ class GameLogicTask1(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) ex
 
   //Making sprite 0 visible
   io.spriteVisible(0) := true.B
+  io.spriteVisible(1) := true.B
+  io.spriteVisible(2) := true.B
+  io.spriteVisible(3) := true.B
 
   //Connecting resiters to the graphic engine
   io.spriteXPosition(0) := sprite0XReg
