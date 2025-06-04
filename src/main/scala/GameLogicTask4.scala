@@ -8,7 +8,7 @@
 import chisel3._
 import chisel3.util._
 
-class GameLogicTask4(SpriteNumber: Int, BackTileNumber: Int) extends Module {
+class GameLogicTask4(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends Module {
   val io = IO(new Bundle {
     //Buttons
     val btnC = Input(Bool())
@@ -30,6 +30,10 @@ class GameLogicTask4(SpriteNumber: Int, BackTileNumber: Int) extends Module {
     val spriteVisible = Output(Vec(SpriteNumber, Bool()))
     val spriteFlipHorizontal = Output(Vec(SpriteNumber, Bool()))
     val spriteFlipVertical = Output(Vec(SpriteNumber, Bool()))
+    val spriteScaleUpHorizontal = Output(Vec(SpriteNumber, Bool()))
+    val spriteScaleDownHorizontal = Output(Vec(SpriteNumber, Bool()))
+    val spriteScaleUpVertical = Output(Vec(SpriteNumber, Bool()))
+    val spriteScaleDownVertical = Output(Vec(SpriteNumber, Bool()))
 
     //Viewbox control output
     val viewBoxX = Output(UInt(10.W)) //0 to 640
@@ -43,6 +47,13 @@ class GameLogicTask4(SpriteNumber: Int, BackTileNumber: Int) extends Module {
     //Status
     val newFrame = Input(Bool())
     val frameUpdateDone = Output(Bool())
+
+    //Sound
+    val startTune = Output(Vec(TuneNumber, Bool()))
+    val stopTune = Output(Vec(TuneNumber, Bool()))
+    val pauseTune = Output(Vec(TuneNumber, Bool()))
+    val playingTune = Input(Vec(TuneNumber, Bool()))
+    val tuneId = Output(UInt(log2Up(TuneNumber).W))
   })
 
   // Setting all led outputs to zero
@@ -71,6 +82,10 @@ class GameLogicTask4(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   io.spriteVisible := Seq.fill(SpriteNumber)(false.B)
   io.spriteFlipHorizontal := Seq.fill(SpriteNumber)(false.B)
   io.spriteFlipVertical := Seq.fill(SpriteNumber)(false.B)
+  io.spriteScaleUpHorizontal := Seq.fill(SpriteNumber)(false.B)
+  io.spriteScaleDownHorizontal := Seq.fill(SpriteNumber)(false.B)
+  io.spriteScaleUpVertical := Seq.fill(SpriteNumber)(false.B)
+  io.spriteScaleDownVertical := Seq.fill(SpriteNumber)(false.B)
 
   //Setting the viewbox control outputs to zero
   io.viewBoxX := 0.U
@@ -83,6 +98,12 @@ class GameLogicTask4(SpriteNumber: Int, BackTileNumber: Int) extends Module {
 
   //Setting frame done to zero
   io.frameUpdateDone := false.B
+
+  //Setting sound engine outputs to zero
+  io.startTune := Seq.fill(TuneNumber)(false.B)
+  io.stopTune := Seq.fill(TuneNumber)(false.B)
+  io.pauseTune := Seq.fill(TuneNumber)(false.B)
+  io.tuneId := 0.U
 
   /////////////////////////////////////////////////////////////////
   // Write here your game logic

@@ -36,24 +36,30 @@ class GameTop extends Module {
     val missingFrameError = Output(Bool())
     val backBufferWriteError = Output(Bool())
     val viewBoxOutOfRangeError = Output(Bool())
+
+    // Sound
+    val soundOut = Output(Bool())
   })
 
   val SPRITE_NUMBER = 16
   val BACK_TILE_NUMBER = 32
   val graphicEngineVGA = Module(new GraphicEngineVGA(SPRITE_NUMBER, BACK_TILE_NUMBER))
 
+  val TUNE_NUMBER = 2
+  val soundEngine = Module(new SoundEngine(TUNE_NUMBER))
+
   //Uncomment one of the following lines to use the module related to the learning tasks
   //Use the module GameLogic to implement your game
-  //val gameLogic = Module(new GameLogic(SPRITE_NUMBER, BACK_TILE_NUMBER))
-  val gameLogic = Module(new GameLogicTask0(SPRITE_NUMBER, BACK_TILE_NUMBER))
-  //val gameLogic = Module(new GameLogicTask1(SPRITE_NUMBER, BACK_TILE_NUMBER))
-  //val gameLogic = Module(new GameLogicTask2(SPRITE_NUMBER, BACK_TILE_NUMBER))
-  //val gameLogic = Module(new GameLogicTask3(SPRITE_NUMBER, BACK_TILE_NUMBER))
-  //val gameLogic = Module(new GameLogicTask4(SPRITE_NUMBER, BACK_TILE_NUMBER))
-  //val gameLogic = Module(new GameLogicTask5(SPRITE_NUMBER, BACK_TILE_NUMBER))
-  //val gameLogic = Module(new GameLogicTask6(SPRITE_NUMBER, BACK_TILE_NUMBER))
-  //val gameLogic = Module(new GameLogicTask7(SPRITE_NUMBER, BACK_TILE_NUMBER))
-  //val gameLogic = Module(new GameLogicTask8(SPRITE_NUMBER, BACK_TILE_NUMBER))
+  //val gameLogic = Module(new GameLogic(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
+  val gameLogic = Module(new GameLogicTask0(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
+  //val gameLogic = Module(new GameLogicTask1(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
+  //val gameLogic = Module(new GameLogicTask2(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
+  //val gameLogic = Module(new GameLogicTask3(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
+  //val gameLogic = Module(new GameLogicTask4(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
+  //val gameLogic = Module(new GameLogicTask5(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
+  //val gameLogic = Module(new GameLogicTask6(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
+  //val gameLogic = Module(new GameLogicTask7(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
+  //val gameLogic = Module(new GameLogicTask8(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
 
   //Debouncing
   val CLOCK_FREQUENCY_HZ = 100000000 //100 MHz
@@ -122,6 +128,12 @@ class GameTop extends Module {
   graphicEngineVGA.io.spriteFlipHorizontal := gameLogic.io.spriteFlipHorizontal
   graphicEngineVGA.io.spriteFlipVertical := gameLogic.io.spriteFlipVertical
 
+  //Scaling: New experimental feautures
+  graphicEngineVGA.io.spriteScaleUpHorizontal := gameLogic.io.spriteScaleUpHorizontal
+  graphicEngineVGA.io.spriteScaleDownHorizontal := gameLogic.io.spriteScaleDownHorizontal
+  graphicEngineVGA.io.spriteScaleUpVertical := gameLogic.io.spriteScaleUpVertical
+  graphicEngineVGA.io.spriteScaleDownVertical := gameLogic.io.spriteScaleDownVertical
+
   //Viewbox control input
   graphicEngineVGA.io.viewBoxX := gameLogic.io.viewBoxX
   graphicEngineVGA.io.viewBoxY := gameLogic.io.viewBoxY
@@ -134,6 +146,14 @@ class GameTop extends Module {
   //Status
   gameLogic.io.newFrame := graphicEngineVGA.io.newFrame
   graphicEngineVGA.io.frameUpdateDone := gameLogic.io.frameUpdateDone
+
+  //Sound engine: New experimental feautures
+  io.soundOut := soundEngine.io.soundOut
+  soundEngine.io.startTune := gameLogic.io.startTune
+  soundEngine.io.stopTune := gameLogic.io.stopTune
+  soundEngine.io.pauseTune := gameLogic.io.pauseTune
+  gameLogic.io.playingTune := soundEngine.io.playingTune
+  soundEngine.io.tuneId := gameLogic.io.tuneId
 
 }
 

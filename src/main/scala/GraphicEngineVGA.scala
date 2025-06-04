@@ -16,6 +16,10 @@ class GraphicEngineVGA(SpriteNumber: Int, BackTileNumber: Int) extends Module {
     val spriteVisible = Input(Vec(SpriteNumber, Bool()))
     val spriteFlipHorizontal = Input(Vec(SpriteNumber, Bool()))
     val spriteFlipVertical = Input(Vec(SpriteNumber, Bool()))
+    val spriteScaleUpHorizontal = Input(Vec(SpriteNumber, Bool()))
+    val spriteScaleDownHorizontal = Input(Vec(SpriteNumber, Bool()))
+    val spriteScaleUpVertical = Input(Vec(SpriteNumber, Bool()))
+    val spriteScaleDownVertical = Input(Vec(SpriteNumber, Bool()))
 
     //Viewbox control input
     val viewBoxX = Input(UInt(10.W)) //0 to 640
@@ -112,6 +116,10 @@ class GraphicEngineVGA(SpriteNumber: Int, BackTileNumber: Int) extends Module {
   val spriteVisibleReg = RegEnable(io.spriteVisible, VecInit(Seq.fill(SpriteNumber)(true.B)), io.newFrame)
   val spriteFlipHorizontalReg = RegEnable(io.spriteFlipHorizontal, VecInit(Seq.fill(SpriteNumber)(false.B)), io.newFrame)
   val spriteFlipVerticalReg = RegEnable(io.spriteFlipVertical, VecInit(Seq.fill(SpriteNumber)(false.B)), io.newFrame)
+  val spriteScaleUpHorizontalReg = RegEnable(io.spriteScaleUpHorizontal, VecInit(Seq.fill(SpriteNumber)(false.B)), io.newFrame)
+  val spriteScaleDownHorizontalReg = RegEnable(io.spriteScaleDownHorizontal, VecInit(Seq.fill(SpriteNumber)(false.B)), io.newFrame)
+  val spriteScaleUpVerticalReg = RegEnable(io.spriteScaleUpVertical, VecInit(Seq.fill(SpriteNumber)(false.B)), io.newFrame)
+  val spriteScaleDownVerticalReg = RegEnable(io.spriteScaleDownVertical, VecInit(Seq.fill(SpriteNumber)(false.B)), io.newFrame)
   val viewBoxXReg = RegEnable(io.viewBoxX, 0.U(10.W), io.newFrame)
   val viewBoxYReg = RegEnable(io.viewBoxY, 0.U(9.W), io.newFrame)
 
@@ -243,23 +251,74 @@ class GraphicEngineVGA(SpriteNumber: Int, BackTileNumber: Int) extends Module {
     spriteMemory
   }
 
+  val inSpriteHorizontal = Wire(Vec(SpriteNumber, Bool()))
+  val inSpriteVertical = Wire(Vec(SpriteNumber, Bool()))
   val inSprite = Wire(Vec(SpriteNumber, Bool()))
+  val inSpriteXPreScaled = Wire(Vec(SpriteNumber, SInt(12.W)))
+  val inSpriteYPreScaled = Wire(Vec(SpriteNumber, SInt(11.W)))
   val inSpriteX = Wire(Vec(SpriteNumber, SInt(12.W)))
   val inSpriteY = Wire(Vec(SpriteNumber, SInt(11.W)))
   for(i <- 0 until SpriteNumber) {
+
     val inSpriteXValue = (0.U(1.W) ## pixelX).asSInt -& spriteXPositionReg(i)
-    when(spriteFlipHorizontalReg(i)){
-      inSpriteX(i) := 31.S - inSpriteXValue
-    } .otherwise {
-      inSpriteX(i) := inSpriteXValue
+    when(spriteFlipHorizontalReg(i)) {
+      inSpriteXPreScaled(i) := 31.S - inSpriteXValue
+    }.otherwise {
+      inSpriteXPreScaled(i) := inSpriteXValue
     }
+    when((spriteScaleUpHorizontalReg(i) && spriteScaleDownHorizontalReg(i)) || (!spriteScaleUpHorizontalReg(i) && !spriteScaleDownHorizontalReg(i))){
+      // No scaling
+      inSpriteX(i) := inSpriteXPreScaled(i)
+      inSpriteHorizontal(i) := inSpriteXPreScaled(i) >= 0.S && inSpriteXPreScaled(i) < 32.S
+    } .elsewhen(spriteScaleUpHorizontalReg(i)) {
+      // Scale up
+      when(spriteFlipHorizontalReg(i)) {
+        inSpriteX(i) := (inSpriteXPreScaled(i) - 32.S) >> 1
+        inSpriteHorizontal(i) := inSpriteXPreScaled(i) >= -32.S && inSpriteXPreScaled(i) < 32.S
+      }.otherwise {
+        inSpriteX(i) := inSpriteXPreScaled(i) >> 1
+        inSpriteHorizontal(i) := inSpriteXPreScaled(i) >= 0.S && inSpriteXPreScaled(i) < 64.S
+      }
+    } .otherwise {
+      // Scale down
+      inSpriteX(i) := inSpriteXPreScaled(i) << 1
+      when(spriteFlipHorizontalReg(i)) {
+        inSpriteHorizontal(i) := inSpriteXPreScaled(i) >= 16.S && inSpriteXPreScaled(i) < 32.S
+      }.otherwise {
+        inSpriteHorizontal(i) := inSpriteXPreScaled(i) >= 0.S && inSpriteXPreScaled(i) < 16.S
+      }
+    }
+
     val inSpriteYValue = (0.U(1.W) ## pixelY).asSInt -& spriteYPositionReg(i)
     when(spriteFlipVerticalReg(i)){
-      inSpriteY(i) := 31.S - inSpriteYValue
+      inSpriteYPreScaled(i) := 31.S - inSpriteYValue
     } .otherwise {
-      inSpriteY(i) := inSpriteYValue
+      inSpriteYPreScaled(i) := inSpriteYValue
     }
-    inSprite(i) := inSpriteX(i) >= 0.S && inSpriteX(i) < 32.S && inSpriteY(i) >= 0.S && inSpriteY(i) < 32.S
+    when((spriteScaleUpVerticalReg(i) && spriteScaleDownVerticalReg(i)) || (!spriteScaleUpVerticalReg(i) && !spriteScaleDownVerticalReg(i))) {
+      // No scaling
+      inSpriteY(i) := inSpriteYPreScaled(i)
+      inSpriteVertical(i) := inSpriteYPreScaled(i) >= 0.S && inSpriteYPreScaled(i) < 32.S
+    }.elsewhen(spriteScaleUpVerticalReg(i)) {
+      // Scale up
+      when(spriteFlipVerticalReg(i)) {
+        inSpriteY(i) := (inSpriteYPreScaled(i) - 32.S) >> 1
+        inSpriteVertical(i) := inSpriteYPreScaled(i) >= -32.S && inSpriteYPreScaled(i) < 32.S
+      }.otherwise {
+        inSpriteY(i) := inSpriteYPreScaled(i) >> 1
+        inSpriteVertical(i) := inSpriteYPreScaled(i) >= 0.S && inSpriteYPreScaled(i) < 64.S
+      }
+    }.otherwise {
+      // Scale down
+      inSpriteY(i) := inSpriteYPreScaled(i) << 1
+      when(spriteFlipVerticalReg(i)) {
+        inSpriteVertical(i) := inSpriteYPreScaled(i) >= 16.S && inSpriteYPreScaled(i) < 32.S
+      }.otherwise {
+        inSpriteVertical(i) := inSpriteYPreScaled(i) >= 0.S && inSpriteYPreScaled(i) < 16.S
+      }
+    }
+
+    inSprite(i) := inSpriteHorizontal(i) && inSpriteVertical(i)
   }
 
   // Sprite memory connection

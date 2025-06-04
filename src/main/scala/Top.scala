@@ -36,6 +36,9 @@ class Top extends Module {
     val missingFrameError = Output(Bool())
     val backBufferWriteError = Output(Bool())
     val viewBoxOutOfRangeError = Output(Bool())
+
+    // Sound
+    val soundOut = Output(Bool())
   })
 
   val gameTop = Module(new GameTop())
