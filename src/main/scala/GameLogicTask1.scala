@@ -116,6 +116,12 @@ class GameLogicTask1(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) ex
   //Two registers holding the sprite sprite X and Y with the sprite initial position
   val sprite0XReg = RegInit(32.S(11.W))
   val sprite0YReg = RegInit((360-32).S(10.W))
+  val sprite1XReg = RegInit(350.S(11.W))
+  val sprite1YReg = RegInit(160.S(10.W))
+  val sprite2XReg = RegInit(120.S(11.W))
+  val sprite2YReg = RegInit((360-128).S(10.W))
+  val sprite3XReg = RegInit(247.S(11.W))
+  val sprite3YReg = RegInit((360-44).S(10.W))
 
   //A registers holding the sprite horizontal flip
   val sprite0FlipHorizontalReg = RegInit(false.B)
@@ -127,6 +133,15 @@ class GameLogicTask1(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) ex
   io.spriteXPosition(0) := sprite0XReg
   io.spriteYPosition(0) := sprite0YReg
   io.spriteFlipHorizontal(0) := sprite0FlipHorizontalReg
+  io.spriteXPosition(1) := sprite1XReg
+  io.spriteYPosition(1) := sprite1YReg
+  io.spriteFlipHorizontal(1) := sprite1FlipHorizontalReg
+  io.spriteXPosition(2) := sprite2XReg
+  io.spriteYPosition(2) := sprite2YReg
+  io.spriteFlipHorizontal(2) := sprite2FlipHorizontalReg
+  io.spriteXPosition(3) := sprite3XReg
+  io.spriteYPosition(3) := sprite3YReg
+  io.spriteFlipHorizontal(3) := sprite3FlipHorizontalReg
 
   //FSMD switch
   switch(stateReg) {
