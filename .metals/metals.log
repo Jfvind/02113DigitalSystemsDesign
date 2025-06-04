@@ -76,3 +76,5 @@ java.nio.file.FileSystemNotFoundException: Provider "class" not installed
 
 Jun 04, 2025 11:56:42 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFO: Unsupported notification method: $/setTrace
+2025.06.04 12:37:44 INFO  compiling root-02113digitalsystemsdesign (1 scala source)
+2025.06.04 12:37:44 INFO  time: compiled root-02113digitalsystemsdesign in 0.93s
