@@ -1,0 +1,10 @@
+[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogicTask1.scala:138:33: not found: value sprite1FlipHorizontalReg[0m
+[0m[[0m[31merror[0m] [0m[0m  io.spriteFlipHorizontal(1) := sprite1FlipHorizontalReg[0m
+[0m[[0m[31merror[0m] [0m[0m                                ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogicTask1.scala:141:33: not found: value sprite2FlipHorizontalReg[0m
+[0m[[0m[31merror[0m] [0m[0m  io.spriteFlipHorizontal(2) := sprite2FlipHorizontalReg[0m
+[0m[[0m[31merror[0m] [0m[0m                                ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogicTask1.scala:144:33: not found: value sprite3FlipHorizontalReg[0m
+[0m[[0m[31merror[0m] [0m[0m  io.spriteFlipHorizontal(3) := sprite3FlipHorizontalReg[0m
+[0m[[0m[31merror[0m] [0m[0m                                ^[0m
+[0m[[0m[31merror[0m] [0m[0mthree errors found[0m

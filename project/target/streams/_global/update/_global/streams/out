@@ -1,9 +1,3 @@
-<<<<<<< HEAD
 [0m[[0m[0mdebug[0m] [0m[0mnot up to date. inChanged = true, force = false[0m
 [0m[[0m[0mdebug[0m] [0m[0mUpdating ProjectRef(uri("file:/C:/DTU-local/Repos/02113DigitalSystemsDesign/project/"), "root-02113digitalsystemsdesign-build")...[0m
 [0m[[0m[0mdebug[0m] [0m[0mDone updating ProjectRef(uri("file:/C:/DTU-local/Repos/02113DigitalSystemsDesign/project/"), "root-02113digitalsystemsdesign-build")[0m
-=======
-[debug] not up to date. inChanged = true, force = false
-[debug] Updating ProjectRef(uri("file:/Users/frederikholm/Documents/GitHub/02113DigitalSystemsDesign/project/"), "root-02113digitalsystemsdesign-build")...
-[debug] Done updating ProjectRef(uri("file:/Users/frederikholm/Documents/GitHub/02113DigitalSystemsDesign/project/"), "root-02113digitalsystemsdesign-build")
->>>>>>> bc911ebb0128ebb2d721a773ec7d290aabeb7889

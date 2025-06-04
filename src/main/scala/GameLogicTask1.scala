@@ -125,6 +125,9 @@ class GameLogicTask1(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) ex
 
   //A registers holding the sprite horizontal flip
   val sprite0FlipHorizontalReg = RegInit(false.B)
+  val sprite1FlipHorizontalReg = RegInit(false.B)
+  val sprite2FlipHorizontalReg = RegInit(false.B)
+  val sprite3FlipHorizontalReg = RegInit(false.B)
 
   //Making sprite 0 visible
   io.spriteVisible(0) := true.B
