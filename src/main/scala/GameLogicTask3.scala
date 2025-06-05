@@ -127,12 +127,23 @@ class GameLogicTask3(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) ex
   val sprite1FlipHorizontalReg = RegInit(false.B)
   val sprite2FlipHorizontalReg = RegInit(false.B)
   val sprite3FlipHorizontalReg = RegInit(false.B)
+  val sprite4FlipHorizontalReg = RegInit(false.B)
+  val sprite5FlipHorizontalReg = RegInit(false.B)
 
-  //Making sprite 0 visible
+  //Registers controlling invisibility
+  val sprite1Visible = RegInit(true.B)
+  val sprite2Visible = RegInit(true.B)
+  val sprite3Visible = RegInit(true.B)
+  val sprite4Visible = RegInit(false.B)
+  val sprite5Visible = RegInit(false.B)
+
+  //Connecting invisibility for sprites
   io.spriteVisible(0) := true.B
-  io.spriteVisible(1) := true.B
-  io.spriteVisible(2) := true.B
-  io.spriteVisible(3) := true.B
+  io.spriteVisible(1) := sprite1Visible
+  io.spriteVisible(2) := sprite2Visible
+  io.spriteVisible(3) := sprite3Visible
+  io.spriteVisible(4) := sprite4Visible
+  io.spriteVisible(5) := sprite5Visible
 
   //Connecting resiters to the graphic engine
   io.spriteXPosition(0) := sprite0XReg
@@ -147,6 +158,12 @@ class GameLogicTask3(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) ex
   io.spriteXPosition(3) := sprite3XReg
   io.spriteYPosition(3) := sprite3YReg
   io.spriteFlipHorizontal(3) := sprite3FlipHorizontalReg
+  io.spriteXPosition(4) := sprite1XReg
+  io.spriteYPosition(4) := sprite1YReg
+  io.spriteFlipHorizontal(4) := sprite1FlipHorizontalReg
+  io.spriteXPosition(5) := sprite2XReg
+  io.spriteYPosition(5) := sprite2YReg
+  io.spriteFlipHorizontal(5) := sprite2FlipHorizontalReg
 
   //Counters for autonomous moving
   val cntSprite1 = RegInit(0.U(9.W))
@@ -188,9 +205,13 @@ class GameLogicTask3(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) ex
       when(cntSprite1 <= 45.U) {
         sprite1YReg := sprite1YReg - 2.S
         cntSprite1 := cntSprite1 + 1.U
+        sprite1Visible := RegNext(true.B)
+        sprite4Visible := RegNext(false.B)
       }.elsewhen(cntSprite1 > 45.U && cntSprite1 <= 91.U) {
         sprite1YReg := sprite1YReg + 2.S
         cntSprite1 := cntSprite1 + 1.U
+        sprite1Visible := RegNext(false.B)
+        sprite4Visible := RegNext(true.B)
       }.otherwise {
         cntSprite1 := 0.U
       }
@@ -198,14 +219,18 @@ class GameLogicTask3(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) ex
         sprite2XReg := sprite2XReg + 2.S
         cntSprite2 := cntSprite2 + 1.U
         sprite2FlipHorizontalReg := false.B
+        sprite2Visible := RegNext(true.B)
+        sprite5Visible := RegNext(false.B)
       }.elsewhen(cntSprite2 > 200.U && cntSprite2 <= 401.U) {
         sprite2XReg := sprite2XReg - 2.S
         cntSprite2 := cntSprite2 + 1.U
         sprite2FlipHorizontalReg := true.B
+        sprite2Visible := RegNext(false.B)
+        sprite5Visible := RegNext(true.B)
       }.elsewhen(cntSprite2 === 402.U) {
         cntSprite2 := 0.U
       }
-      
+
       stateReg := done
     }
 

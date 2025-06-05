@@ -1,10 +1,25 @@
-[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogicTask1.scala:138:33: not found: value sprite1FlipHorizontalReg[0m
-[0m[[0m[31merror[0m] [0m[0m  io.spriteFlipHorizontal(1) := sprite1FlipHorizontalReg[0m
-[0m[[0m[31merror[0m] [0m[0m                                ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogicTask1.scala:141:33: not found: value sprite2FlipHorizontalReg[0m
-[0m[[0m[31merror[0m] [0m[0m  io.spriteFlipHorizontal(2) := sprite2FlipHorizontalReg[0m
-[0m[[0m[31merror[0m] [0m[0m                                ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogicTask1.scala:144:33: not found: value sprite3FlipHorizontalReg[0m
-[0m[[0m[31merror[0m] [0m[0m  io.spriteFlipHorizontal(3) := sprite3FlipHorizontalReg[0m
-[0m[[0m[31merror[0m] [0m[0m                                ^[0m
-[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
+[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogicTask3.scala:214:28: reassignment to val[0m
+[0m[[0m[31merror[0m] [0m[0m        nextSprite1Visible = true.B[0m
+[0m[[0m[31merror[0m] [0m[0m                           ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogicTask3.scala:215:28: reassignment to val[0m
+[0m[[0m[31merror[0m] [0m[0m        nextSprite4Visible = false.B[0m
+[0m[[0m[31merror[0m] [0m[0m                           ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogicTask3.scala:219:28: reassignment to val[0m
+[0m[[0m[31merror[0m] [0m[0m        nextSprite1Visible = false.B[0m
+[0m[[0m[31merror[0m] [0m[0m                           ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogicTask3.scala:220:28: reassignment to val[0m
+[0m[[0m[31merror[0m] [0m[0m        nextSprite4Visible = true.B[0m
+[0m[[0m[31merror[0m] [0m[0m                           ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogicTask3.scala:228:28: reassignment to val[0m
+[0m[[0m[31merror[0m] [0m[0m        nextSprite2Visible = true.B[0m
+[0m[[0m[31merror[0m] [0m[0m                           ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogicTask3.scala:229:28: reassignment to val[0m
+[0m[[0m[31merror[0m] [0m[0m        nextSprite5Visible = false.B[0m
+[0m[[0m[31merror[0m] [0m[0m                           ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogicTask3.scala:234:28: reassignment to val[0m
+[0m[[0m[31merror[0m] [0m[0m        nextSprite2Visible = false.B[0m
+[0m[[0m[31merror[0m] [0m[0m                           ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogicTask3.scala:235:28: reassignment to val[0m
+[0m[[0m[31merror[0m] [0m[0m        nextSprite5Visible = true.B[0m
+[0m[[0m[31merror[0m] [0m[0m                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m8 errors found[0m
