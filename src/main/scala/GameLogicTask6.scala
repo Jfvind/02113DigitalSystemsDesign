@@ -109,7 +109,183 @@ class GameLogicTask6(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) ex
   // Write here your game logic
   // (you might need to change the initialization values above)
   /////////////////////////////////////////////////////////////////
+  val idle :: fishMove :: autonomousMove :: backgroundAnimate :: bubble :: done :: Nil = Enum(6)
+  val stateReg = RegInit(idle)
 
+  //Two registers holding the sprite sprite X and Y with the sprite initial position
+  val sprite0XReg = RegInit(32.S(11.W))
+  val sprite0YReg = RegInit((360-32).S(10.W))
+  val sprite1XReg = RegInit(350.S(11.W))
+  val sprite1YReg = RegInit(160.S(10.W))
+  val sprite2XReg = RegInit(120.S(11.W))
+  val sprite2YReg = RegInit((360-128).S(10.W))
+  val sprite3XReg = RegInit(247.S(11.W))
+  val sprite3YReg = RegInit((360-44).S(10.W))
+  val sprite6XReg = RegInit(320.S(11.W))
+  val sprite6YReg = RegInit(384.S(10.W))
+
+  //A registers holding the sprite horizontal flip
+  val sprite0FlipHorizontalReg = RegInit(false.B)
+  val sprite1FlipHorizontalReg = RegInit(false.B)
+  val sprite2FlipHorizontalReg = RegInit(false.B)
+  val sprite3FlipHorizontalReg = RegInit(false.B)
+  val sprite4FlipHorizontalReg = RegInit(false.B)
+  val sprite5FlipHorizontalReg = RegInit(false.B)
+  val sprite6FlipHorizontalReg = RegInit(false.B)
+
+  //Registers controlling invisibility
+  val sprite1Visible = RegInit(true.B)
+  val sprite2Visible = RegInit(true.B)
+  val sprite3Visible = RegInit(true.B)
+  val sprite4Visible = RegInit(false.B)
+  val sprite5Visible = RegInit(false.B)
+  val sprite6Visible = RegInit(true.B)
+
+  //Connecting invisibility for sprites
+  io.spriteVisible(0) := true.B
+  io.spriteVisible(1) := sprite1Visible
+  io.spriteVisible(2) := sprite2Visible
+  io.spriteVisible(3) := sprite3Visible
+  io.spriteVisible(4) := sprite4Visible
+  io.spriteVisible(5) := sprite5Visible
+  io.spriteVisible(6) := sprite6Visible
+
+  //Connecting resiters to the graphic engine
+  io.spriteXPosition(0) := sprite0XReg
+  io.spriteYPosition(0) := sprite0YReg
+  io.spriteFlipHorizontal(0) := sprite0FlipHorizontalReg
+  io.spriteXPosition(1) := sprite1XReg
+  io.spriteYPosition(1) := sprite1YReg
+  io.spriteFlipHorizontal(1) := sprite1FlipHorizontalReg
+  io.spriteXPosition(2) := sprite2XReg
+  io.spriteYPosition(2) := sprite2YReg
+  io.spriteFlipHorizontal(2) := sprite2FlipHorizontalReg
+  io.spriteXPosition(3) := sprite3XReg
+  io.spriteYPosition(3) := sprite3YReg
+  io.spriteFlipHorizontal(3) := sprite3FlipHorizontalReg
+  io.spriteXPosition(4) := sprite1XReg
+  io.spriteYPosition(4) := sprite1YReg
+  io.spriteFlipHorizontal(4) := sprite1FlipHorizontalReg
+  io.spriteXPosition(5) := sprite2XReg
+  io.spriteYPosition(5) := sprite2YReg
+  io.spriteFlipHorizontal(5) := sprite2FlipHorizontalReg
+  io.spriteXPosition(6) := sprite6XReg
+  io.spriteYPosition(6) := sprite6YReg
+  io.spriteFlipHorizontal(6) := sprite6FlipHorizontalReg
+
+  //Counters for autonomous moving
+  val cntSprite1 = RegInit(0.U(9.W)) //Moving sprite 1 & 4 (Apple)
+  val cntSprite2 = RegInit(0.U(9.W)) //Moving sprite 2 & 5 (Trump)
+  val cntSprite6 = RegInit(0.U(9.W)) //Moving sprite 6 (Bubble)
+
+  //Counter for background animations
+  val cntBack1 = RegInit(0.U(7.W)) //Animating seagull (changes every 63 frames)
+
+  //FSMD switch
+  switch(stateReg) {
+    is(idle) {
+      when(io.newFrame) {
+        stateReg := fishMove
+      }
+    }
+
+    is(fishMove) { //Controls the red fish' movement
+      when(io.btnD){
+        when(sprite0YReg < (480 - 32 - 24).S) {
+          sprite0YReg := sprite0YReg + 2.S
+        }
+      } .elsewhen(io.btnU){
+        when(sprite0YReg > (96).S) {
+          sprite0YReg := sprite0YReg - 2.S
+        }
+      }
+      when(io.btnR) {
+        when(sprite0XReg < (640 - 32 - 32).S) {
+          sprite0XReg := sprite0XReg + 2.S
+          sprite0FlipHorizontalReg := false.B
+        }
+      } .elsewhen(io.btnL){
+        when(sprite0XReg > 32.S) {
+          sprite0XReg := sprite0XReg - 2.S
+          sprite0FlipHorizontalReg := true.B
+        }
+      }
+      stateReg := autonomousMove
+    }
+
+    is(autonomousMove) { //This state controls the autonomous moving sprites and their visibility (sprite 1 & 4 and sprite 2 & 5)
+      when(cntSprite1 <= 45.U) {
+        sprite1YReg := sprite1YReg - 2.S
+        cntSprite1 := cntSprite1 + 1.U
+        sprite1Visible := RegNext(true.B)
+        sprite4Visible := RegNext(false.B)
+      }.elsewhen(cntSprite1 > 45.U && cntSprite1 <= 91.U) {
+        sprite1YReg := sprite1YReg + 2.S
+        cntSprite1 := cntSprite1 + 1.U
+        sprite1Visible := RegNext(false.B)
+        sprite4Visible := RegNext(true.B)
+      }.otherwise {
+        cntSprite1 := 0.U
+      }
+      when(cntSprite2 <= 200.U) {
+        sprite2XReg := sprite2XReg + 2.S
+        cntSprite2 := cntSprite2 + 1.U
+        sprite2FlipHorizontalReg := false.B
+        sprite2Visible := RegNext(true.B)
+        sprite5Visible := RegNext(false.B)
+      }.elsewhen(cntSprite2 > 200.U && cntSprite2 <= 401.U) {
+        sprite2XReg := sprite2XReg - 2.S
+        cntSprite2 := cntSprite2 + 1.U
+        sprite2FlipHorizontalReg := true.B
+        sprite2Visible := RegNext(false.B)
+        sprite5Visible := RegNext(true.B)
+      }.elsewhen(cntSprite2 === 402.U) {
+        cntSprite2 := 0.U
+      }
+
+      stateReg := backgroundAnimate
+    }
+
+    is(backgroundAnimate) { //Animates the seagull
+      when(cntBack1 === 63.U) {
+        io.backBufferWriteData := 8.U
+        io.backBufferWriteAddress := 42.U
+        io.backBufferWriteEnable := true.B
+        cntBack1 := cntBack1 + 1.U
+      }.elsewhen(cntBack1 === 126.U) {
+        io.backBufferWriteData := 7.U
+        io.backBufferWriteAddress := 42.U
+        io.backBufferWriteEnable := true.B
+        cntBack1 := 0.U
+      }.otherwise {
+        io.backBufferWriteEnable := false.B
+        cntBack1 := cntBack1 + 1.U
+      }
+
+      stateReg := bubble
+    }
+
+    is(bubble) {
+      when(cntSprite6 === 511.U) {
+        sprite6YReg := 384.S
+        sprite6Visible := true.B
+        cntSprite6 := 0.U
+      }.elsewhen(cntSprite6 < 384.U) {
+        sprite6YReg := sprite6YReg - 1.S
+        cntSprite6 := cntSprite6 + 1.U
+      }.otherwise {
+        sprite6Visible := false.B
+        cntSprite6 := cntSprite6 + 1.U
+      }
+
+      stateReg := done
+    }
+
+    is(done) {
+      io.frameUpdateDone := true.B
+      stateReg := idle
+    }
+  }
 
 }
 

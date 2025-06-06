@@ -170,7 +170,7 @@ class GameLogicTask5(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) ex
   val cntSprite2 = RegInit(0.U(9.W)) //Moving sprite 2 & 5
 
   //Counter for background animations
-  val cntBack1 = RegInit(0.U(8.W)) //Animating seagull
+  val cntBack1 = RegInit(0.U(7.W)) //Animating seagull (changes every 63 frames)
 
   //FSMD switch
   switch(stateReg) {
@@ -238,12 +238,12 @@ class GameLogicTask5(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) ex
     }
 
     is(backgroundAnimate) {
-      when(cntBack1 === 127.U) {
+      when(cntBack1 === 63.U) {
         io.backBufferWriteData := 8.U
         io.backBufferWriteAddress := 42.U
         io.backBufferWriteEnable := true.B
         cntBack1 := cntBack1 + 1.U
-      }.elsewhen(cntBack1 === 255.U) {
+      }.elsewhen(cntBack1 === 126.U) {
         io.backBufferWriteData := 7.U
         io.backBufferWriteAddress := 42.U
         io.backBufferWriteEnable := true.B

@@ -5118,8 +5118,8 @@ circuit Top :
       reset => (reset, UInt<9>("h0")) @[\\src\\main\\scala\\GameLogicTask5.scala 169:27]
     reg cntSprite2 : UInt<9>, clock with :
       reset => (reset, UInt<9>("h0")) @[\\src\\main\\scala\\GameLogicTask5.scala 170:27]
-    reg cntBack1 : UInt<8>, clock with :
-      reset => (reset, UInt<8>("h0")) @[\\src\\main\\scala\\GameLogicTask5.scala 173:25]
+    reg cntBack1 : UInt<7>, clock with :
+      reset => (reset, UInt<7>("h0")) @[\\src\\main\\scala\\GameLogicTask5.scala 173:25]
     node _T = eq(UInt<3>("h0"), stateReg) @[\\src\\main\\scala\\GameLogicTask5.scala 176:20]
     when _T : @[\\src\\main\\scala\\GameLogicTask5.scala 176:20]
       when io.newFrame : @[\\src\\main\\scala\\GameLogicTask5.scala 178:25]
@@ -5249,8 +5249,8 @@ circuit Top :
         else :
           node _T_16 = eq(UInt<3>("h3"), stateReg) @[\\src\\main\\scala\\GameLogicTask5.scala 176:20]
           when _T_16 : @[\\src\\main\\scala\\GameLogicTask5.scala 176:20]
-            node _T_17 = eq(cntBack1, UInt<7>("h7f")) @[\\src\\main\\scala\\GameLogicTask5.scala 241:21]
-            when _T_17 : @[\\src\\main\\scala\\GameLogicTask5.scala 241:32]
+            node _T_17 = eq(cntBack1, UInt<6>("h3f")) @[\\src\\main\\scala\\GameLogicTask5.scala 241:21]
+            when _T_17 : @[\\src\\main\\scala\\GameLogicTask5.scala 241:31]
               io.backBufferWriteData <= UInt<4>("h8") @[\\src\\main\\scala\\GameLogicTask5.scala 242:32]
               io.backBufferWriteAddress <= UInt<6>("h2a") @[\\src\\main\\scala\\GameLogicTask5.scala 243:35]
               io.backBufferWriteEnable <= UInt<1>("h1") @[\\src\\main\\scala\\GameLogicTask5.scala 244:34]
@@ -5258,7 +5258,7 @@ circuit Top :
               node _cntBack1_T_1 = tail(_cntBack1_T, 1) @[\\src\\main\\scala\\GameLogicTask5.scala 245:30]
               cntBack1 <= _cntBack1_T_1 @[\\src\\main\\scala\\GameLogicTask5.scala 245:18]
             else :
-              node _T_18 = eq(cntBack1, UInt<8>("hff")) @[\\src\\main\\scala\\GameLogicTask5.scala 246:27]
+              node _T_18 = eq(cntBack1, UInt<7>("h7e")) @[\\src\\main\\scala\\GameLogicTask5.scala 246:27]
               when _T_18 : @[\\src\\main\\scala\\GameLogicTask5.scala 246:38]
                 io.backBufferWriteData <= UInt<3>("h7") @[\\src\\main\\scala\\GameLogicTask5.scala 247:32]
                 io.backBufferWriteAddress <= UInt<6>("h2a") @[\\src\\main\\scala\\GameLogicTask5.scala 248:35]

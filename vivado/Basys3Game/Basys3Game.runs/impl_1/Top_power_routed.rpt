@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Fri Jun  6 09:40:30 2025
+| Date             : Fri Jun  6 10:13:14 2025
 | Host             : Jeppe2024 running 64-bit major release  (build 9200)
 | Command          : report_power -file Top_power_routed.rpt -pb Top_power_summary_routed.pb -rpx Top_power_routed.rpx
 | Design           : Top
@@ -53,14 +53,14 @@ Table of Contents
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
 | Clocks                  |     0.003 |        3 |       --- |             --- |
-| Slice Logic             |    <0.001 |     1015 |       --- |             --- |
+| Slice Logic             |    <0.001 |     1043 |       --- |             --- |
 |   CARRY4                |    <0.001 |       81 |      8150 |            0.99 |
-|   LUT as Logic          |    <0.001 |      435 |     20800 |            2.09 |
-|   Register              |    <0.001 |      356 |     41600 |            0.86 |
+|   LUT as Logic          |    <0.001 |      446 |     20800 |            2.14 |
+|   Register              |    <0.001 |      369 |     41600 |            0.89 |
 |   Others                |     0.000 |       56 |       --- |             --- |
 |   LUT as Shift Register |     0.000 |        3 |      9600 |            0.03 |
 |   F7/F8 Muxes           |     0.000 |        7 |     32600 |            0.02 |
-| Signals                 |    <0.001 |      922 |       --- |             --- |
+| Signals                 |    <0.001 |      947 |       --- |             --- |
 | Block RAM               |     0.019 |     10.5 |        50 |           21.00 |
 | I/O                     |    <0.001 |       32 |       106 |           30.19 |
 | Static Power            |     0.072 |          |           |                 |
@@ -145,7 +145,7 @@ Table of Contents
 +------------------------------+-----------+
 | Top                          |     0.022 |
 |   gameTop                    |     0.022 |
-|     graphicEngineVGA         |     0.021 |
+|     graphicEngineVGA         |     0.020 |
 |       backBufferShadowMemory |     0.001 |
 +------------------------------+-----------+
 

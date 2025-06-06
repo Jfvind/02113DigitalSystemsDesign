@@ -3709,7 +3709,7 @@ module GameLogicTask5(
   reg  sprite5Visible; // @[\\src\\main\\scala\\GameLogicTask5.scala 138:31]
   reg [8:0] cntSprite1; // @[\\src\\main\\scala\\GameLogicTask5.scala 169:27]
   reg [8:0] cntSprite2; // @[\\src\\main\\scala\\GameLogicTask5.scala 170:27]
-  reg [7:0] cntBack1; // @[\\src\\main\\scala\\GameLogicTask5.scala 173:25]
+  reg [6:0] cntBack1; // @[\\src\\main\\scala\\GameLogicTask5.scala 173:25]
   wire [9:0] _sprite0YReg_T_2 = $signed(sprite0YReg) + 10'sh2; // @[\\src\\main\\scala\\GameLogicTask5.scala 186:38]
   wire [9:0] _GEN_1 = $signed(sprite0YReg) < 10'sh1a8 ? $signed(_sprite0YReg_T_2) : $signed(sprite0YReg); // @[\\src\\main\\scala\\GameLogicTask5.scala 185:47 186:23 117:28]
   wire [9:0] _sprite0YReg_T_5 = $signed(sprite0YReg) - 10'sh2; // @[\\src\\main\\scala\\GameLogicTask5.scala 190:38]
@@ -3748,19 +3748,19 @@ module GameLogicTask5(
   wire  _GEN_29 = cntSprite2 <= 9'hc8 ? 1'h0 : _GEN_24; // @[\\src\\main\\scala\\GameLogicTask5.scala 221:33 224:34]
   wire  _GEN_30 = cntSprite2 <= 9'hc8 | _GEN_25; // @[\\src\\main\\scala\\GameLogicTask5.scala 221:33 225:24]
   wire  _GEN_31 = cntSprite2 <= 9'hc8 ? 1'h0 : _GEN_26; // @[\\src\\main\\scala\\GameLogicTask5.scala 221:33 226:24]
-  wire [7:0] _cntBack1_T_1 = cntBack1 + 8'h1; // @[\\src\\main\\scala\\GameLogicTask5.scala 245:30]
-  wire  _T_18 = cntBack1 == 8'hff; // @[\\src\\main\\scala\\GameLogicTask5.scala 246:27]
-  wire [2:0] _GEN_32 = cntBack1 == 8'hff ? 3'h7 : 3'h0; // @[\\src\\main\\scala\\GameLogicTask5.scala 246:38 247:32 95:26]
-  wire [5:0] _GEN_33 = cntBack1 == 8'hff ? 6'h2a : 6'h0; // @[\\src\\main\\scala\\GameLogicTask5.scala 246:38 248:35 96:29]
-  wire [7:0] _GEN_35 = cntBack1 == 8'hff ? 8'h0 : _cntBack1_T_1; // @[\\src\\main\\scala\\GameLogicTask5.scala 246:38 250:18 253:18]
-  wire [3:0] _GEN_36 = cntBack1 == 8'h7f ? 4'h8 : {{1'd0}, _GEN_32}; // @[\\src\\main\\scala\\GameLogicTask5.scala 241:32 242:32]
-  wire [5:0] _GEN_37 = cntBack1 == 8'h7f ? 6'h2a : _GEN_33; // @[\\src\\main\\scala\\GameLogicTask5.scala 241:32 243:35]
-  wire  _GEN_38 = cntBack1 == 8'h7f | _T_18; // @[\\src\\main\\scala\\GameLogicTask5.scala 241:32 244:34]
-  wire [7:0] _GEN_39 = cntBack1 == 8'h7f ? _cntBack1_T_1 : _GEN_35; // @[\\src\\main\\scala\\GameLogicTask5.scala 241:32 245:18]
+  wire [6:0] _cntBack1_T_1 = cntBack1 + 7'h1; // @[\\src\\main\\scala\\GameLogicTask5.scala 245:30]
+  wire  _T_18 = cntBack1 == 7'h7e; // @[\\src\\main\\scala\\GameLogicTask5.scala 246:27]
+  wire [2:0] _GEN_32 = cntBack1 == 7'h7e ? 3'h7 : 3'h0; // @[\\src\\main\\scala\\GameLogicTask5.scala 246:38 247:32 95:26]
+  wire [5:0] _GEN_33 = cntBack1 == 7'h7e ? 6'h2a : 6'h0; // @[\\src\\main\\scala\\GameLogicTask5.scala 246:38 248:35 96:29]
+  wire [6:0] _GEN_35 = cntBack1 == 7'h7e ? 7'h0 : _cntBack1_T_1; // @[\\src\\main\\scala\\GameLogicTask5.scala 246:38 250:18 253:18]
+  wire [3:0] _GEN_36 = cntBack1 == 7'h3f ? 4'h8 : {{1'd0}, _GEN_32}; // @[\\src\\main\\scala\\GameLogicTask5.scala 241:31 242:32]
+  wire [5:0] _GEN_37 = cntBack1 == 7'h3f ? 6'h2a : _GEN_33; // @[\\src\\main\\scala\\GameLogicTask5.scala 241:31 243:35]
+  wire  _GEN_38 = cntBack1 == 7'h3f | _T_18; // @[\\src\\main\\scala\\GameLogicTask5.scala 241:31 244:34]
+  wire [6:0] _GEN_39 = cntBack1 == 7'h3f ? _cntBack1_T_1 : _GEN_35; // @[\\src\\main\\scala\\GameLogicTask5.scala 241:31 245:18]
   wire [2:0] _GEN_41 = 3'h4 == stateReg ? 3'h0 : stateReg; // @[\\src\\main\\scala\\GameLogicTask5.scala 176:20 261:16 113:25]
   wire [3:0] _GEN_42 = 3'h3 == stateReg ? _GEN_36 : 4'h0; // @[\\src\\main\\scala\\GameLogicTask5.scala 176:20 95:26]
   wire [5:0] _GEN_43 = 3'h3 == stateReg ? _GEN_37 : 6'h0; // @[\\src\\main\\scala\\GameLogicTask5.scala 176:20 96:29]
-  wire [7:0] _GEN_45 = 3'h3 == stateReg ? _GEN_39 : cntBack1; // @[\\src\\main\\scala\\GameLogicTask5.scala 176:20 173:25]
+  wire [6:0] _GEN_45 = 3'h3 == stateReg ? _GEN_39 : cntBack1; // @[\\src\\main\\scala\\GameLogicTask5.scala 176:20 173:25]
   wire [2:0] _GEN_46 = 3'h3 == stateReg ? 3'h4 : _GEN_41; // @[\\src\\main\\scala\\GameLogicTask5.scala 176:20 256:16]
   wire  _GEN_47 = 3'h3 == stateReg ? 1'h0 : 3'h4 == stateReg; // @[\\src\\main\\scala\\GameLogicTask5.scala 176:20 100:22]
   wire  _GEN_50 = 3'h2 == stateReg ? _GEN_19 : sprite1Visible; // @[\\src\\main\\scala\\GameLogicTask5.scala 176:20 134:31]
@@ -3909,7 +3909,7 @@ module GameLogicTask5(
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogicTask5.scala 173:25]
-      cntBack1 <= 8'h0; // @[\\src\\main\\scala\\GameLogicTask5.scala 173:25]
+      cntBack1 <= 7'h0; // @[\\src\\main\\scala\\GameLogicTask5.scala 173:25]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogicTask5.scala 176:20]
       if (!(3'h1 == stateReg)) begin // @[\\src\\main\\scala\\GameLogicTask5.scala 176:20]
         if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\GameLogicTask5.scala 176:20]
@@ -3981,7 +3981,7 @@ initial begin
   _RAND_12 = {1{`RANDOM}};
   cntSprite2 = _RAND_12[8:0];
   _RAND_13 = {1{`RANDOM}};
-  cntBack1 = _RAND_13[7:0];
+  cntBack1 = _RAND_13[6:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
