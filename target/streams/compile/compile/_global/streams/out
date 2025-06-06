@@ -1,4 +1,7 @@
-[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogicTask5.scala:179:21: not found: value compute1[0m
-[0m[[0m[31merror[0m] [0m[0m        stateReg := compute1[0m
-[0m[[0m[31merror[0m] [0m[0m                    ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogicTask6.scala:269:7: not found: value spriteScaleDownHorizontal[0m
+[0m[[0m[31merror[0m] [0m[0m      spriteScaleDownHorizontal(6) := true.B //Bubble sprite scaled down[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogicTask6.scala:270:7: not found: value spriteScaleDownVertical[0m
+[0m[[0m[31merror[0m] [0m[0m      spriteScaleDownVertical(6) := true.B[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

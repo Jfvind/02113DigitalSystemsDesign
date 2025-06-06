@@ -121,8 +121,8 @@ class GameLogicTask6(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) ex
   val sprite2YReg = RegInit((360-128).S(10.W))
   val sprite3XReg = RegInit(247.S(11.W))
   val sprite3YReg = RegInit((360-44).S(10.W))
-  val sprite6XReg = RegInit(320.S(11.W))
-  val sprite6YReg = RegInit(384.S(10.W))
+  val sprite6XReg = RegInit(300.S(11.W))
+  val sprite6YReg = RegInit(370.S(10.W))
 
   //A registers holding the sprite horizontal flip
   val sprite0FlipHorizontalReg = RegInit(false.B)
@@ -180,6 +180,10 @@ class GameLogicTask6(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) ex
 
   //Counter for background animations
   val cntBack1 = RegInit(0.U(7.W)) //Animating seagull (changes every 63 frames)
+
+  //Scaling sprites
+  io.spriteScaleDownHorizontal(6) := true.B //Bubble sprite scaled down
+  io.spriteScaleDownVertical(6) := true.B
 
   //FSMD switch
   switch(stateReg) {
@@ -266,11 +270,11 @@ class GameLogicTask6(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) ex
     }
 
     is(bubble) {
-      when(cntSprite6 === 511.U) {
-        sprite6YReg := 384.S
+      when(cntSprite6 === 411.U) {
+        sprite6YReg := 370.S
         sprite6Visible := true.B
         cntSprite6 := 0.U
-      }.elsewhen(cntSprite6 < 384.U) {
+      }.elsewhen(cntSprite6 < 290.U) {
         sprite6YReg := sprite6YReg - 1.S
         cntSprite6 := cntSprite6 + 1.U
       }.otherwise {
