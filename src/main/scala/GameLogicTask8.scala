@@ -201,7 +201,7 @@ class GameLogicTask8(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) ex
       }
     }
 
-    is(fishMove) { //Controls the red fish' movement
+    is(fishMove) { //Controls the red fish' movement or the viewbox placement.
       when(io.sw(0)) {
         when(io.btnU) {
           when(viewBoxYReg > 0.U) {
