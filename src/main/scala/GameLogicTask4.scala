@@ -109,7 +109,136 @@ class GameLogicTask4(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) ex
   // Write here your game logic
   // (you might need to change the initialization values above)
   /////////////////////////////////////////////////////////////////
+  val idle :: compute1 :: autonomousMove :: done :: Nil = Enum(4)
+  val stateReg = RegInit(idle)
 
+  //Two registers holding the sprite sprite X and Y with the sprite initial position
+  val sprite0XReg = RegInit(32.S(11.W))
+  val sprite0YReg = RegInit((360-32).S(10.W))
+  val sprite1XReg = RegInit(350.S(11.W))
+  val sprite1YReg = RegInit(160.S(10.W))
+  val sprite2XReg = RegInit(120.S(11.W))
+  val sprite2YReg = RegInit((360-128).S(10.W))
+  val sprite3XReg = RegInit(247.S(11.W))
+  val sprite3YReg = RegInit((360-44).S(10.W))
+
+  //A registers holding the sprite horizontal flip
+  val sprite0FlipHorizontalReg = RegInit(false.B)
+  val sprite1FlipHorizontalReg = RegInit(false.B)
+  val sprite2FlipHorizontalReg = RegInit(false.B)
+  val sprite3FlipHorizontalReg = RegInit(false.B)
+  val sprite4FlipHorizontalReg = RegInit(false.B)
+  val sprite5FlipHorizontalReg = RegInit(false.B)
+
+  //Registers controlling invisibility
+  val sprite1Visible = RegInit(true.B)
+  val sprite2Visible = RegInit(true.B)
+  val sprite3Visible = RegInit(true.B)
+  val sprite4Visible = RegInit(false.B)
+  val sprite5Visible = RegInit(false.B)
+
+  //Connecting invisibility for sprites
+  io.spriteVisible(0) := true.B
+  io.spriteVisible(1) := sprite1Visible
+  io.spriteVisible(2) := sprite2Visible
+  io.spriteVisible(3) := sprite3Visible
+  io.spriteVisible(4) := sprite4Visible
+  io.spriteVisible(5) := sprite5Visible
+
+  //Connecting resiters to the graphic engine
+  io.spriteXPosition(0) := sprite0XReg
+  io.spriteYPosition(0) := sprite0YReg
+  io.spriteFlipHorizontal(0) := sprite0FlipHorizontalReg
+  io.spriteXPosition(1) := sprite1XReg
+  io.spriteYPosition(1) := sprite1YReg
+  io.spriteFlipHorizontal(1) := sprite1FlipHorizontalReg
+  io.spriteXPosition(2) := sprite2XReg
+  io.spriteYPosition(2) := sprite2YReg
+  io.spriteFlipHorizontal(2) := sprite2FlipHorizontalReg
+  io.spriteXPosition(3) := sprite3XReg
+  io.spriteYPosition(3) := sprite3YReg
+  io.spriteFlipHorizontal(3) := sprite3FlipHorizontalReg
+  io.spriteXPosition(4) := sprite1XReg
+  io.spriteYPosition(4) := sprite1YReg
+  io.spriteFlipHorizontal(4) := sprite1FlipHorizontalReg
+  io.spriteXPosition(5) := sprite2XReg
+  io.spriteYPosition(5) := sprite2YReg
+  io.spriteFlipHorizontal(5) := sprite2FlipHorizontalReg
+
+  //Counters for autonomous moving
+  val cntSprite1 = RegInit(0.U(9.W))
+  val cntSprite2 = RegInit(0.U(9.W))
+
+  //FSMD switch
+  switch(stateReg) {
+    is(idle) {
+      when(io.newFrame) {
+        stateReg := compute1
+      }
+    }
+
+    is(compute1) {
+      when(io.btnD){
+        when(sprite0YReg < (480 - 32 - 24).S) {
+          sprite0YReg := sprite0YReg + 2.S
+        }
+      } .elsewhen(io.btnU){
+        when(sprite0YReg > (96).S) {
+          sprite0YReg := sprite0YReg - 2.S
+        }
+      }
+      when(io.btnR) {
+        when(sprite0XReg < (640 - 32 - 32).S) {
+          sprite0XReg := sprite0XReg + 2.S
+          sprite0FlipHorizontalReg := false.B
+        }
+      } .elsewhen(io.btnL){
+        when(sprite0XReg > 32.S) {
+          sprite0XReg := sprite0XReg - 2.S
+          sprite0FlipHorizontalReg := true.B
+        }
+      }
+      stateReg := autonomousMove
+    }
+
+    is(autonomousMove) {
+      when(cntSprite1 <= 45.U) {
+        sprite1YReg := sprite1YReg - 2.S
+        cntSprite1 := cntSprite1 + 1.U
+        sprite1Visible := RegNext(true.B)
+        sprite4Visible := RegNext(false.B)
+      }.elsewhen(cntSprite1 > 45.U && cntSprite1 <= 91.U) {
+        sprite1YReg := sprite1YReg + 2.S
+        cntSprite1 := cntSprite1 + 1.U
+        sprite1Visible := RegNext(false.B)
+        sprite4Visible := RegNext(true.B)
+      }.otherwise {
+        cntSprite1 := 0.U
+      }
+      when(cntSprite2 <= 200.U) {
+        sprite2XReg := sprite2XReg + 2.S
+        cntSprite2 := cntSprite2 + 1.U
+        sprite2FlipHorizontalReg := false.B
+        sprite2Visible := RegNext(true.B)
+        sprite5Visible := RegNext(false.B)
+      }.elsewhen(cntSprite2 > 200.U && cntSprite2 <= 401.U) {
+        sprite2XReg := sprite2XReg - 2.S
+        cntSprite2 := cntSprite2 + 1.U
+        sprite2FlipHorizontalReg := true.B
+        sprite2Visible := RegNext(false.B)
+        sprite5Visible := RegNext(true.B)
+      }.elsewhen(cntSprite2 === 402.U) {
+        cntSprite2 := 0.U
+      }
+
+      stateReg := done
+    }
+
+    is(done) {
+      io.frameUpdateDone := true.B
+      stateReg := idle
+    }
+  }
 
 }
 

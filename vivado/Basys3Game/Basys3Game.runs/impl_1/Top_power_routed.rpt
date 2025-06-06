@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Wed Jun  4 15:14:49 2025
+| Date             : Thu Jun  5 14:47:40 2025
 | Host             : Jeppe2024 running 64-bit major release  (build 9200)
 | Command          : report_power -file Top_power_routed.rpt -pb Top_power_summary_routed.pb -rpx Top_power_routed.rpx
 | Design           : Top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.091        |
+| Total On-Chip Power (W)  | 0.092        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.019        |
+| Dynamic (W)              | 0.020        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.5         |
@@ -53,18 +53,18 @@ Table of Contents
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
 | Clocks                  |     0.003 |        3 |       --- |             --- |
-| Slice Logic             |    <0.001 |      913 |       --- |             --- |
-|   CARRY4                |    <0.001 |       72 |      8150 |            0.88 |
-|   LUT as Logic          |    <0.001 |      377 |     20800 |            1.81 |
-|   Register              |    <0.001 |      342 |     41600 |            0.82 |
+| Slice Logic             |    <0.001 |      992 |       --- |             --- |
+|   CARRY4                |    <0.001 |       81 |      8150 |            0.99 |
+|   LUT as Logic          |    <0.001 |      424 |     20800 |            2.04 |
+|   Register              |    <0.001 |      356 |     41600 |            0.86 |
 |   Others                |     0.000 |       50 |       --- |             --- |
-|   F7/F8 Muxes           |     0.000 |        7 |     32600 |            0.02 |
 |   LUT as Shift Register |     0.000 |        3 |      9600 |            0.03 |
-| Signals                 |    <0.001 |      825 |       --- |             --- |
+|   F7/F8 Muxes           |     0.000 |        7 |     32600 |            0.02 |
+| Signals                 |    <0.001 |      883 |       --- |             --- |
 | Block RAM               |     0.016 |        9 |        50 |           18.00 |
 | I/O                     |    <0.001 |       32 |       106 |           30.19 |
 | Static Power            |     0.072 |          |           |                 |
-| Total                   |     0.091 |          |           |                 |
+| Total                   |     0.092 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -143,7 +143,7 @@ Table of Contents
 +------------------------------+-----------+
 | Name                         | Power (W) |
 +------------------------------+-----------+
-| Top                          |     0.019 |
+| Top                          |     0.020 |
 |   gameTop                    |     0.019 |
 |     graphicEngineVGA         |     0.018 |
 |       backBufferShadowMemory |     0.001 |
