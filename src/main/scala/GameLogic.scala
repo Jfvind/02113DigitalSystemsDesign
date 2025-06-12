@@ -266,7 +266,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
             stateReg := move
           }
         }
-        stateReg := move
       }
     }
 
