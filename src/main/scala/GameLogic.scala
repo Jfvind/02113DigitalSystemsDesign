@@ -109,11 +109,231 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   // Write here your game logic
   // (you might need to change the initialization values above)
   /////////////////////////////////////////////////////////////////
+  val idle :: autonomousMove :: menu :: lvl1 :: lvl2 :: lvl3 :: move :: slut :: Nil = Enum(8)
+  val stateReg = RegInit(idle)
 
-  // Just forwarding the newFrame into the frameUpdateDone with a 2 clock cycle delay
-  // frameUpdateDone will need to be driven by your game logic FSMs
-  io.frameUpdateDone := RegNext(RegNext(io.newFrame))
+  //Two registers holding the sprite sprite X and Y with the sprite initial position
+  val sprite7XReg = RegInit(256.S(11.W))
+  val sprite7YReg = RegInit(300.S(10.W))
+  val sprite8XReg = RegInit(256.S(11.W))
+  val sprite8YReg = RegInit(300.S(10.W))
+  val sprite9XReg = RegInit(304.S(11.W))
+  val sprite9YReg = RegInit(300.S(10.W))
+  val sprite10XReg = RegInit(304.S(11.W))
+  val sprite10YReg = RegInit(300.S(10.W))
+  val sprite11XReg = RegInit(352.S(11.W))
+  val sprite11YReg = RegInit(300.S(10.W))
+  val sprite12XReg = RegInit(352.S(11.W))
+  val sprite12YReg = RegInit(300.S(10.W))
+  val sprite13XReg = RegInit(320.S(11.W))
+  val sprite13YReg = RegInit(240.S(10.W))
+  val sprite14XReg = RegInit(320.S(11.W))
+  val sprite14YReg = RegInit(240.S(10.W))
 
+  //A registers holding the sprite horizontal flip
+  val sprite7FlipHorizontalReg = RegInit(false.B)
+  val sprite8FlipHorizontalReg = RegInit(false.B)
+  val sprite9FlipHorizontalReg = RegInit(false.B)
+  val sprite10FlipHorizontalReg = RegInit(false.B)
+  val sprite11FlipHorizontalReg = RegInit(false.B)
+  val sprite12FlipHorizontalReg = RegInit(false.B)
+  val sprite13FlipHorizontalReg = RegInit(false.B)
+  val sprite14FlipHorizontalReg = RegInit(false.B)
+
+  //Registers controlling vertical flip
+  val sprite7FlipVerticalReg = RegInit(false.B)
+  val sprite8FlipVerticalReg = RegInit(false.B)
+  val sprite9FlipVerticalReg = RegInit(false.B)
+  val sprite10FlipVerticalReg = RegInit(false.B)
+  val sprite11FlipVerticalReg = RegInit(false.B)
+  val sprite12FlipVerticalReg = RegInit(false.B)
+  val sprite13FlipVerticalReg = RegInit(false.B)
+  val sprite14FlipVerticalReg = RegInit(false.B)
+
+  //Visibility registers
+  val sprite7Visible = RegInit(false.B)
+  val sprite8Visible = RegInit(false.B)
+  val sprite9Visible = RegInit(false.B)
+  val sprite10Visible = RegInit(false.B)
+  val sprite11Visible = RegInit(false.B)
+  val sprite12Visible = RegInit(false.B)
+  val sprite13Visible = RegInit(true.B)
+  val sprite14Visible = RegInit(false.B)
+
+  // Connecting visibility registers to the graphic engine
+  io.spriteVisible(7) := sprite7Visible
+  io.spriteVisible(8) := sprite8Visible
+  io.spriteVisible(9) := sprite9Visible
+  io.spriteVisible(10) := sprite10Visible
+  io.spriteVisible(11) := sprite11Visible
+  io.spriteVisible(12) := sprite12Visible
+  io.spriteVisible(13) := sprite13Visible
+  io.spriteVisible(14) := sprite14Visible
+
+  //Connecting resiters to the graphic engine
+  io.spriteXPosition(7) := sprite7XReg
+  io.spriteYPosition(7) := sprite7YReg
+  io.spriteFlipHorizontal(7) := sprite7FlipHorizontalReg
+  io.spriteFlipVertical(7) := sprite7FlipVerticalReg
+  io.spriteXPosition(8) := sprite8XReg
+  io.spriteYPosition(8) := sprite8YReg
+  io.spriteFlipHorizontal(8) := sprite8FlipHorizontalReg
+  io.spriteFlipVertical(8) := sprite8FlipVerticalReg
+  io.spriteXPosition(9) := sprite9XReg
+  io.spriteYPosition(9) := sprite9YReg
+  io.spriteFlipHorizontal(9) := sprite9FlipHorizontalReg
+  io.spriteFlipVertical(9) := sprite9FlipVerticalReg
+  io.spriteXPosition(10) := sprite10XReg
+  io.spriteYPosition(10) := sprite10YReg
+  io.spriteFlipHorizontal(10) := sprite10FlipHorizontalReg
+  io.spriteFlipVertical(10) := sprite10FlipVerticalReg
+  io.spriteXPosition(11) := sprite11XReg
+  io.spriteYPosition(11) := sprite11YReg
+  io.spriteFlipHorizontal(11) := sprite11FlipHorizontalReg
+  io.spriteFlipVertical(11) := sprite11FlipVerticalReg
+  io.spriteXPosition(12) := sprite12XReg
+  io.spriteYPosition(12) := sprite12YReg
+  io.spriteFlipHorizontal(12) := sprite12FlipHorizontalReg
+  io.spriteFlipVertical(12) := sprite12FlipVerticalReg
+  io.spriteXPosition(13) := sprite13XReg
+  io.spriteYPosition(13) := sprite13YReg
+  io.spriteFlipHorizontal(13) := sprite13FlipHorizontalReg
+  io.spriteFlipVertical(13) := sprite13FlipVerticalReg
+  io.spriteXPosition(14) := sprite13XReg
+  io.spriteYPosition(14) := sprite13YReg
+  io.spriteFlipHorizontal(14) := sprite14FlipHorizontalReg
+  io.spriteFlipVertical(14) := sprite14FlipVerticalReg
+
+  //Two registers holding the view box X and Y
+  val viewBoxXReg = RegInit(0.U(10.W))
+  val viewBoxYReg = RegInit(0.U(9.W))
+
+  //Connecting registers to the graphic engine
+  io.viewBoxX := viewBoxXReg
+  io.viewBoxY := viewBoxYReg
+  
+  //Level active signals
+  val lvl1Reg = RegInit(false.B)
+  val lvl2Reg = RegInit(false.B)
+  val lvl3Reg = RegInit(false.B)
+
+  switch(stateReg) {
+    is(idle) {
+      when(io.newFrame) {
+        stateReg := autonomousMove
+      }
+    }
+
+    is(autonomousMove) {
+      stateReg := menu
+    }
+
+    is(menu) {
+      when(lvl1Reg || lvl2Reg || lvl3Reg) {
+        stateReg := move
+      }.otherwise {
+        sprite7Visible := true.B
+        sprite8Visible := false.B
+        sprite9Visible := true.B
+        sprite10Visible := false.B
+        sprite11Visible := true.B
+        sprite12Visible := false.B
+        when(sprite13XReg > 256.S && sprite13XReg < 288.S && sprite13YReg > 300.S && sprite13YReg < 332.S) {
+          sprite7Visible := false.B
+          sprite8Visible := true.B
+          when(io.btnC) {
+            lvl1Reg := true.B
+            stateReg := lvl1
+          }.otherwise {
+            stateReg := move
+          }
+        }.elsewhen(sprite13XReg > 304.S && sprite13XReg < 336.S && sprite13YReg > 300.S && sprite13YReg < 332.S) {
+          sprite9Visible := false.B
+          sprite10Visible := true.B
+          when(io.btnC) {
+            lvl2Reg := true.B
+            stateReg := lvl2
+          }.otherwise {
+            stateReg := move
+          }
+        }.elsewhen(sprite13XReg > 352.S && sprite13XReg < 388.S && sprite13YReg > 300.S && sprite13YReg < 332.S) {
+          sprite11Visible := false.B
+          sprite12Visible := true.B
+          when(io.btnC) {
+            lvl3Reg := true.B
+            stateReg := lvl3
+          }.otherwise {
+            stateReg := move
+          }
+        }
+        stateReg := move
+      }
+    }
+
+    is(lvl1) {
+      sprite13XReg := (640-32).S
+      sprite13YReg := 320.S
+      sprite7Visible := false.B
+      sprite8Visible := false.B
+      sprite9Visible := false.B
+      sprite10Visible := false.B
+      sprite11Visible := false.B
+      sprite12Visible := false.B
+      sprite13Visible := false.B
+      sprite14Visible := true.B
+      viewBoxXReg := 640.U
+      viewBoxYReg := 0.U
+
+      stateReg := move
+    }
+
+    is(lvl2) {
+      stateReg := move
+    }
+
+    is(lvl3) {
+      stateReg := move
+    }
+
+    is(move) {
+      when(lvl1Reg || lvl2Reg || lvl3Reg) {
+        when(io.btnD){
+          when(sprite13YReg < (480 - 32).S) {
+            sprite13YReg := sprite13YReg + 2.S
+          }
+        } .elsewhen(io.btnU){
+          when(sprite13YReg > 32.S) {
+            sprite13YReg := sprite13YReg - 2.S
+          }
+        }
+      }.otherwise {
+        when(io.btnD){
+          when(sprite13YReg < (480 - 32).S) {
+            sprite13YReg := sprite13YReg + 2.S
+          }
+        } .elsewhen(io.btnU){
+          when(sprite13YReg > 32.S) {
+            sprite13YReg := sprite13YReg - 2.S
+          }
+        }
+        when(io.btnR) {
+          when(sprite13XReg < (640 - 32).S) {
+            sprite13XReg := sprite13XReg + 2.S
+          }
+        } .elsewhen(io.btnL){
+          when(sprite13XReg > 32.S) {
+            sprite13XReg := sprite13XReg - 2.S
+          }
+        }
+      }
+      stateReg := slut
+    }
+
+    is(slut) {
+      io.frameUpdateDone := true.B
+      stateReg := idle
+    }
+  }
 }
 
 //////////////////////////////////////////////////////////////////////////////

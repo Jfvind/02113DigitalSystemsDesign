@@ -1,7 +1,10 @@
-[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogicTask6.scala:269:7: not found: value spriteScaleDownHorizontal[0m
-[0m[[0m[31merror[0m] [0m[0m      spriteScaleDownHorizontal(6) := true.B //Bubble sprite scaled down[0m
-[0m[[0m[31merror[0m] [0m[0m      ^[0m
-[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogicTask6.scala:270:7: not found: value spriteScaleDownVertical[0m
-[0m[[0m[31merror[0m] [0m[0m      spriteScaleDownVertical(6) := true.B[0m
-[0m[[0m[31merror[0m] [0m[0m      ^[0m
-[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
+[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogic.scala:244:16: not found: value btnC[0m
+[0m[[0m[31merror[0m] [0m[0m          when(btnC) {[0m
+[0m[[0m[31merror[0m] [0m[0m               ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogic.scala:253:16: not found: value btnC[0m
+[0m[[0m[31merror[0m] [0m[0m          when(btnC) {[0m
+[0m[[0m[31merror[0m] [0m[0m               ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\DTU-local\Repos\02113DigitalSystemsDesign\src\main\scala\GameLogic.scala:262:16: not found: value btnC[0m
+[0m[[0m[31merror[0m] [0m[0m          when(btnC) {[0m
+[0m[[0m[31merror[0m] [0m[0m               ^[0m
+[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
