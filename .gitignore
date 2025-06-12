@@ -1,5 +1,5 @@
 # === Scala / SBT / Chisel ===
-target/
+.target/
 project/target/
 project/project/
 .bloop/
@@ -29,18 +29,7 @@ test_run_dir/
 *.vcd
 
 # === Vivado outputs ===
-vivado/.Xil/
-vivado/*.jou
-vivado/*.log
-vivado/*.str
-vivado/*.cache
-vivado/*.runs
-vivado/*.hw
-vivado/*.ip_user_files
-vivado/*.sim
-vivado/*.srcs
-vivado/*.webtalk
-vivado/.vivado*
+.vivado/
 
 # === Memory init ===
 memory_init/*.mem
