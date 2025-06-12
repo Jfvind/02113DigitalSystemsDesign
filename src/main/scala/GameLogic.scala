@@ -238,7 +238,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         sprite10Visible := false.B
         sprite11Visible := true.B
         sprite12Visible := false.B
-        when(sprite13XReg > 256.S && sprite13XReg < 288.S && sprite13YReg > 300.S && sprite13YReg < 332.S) {
+        when(sprite13XReg > 227.S && sprite13XReg < 259.S && sprite13YReg > 300.S && sprite13YReg < 332.S) {
           sprite7Visible := false.B
           sprite8Visible := true.B
           when(io.btnC) {
@@ -247,7 +247,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           }.otherwise {
             stateReg := move
           }
-        }.elsewhen(sprite13XReg > 304.S && sprite13XReg < 336.S && sprite13YReg > 300.S && sprite13YReg < 332.S) {
+        }.elsewhen(sprite13XReg > 275.S && sprite13XReg < 307.S && sprite13YReg > 300.S && sprite13YReg < 332.S) {
           sprite9Visible := false.B
           sprite10Visible := true.B
           when(io.btnC) {
@@ -256,7 +256,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           }.otherwise {
             stateReg := move
           }
-        }.elsewhen(sprite13XReg > 352.S && sprite13XReg < 388.S && sprite13YReg > 300.S && sprite13YReg < 332.S) {
+        }.elsewhen(sprite13XReg > 323.S && sprite13XReg < 355.S && sprite13YReg > 300.S && sprite13YReg < 332.S) {
           sprite11Visible := false.B
           sprite12Visible := true.B
           when(io.btnC) {
