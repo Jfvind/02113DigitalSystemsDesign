@@ -800,70 +800,22 @@ circuit Top :
     ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
     io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
 
-  extmodule RamSpWf :
-    input clk : Clock
-    input we : UInt<1>
-    input en : UInt<1>
-    input addr : UInt<11>
-    input di : UInt<5>
-    output dout : UInt<5>
-    defname = RamSpWf
-    parameter ADDR_WIDTH = 11
-    parameter DATA_WIDTH = 5
-
-  module Memory_32 :
-    input clock : Clock
-    input reset : Reset
-    output io : { flip address : UInt<11>, dataRead : UInt<5>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<5>} @[\\src\\main\\scala\\Memory.scala 48:14]
-
-    inst ramsSpWf of RamSpWf @[\\src\\main\\scala\\Memory.scala 57:26]
-    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 58:21]
-    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 59:20]
-    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 60:20]
-    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 61:22]
-    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 62:20]
-    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 63:17]
-
-  extmodule RamSpWf_1 :
-    input clk : Clock
-    input we : UInt<1>
-    input en : UInt<1>
-    input addr : UInt<11>
-    input di : UInt<5>
-    output dout : UInt<5>
-    defname = RamSpWf
-    parameter ADDR_WIDTH = 11
-    parameter DATA_WIDTH = 5
-
-  module Memory_33 :
-    input clock : Clock
-    input reset : Reset
-    output io : { flip address : UInt<11>, dataRead : UInt<5>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<5>} @[\\src\\main\\scala\\Memory.scala 48:14]
-
-    inst ramsSpWf of RamSpWf_1 @[\\src\\main\\scala\\Memory.scala 57:26]
-    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 58:21]
-    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 59:20]
-    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 60:20]
-    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 61:22]
-    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 62:20]
-    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 63:17]
-
   extmodule RamInitSpWf_32 :
     input clk : Clock
     input we : UInt<1>
     input en : UInt<1>
-    input addr : UInt<11>
-    input di : UInt<5>
-    output dout : UInt<5>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
     defname = RamInitSpWf
-    parameter ADDR_WIDTH = 11
-    parameter DATA_WIDTH = 5
-    parameter LOAD_FILE = "memory_init/backbuffer_init.mem"
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/backtile_init_32.mem"
 
-  module Memory_34 :
+  module Memory_32 :
     input clock : Clock
     input reset : Reset
-    output io : { flip address : UInt<11>, dataRead : UInt<5>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<5>} @[\\src\\main\\scala\\Memory.scala 48:14]
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
 
     inst ramsSpWf of RamInitSpWf_32 @[\\src\\main\\scala\\Memory.scala 65:26]
     ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
@@ -883,9 +835,9 @@ circuit Top :
     defname = RamInitSpWf
     parameter ADDR_WIDTH = 10
     parameter DATA_WIDTH = 7
-    parameter LOAD_FILE = "memory_init/sprite_init_0.mem"
+    parameter LOAD_FILE = "memory_init/backtile_init_33.mem"
 
-  module Memory_35 :
+  module Memory_33 :
     input clock : Clock
     input reset : Reset
     output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
@@ -908,9 +860,9 @@ circuit Top :
     defname = RamInitSpWf
     parameter ADDR_WIDTH = 10
     parameter DATA_WIDTH = 7
-    parameter LOAD_FILE = "memory_init/sprite_init_1.mem"
+    parameter LOAD_FILE = "memory_init/backtile_init_34.mem"
 
-  module Memory_36 :
+  module Memory_34 :
     input clock : Clock
     input reset : Reset
     output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
@@ -933,9 +885,9 @@ circuit Top :
     defname = RamInitSpWf
     parameter ADDR_WIDTH = 10
     parameter DATA_WIDTH = 7
-    parameter LOAD_FILE = "memory_init/sprite_init_2.mem"
+    parameter LOAD_FILE = "memory_init/backtile_init_35.mem"
 
-  module Memory_37 :
+  module Memory_35 :
     input clock : Clock
     input reset : Reset
     output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
@@ -958,9 +910,9 @@ circuit Top :
     defname = RamInitSpWf
     parameter ADDR_WIDTH = 10
     parameter DATA_WIDTH = 7
-    parameter LOAD_FILE = "memory_init/sprite_init_3.mem"
+    parameter LOAD_FILE = "memory_init/backtile_init_36.mem"
 
-  module Memory_38 :
+  module Memory_36 :
     input clock : Clock
     input reset : Reset
     output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
@@ -983,9 +935,9 @@ circuit Top :
     defname = RamInitSpWf
     parameter ADDR_WIDTH = 10
     parameter DATA_WIDTH = 7
-    parameter LOAD_FILE = "memory_init/sprite_init_4.mem"
+    parameter LOAD_FILE = "memory_init/backtile_init_37.mem"
 
-  module Memory_39 :
+  module Memory_37 :
     input clock : Clock
     input reset : Reset
     output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
@@ -1008,9 +960,9 @@ circuit Top :
     defname = RamInitSpWf
     parameter ADDR_WIDTH = 10
     parameter DATA_WIDTH = 7
-    parameter LOAD_FILE = "memory_init/sprite_init_5.mem"
+    parameter LOAD_FILE = "memory_init/backtile_init_38.mem"
 
-  module Memory_40 :
+  module Memory_38 :
     input clock : Clock
     input reset : Reset
     output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
@@ -1033,9 +985,9 @@ circuit Top :
     defname = RamInitSpWf
     parameter ADDR_WIDTH = 10
     parameter DATA_WIDTH = 7
-    parameter LOAD_FILE = "memory_init/sprite_init_6.mem"
+    parameter LOAD_FILE = "memory_init/backtile_init_39.mem"
 
-  module Memory_41 :
+  module Memory_39 :
     input clock : Clock
     input reset : Reset
     output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
@@ -1058,9 +1010,9 @@ circuit Top :
     defname = RamInitSpWf
     parameter ADDR_WIDTH = 10
     parameter DATA_WIDTH = 7
-    parameter LOAD_FILE = "memory_init/sprite_init_7.mem"
+    parameter LOAD_FILE = "memory_init/backtile_init_40.mem"
 
-  module Memory_42 :
+  module Memory_40 :
     input clock : Clock
     input reset : Reset
     output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
@@ -1083,9 +1035,9 @@ circuit Top :
     defname = RamInitSpWf
     parameter ADDR_WIDTH = 10
     parameter DATA_WIDTH = 7
-    parameter LOAD_FILE = "memory_init/sprite_init_8.mem"
+    parameter LOAD_FILE = "memory_init/backtile_init_41.mem"
 
-  module Memory_43 :
+  module Memory_41 :
     input clock : Clock
     input reset : Reset
     output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
@@ -1108,9 +1060,9 @@ circuit Top :
     defname = RamInitSpWf
     parameter ADDR_WIDTH = 10
     parameter DATA_WIDTH = 7
-    parameter LOAD_FILE = "memory_init/sprite_init_9.mem"
+    parameter LOAD_FILE = "memory_init/backtile_init_42.mem"
 
-  module Memory_44 :
+  module Memory_42 :
     input clock : Clock
     input reset : Reset
     output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
@@ -1133,9 +1085,9 @@ circuit Top :
     defname = RamInitSpWf
     parameter ADDR_WIDTH = 10
     parameter DATA_WIDTH = 7
-    parameter LOAD_FILE = "memory_init/sprite_init_10.mem"
+    parameter LOAD_FILE = "memory_init/backtile_init_43.mem"
 
-  module Memory_45 :
+  module Memory_43 :
     input clock : Clock
     input reset : Reset
     output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
@@ -1158,9 +1110,9 @@ circuit Top :
     defname = RamInitSpWf
     parameter ADDR_WIDTH = 10
     parameter DATA_WIDTH = 7
-    parameter LOAD_FILE = "memory_init/sprite_init_11.mem"
+    parameter LOAD_FILE = "memory_init/backtile_init_44.mem"
 
-  module Memory_46 :
+  module Memory_44 :
     input clock : Clock
     input reset : Reset
     output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
@@ -1183,9 +1135,9 @@ circuit Top :
     defname = RamInitSpWf
     parameter ADDR_WIDTH = 10
     parameter DATA_WIDTH = 7
-    parameter LOAD_FILE = "memory_init/sprite_init_12.mem"
+    parameter LOAD_FILE = "memory_init/backtile_init_45.mem"
 
-  module Memory_47 :
+  module Memory_45 :
     input clock : Clock
     input reset : Reset
     output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
@@ -1208,9 +1160,9 @@ circuit Top :
     defname = RamInitSpWf
     parameter ADDR_WIDTH = 10
     parameter DATA_WIDTH = 7
-    parameter LOAD_FILE = "memory_init/sprite_init_13.mem"
+    parameter LOAD_FILE = "memory_init/backtile_init_46.mem"
 
-  module Memory_48 :
+  module Memory_46 :
     input clock : Clock
     input reset : Reset
     output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
@@ -1233,9 +1185,9 @@ circuit Top :
     defname = RamInitSpWf
     parameter ADDR_WIDTH = 10
     parameter DATA_WIDTH = 7
-    parameter LOAD_FILE = "memory_init/sprite_init_14.mem"
+    parameter LOAD_FILE = "memory_init/backtile_init_47.mem"
 
-  module Memory_49 :
+  module Memory_47 :
     input clock : Clock
     input reset : Reset
     output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
@@ -1258,9 +1210,9 @@ circuit Top :
     defname = RamInitSpWf
     parameter ADDR_WIDTH = 10
     parameter DATA_WIDTH = 7
-    parameter LOAD_FILE = "memory_init/sprite_init_15.mem"
+    parameter LOAD_FILE = "memory_init/backtile_init_48.mem"
 
-  module Memory_50 :
+  module Memory_48 :
     input clock : Clock
     input reset : Reset
     output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
@@ -1273,45 +1225,1325 @@ circuit Top :
     ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
     io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
 
+  extmodule RamInitSpWf_49 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/backtile_init_49.mem"
+
+  module Memory_49 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_49 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_50 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/backtile_init_50.mem"
+
+  module Memory_50 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_50 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_51 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/backtile_init_51.mem"
+
+  module Memory_51 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_51 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_52 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/backtile_init_52.mem"
+
+  module Memory_52 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_52 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_53 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/backtile_init_53.mem"
+
+  module Memory_53 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_53 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_54 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/backtile_init_54.mem"
+
+  module Memory_54 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_54 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_55 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/backtile_init_55.mem"
+
+  module Memory_55 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_55 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_56 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/backtile_init_56.mem"
+
+  module Memory_56 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_56 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_57 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/backtile_init_57.mem"
+
+  module Memory_57 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_57 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_58 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/backtile_init_58.mem"
+
+  module Memory_58 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_58 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_59 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/backtile_init_59.mem"
+
+  module Memory_59 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_59 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_60 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/backtile_init_60.mem"
+
+  module Memory_60 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_60 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_61 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/backtile_init_61.mem"
+
+  module Memory_61 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_61 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_62 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/backtile_init_62.mem"
+
+  module Memory_62 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_62 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_63 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/backtile_init_63.mem"
+
+  module Memory_63 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_63 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamSpWf :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<11>
+    input di : UInt<6>
+    output dout : UInt<6>
+    defname = RamSpWf
+    parameter ADDR_WIDTH = 11
+    parameter DATA_WIDTH = 6
+
+  module Memory_64 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<11>, dataRead : UInt<6>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<6>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamSpWf @[\\src\\main\\scala\\Memory.scala 57:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 58:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 59:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 60:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 61:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 62:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 63:17]
+
+  extmodule RamSpWf_1 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<11>
+    input di : UInt<6>
+    output dout : UInt<6>
+    defname = RamSpWf
+    parameter ADDR_WIDTH = 11
+    parameter DATA_WIDTH = 6
+
+  module Memory_65 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<11>, dataRead : UInt<6>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<6>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamSpWf_1 @[\\src\\main\\scala\\Memory.scala 57:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 58:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 59:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 60:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 61:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 62:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 63:17]
+
+  extmodule RamInitSpWf_64 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<11>
+    input di : UInt<6>
+    output dout : UInt<6>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 11
+    parameter DATA_WIDTH = 6
+    parameter LOAD_FILE = "memory_init/backbuffer_init.mem"
+
+  module Memory_66 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<11>, dataRead : UInt<6>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<6>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_64 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_65 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_0.mem"
+
+  module Memory_67 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_65 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_66 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_1.mem"
+
+  module Memory_68 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_66 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_67 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_2.mem"
+
+  module Memory_69 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_67 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_68 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_3.mem"
+
+  module Memory_70 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_68 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_69 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_4.mem"
+
+  module Memory_71 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_69 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_70 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_5.mem"
+
+  module Memory_72 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_70 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_71 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_6.mem"
+
+  module Memory_73 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_71 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_72 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_7.mem"
+
+  module Memory_74 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_72 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_73 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_8.mem"
+
+  module Memory_75 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_73 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_74 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_9.mem"
+
+  module Memory_76 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_74 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_75 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_10.mem"
+
+  module Memory_77 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_75 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_76 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_11.mem"
+
+  module Memory_78 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_76 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_77 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_12.mem"
+
+  module Memory_79 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_77 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_78 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_13.mem"
+
+  module Memory_80 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_78 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_79 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_14.mem"
+
+  module Memory_81 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_79 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_80 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_15.mem"
+
+  module Memory_82 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_80 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_81 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_16.mem"
+
+  module Memory_83 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_81 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_82 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_17.mem"
+
+  module Memory_84 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_82 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_83 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_18.mem"
+
+  module Memory_85 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_83 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_84 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_19.mem"
+
+  module Memory_86 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_84 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_85 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_20.mem"
+
+  module Memory_87 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_85 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_86 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_21.mem"
+
+  module Memory_88 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_86 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_87 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_22.mem"
+
+  module Memory_89 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_87 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_88 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_23.mem"
+
+  module Memory_90 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_88 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_89 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_24.mem"
+
+  module Memory_91 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_89 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_90 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_25.mem"
+
+  module Memory_92 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_90 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_91 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_26.mem"
+
+  module Memory_93 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_91 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_92 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_27.mem"
+
+  module Memory_94 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_92 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_93 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_28.mem"
+
+  module Memory_95 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_93 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_94 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_29.mem"
+
+  module Memory_96 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_94 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_95 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_30.mem"
+
+  module Memory_97 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_95 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
+  extmodule RamInitSpWf_96 :
+    input clk : Clock
+    input we : UInt<1>
+    input en : UInt<1>
+    input addr : UInt<10>
+    input di : UInt<7>
+    output dout : UInt<7>
+    defname = RamInitSpWf
+    parameter ADDR_WIDTH = 10
+    parameter DATA_WIDTH = 7
+    parameter LOAD_FILE = "memory_init/sprite_init_31.mem"
+
+  module Memory_98 :
+    input clock : Clock
+    input reset : Reset
+    output io : { flip address : UInt<10>, dataRead : UInt<7>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<7>} @[\\src\\main\\scala\\Memory.scala 48:14]
+
+    inst ramsSpWf of RamInitSpWf_96 @[\\src\\main\\scala\\Memory.scala 65:26]
+    ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
+    ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
+    ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
+    ramsSpWf.addr <= io.address @[\\src\\main\\scala\\Memory.scala 69:22]
+    ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
+    io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
+
   module MultiHotPriortyReductionTree :
     input clock : Clock
     input reset : Reset
-    output io : { flip dataInput : UInt<6>[16], flip selectInput : UInt<1>[16], dataOutput : UInt<6>, selectOutput : UInt<1>} @[\\src\\main\\scala\\GameUtilities.scala 53:14]
+    output io : { flip dataInput : UInt<6>[32], flip selectInput : UInt<1>[32], dataOutput : UInt<6>, selectOutput : UInt<1>} @[\\src\\main\\scala\\GameUtilities.scala 53:14]
 
-    wire dataNodeOutputs : UInt<6>[31] @[\\src\\main\\scala\\GameUtilities.scala 64:29]
-    wire selectNodeOutputs : UInt<1>[31] @[\\src\\main\\scala\\GameUtilities.scala 65:31]
-    dataNodeOutputs[15] <= io.dataInput[0] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
-    selectNodeOutputs[15] <= io.selectInput[0] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
-    dataNodeOutputs[16] <= io.dataInput[1] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
-    selectNodeOutputs[16] <= io.selectInput[1] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
-    dataNodeOutputs[17] <= io.dataInput[2] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
-    selectNodeOutputs[17] <= io.selectInput[2] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
-    dataNodeOutputs[18] <= io.dataInput[3] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
-    selectNodeOutputs[18] <= io.selectInput[3] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
-    dataNodeOutputs[19] <= io.dataInput[4] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
-    selectNodeOutputs[19] <= io.selectInput[4] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
-    dataNodeOutputs[20] <= io.dataInput[5] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
-    selectNodeOutputs[20] <= io.selectInput[5] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
-    dataNodeOutputs[21] <= io.dataInput[6] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
-    selectNodeOutputs[21] <= io.selectInput[6] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
-    dataNodeOutputs[22] <= io.dataInput[7] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
-    selectNodeOutputs[22] <= io.selectInput[7] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
-    dataNodeOutputs[23] <= io.dataInput[8] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
-    selectNodeOutputs[23] <= io.selectInput[8] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
-    dataNodeOutputs[24] <= io.dataInput[9] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
-    selectNodeOutputs[24] <= io.selectInput[9] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
-    dataNodeOutputs[25] <= io.dataInput[10] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
-    selectNodeOutputs[25] <= io.selectInput[10] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
-    dataNodeOutputs[26] <= io.dataInput[11] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
-    selectNodeOutputs[26] <= io.selectInput[11] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
-    dataNodeOutputs[27] <= io.dataInput[12] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
-    selectNodeOutputs[27] <= io.selectInput[12] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
-    dataNodeOutputs[28] <= io.dataInput[13] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
-    selectNodeOutputs[28] <= io.selectInput[13] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
-    dataNodeOutputs[29] <= io.dataInput[14] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
-    selectNodeOutputs[29] <= io.selectInput[14] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
-    dataNodeOutputs[30] <= io.dataInput[15] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
-    selectNodeOutputs[30] <= io.selectInput[15] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    wire dataNodeOutputs : UInt<6>[63] @[\\src\\main\\scala\\GameUtilities.scala 64:29]
+    wire selectNodeOutputs : UInt<1>[63] @[\\src\\main\\scala\\GameUtilities.scala 65:31]
+    dataNodeOutputs[31] <= io.dataInput[0] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[31] <= io.selectInput[0] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[32] <= io.dataInput[1] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[32] <= io.selectInput[1] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[33] <= io.dataInput[2] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[33] <= io.selectInput[2] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[34] <= io.dataInput[3] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[34] <= io.selectInput[3] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[35] <= io.dataInput[4] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[35] <= io.selectInput[4] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[36] <= io.dataInput[5] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[36] <= io.selectInput[5] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[37] <= io.dataInput[6] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[37] <= io.selectInput[6] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[38] <= io.dataInput[7] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[38] <= io.selectInput[7] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[39] <= io.dataInput[8] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[39] <= io.selectInput[8] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[40] <= io.dataInput[9] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[40] <= io.selectInput[9] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[41] <= io.dataInput[10] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[41] <= io.selectInput[10] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[42] <= io.dataInput[11] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[42] <= io.selectInput[11] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[43] <= io.dataInput[12] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[43] <= io.selectInput[12] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[44] <= io.dataInput[13] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[44] <= io.selectInput[13] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[45] <= io.dataInput[14] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[45] <= io.selectInput[14] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[46] <= io.dataInput[15] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[46] <= io.selectInput[15] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[47] <= io.dataInput[16] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[47] <= io.selectInput[16] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[48] <= io.dataInput[17] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[48] <= io.selectInput[17] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[49] <= io.dataInput[18] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[49] <= io.selectInput[18] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[50] <= io.dataInput[19] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[50] <= io.selectInput[19] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[51] <= io.dataInput[20] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[51] <= io.selectInput[20] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[52] <= io.dataInput[21] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[52] <= io.selectInput[21] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[53] <= io.dataInput[22] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[53] <= io.selectInput[22] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[54] <= io.dataInput[23] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[54] <= io.selectInput[23] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[55] <= io.dataInput[24] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[55] <= io.selectInput[24] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[56] <= io.dataInput[25] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[56] <= io.selectInput[25] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[57] <= io.dataInput[26] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[57] <= io.selectInput[26] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[58] <= io.dataInput[27] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[58] <= io.selectInput[27] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[59] <= io.dataInput[28] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[59] <= io.selectInput[28] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[60] <= io.dataInput[29] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[60] <= io.selectInput[29] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[61] <= io.dataInput[30] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[61] <= io.selectInput[30] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
+    dataNodeOutputs[62] <= io.dataInput[31] @[\\src\\main\\scala\\GameUtilities.scala 68:28]
+    selectNodeOutputs[62] <= io.selectInput[31] @[\\src\\main\\scala\\GameUtilities.scala 69:30]
     io.dataOutput <= dataNodeOutputs[0] @[\\src\\main\\scala\\GameUtilities.scala 72:17]
     io.selectOutput <= selectNodeOutputs[0] @[\\src\\main\\scala\\GameUtilities.scala 73:19]
     node _dataNodeOutputs_0_T = mux(selectNodeOutputs[1], dataNodeOutputs[1], dataNodeOutputs[2]) @[\\src\\main\\scala\\GameUtilities.scala 85:34]
@@ -1374,11 +2606,75 @@ circuit Top :
     dataNodeOutputs[14] <= _dataNodeOutputs_14_T @[\\src\\main\\scala\\GameUtilities.scala 85:28]
     node _selectNodeOutputs_14_T = or(selectNodeOutputs[29], selectNodeOutputs[30]) @[\\src\\main\\scala\\GameUtilities.scala 86:54]
     selectNodeOutputs[14] <= _selectNodeOutputs_14_T @[\\src\\main\\scala\\GameUtilities.scala 86:30]
+    node _dataNodeOutputs_15_T = mux(selectNodeOutputs[31], dataNodeOutputs[31], dataNodeOutputs[32]) @[\\src\\main\\scala\\GameUtilities.scala 85:34]
+    dataNodeOutputs[15] <= _dataNodeOutputs_15_T @[\\src\\main\\scala\\GameUtilities.scala 85:28]
+    node _selectNodeOutputs_15_T = or(selectNodeOutputs[31], selectNodeOutputs[32]) @[\\src\\main\\scala\\GameUtilities.scala 86:54]
+    selectNodeOutputs[15] <= _selectNodeOutputs_15_T @[\\src\\main\\scala\\GameUtilities.scala 86:30]
+    node _dataNodeOutputs_16_T = mux(selectNodeOutputs[33], dataNodeOutputs[33], dataNodeOutputs[34]) @[\\src\\main\\scala\\GameUtilities.scala 85:34]
+    dataNodeOutputs[16] <= _dataNodeOutputs_16_T @[\\src\\main\\scala\\GameUtilities.scala 85:28]
+    node _selectNodeOutputs_16_T = or(selectNodeOutputs[33], selectNodeOutputs[34]) @[\\src\\main\\scala\\GameUtilities.scala 86:54]
+    selectNodeOutputs[16] <= _selectNodeOutputs_16_T @[\\src\\main\\scala\\GameUtilities.scala 86:30]
+    node _dataNodeOutputs_17_T = mux(selectNodeOutputs[35], dataNodeOutputs[35], dataNodeOutputs[36]) @[\\src\\main\\scala\\GameUtilities.scala 85:34]
+    dataNodeOutputs[17] <= _dataNodeOutputs_17_T @[\\src\\main\\scala\\GameUtilities.scala 85:28]
+    node _selectNodeOutputs_17_T = or(selectNodeOutputs[35], selectNodeOutputs[36]) @[\\src\\main\\scala\\GameUtilities.scala 86:54]
+    selectNodeOutputs[17] <= _selectNodeOutputs_17_T @[\\src\\main\\scala\\GameUtilities.scala 86:30]
+    node _dataNodeOutputs_18_T = mux(selectNodeOutputs[37], dataNodeOutputs[37], dataNodeOutputs[38]) @[\\src\\main\\scala\\GameUtilities.scala 85:34]
+    dataNodeOutputs[18] <= _dataNodeOutputs_18_T @[\\src\\main\\scala\\GameUtilities.scala 85:28]
+    node _selectNodeOutputs_18_T = or(selectNodeOutputs[37], selectNodeOutputs[38]) @[\\src\\main\\scala\\GameUtilities.scala 86:54]
+    selectNodeOutputs[18] <= _selectNodeOutputs_18_T @[\\src\\main\\scala\\GameUtilities.scala 86:30]
+    node _dataNodeOutputs_19_T = mux(selectNodeOutputs[39], dataNodeOutputs[39], dataNodeOutputs[40]) @[\\src\\main\\scala\\GameUtilities.scala 85:34]
+    dataNodeOutputs[19] <= _dataNodeOutputs_19_T @[\\src\\main\\scala\\GameUtilities.scala 85:28]
+    node _selectNodeOutputs_19_T = or(selectNodeOutputs[39], selectNodeOutputs[40]) @[\\src\\main\\scala\\GameUtilities.scala 86:54]
+    selectNodeOutputs[19] <= _selectNodeOutputs_19_T @[\\src\\main\\scala\\GameUtilities.scala 86:30]
+    node _dataNodeOutputs_20_T = mux(selectNodeOutputs[41], dataNodeOutputs[41], dataNodeOutputs[42]) @[\\src\\main\\scala\\GameUtilities.scala 85:34]
+    dataNodeOutputs[20] <= _dataNodeOutputs_20_T @[\\src\\main\\scala\\GameUtilities.scala 85:28]
+    node _selectNodeOutputs_20_T = or(selectNodeOutputs[41], selectNodeOutputs[42]) @[\\src\\main\\scala\\GameUtilities.scala 86:54]
+    selectNodeOutputs[20] <= _selectNodeOutputs_20_T @[\\src\\main\\scala\\GameUtilities.scala 86:30]
+    node _dataNodeOutputs_21_T = mux(selectNodeOutputs[43], dataNodeOutputs[43], dataNodeOutputs[44]) @[\\src\\main\\scala\\GameUtilities.scala 85:34]
+    dataNodeOutputs[21] <= _dataNodeOutputs_21_T @[\\src\\main\\scala\\GameUtilities.scala 85:28]
+    node _selectNodeOutputs_21_T = or(selectNodeOutputs[43], selectNodeOutputs[44]) @[\\src\\main\\scala\\GameUtilities.scala 86:54]
+    selectNodeOutputs[21] <= _selectNodeOutputs_21_T @[\\src\\main\\scala\\GameUtilities.scala 86:30]
+    node _dataNodeOutputs_22_T = mux(selectNodeOutputs[45], dataNodeOutputs[45], dataNodeOutputs[46]) @[\\src\\main\\scala\\GameUtilities.scala 85:34]
+    dataNodeOutputs[22] <= _dataNodeOutputs_22_T @[\\src\\main\\scala\\GameUtilities.scala 85:28]
+    node _selectNodeOutputs_22_T = or(selectNodeOutputs[45], selectNodeOutputs[46]) @[\\src\\main\\scala\\GameUtilities.scala 86:54]
+    selectNodeOutputs[22] <= _selectNodeOutputs_22_T @[\\src\\main\\scala\\GameUtilities.scala 86:30]
+    node _dataNodeOutputs_23_T = mux(selectNodeOutputs[47], dataNodeOutputs[47], dataNodeOutputs[48]) @[\\src\\main\\scala\\GameUtilities.scala 85:34]
+    dataNodeOutputs[23] <= _dataNodeOutputs_23_T @[\\src\\main\\scala\\GameUtilities.scala 85:28]
+    node _selectNodeOutputs_23_T = or(selectNodeOutputs[47], selectNodeOutputs[48]) @[\\src\\main\\scala\\GameUtilities.scala 86:54]
+    selectNodeOutputs[23] <= _selectNodeOutputs_23_T @[\\src\\main\\scala\\GameUtilities.scala 86:30]
+    node _dataNodeOutputs_24_T = mux(selectNodeOutputs[49], dataNodeOutputs[49], dataNodeOutputs[50]) @[\\src\\main\\scala\\GameUtilities.scala 85:34]
+    dataNodeOutputs[24] <= _dataNodeOutputs_24_T @[\\src\\main\\scala\\GameUtilities.scala 85:28]
+    node _selectNodeOutputs_24_T = or(selectNodeOutputs[49], selectNodeOutputs[50]) @[\\src\\main\\scala\\GameUtilities.scala 86:54]
+    selectNodeOutputs[24] <= _selectNodeOutputs_24_T @[\\src\\main\\scala\\GameUtilities.scala 86:30]
+    node _dataNodeOutputs_25_T = mux(selectNodeOutputs[51], dataNodeOutputs[51], dataNodeOutputs[52]) @[\\src\\main\\scala\\GameUtilities.scala 85:34]
+    dataNodeOutputs[25] <= _dataNodeOutputs_25_T @[\\src\\main\\scala\\GameUtilities.scala 85:28]
+    node _selectNodeOutputs_25_T = or(selectNodeOutputs[51], selectNodeOutputs[52]) @[\\src\\main\\scala\\GameUtilities.scala 86:54]
+    selectNodeOutputs[25] <= _selectNodeOutputs_25_T @[\\src\\main\\scala\\GameUtilities.scala 86:30]
+    node _dataNodeOutputs_26_T = mux(selectNodeOutputs[53], dataNodeOutputs[53], dataNodeOutputs[54]) @[\\src\\main\\scala\\GameUtilities.scala 85:34]
+    dataNodeOutputs[26] <= _dataNodeOutputs_26_T @[\\src\\main\\scala\\GameUtilities.scala 85:28]
+    node _selectNodeOutputs_26_T = or(selectNodeOutputs[53], selectNodeOutputs[54]) @[\\src\\main\\scala\\GameUtilities.scala 86:54]
+    selectNodeOutputs[26] <= _selectNodeOutputs_26_T @[\\src\\main\\scala\\GameUtilities.scala 86:30]
+    node _dataNodeOutputs_27_T = mux(selectNodeOutputs[55], dataNodeOutputs[55], dataNodeOutputs[56]) @[\\src\\main\\scala\\GameUtilities.scala 85:34]
+    dataNodeOutputs[27] <= _dataNodeOutputs_27_T @[\\src\\main\\scala\\GameUtilities.scala 85:28]
+    node _selectNodeOutputs_27_T = or(selectNodeOutputs[55], selectNodeOutputs[56]) @[\\src\\main\\scala\\GameUtilities.scala 86:54]
+    selectNodeOutputs[27] <= _selectNodeOutputs_27_T @[\\src\\main\\scala\\GameUtilities.scala 86:30]
+    node _dataNodeOutputs_28_T = mux(selectNodeOutputs[57], dataNodeOutputs[57], dataNodeOutputs[58]) @[\\src\\main\\scala\\GameUtilities.scala 85:34]
+    dataNodeOutputs[28] <= _dataNodeOutputs_28_T @[\\src\\main\\scala\\GameUtilities.scala 85:28]
+    node _selectNodeOutputs_28_T = or(selectNodeOutputs[57], selectNodeOutputs[58]) @[\\src\\main\\scala\\GameUtilities.scala 86:54]
+    selectNodeOutputs[28] <= _selectNodeOutputs_28_T @[\\src\\main\\scala\\GameUtilities.scala 86:30]
+    node _dataNodeOutputs_29_T = mux(selectNodeOutputs[59], dataNodeOutputs[59], dataNodeOutputs[60]) @[\\src\\main\\scala\\GameUtilities.scala 85:34]
+    dataNodeOutputs[29] <= _dataNodeOutputs_29_T @[\\src\\main\\scala\\GameUtilities.scala 85:28]
+    node _selectNodeOutputs_29_T = or(selectNodeOutputs[59], selectNodeOutputs[60]) @[\\src\\main\\scala\\GameUtilities.scala 86:54]
+    selectNodeOutputs[29] <= _selectNodeOutputs_29_T @[\\src\\main\\scala\\GameUtilities.scala 86:30]
+    node _dataNodeOutputs_30_T = mux(selectNodeOutputs[61], dataNodeOutputs[61], dataNodeOutputs[62]) @[\\src\\main\\scala\\GameUtilities.scala 85:34]
+    dataNodeOutputs[30] <= _dataNodeOutputs_30_T @[\\src\\main\\scala\\GameUtilities.scala 85:28]
+    node _selectNodeOutputs_30_T = or(selectNodeOutputs[61], selectNodeOutputs[62]) @[\\src\\main\\scala\\GameUtilities.scala 86:54]
+    selectNodeOutputs[30] <= _selectNodeOutputs_30_T @[\\src\\main\\scala\\GameUtilities.scala 86:30]
 
   module GraphicEngineVGA :
     input clock : Clock
     input reset : Reset
-    output io : { flip spriteXPosition : SInt<11>[16], flip spriteYPosition : SInt<10>[16], flip spriteVisible : UInt<1>[16], flip spriteFlipHorizontal : UInt<1>[16], flip spriteFlipVertical : UInt<1>[16], flip spriteScaleUpHorizontal : UInt<1>[16], flip spriteScaleDownHorizontal : UInt<1>[16], flip spriteScaleUpVertical : UInt<1>[16], flip spriteScaleDownVertical : UInt<1>[16], flip viewBoxX : UInt<10>, flip viewBoxY : UInt<9>, flip backBufferWriteData : UInt<5>, flip backBufferWriteAddress : UInt<11>, flip backBufferWriteEnable : UInt<1>, newFrame : UInt<1>, flip frameUpdateDone : UInt<1>, missingFrameError : UInt<1>, backBufferWriteError : UInt<1>, viewBoxOutOfRangeError : UInt<1>, vgaRed : UInt<4>, vgaBlue : UInt<4>, vgaGreen : UInt<4>, Hsync : UInt<1>, Vsync : UInt<1>} @[\\src\\main\\scala\\GraphicEngineVGA.scala 12:14]
+    output io : { flip spriteXPosition : SInt<11>[32], flip spriteYPosition : SInt<10>[32], flip spriteVisible : UInt<1>[32], flip spriteFlipHorizontal : UInt<1>[32], flip spriteFlipVertical : UInt<1>[32], flip spriteScaleUpHorizontal : UInt<1>[32], flip spriteScaleDownHorizontal : UInt<1>[32], flip spriteScaleUpVertical : UInt<1>[32], flip spriteScaleDownVertical : UInt<1>[32], flip viewBoxX : UInt<10>, flip viewBoxY : UInt<9>, flip backBufferWriteData : UInt<6>, flip backBufferWriteAddress : UInt<11>, flip backBufferWriteEnable : UInt<1>, newFrame : UInt<1>, flip frameUpdateDone : UInt<1>, missingFrameError : UInt<1>, backBufferWriteError : UInt<1>, viewBoxOutOfRangeError : UInt<1>, vgaRed : UInt<4>, vgaBlue : UInt<4>, vgaGreen : UInt<4>, Hsync : UInt<1>, Vsync : UInt<1>} @[\\src\\main\\scala\\GraphicEngineVGA.scala 12:14]
 
     reg ScaleCounterReg : UInt<2>, clock with :
       reset => (reset, UInt<2>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 67:32]
@@ -1444,7 +2740,7 @@ circuit Top :
     node _frameClockCount_T_3 = mux(_frameClockCount_T, UInt<1>("h0"), _frameClockCount_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 105:25]
     frameClockCount <= _frameClockCount_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 105:19]
     node preDisplayArea = geq(frameClockCount, UInt<21>("h199a1b")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 106:40]
-    wire _spriteXPositionReg_WIRE : SInt<11>[16] @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
+    wire _spriteXPositionReg_WIRE : SInt<11>[32] @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
     _spriteXPositionReg_WIRE[0] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
     _spriteXPositionReg_WIRE[1] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
     _spriteXPositionReg_WIRE[2] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
@@ -1461,11 +2757,27 @@ circuit Top :
     _spriteXPositionReg_WIRE[13] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
     _spriteXPositionReg_WIRE[14] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
     _spriteXPositionReg_WIRE[15] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
-    reg spriteXPositionReg : SInt<11>[16], clock with :
+    _spriteXPositionReg_WIRE[16] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
+    _spriteXPositionReg_WIRE[17] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
+    _spriteXPositionReg_WIRE[18] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
+    _spriteXPositionReg_WIRE[19] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
+    _spriteXPositionReg_WIRE[20] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
+    _spriteXPositionReg_WIRE[21] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
+    _spriteXPositionReg_WIRE[22] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
+    _spriteXPositionReg_WIRE[23] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
+    _spriteXPositionReg_WIRE[24] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
+    _spriteXPositionReg_WIRE[25] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
+    _spriteXPositionReg_WIRE[26] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
+    _spriteXPositionReg_WIRE[27] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
+    _spriteXPositionReg_WIRE[28] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
+    _spriteXPositionReg_WIRE[29] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
+    _spriteXPositionReg_WIRE[30] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
+    _spriteXPositionReg_WIRE[31] <= asSInt(UInt<11>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:65]
+    reg spriteXPositionReg : SInt<11>[32], clock with :
       reset => (reset, _spriteXPositionReg_WIRE) @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:37]
     when io.newFrame : @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:37]
       spriteXPositionReg <= io.spriteXPosition @[\\src\\main\\scala\\GraphicEngineVGA.scala 114:37]
-    wire _spriteYPositionReg_WIRE : SInt<10>[16] @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
+    wire _spriteYPositionReg_WIRE : SInt<10>[32] @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
     _spriteYPositionReg_WIRE[0] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
     _spriteYPositionReg_WIRE[1] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
     _spriteYPositionReg_WIRE[2] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
@@ -1482,11 +2794,27 @@ circuit Top :
     _spriteYPositionReg_WIRE[13] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
     _spriteYPositionReg_WIRE[14] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
     _spriteYPositionReg_WIRE[15] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
-    reg spriteYPositionReg : SInt<10>[16], clock with :
+    _spriteYPositionReg_WIRE[16] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
+    _spriteYPositionReg_WIRE[17] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
+    _spriteYPositionReg_WIRE[18] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
+    _spriteYPositionReg_WIRE[19] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
+    _spriteYPositionReg_WIRE[20] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
+    _spriteYPositionReg_WIRE[21] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
+    _spriteYPositionReg_WIRE[22] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
+    _spriteYPositionReg_WIRE[23] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
+    _spriteYPositionReg_WIRE[24] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
+    _spriteYPositionReg_WIRE[25] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
+    _spriteYPositionReg_WIRE[26] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
+    _spriteYPositionReg_WIRE[27] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
+    _spriteYPositionReg_WIRE[28] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
+    _spriteYPositionReg_WIRE[29] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
+    _spriteYPositionReg_WIRE[30] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
+    _spriteYPositionReg_WIRE[31] <= asSInt(UInt<10>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:65]
+    reg spriteYPositionReg : SInt<10>[32], clock with :
       reset => (reset, _spriteYPositionReg_WIRE) @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:37]
     when io.newFrame : @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:37]
       spriteYPositionReg <= io.spriteYPosition @[\\src\\main\\scala\\GraphicEngineVGA.scala 115:37]
-    wire _spriteVisibleReg_WIRE : UInt<1>[16] @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
+    wire _spriteVisibleReg_WIRE : UInt<1>[32] @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
     _spriteVisibleReg_WIRE[0] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
     _spriteVisibleReg_WIRE[1] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
     _spriteVisibleReg_WIRE[2] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
@@ -1503,11 +2831,27 @@ circuit Top :
     _spriteVisibleReg_WIRE[13] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
     _spriteVisibleReg_WIRE[14] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
     _spriteVisibleReg_WIRE[15] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
-    reg spriteVisibleReg : UInt<1>[16], clock with :
+    _spriteVisibleReg_WIRE[16] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
+    _spriteVisibleReg_WIRE[17] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
+    _spriteVisibleReg_WIRE[18] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
+    _spriteVisibleReg_WIRE[19] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
+    _spriteVisibleReg_WIRE[20] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
+    _spriteVisibleReg_WIRE[21] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
+    _spriteVisibleReg_WIRE[22] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
+    _spriteVisibleReg_WIRE[23] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
+    _spriteVisibleReg_WIRE[24] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
+    _spriteVisibleReg_WIRE[25] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
+    _spriteVisibleReg_WIRE[26] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
+    _spriteVisibleReg_WIRE[27] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
+    _spriteVisibleReg_WIRE[28] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
+    _spriteVisibleReg_WIRE[29] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
+    _spriteVisibleReg_WIRE[30] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
+    _spriteVisibleReg_WIRE[31] <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:61]
+    reg spriteVisibleReg : UInt<1>[32], clock with :
       reset => (reset, _spriteVisibleReg_WIRE) @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:35]
     when io.newFrame : @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:35]
       spriteVisibleReg <= io.spriteVisible @[\\src\\main\\scala\\GraphicEngineVGA.scala 116:35]
-    wire _spriteFlipHorizontalReg_WIRE : UInt<1>[16] @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
+    wire _spriteFlipHorizontalReg_WIRE : UInt<1>[32] @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
     _spriteFlipHorizontalReg_WIRE[0] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
     _spriteFlipHorizontalReg_WIRE[1] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
     _spriteFlipHorizontalReg_WIRE[2] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
@@ -1524,11 +2868,27 @@ circuit Top :
     _spriteFlipHorizontalReg_WIRE[13] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
     _spriteFlipHorizontalReg_WIRE[14] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
     _spriteFlipHorizontalReg_WIRE[15] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
-    reg spriteFlipHorizontalReg : UInt<1>[16], clock with :
+    _spriteFlipHorizontalReg_WIRE[16] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
+    _spriteFlipHorizontalReg_WIRE[17] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
+    _spriteFlipHorizontalReg_WIRE[18] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
+    _spriteFlipHorizontalReg_WIRE[19] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
+    _spriteFlipHorizontalReg_WIRE[20] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
+    _spriteFlipHorizontalReg_WIRE[21] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
+    _spriteFlipHorizontalReg_WIRE[22] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
+    _spriteFlipHorizontalReg_WIRE[23] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
+    _spriteFlipHorizontalReg_WIRE[24] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
+    _spriteFlipHorizontalReg_WIRE[25] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
+    _spriteFlipHorizontalReg_WIRE[26] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
+    _spriteFlipHorizontalReg_WIRE[27] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
+    _spriteFlipHorizontalReg_WIRE[28] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
+    _spriteFlipHorizontalReg_WIRE[29] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
+    _spriteFlipHorizontalReg_WIRE[30] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
+    _spriteFlipHorizontalReg_WIRE[31] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:75]
+    reg spriteFlipHorizontalReg : UInt<1>[32], clock with :
       reset => (reset, _spriteFlipHorizontalReg_WIRE) @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:42]
     when io.newFrame : @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:42]
       spriteFlipHorizontalReg <= io.spriteFlipHorizontal @[\\src\\main\\scala\\GraphicEngineVGA.scala 117:42]
-    wire _spriteFlipVerticalReg_WIRE : UInt<1>[16] @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
+    wire _spriteFlipVerticalReg_WIRE : UInt<1>[32] @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
     _spriteFlipVerticalReg_WIRE[0] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
     _spriteFlipVerticalReg_WIRE[1] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
     _spriteFlipVerticalReg_WIRE[2] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
@@ -1545,11 +2905,27 @@ circuit Top :
     _spriteFlipVerticalReg_WIRE[13] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
     _spriteFlipVerticalReg_WIRE[14] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
     _spriteFlipVerticalReg_WIRE[15] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
-    reg spriteFlipVerticalReg : UInt<1>[16], clock with :
+    _spriteFlipVerticalReg_WIRE[16] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
+    _spriteFlipVerticalReg_WIRE[17] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
+    _spriteFlipVerticalReg_WIRE[18] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
+    _spriteFlipVerticalReg_WIRE[19] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
+    _spriteFlipVerticalReg_WIRE[20] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
+    _spriteFlipVerticalReg_WIRE[21] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
+    _spriteFlipVerticalReg_WIRE[22] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
+    _spriteFlipVerticalReg_WIRE[23] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
+    _spriteFlipVerticalReg_WIRE[24] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
+    _spriteFlipVerticalReg_WIRE[25] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
+    _spriteFlipVerticalReg_WIRE[26] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
+    _spriteFlipVerticalReg_WIRE[27] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
+    _spriteFlipVerticalReg_WIRE[28] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
+    _spriteFlipVerticalReg_WIRE[29] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
+    _spriteFlipVerticalReg_WIRE[30] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
+    _spriteFlipVerticalReg_WIRE[31] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:71]
+    reg spriteFlipVerticalReg : UInt<1>[32], clock with :
       reset => (reset, _spriteFlipVerticalReg_WIRE) @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:40]
     when io.newFrame : @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:40]
       spriteFlipVerticalReg <= io.spriteFlipVertical @[\\src\\main\\scala\\GraphicEngineVGA.scala 118:40]
-    wire _spriteScaleUpHorizontalReg_WIRE : UInt<1>[16] @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
+    wire _spriteScaleUpHorizontalReg_WIRE : UInt<1>[32] @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
     _spriteScaleUpHorizontalReg_WIRE[0] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
     _spriteScaleUpHorizontalReg_WIRE[1] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
     _spriteScaleUpHorizontalReg_WIRE[2] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
@@ -1566,11 +2942,27 @@ circuit Top :
     _spriteScaleUpHorizontalReg_WIRE[13] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
     _spriteScaleUpHorizontalReg_WIRE[14] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
     _spriteScaleUpHorizontalReg_WIRE[15] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
-    reg spriteScaleUpHorizontalReg : UInt<1>[16], clock with :
+    _spriteScaleUpHorizontalReg_WIRE[16] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
+    _spriteScaleUpHorizontalReg_WIRE[17] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
+    _spriteScaleUpHorizontalReg_WIRE[18] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
+    _spriteScaleUpHorizontalReg_WIRE[19] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
+    _spriteScaleUpHorizontalReg_WIRE[20] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
+    _spriteScaleUpHorizontalReg_WIRE[21] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
+    _spriteScaleUpHorizontalReg_WIRE[22] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
+    _spriteScaleUpHorizontalReg_WIRE[23] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
+    _spriteScaleUpHorizontalReg_WIRE[24] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
+    _spriteScaleUpHorizontalReg_WIRE[25] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
+    _spriteScaleUpHorizontalReg_WIRE[26] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
+    _spriteScaleUpHorizontalReg_WIRE[27] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
+    _spriteScaleUpHorizontalReg_WIRE[28] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
+    _spriteScaleUpHorizontalReg_WIRE[29] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
+    _spriteScaleUpHorizontalReg_WIRE[30] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
+    _spriteScaleUpHorizontalReg_WIRE[31] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:81]
+    reg spriteScaleUpHorizontalReg : UInt<1>[32], clock with :
       reset => (reset, _spriteScaleUpHorizontalReg_WIRE) @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:45]
     when io.newFrame : @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:45]
       spriteScaleUpHorizontalReg <= io.spriteScaleUpHorizontal @[\\src\\main\\scala\\GraphicEngineVGA.scala 119:45]
-    wire _spriteScaleDownHorizontalReg_WIRE : UInt<1>[16] @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
+    wire _spriteScaleDownHorizontalReg_WIRE : UInt<1>[32] @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
     _spriteScaleDownHorizontalReg_WIRE[0] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
     _spriteScaleDownHorizontalReg_WIRE[1] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
     _spriteScaleDownHorizontalReg_WIRE[2] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
@@ -1587,11 +2979,27 @@ circuit Top :
     _spriteScaleDownHorizontalReg_WIRE[13] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
     _spriteScaleDownHorizontalReg_WIRE[14] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
     _spriteScaleDownHorizontalReg_WIRE[15] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
-    reg spriteScaleDownHorizontalReg : UInt<1>[16], clock with :
+    _spriteScaleDownHorizontalReg_WIRE[16] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
+    _spriteScaleDownHorizontalReg_WIRE[17] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
+    _spriteScaleDownHorizontalReg_WIRE[18] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
+    _spriteScaleDownHorizontalReg_WIRE[19] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
+    _spriteScaleDownHorizontalReg_WIRE[20] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
+    _spriteScaleDownHorizontalReg_WIRE[21] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
+    _spriteScaleDownHorizontalReg_WIRE[22] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
+    _spriteScaleDownHorizontalReg_WIRE[23] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
+    _spriteScaleDownHorizontalReg_WIRE[24] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
+    _spriteScaleDownHorizontalReg_WIRE[25] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
+    _spriteScaleDownHorizontalReg_WIRE[26] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
+    _spriteScaleDownHorizontalReg_WIRE[27] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
+    _spriteScaleDownHorizontalReg_WIRE[28] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
+    _spriteScaleDownHorizontalReg_WIRE[29] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
+    _spriteScaleDownHorizontalReg_WIRE[30] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
+    _spriteScaleDownHorizontalReg_WIRE[31] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:85]
+    reg spriteScaleDownHorizontalReg : UInt<1>[32], clock with :
       reset => (reset, _spriteScaleDownHorizontalReg_WIRE) @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:47]
     when io.newFrame : @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:47]
       spriteScaleDownHorizontalReg <= io.spriteScaleDownHorizontal @[\\src\\main\\scala\\GraphicEngineVGA.scala 120:47]
-    wire _spriteScaleUpVerticalReg_WIRE : UInt<1>[16] @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
+    wire _spriteScaleUpVerticalReg_WIRE : UInt<1>[32] @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
     _spriteScaleUpVerticalReg_WIRE[0] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
     _spriteScaleUpVerticalReg_WIRE[1] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
     _spriteScaleUpVerticalReg_WIRE[2] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
@@ -1608,11 +3016,27 @@ circuit Top :
     _spriteScaleUpVerticalReg_WIRE[13] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
     _spriteScaleUpVerticalReg_WIRE[14] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
     _spriteScaleUpVerticalReg_WIRE[15] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
-    reg spriteScaleUpVerticalReg : UInt<1>[16], clock with :
+    _spriteScaleUpVerticalReg_WIRE[16] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
+    _spriteScaleUpVerticalReg_WIRE[17] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
+    _spriteScaleUpVerticalReg_WIRE[18] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
+    _spriteScaleUpVerticalReg_WIRE[19] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
+    _spriteScaleUpVerticalReg_WIRE[20] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
+    _spriteScaleUpVerticalReg_WIRE[21] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
+    _spriteScaleUpVerticalReg_WIRE[22] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
+    _spriteScaleUpVerticalReg_WIRE[23] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
+    _spriteScaleUpVerticalReg_WIRE[24] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
+    _spriteScaleUpVerticalReg_WIRE[25] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
+    _spriteScaleUpVerticalReg_WIRE[26] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
+    _spriteScaleUpVerticalReg_WIRE[27] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
+    _spriteScaleUpVerticalReg_WIRE[28] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
+    _spriteScaleUpVerticalReg_WIRE[29] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
+    _spriteScaleUpVerticalReg_WIRE[30] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
+    _spriteScaleUpVerticalReg_WIRE[31] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:77]
+    reg spriteScaleUpVerticalReg : UInt<1>[32], clock with :
       reset => (reset, _spriteScaleUpVerticalReg_WIRE) @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:43]
     when io.newFrame : @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:43]
       spriteScaleUpVerticalReg <= io.spriteScaleUpVertical @[\\src\\main\\scala\\GraphicEngineVGA.scala 121:43]
-    wire _spriteScaleDownVerticalReg_WIRE : UInt<1>[16] @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
+    wire _spriteScaleDownVerticalReg_WIRE : UInt<1>[32] @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
     _spriteScaleDownVerticalReg_WIRE[0] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
     _spriteScaleDownVerticalReg_WIRE[1] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
     _spriteScaleDownVerticalReg_WIRE[2] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
@@ -1629,7 +3053,23 @@ circuit Top :
     _spriteScaleDownVerticalReg_WIRE[13] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
     _spriteScaleDownVerticalReg_WIRE[14] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
     _spriteScaleDownVerticalReg_WIRE[15] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
-    reg spriteScaleDownVerticalReg : UInt<1>[16], clock with :
+    _spriteScaleDownVerticalReg_WIRE[16] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
+    _spriteScaleDownVerticalReg_WIRE[17] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
+    _spriteScaleDownVerticalReg_WIRE[18] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
+    _spriteScaleDownVerticalReg_WIRE[19] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
+    _spriteScaleDownVerticalReg_WIRE[20] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
+    _spriteScaleDownVerticalReg_WIRE[21] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
+    _spriteScaleDownVerticalReg_WIRE[22] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
+    _spriteScaleDownVerticalReg_WIRE[23] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
+    _spriteScaleDownVerticalReg_WIRE[24] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
+    _spriteScaleDownVerticalReg_WIRE[25] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
+    _spriteScaleDownVerticalReg_WIRE[26] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
+    _spriteScaleDownVerticalReg_WIRE[27] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
+    _spriteScaleDownVerticalReg_WIRE[28] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
+    _spriteScaleDownVerticalReg_WIRE[29] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
+    _spriteScaleDownVerticalReg_WIRE[30] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
+    _spriteScaleDownVerticalReg_WIRE[31] <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:81]
+    reg spriteScaleDownVerticalReg : UInt<1>[32], clock with :
       reset => (reset, _spriteScaleDownVerticalReg_WIRE) @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:45]
     when io.newFrame : @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:45]
       spriteScaleDownVerticalReg <= io.spriteScaleDownVertical @[\\src\\main\\scala\\GraphicEngineVGA.scala 122:45]
@@ -1769,7 +3209,103 @@ circuit Top :
     inst backTileMemories_31 of Memory_31 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
     backTileMemories_31.clock <= clock
     backTileMemories_31.reset <= reset
-    wire backTileMemoryDataRead : UInt<7>[32] @[\\src\\main\\scala\\GraphicEngineVGA.scala 167:36]
+    inst backTileMemories_32 of Memory_32 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_32.clock <= clock
+    backTileMemories_32.reset <= reset
+    inst backTileMemories_33 of Memory_33 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_33.clock <= clock
+    backTileMemories_33.reset <= reset
+    inst backTileMemories_34 of Memory_34 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_34.clock <= clock
+    backTileMemories_34.reset <= reset
+    inst backTileMemories_35 of Memory_35 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_35.clock <= clock
+    backTileMemories_35.reset <= reset
+    inst backTileMemories_36 of Memory_36 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_36.clock <= clock
+    backTileMemories_36.reset <= reset
+    inst backTileMemories_37 of Memory_37 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_37.clock <= clock
+    backTileMemories_37.reset <= reset
+    inst backTileMemories_38 of Memory_38 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_38.clock <= clock
+    backTileMemories_38.reset <= reset
+    inst backTileMemories_39 of Memory_39 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_39.clock <= clock
+    backTileMemories_39.reset <= reset
+    inst backTileMemories_40 of Memory_40 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_40.clock <= clock
+    backTileMemories_40.reset <= reset
+    inst backTileMemories_41 of Memory_41 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_41.clock <= clock
+    backTileMemories_41.reset <= reset
+    inst backTileMemories_42 of Memory_42 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_42.clock <= clock
+    backTileMemories_42.reset <= reset
+    inst backTileMemories_43 of Memory_43 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_43.clock <= clock
+    backTileMemories_43.reset <= reset
+    inst backTileMemories_44 of Memory_44 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_44.clock <= clock
+    backTileMemories_44.reset <= reset
+    inst backTileMemories_45 of Memory_45 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_45.clock <= clock
+    backTileMemories_45.reset <= reset
+    inst backTileMemories_46 of Memory_46 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_46.clock <= clock
+    backTileMemories_46.reset <= reset
+    inst backTileMemories_47 of Memory_47 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_47.clock <= clock
+    backTileMemories_47.reset <= reset
+    inst backTileMemories_48 of Memory_48 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_48.clock <= clock
+    backTileMemories_48.reset <= reset
+    inst backTileMemories_49 of Memory_49 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_49.clock <= clock
+    backTileMemories_49.reset <= reset
+    inst backTileMemories_50 of Memory_50 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_50.clock <= clock
+    backTileMemories_50.reset <= reset
+    inst backTileMemories_51 of Memory_51 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_51.clock <= clock
+    backTileMemories_51.reset <= reset
+    inst backTileMemories_52 of Memory_52 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_52.clock <= clock
+    backTileMemories_52.reset <= reset
+    inst backTileMemories_53 of Memory_53 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_53.clock <= clock
+    backTileMemories_53.reset <= reset
+    inst backTileMemories_54 of Memory_54 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_54.clock <= clock
+    backTileMemories_54.reset <= reset
+    inst backTileMemories_55 of Memory_55 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_55.clock <= clock
+    backTileMemories_55.reset <= reset
+    inst backTileMemories_56 of Memory_56 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_56.clock <= clock
+    backTileMemories_56.reset <= reset
+    inst backTileMemories_57 of Memory_57 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_57.clock <= clock
+    backTileMemories_57.reset <= reset
+    inst backTileMemories_58 of Memory_58 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_58.clock <= clock
+    backTileMemories_58.reset <= reset
+    inst backTileMemories_59 of Memory_59 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_59.clock <= clock
+    backTileMemories_59.reset <= reset
+    inst backTileMemories_60 of Memory_60 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_60.clock <= clock
+    backTileMemories_60.reset <= reset
+    inst backTileMemories_61 of Memory_61 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_61.clock <= clock
+    backTileMemories_61.reset <= reset
+    inst backTileMemories_62 of Memory_62 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_62.clock <= clock
+    backTileMemories_62.reset <= reset
+    inst backTileMemories_63 of Memory_63 @[\\src\\main\\scala\\GraphicEngineVGA.scala 161:32]
+    backTileMemories_63.clock <= clock
+    backTileMemories_63.reset <= reset
+    wire backTileMemoryDataRead : UInt<7>[64] @[\\src\\main\\scala\\GraphicEngineVGA.scala 167:36]
     backTileMemories_0.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
     backTileMemories_0.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
     backTileMemories_0.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
@@ -2154,13 +3690,397 @@ circuit Top :
       reset => (UInt<1>("h0"), backTileMemoryDataRead_31_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
     backTileMemoryDataRead_31_REG <= backTileMemories_31.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
     backTileMemoryDataRead[31] <= backTileMemoryDataRead_31_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
-    inst backBufferMemory of Memory_32 @[\\src\\main\\scala\\GraphicEngineVGA.scala 178:32]
+    backTileMemories_32.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_32.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_32.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_32_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_32_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_32_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_32_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_32_io_address_T_3 = add(_backTileMemories_32_io_address_T, _backTileMemories_32_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_32.io.address <= _backTileMemories_32_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_32_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_32_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_32_REG <= backTileMemories_32.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[32] <= backTileMemoryDataRead_32_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_33.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_33.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_33.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_33_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_33_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_33_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_33_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_33_io_address_T_3 = add(_backTileMemories_33_io_address_T, _backTileMemories_33_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_33.io.address <= _backTileMemories_33_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_33_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_33_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_33_REG <= backTileMemories_33.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[33] <= backTileMemoryDataRead_33_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_34.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_34.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_34.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_34_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_34_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_34_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_34_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_34_io_address_T_3 = add(_backTileMemories_34_io_address_T, _backTileMemories_34_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_34.io.address <= _backTileMemories_34_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_34_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_34_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_34_REG <= backTileMemories_34.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[34] <= backTileMemoryDataRead_34_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_35.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_35.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_35.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_35_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_35_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_35_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_35_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_35_io_address_T_3 = add(_backTileMemories_35_io_address_T, _backTileMemories_35_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_35.io.address <= _backTileMemories_35_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_35_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_35_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_35_REG <= backTileMemories_35.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[35] <= backTileMemoryDataRead_35_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_36.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_36.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_36.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_36_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_36_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_36_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_36_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_36_io_address_T_3 = add(_backTileMemories_36_io_address_T, _backTileMemories_36_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_36.io.address <= _backTileMemories_36_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_36_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_36_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_36_REG <= backTileMemories_36.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[36] <= backTileMemoryDataRead_36_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_37.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_37.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_37.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_37_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_37_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_37_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_37_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_37_io_address_T_3 = add(_backTileMemories_37_io_address_T, _backTileMemories_37_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_37.io.address <= _backTileMemories_37_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_37_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_37_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_37_REG <= backTileMemories_37.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[37] <= backTileMemoryDataRead_37_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_38.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_38.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_38.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_38_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_38_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_38_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_38_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_38_io_address_T_3 = add(_backTileMemories_38_io_address_T, _backTileMemories_38_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_38.io.address <= _backTileMemories_38_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_38_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_38_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_38_REG <= backTileMemories_38.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[38] <= backTileMemoryDataRead_38_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_39.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_39.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_39.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_39_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_39_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_39_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_39_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_39_io_address_T_3 = add(_backTileMemories_39_io_address_T, _backTileMemories_39_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_39.io.address <= _backTileMemories_39_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_39_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_39_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_39_REG <= backTileMemories_39.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[39] <= backTileMemoryDataRead_39_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_40.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_40.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_40.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_40_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_40_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_40_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_40_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_40_io_address_T_3 = add(_backTileMemories_40_io_address_T, _backTileMemories_40_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_40.io.address <= _backTileMemories_40_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_40_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_40_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_40_REG <= backTileMemories_40.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[40] <= backTileMemoryDataRead_40_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_41.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_41.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_41.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_41_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_41_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_41_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_41_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_41_io_address_T_3 = add(_backTileMemories_41_io_address_T, _backTileMemories_41_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_41.io.address <= _backTileMemories_41_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_41_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_41_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_41_REG <= backTileMemories_41.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[41] <= backTileMemoryDataRead_41_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_42.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_42.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_42.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_42_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_42_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_42_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_42_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_42_io_address_T_3 = add(_backTileMemories_42_io_address_T, _backTileMemories_42_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_42.io.address <= _backTileMemories_42_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_42_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_42_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_42_REG <= backTileMemories_42.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[42] <= backTileMemoryDataRead_42_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_43.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_43.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_43.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_43_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_43_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_43_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_43_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_43_io_address_T_3 = add(_backTileMemories_43_io_address_T, _backTileMemories_43_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_43.io.address <= _backTileMemories_43_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_43_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_43_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_43_REG <= backTileMemories_43.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[43] <= backTileMemoryDataRead_43_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_44.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_44.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_44.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_44_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_44_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_44_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_44_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_44_io_address_T_3 = add(_backTileMemories_44_io_address_T, _backTileMemories_44_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_44.io.address <= _backTileMemories_44_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_44_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_44_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_44_REG <= backTileMemories_44.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[44] <= backTileMemoryDataRead_44_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_45.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_45.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_45.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_45_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_45_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_45_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_45_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_45_io_address_T_3 = add(_backTileMemories_45_io_address_T, _backTileMemories_45_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_45.io.address <= _backTileMemories_45_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_45_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_45_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_45_REG <= backTileMemories_45.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[45] <= backTileMemoryDataRead_45_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_46.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_46.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_46.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_46_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_46_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_46_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_46_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_46_io_address_T_3 = add(_backTileMemories_46_io_address_T, _backTileMemories_46_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_46.io.address <= _backTileMemories_46_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_46_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_46_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_46_REG <= backTileMemories_46.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[46] <= backTileMemoryDataRead_46_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_47.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_47.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_47.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_47_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_47_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_47_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_47_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_47_io_address_T_3 = add(_backTileMemories_47_io_address_T, _backTileMemories_47_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_47.io.address <= _backTileMemories_47_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_47_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_47_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_47_REG <= backTileMemories_47.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[47] <= backTileMemoryDataRead_47_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_48.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_48.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_48.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_48_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_48_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_48_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_48_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_48_io_address_T_3 = add(_backTileMemories_48_io_address_T, _backTileMemories_48_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_48.io.address <= _backTileMemories_48_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_48_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_48_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_48_REG <= backTileMemories_48.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[48] <= backTileMemoryDataRead_48_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_49.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_49.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_49.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_49_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_49_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_49_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_49_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_49_io_address_T_3 = add(_backTileMemories_49_io_address_T, _backTileMemories_49_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_49.io.address <= _backTileMemories_49_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_49_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_49_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_49_REG <= backTileMemories_49.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[49] <= backTileMemoryDataRead_49_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_50.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_50.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_50.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_50_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_50_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_50_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_50_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_50_io_address_T_3 = add(_backTileMemories_50_io_address_T, _backTileMemories_50_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_50.io.address <= _backTileMemories_50_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_50_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_50_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_50_REG <= backTileMemories_50.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[50] <= backTileMemoryDataRead_50_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_51.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_51.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_51.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_51_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_51_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_51_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_51_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_51_io_address_T_3 = add(_backTileMemories_51_io_address_T, _backTileMemories_51_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_51.io.address <= _backTileMemories_51_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_51_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_51_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_51_REG <= backTileMemories_51.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[51] <= backTileMemoryDataRead_51_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_52.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_52.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_52.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_52_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_52_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_52_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_52_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_52_io_address_T_3 = add(_backTileMemories_52_io_address_T, _backTileMemories_52_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_52.io.address <= _backTileMemories_52_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_52_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_52_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_52_REG <= backTileMemories_52.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[52] <= backTileMemoryDataRead_52_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_53.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_53.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_53.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_53_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_53_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_53_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_53_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_53_io_address_T_3 = add(_backTileMemories_53_io_address_T, _backTileMemories_53_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_53.io.address <= _backTileMemories_53_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_53_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_53_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_53_REG <= backTileMemories_53.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[53] <= backTileMemoryDataRead_53_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_54.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_54.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_54.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_54_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_54_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_54_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_54_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_54_io_address_T_3 = add(_backTileMemories_54_io_address_T, _backTileMemories_54_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_54.io.address <= _backTileMemories_54_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_54_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_54_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_54_REG <= backTileMemories_54.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[54] <= backTileMemoryDataRead_54_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_55.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_55.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_55.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_55_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_55_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_55_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_55_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_55_io_address_T_3 = add(_backTileMemories_55_io_address_T, _backTileMemories_55_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_55.io.address <= _backTileMemories_55_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_55_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_55_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_55_REG <= backTileMemories_55.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[55] <= backTileMemoryDataRead_55_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_56.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_56.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_56.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_56_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_56_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_56_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_56_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_56_io_address_T_3 = add(_backTileMemories_56_io_address_T, _backTileMemories_56_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_56.io.address <= _backTileMemories_56_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_56_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_56_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_56_REG <= backTileMemories_56.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[56] <= backTileMemoryDataRead_56_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_57.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_57.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_57.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_57_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_57_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_57_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_57_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_57_io_address_T_3 = add(_backTileMemories_57_io_address_T, _backTileMemories_57_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_57.io.address <= _backTileMemories_57_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_57_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_57_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_57_REG <= backTileMemories_57.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[57] <= backTileMemoryDataRead_57_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_58.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_58.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_58.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_58_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_58_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_58_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_58_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_58_io_address_T_3 = add(_backTileMemories_58_io_address_T, _backTileMemories_58_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_58.io.address <= _backTileMemories_58_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_58_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_58_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_58_REG <= backTileMemories_58.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[58] <= backTileMemoryDataRead_58_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_59.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_59.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_59.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_59_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_59_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_59_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_59_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_59_io_address_T_3 = add(_backTileMemories_59_io_address_T, _backTileMemories_59_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_59.io.address <= _backTileMemories_59_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_59_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_59_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_59_REG <= backTileMemories_59.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[59] <= backTileMemoryDataRead_59_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_60.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_60.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_60.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_60_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_60_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_60_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_60_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_60_io_address_T_3 = add(_backTileMemories_60_io_address_T, _backTileMemories_60_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_60.io.address <= _backTileMemories_60_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_60_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_60_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_60_REG <= backTileMemories_60.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[60] <= backTileMemoryDataRead_60_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_61.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_61.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_61.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_61_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_61_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_61_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_61_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_61_io_address_T_3 = add(_backTileMemories_61_io_address_T, _backTileMemories_61_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_61.io.address <= _backTileMemories_61_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_61_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_61_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_61_REG <= backTileMemories_61.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[61] <= backTileMemoryDataRead_61_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_62.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_62.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_62.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_62_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_62_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_62_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_62_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_62_io_address_T_3 = add(_backTileMemories_62_io_address_T, _backTileMemories_62_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_62.io.address <= _backTileMemories_62_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_62_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_62_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_62_REG <= backTileMemories_62.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[62] <= backTileMemoryDataRead_62_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    backTileMemories_63.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 169:35]
+    backTileMemories_63.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 170:38]
+    backTileMemories_63.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 171:40]
+    node _backTileMemories_63_io_address_T = bits(pixelXBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:49]
+    node _backTileMemories_63_io_address_T_1 = bits(pixelYBack, 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:87]
+    node _backTileMemories_63_io_address_T_2 = mul(UInt<6>("h20"), _backTileMemories_63_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:75]
+    node _backTileMemories_63_io_address_T_3 = add(_backTileMemories_63_io_address_T, _backTileMemories_63_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:62]
+    backTileMemories_63.io.address <= _backTileMemories_63_io_address_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 172:36]
+    reg backTileMemoryDataRead_63_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), backTileMemoryDataRead_63_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead_63_REG <= backTileMemories_63.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:41]
+    backTileMemoryDataRead[63] <= backTileMemoryDataRead_63_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 173:31]
+    inst backBufferMemory of Memory_64 @[\\src\\main\\scala\\GraphicEngineVGA.scala 178:32]
     backBufferMemory.clock <= clock
     backBufferMemory.reset <= reset
-    inst backBufferShadowMemory of Memory_33 @[\\src\\main\\scala\\GraphicEngineVGA.scala 179:38]
+    inst backBufferShadowMemory of Memory_65 @[\\src\\main\\scala\\GraphicEngineVGA.scala 179:38]
     backBufferShadowMemory.clock <= clock
     backBufferShadowMemory.reset <= reset
-    inst backBufferRestoreMemory of Memory_34 @[\\src\\main\\scala\\GraphicEngineVGA.scala 180:39]
+    inst backBufferRestoreMemory of Memory_66 @[\\src\\main\\scala\\GraphicEngineVGA.scala 180:39]
     backBufferRestoreMemory.clock <= clock
     backBufferRestoreMemory.reset <= reset
     reg backMemoryCopyCounter : UInt<12>, clock with :
@@ -2247,8 +4167,8 @@ circuit Top :
     reg fullBackgroundColor_REG : UInt, clock with :
       reset => (UInt<1>("h0"), fullBackgroundColor_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 243:56]
     fullBackgroundColor_REG <= backBufferMemory.io.dataRead @[\\src\\main\\scala\\GraphicEngineVGA.scala 243:56]
-    node _fullBackgroundColor_T = or(fullBackgroundColor_REG, UInt<5>("h0"))
-    node _fullBackgroundColor_T_1 = bits(_fullBackgroundColor_T, 4, 0)
+    node _fullBackgroundColor_T = or(fullBackgroundColor_REG, UInt<6>("h0"))
+    node _fullBackgroundColor_T_1 = bits(_fullBackgroundColor_T, 5, 0)
     fullBackgroundColor <= backTileMemoryDataRead[_fullBackgroundColor_T_1] @[\\src\\main\\scala\\GraphicEngineVGA.scala 243:23]
     node _backgroundColor_T = bits(fullBackgroundColor, 6, 6) @[\\src\\main\\scala\\GraphicEngineVGA.scala 244:45]
     node _backgroundColor_T_1 = bits(fullBackgroundColor, 5, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 244:79]
@@ -2257,61 +4177,109 @@ circuit Top :
     reg pixelColorBack : UInt, clock with :
       reset => (UInt<1>("h0"), pixelColorBack) @[\\src\\main\\scala\\GraphicEngineVGA.scala 245:31]
     pixelColorBack <= backgroundColor @[\\src\\main\\scala\\GraphicEngineVGA.scala 245:31]
-    inst spriteMemories_0 of Memory_35 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    inst spriteMemories_0 of Memory_67 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
     spriteMemories_0.clock <= clock
     spriteMemories_0.reset <= reset
-    inst spriteMemories_1 of Memory_36 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    inst spriteMemories_1 of Memory_68 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
     spriteMemories_1.clock <= clock
     spriteMemories_1.reset <= reset
-    inst spriteMemories_2 of Memory_37 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    inst spriteMemories_2 of Memory_69 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
     spriteMemories_2.clock <= clock
     spriteMemories_2.reset <= reset
-    inst spriteMemories_3 of Memory_38 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    inst spriteMemories_3 of Memory_70 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
     spriteMemories_3.clock <= clock
     spriteMemories_3.reset <= reset
-    inst spriteMemories_4 of Memory_39 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    inst spriteMemories_4 of Memory_71 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
     spriteMemories_4.clock <= clock
     spriteMemories_4.reset <= reset
-    inst spriteMemories_5 of Memory_40 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    inst spriteMemories_5 of Memory_72 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
     spriteMemories_5.clock <= clock
     spriteMemories_5.reset <= reset
-    inst spriteMemories_6 of Memory_41 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    inst spriteMemories_6 of Memory_73 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
     spriteMemories_6.clock <= clock
     spriteMemories_6.reset <= reset
-    inst spriteMemories_7 of Memory_42 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    inst spriteMemories_7 of Memory_74 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
     spriteMemories_7.clock <= clock
     spriteMemories_7.reset <= reset
-    inst spriteMemories_8 of Memory_43 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    inst spriteMemories_8 of Memory_75 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
     spriteMemories_8.clock <= clock
     spriteMemories_8.reset <= reset
-    inst spriteMemories_9 of Memory_44 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    inst spriteMemories_9 of Memory_76 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
     spriteMemories_9.clock <= clock
     spriteMemories_9.reset <= reset
-    inst spriteMemories_10 of Memory_45 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    inst spriteMemories_10 of Memory_77 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
     spriteMemories_10.clock <= clock
     spriteMemories_10.reset <= reset
-    inst spriteMemories_11 of Memory_46 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    inst spriteMemories_11 of Memory_78 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
     spriteMemories_11.clock <= clock
     spriteMemories_11.reset <= reset
-    inst spriteMemories_12 of Memory_47 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    inst spriteMemories_12 of Memory_79 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
     spriteMemories_12.clock <= clock
     spriteMemories_12.reset <= reset
-    inst spriteMemories_13 of Memory_48 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    inst spriteMemories_13 of Memory_80 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
     spriteMemories_13.clock <= clock
     spriteMemories_13.reset <= reset
-    inst spriteMemories_14 of Memory_49 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    inst spriteMemories_14 of Memory_81 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
     spriteMemories_14.clock <= clock
     spriteMemories_14.reset <= reset
-    inst spriteMemories_15 of Memory_50 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    inst spriteMemories_15 of Memory_82 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
     spriteMemories_15.clock <= clock
     spriteMemories_15.reset <= reset
-    wire inSpriteHorizontal : UInt<1>[16] @[\\src\\main\\scala\\GraphicEngineVGA.scala 254:32]
-    wire inSpriteVertical : UInt<1>[16] @[\\src\\main\\scala\\GraphicEngineVGA.scala 255:30]
-    wire inSprite : UInt<1>[16] @[\\src\\main\\scala\\GraphicEngineVGA.scala 256:22]
-    wire inSpriteXPreScaled : SInt<12>[16] @[\\src\\main\\scala\\GraphicEngineVGA.scala 257:32]
-    wire inSpriteYPreScaled : SInt<11>[16] @[\\src\\main\\scala\\GraphicEngineVGA.scala 258:32]
-    wire inSpriteX : SInt<12>[16] @[\\src\\main\\scala\\GraphicEngineVGA.scala 259:23]
-    wire inSpriteY : SInt<11>[16] @[\\src\\main\\scala\\GraphicEngineVGA.scala 260:23]
+    inst spriteMemories_16 of Memory_83 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    spriteMemories_16.clock <= clock
+    spriteMemories_16.reset <= reset
+    inst spriteMemories_17 of Memory_84 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    spriteMemories_17.clock <= clock
+    spriteMemories_17.reset <= reset
+    inst spriteMemories_18 of Memory_85 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    spriteMemories_18.clock <= clock
+    spriteMemories_18.reset <= reset
+    inst spriteMemories_19 of Memory_86 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    spriteMemories_19.clock <= clock
+    spriteMemories_19.reset <= reset
+    inst spriteMemories_20 of Memory_87 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    spriteMemories_20.clock <= clock
+    spriteMemories_20.reset <= reset
+    inst spriteMemories_21 of Memory_88 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    spriteMemories_21.clock <= clock
+    spriteMemories_21.reset <= reset
+    inst spriteMemories_22 of Memory_89 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    spriteMemories_22.clock <= clock
+    spriteMemories_22.reset <= reset
+    inst spriteMemories_23 of Memory_90 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    spriteMemories_23.clock <= clock
+    spriteMemories_23.reset <= reset
+    inst spriteMemories_24 of Memory_91 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    spriteMemories_24.clock <= clock
+    spriteMemories_24.reset <= reset
+    inst spriteMemories_25 of Memory_92 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    spriteMemories_25.clock <= clock
+    spriteMemories_25.reset <= reset
+    inst spriteMemories_26 of Memory_93 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    spriteMemories_26.clock <= clock
+    spriteMemories_26.reset <= reset
+    inst spriteMemories_27 of Memory_94 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    spriteMemories_27.clock <= clock
+    spriteMemories_27.reset <= reset
+    inst spriteMemories_28 of Memory_95 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    spriteMemories_28.clock <= clock
+    spriteMemories_28.reset <= reset
+    inst spriteMemories_29 of Memory_96 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    spriteMemories_29.clock <= clock
+    spriteMemories_29.reset <= reset
+    inst spriteMemories_30 of Memory_97 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    spriteMemories_30.clock <= clock
+    spriteMemories_30.reset <= reset
+    inst spriteMemories_31 of Memory_98 @[\\src\\main\\scala\\GraphicEngineVGA.scala 250:30]
+    spriteMemories_31.clock <= clock
+    spriteMemories_31.reset <= reset
+    wire inSpriteHorizontal : UInt<1>[32] @[\\src\\main\\scala\\GraphicEngineVGA.scala 254:32]
+    wire inSpriteVertical : UInt<1>[32] @[\\src\\main\\scala\\GraphicEngineVGA.scala 255:30]
+    wire inSprite : UInt<1>[32] @[\\src\\main\\scala\\GraphicEngineVGA.scala 256:22]
+    wire inSpriteXPreScaled : SInt<12>[32] @[\\src\\main\\scala\\GraphicEngineVGA.scala 257:32]
+    wire inSpriteYPreScaled : SInt<11>[32] @[\\src\\main\\scala\\GraphicEngineVGA.scala 258:32]
+    wire inSpriteX : SInt<12>[32] @[\\src\\main\\scala\\GraphicEngineVGA.scala 259:23]
+    wire inSpriteY : SInt<11>[32] @[\\src\\main\\scala\\GraphicEngineVGA.scala 260:23]
     node _inSpriteXValue_T = cat(UInt<1>("h0"), CounterXReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:36]
     node _inSpriteXValue_T_1 = asSInt(_inSpriteXValue_T) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:47]
     node inSpriteXValue = sub(_inSpriteXValue_T_1, spriteXPositionReg[0]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:54]
@@ -4040,6 +6008,1734 @@ circuit Top :
           inSpriteVertical[15] <= _inSpriteVertical_15_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:29]
     node _inSprite_15_T = and(inSpriteHorizontal[15], inSpriteVertical[15]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:42]
     inSprite[15] <= _inSprite_15_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:17]
+    node _inSpriteXValue_T_32 = cat(UInt<1>("h0"), CounterXReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:36]
+    node _inSpriteXValue_T_33 = asSInt(_inSpriteXValue_T_32) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:47]
+    node inSpriteXValue_16 = sub(_inSpriteXValue_T_33, spriteXPositionReg[16]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:54]
+    when spriteFlipHorizontalReg[16] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 264:38]
+      node _inSpriteXPreScaled_16_T = sub(asSInt(UInt<6>("h1f")), inSpriteXValue_16) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_16_T_1 = tail(_inSpriteXPreScaled_16_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_16_T_2 = asSInt(_inSpriteXPreScaled_16_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      inSpriteXPreScaled[16] <= _inSpriteXPreScaled_16_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:29]
+    else :
+      inSpriteXPreScaled[16] <= inSpriteXValue_16 @[\\src\\main\\scala\\GraphicEngineVGA.scala 267:29]
+    node _T_170 = and(spriteScaleUpHorizontalReg[16], spriteScaleDownHorizontalReg[16]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:41]
+    node _T_171 = eq(spriteScaleUpHorizontalReg[16], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:81]
+    node _T_172 = eq(spriteScaleDownHorizontalReg[16], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:115]
+    node _T_173 = and(_T_171, _T_172) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:112]
+    node _T_174 = or(_T_170, _T_173) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:77]
+    when _T_174 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:149]
+      inSpriteX[16] <= inSpriteXPreScaled[16] @[\\src\\main\\scala\\GraphicEngineVGA.scala 271:20]
+      node _inSpriteHorizontal_16_T = geq(inSpriteXPreScaled[16], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:54]
+      node _inSpriteHorizontal_16_T_1 = lt(inSpriteXPreScaled[16], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:86]
+      node _inSpriteHorizontal_16_T_2 = and(_inSpriteHorizontal_16_T, _inSpriteHorizontal_16_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:61]
+      inSpriteHorizontal[16] <= _inSpriteHorizontal_16_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:29]
+    else :
+      when spriteScaleUpHorizontalReg[16] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 273:48]
+        when spriteFlipHorizontalReg[16] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 275:40]
+          node _inSpriteX_16_T = sub(inSpriteXPreScaled[16], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_16_T_1 = tail(_inSpriteX_16_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_16_T_2 = asSInt(_inSpriteX_16_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_16_T_3 = shr(_inSpriteX_16_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:56]
+          inSpriteX[16] <= _inSpriteX_16_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:22]
+          node _inSpriteHorizontal_16_T_3 = geq(inSpriteXPreScaled[16], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:56]
+          node _inSpriteHorizontal_16_T_4 = lt(inSpriteXPreScaled[16], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:90]
+          node _inSpriteHorizontal_16_T_5 = and(_inSpriteHorizontal_16_T_3, _inSpriteHorizontal_16_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:65]
+          inSpriteHorizontal[16] <= _inSpriteHorizontal_16_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:31]
+        else :
+          node _inSpriteX_16_T_4 = shr(inSpriteXPreScaled[16], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:47]
+          inSpriteX[16] <= _inSpriteX_16_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:22]
+          node _inSpriteHorizontal_16_T_6 = geq(inSpriteXPreScaled[16], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:56]
+          node _inSpriteHorizontal_16_T_7 = lt(inSpriteXPreScaled[16], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:88]
+          node _inSpriteHorizontal_16_T_8 = and(_inSpriteHorizontal_16_T_6, _inSpriteHorizontal_16_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:63]
+          inSpriteHorizontal[16] <= _inSpriteHorizontal_16_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:31]
+      else :
+        node _inSpriteX_16_T_5 = shl(inSpriteXPreScaled[16], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:45]
+        inSpriteX[16] <= _inSpriteX_16_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:20]
+        when spriteFlipHorizontalReg[16] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 285:40]
+          node _inSpriteHorizontal_16_T_9 = geq(inSpriteXPreScaled[16], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:56]
+          node _inSpriteHorizontal_16_T_10 = lt(inSpriteXPreScaled[16], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:89]
+          node _inSpriteHorizontal_16_T_11 = and(_inSpriteHorizontal_16_T_9, _inSpriteHorizontal_16_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:64]
+          inSpriteHorizontal[16] <= _inSpriteHorizontal_16_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:31]
+        else :
+          node _inSpriteHorizontal_16_T_12 = geq(inSpriteXPreScaled[16], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:56]
+          node _inSpriteHorizontal_16_T_13 = lt(inSpriteXPreScaled[16], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:88]
+          node _inSpriteHorizontal_16_T_14 = and(_inSpriteHorizontal_16_T_12, _inSpriteHorizontal_16_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:63]
+          inSpriteHorizontal[16] <= _inSpriteHorizontal_16_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:31]
+    node _inSpriteYValue_T_32 = cat(UInt<1>("h0"), CounterYReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:36]
+    node _inSpriteYValue_T_33 = asSInt(_inSpriteYValue_T_32) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:47]
+    node inSpriteYValue_16 = sub(_inSpriteYValue_T_33, spriteYPositionReg[16]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:54]
+    when spriteFlipVerticalReg[16] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 293:35]
+      node _inSpriteYPreScaled_16_T = sub(asSInt(UInt<6>("h1f")), inSpriteYValue_16) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_16_T_1 = tail(_inSpriteYPreScaled_16_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_16_T_2 = asSInt(_inSpriteYPreScaled_16_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      inSpriteYPreScaled[16] <= _inSpriteYPreScaled_16_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:29]
+    else :
+      inSpriteYPreScaled[16] <= inSpriteYValue_16 @[\\src\\main\\scala\\GraphicEngineVGA.scala 296:29]
+    node _T_175 = and(spriteScaleUpVerticalReg[16], spriteScaleDownVerticalReg[16]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:39]
+    node _T_176 = eq(spriteScaleUpVerticalReg[16], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:77]
+    node _T_177 = eq(spriteScaleDownVerticalReg[16], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:109]
+    node _T_178 = and(_T_176, _T_177) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:106]
+    node _T_179 = or(_T_175, _T_178) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:73]
+    when _T_179 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:142]
+      inSpriteY[16] <= inSpriteYPreScaled[16] @[\\src\\main\\scala\\GraphicEngineVGA.scala 300:20]
+      node _inSpriteVertical_16_T = geq(inSpriteYPreScaled[16], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:52]
+      node _inSpriteVertical_16_T_1 = lt(inSpriteYPreScaled[16], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:84]
+      node _inSpriteVertical_16_T_2 = and(_inSpriteVertical_16_T, _inSpriteVertical_16_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:59]
+      inSpriteVertical[16] <= _inSpriteVertical_16_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:27]
+    else :
+      when spriteScaleUpVerticalReg[16] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 302:45]
+        when spriteFlipVerticalReg[16] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 304:38]
+          node _inSpriteY_16_T = sub(inSpriteYPreScaled[16], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_16_T_1 = tail(_inSpriteY_16_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_16_T_2 = asSInt(_inSpriteY_16_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_16_T_3 = shr(_inSpriteY_16_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:56]
+          inSpriteY[16] <= _inSpriteY_16_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:22]
+          node _inSpriteVertical_16_T_3 = geq(inSpriteYPreScaled[16], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:54]
+          node _inSpriteVertical_16_T_4 = lt(inSpriteYPreScaled[16], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:88]
+          node _inSpriteVertical_16_T_5 = and(_inSpriteVertical_16_T_3, _inSpriteVertical_16_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:63]
+          inSpriteVertical[16] <= _inSpriteVertical_16_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:29]
+        else :
+          node _inSpriteY_16_T_4 = shr(inSpriteYPreScaled[16], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:47]
+          inSpriteY[16] <= _inSpriteY_16_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:22]
+          node _inSpriteVertical_16_T_6 = geq(inSpriteYPreScaled[16], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:54]
+          node _inSpriteVertical_16_T_7 = lt(inSpriteYPreScaled[16], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:86]
+          node _inSpriteVertical_16_T_8 = and(_inSpriteVertical_16_T_6, _inSpriteVertical_16_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:61]
+          inSpriteVertical[16] <= _inSpriteVertical_16_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:29]
+      else :
+        node _inSpriteY_16_T_5 = shl(inSpriteYPreScaled[16], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:45]
+        inSpriteY[16] <= _inSpriteY_16_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:20]
+        when spriteFlipVerticalReg[16] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 314:38]
+          node _inSpriteVertical_16_T_9 = geq(inSpriteYPreScaled[16], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:54]
+          node _inSpriteVertical_16_T_10 = lt(inSpriteYPreScaled[16], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:87]
+          node _inSpriteVertical_16_T_11 = and(_inSpriteVertical_16_T_9, _inSpriteVertical_16_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:62]
+          inSpriteVertical[16] <= _inSpriteVertical_16_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:29]
+        else :
+          node _inSpriteVertical_16_T_12 = geq(inSpriteYPreScaled[16], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:54]
+          node _inSpriteVertical_16_T_13 = lt(inSpriteYPreScaled[16], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:86]
+          node _inSpriteVertical_16_T_14 = and(_inSpriteVertical_16_T_12, _inSpriteVertical_16_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:61]
+          inSpriteVertical[16] <= _inSpriteVertical_16_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:29]
+    node _inSprite_16_T = and(inSpriteHorizontal[16], inSpriteVertical[16]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:42]
+    inSprite[16] <= _inSprite_16_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:17]
+    node _inSpriteXValue_T_34 = cat(UInt<1>("h0"), CounterXReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:36]
+    node _inSpriteXValue_T_35 = asSInt(_inSpriteXValue_T_34) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:47]
+    node inSpriteXValue_17 = sub(_inSpriteXValue_T_35, spriteXPositionReg[17]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:54]
+    when spriteFlipHorizontalReg[17] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 264:38]
+      node _inSpriteXPreScaled_17_T = sub(asSInt(UInt<6>("h1f")), inSpriteXValue_17) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_17_T_1 = tail(_inSpriteXPreScaled_17_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_17_T_2 = asSInt(_inSpriteXPreScaled_17_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      inSpriteXPreScaled[17] <= _inSpriteXPreScaled_17_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:29]
+    else :
+      inSpriteXPreScaled[17] <= inSpriteXValue_17 @[\\src\\main\\scala\\GraphicEngineVGA.scala 267:29]
+    node _T_180 = and(spriteScaleUpHorizontalReg[17], spriteScaleDownHorizontalReg[17]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:41]
+    node _T_181 = eq(spriteScaleUpHorizontalReg[17], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:81]
+    node _T_182 = eq(spriteScaleDownHorizontalReg[17], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:115]
+    node _T_183 = and(_T_181, _T_182) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:112]
+    node _T_184 = or(_T_180, _T_183) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:77]
+    when _T_184 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:149]
+      inSpriteX[17] <= inSpriteXPreScaled[17] @[\\src\\main\\scala\\GraphicEngineVGA.scala 271:20]
+      node _inSpriteHorizontal_17_T = geq(inSpriteXPreScaled[17], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:54]
+      node _inSpriteHorizontal_17_T_1 = lt(inSpriteXPreScaled[17], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:86]
+      node _inSpriteHorizontal_17_T_2 = and(_inSpriteHorizontal_17_T, _inSpriteHorizontal_17_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:61]
+      inSpriteHorizontal[17] <= _inSpriteHorizontal_17_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:29]
+    else :
+      when spriteScaleUpHorizontalReg[17] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 273:48]
+        when spriteFlipHorizontalReg[17] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 275:40]
+          node _inSpriteX_17_T = sub(inSpriteXPreScaled[17], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_17_T_1 = tail(_inSpriteX_17_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_17_T_2 = asSInt(_inSpriteX_17_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_17_T_3 = shr(_inSpriteX_17_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:56]
+          inSpriteX[17] <= _inSpriteX_17_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:22]
+          node _inSpriteHorizontal_17_T_3 = geq(inSpriteXPreScaled[17], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:56]
+          node _inSpriteHorizontal_17_T_4 = lt(inSpriteXPreScaled[17], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:90]
+          node _inSpriteHorizontal_17_T_5 = and(_inSpriteHorizontal_17_T_3, _inSpriteHorizontal_17_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:65]
+          inSpriteHorizontal[17] <= _inSpriteHorizontal_17_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:31]
+        else :
+          node _inSpriteX_17_T_4 = shr(inSpriteXPreScaled[17], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:47]
+          inSpriteX[17] <= _inSpriteX_17_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:22]
+          node _inSpriteHorizontal_17_T_6 = geq(inSpriteXPreScaled[17], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:56]
+          node _inSpriteHorizontal_17_T_7 = lt(inSpriteXPreScaled[17], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:88]
+          node _inSpriteHorizontal_17_T_8 = and(_inSpriteHorizontal_17_T_6, _inSpriteHorizontal_17_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:63]
+          inSpriteHorizontal[17] <= _inSpriteHorizontal_17_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:31]
+      else :
+        node _inSpriteX_17_T_5 = shl(inSpriteXPreScaled[17], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:45]
+        inSpriteX[17] <= _inSpriteX_17_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:20]
+        when spriteFlipHorizontalReg[17] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 285:40]
+          node _inSpriteHorizontal_17_T_9 = geq(inSpriteXPreScaled[17], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:56]
+          node _inSpriteHorizontal_17_T_10 = lt(inSpriteXPreScaled[17], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:89]
+          node _inSpriteHorizontal_17_T_11 = and(_inSpriteHorizontal_17_T_9, _inSpriteHorizontal_17_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:64]
+          inSpriteHorizontal[17] <= _inSpriteHorizontal_17_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:31]
+        else :
+          node _inSpriteHorizontal_17_T_12 = geq(inSpriteXPreScaled[17], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:56]
+          node _inSpriteHorizontal_17_T_13 = lt(inSpriteXPreScaled[17], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:88]
+          node _inSpriteHorizontal_17_T_14 = and(_inSpriteHorizontal_17_T_12, _inSpriteHorizontal_17_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:63]
+          inSpriteHorizontal[17] <= _inSpriteHorizontal_17_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:31]
+    node _inSpriteYValue_T_34 = cat(UInt<1>("h0"), CounterYReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:36]
+    node _inSpriteYValue_T_35 = asSInt(_inSpriteYValue_T_34) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:47]
+    node inSpriteYValue_17 = sub(_inSpriteYValue_T_35, spriteYPositionReg[17]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:54]
+    when spriteFlipVerticalReg[17] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 293:35]
+      node _inSpriteYPreScaled_17_T = sub(asSInt(UInt<6>("h1f")), inSpriteYValue_17) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_17_T_1 = tail(_inSpriteYPreScaled_17_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_17_T_2 = asSInt(_inSpriteYPreScaled_17_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      inSpriteYPreScaled[17] <= _inSpriteYPreScaled_17_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:29]
+    else :
+      inSpriteYPreScaled[17] <= inSpriteYValue_17 @[\\src\\main\\scala\\GraphicEngineVGA.scala 296:29]
+    node _T_185 = and(spriteScaleUpVerticalReg[17], spriteScaleDownVerticalReg[17]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:39]
+    node _T_186 = eq(spriteScaleUpVerticalReg[17], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:77]
+    node _T_187 = eq(spriteScaleDownVerticalReg[17], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:109]
+    node _T_188 = and(_T_186, _T_187) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:106]
+    node _T_189 = or(_T_185, _T_188) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:73]
+    when _T_189 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:142]
+      inSpriteY[17] <= inSpriteYPreScaled[17] @[\\src\\main\\scala\\GraphicEngineVGA.scala 300:20]
+      node _inSpriteVertical_17_T = geq(inSpriteYPreScaled[17], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:52]
+      node _inSpriteVertical_17_T_1 = lt(inSpriteYPreScaled[17], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:84]
+      node _inSpriteVertical_17_T_2 = and(_inSpriteVertical_17_T, _inSpriteVertical_17_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:59]
+      inSpriteVertical[17] <= _inSpriteVertical_17_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:27]
+    else :
+      when spriteScaleUpVerticalReg[17] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 302:45]
+        when spriteFlipVerticalReg[17] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 304:38]
+          node _inSpriteY_17_T = sub(inSpriteYPreScaled[17], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_17_T_1 = tail(_inSpriteY_17_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_17_T_2 = asSInt(_inSpriteY_17_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_17_T_3 = shr(_inSpriteY_17_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:56]
+          inSpriteY[17] <= _inSpriteY_17_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:22]
+          node _inSpriteVertical_17_T_3 = geq(inSpriteYPreScaled[17], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:54]
+          node _inSpriteVertical_17_T_4 = lt(inSpriteYPreScaled[17], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:88]
+          node _inSpriteVertical_17_T_5 = and(_inSpriteVertical_17_T_3, _inSpriteVertical_17_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:63]
+          inSpriteVertical[17] <= _inSpriteVertical_17_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:29]
+        else :
+          node _inSpriteY_17_T_4 = shr(inSpriteYPreScaled[17], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:47]
+          inSpriteY[17] <= _inSpriteY_17_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:22]
+          node _inSpriteVertical_17_T_6 = geq(inSpriteYPreScaled[17], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:54]
+          node _inSpriteVertical_17_T_7 = lt(inSpriteYPreScaled[17], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:86]
+          node _inSpriteVertical_17_T_8 = and(_inSpriteVertical_17_T_6, _inSpriteVertical_17_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:61]
+          inSpriteVertical[17] <= _inSpriteVertical_17_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:29]
+      else :
+        node _inSpriteY_17_T_5 = shl(inSpriteYPreScaled[17], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:45]
+        inSpriteY[17] <= _inSpriteY_17_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:20]
+        when spriteFlipVerticalReg[17] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 314:38]
+          node _inSpriteVertical_17_T_9 = geq(inSpriteYPreScaled[17], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:54]
+          node _inSpriteVertical_17_T_10 = lt(inSpriteYPreScaled[17], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:87]
+          node _inSpriteVertical_17_T_11 = and(_inSpriteVertical_17_T_9, _inSpriteVertical_17_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:62]
+          inSpriteVertical[17] <= _inSpriteVertical_17_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:29]
+        else :
+          node _inSpriteVertical_17_T_12 = geq(inSpriteYPreScaled[17], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:54]
+          node _inSpriteVertical_17_T_13 = lt(inSpriteYPreScaled[17], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:86]
+          node _inSpriteVertical_17_T_14 = and(_inSpriteVertical_17_T_12, _inSpriteVertical_17_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:61]
+          inSpriteVertical[17] <= _inSpriteVertical_17_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:29]
+    node _inSprite_17_T = and(inSpriteHorizontal[17], inSpriteVertical[17]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:42]
+    inSprite[17] <= _inSprite_17_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:17]
+    node _inSpriteXValue_T_36 = cat(UInt<1>("h0"), CounterXReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:36]
+    node _inSpriteXValue_T_37 = asSInt(_inSpriteXValue_T_36) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:47]
+    node inSpriteXValue_18 = sub(_inSpriteXValue_T_37, spriteXPositionReg[18]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:54]
+    when spriteFlipHorizontalReg[18] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 264:38]
+      node _inSpriteXPreScaled_18_T = sub(asSInt(UInt<6>("h1f")), inSpriteXValue_18) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_18_T_1 = tail(_inSpriteXPreScaled_18_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_18_T_2 = asSInt(_inSpriteXPreScaled_18_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      inSpriteXPreScaled[18] <= _inSpriteXPreScaled_18_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:29]
+    else :
+      inSpriteXPreScaled[18] <= inSpriteXValue_18 @[\\src\\main\\scala\\GraphicEngineVGA.scala 267:29]
+    node _T_190 = and(spriteScaleUpHorizontalReg[18], spriteScaleDownHorizontalReg[18]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:41]
+    node _T_191 = eq(spriteScaleUpHorizontalReg[18], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:81]
+    node _T_192 = eq(spriteScaleDownHorizontalReg[18], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:115]
+    node _T_193 = and(_T_191, _T_192) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:112]
+    node _T_194 = or(_T_190, _T_193) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:77]
+    when _T_194 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:149]
+      inSpriteX[18] <= inSpriteXPreScaled[18] @[\\src\\main\\scala\\GraphicEngineVGA.scala 271:20]
+      node _inSpriteHorizontal_18_T = geq(inSpriteXPreScaled[18], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:54]
+      node _inSpriteHorizontal_18_T_1 = lt(inSpriteXPreScaled[18], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:86]
+      node _inSpriteHorizontal_18_T_2 = and(_inSpriteHorizontal_18_T, _inSpriteHorizontal_18_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:61]
+      inSpriteHorizontal[18] <= _inSpriteHorizontal_18_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:29]
+    else :
+      when spriteScaleUpHorizontalReg[18] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 273:48]
+        when spriteFlipHorizontalReg[18] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 275:40]
+          node _inSpriteX_18_T = sub(inSpriteXPreScaled[18], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_18_T_1 = tail(_inSpriteX_18_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_18_T_2 = asSInt(_inSpriteX_18_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_18_T_3 = shr(_inSpriteX_18_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:56]
+          inSpriteX[18] <= _inSpriteX_18_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:22]
+          node _inSpriteHorizontal_18_T_3 = geq(inSpriteXPreScaled[18], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:56]
+          node _inSpriteHorizontal_18_T_4 = lt(inSpriteXPreScaled[18], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:90]
+          node _inSpriteHorizontal_18_T_5 = and(_inSpriteHorizontal_18_T_3, _inSpriteHorizontal_18_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:65]
+          inSpriteHorizontal[18] <= _inSpriteHorizontal_18_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:31]
+        else :
+          node _inSpriteX_18_T_4 = shr(inSpriteXPreScaled[18], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:47]
+          inSpriteX[18] <= _inSpriteX_18_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:22]
+          node _inSpriteHorizontal_18_T_6 = geq(inSpriteXPreScaled[18], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:56]
+          node _inSpriteHorizontal_18_T_7 = lt(inSpriteXPreScaled[18], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:88]
+          node _inSpriteHorizontal_18_T_8 = and(_inSpriteHorizontal_18_T_6, _inSpriteHorizontal_18_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:63]
+          inSpriteHorizontal[18] <= _inSpriteHorizontal_18_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:31]
+      else :
+        node _inSpriteX_18_T_5 = shl(inSpriteXPreScaled[18], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:45]
+        inSpriteX[18] <= _inSpriteX_18_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:20]
+        when spriteFlipHorizontalReg[18] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 285:40]
+          node _inSpriteHorizontal_18_T_9 = geq(inSpriteXPreScaled[18], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:56]
+          node _inSpriteHorizontal_18_T_10 = lt(inSpriteXPreScaled[18], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:89]
+          node _inSpriteHorizontal_18_T_11 = and(_inSpriteHorizontal_18_T_9, _inSpriteHorizontal_18_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:64]
+          inSpriteHorizontal[18] <= _inSpriteHorizontal_18_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:31]
+        else :
+          node _inSpriteHorizontal_18_T_12 = geq(inSpriteXPreScaled[18], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:56]
+          node _inSpriteHorizontal_18_T_13 = lt(inSpriteXPreScaled[18], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:88]
+          node _inSpriteHorizontal_18_T_14 = and(_inSpriteHorizontal_18_T_12, _inSpriteHorizontal_18_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:63]
+          inSpriteHorizontal[18] <= _inSpriteHorizontal_18_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:31]
+    node _inSpriteYValue_T_36 = cat(UInt<1>("h0"), CounterYReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:36]
+    node _inSpriteYValue_T_37 = asSInt(_inSpriteYValue_T_36) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:47]
+    node inSpriteYValue_18 = sub(_inSpriteYValue_T_37, spriteYPositionReg[18]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:54]
+    when spriteFlipVerticalReg[18] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 293:35]
+      node _inSpriteYPreScaled_18_T = sub(asSInt(UInt<6>("h1f")), inSpriteYValue_18) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_18_T_1 = tail(_inSpriteYPreScaled_18_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_18_T_2 = asSInt(_inSpriteYPreScaled_18_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      inSpriteYPreScaled[18] <= _inSpriteYPreScaled_18_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:29]
+    else :
+      inSpriteYPreScaled[18] <= inSpriteYValue_18 @[\\src\\main\\scala\\GraphicEngineVGA.scala 296:29]
+    node _T_195 = and(spriteScaleUpVerticalReg[18], spriteScaleDownVerticalReg[18]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:39]
+    node _T_196 = eq(spriteScaleUpVerticalReg[18], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:77]
+    node _T_197 = eq(spriteScaleDownVerticalReg[18], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:109]
+    node _T_198 = and(_T_196, _T_197) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:106]
+    node _T_199 = or(_T_195, _T_198) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:73]
+    when _T_199 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:142]
+      inSpriteY[18] <= inSpriteYPreScaled[18] @[\\src\\main\\scala\\GraphicEngineVGA.scala 300:20]
+      node _inSpriteVertical_18_T = geq(inSpriteYPreScaled[18], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:52]
+      node _inSpriteVertical_18_T_1 = lt(inSpriteYPreScaled[18], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:84]
+      node _inSpriteVertical_18_T_2 = and(_inSpriteVertical_18_T, _inSpriteVertical_18_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:59]
+      inSpriteVertical[18] <= _inSpriteVertical_18_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:27]
+    else :
+      when spriteScaleUpVerticalReg[18] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 302:45]
+        when spriteFlipVerticalReg[18] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 304:38]
+          node _inSpriteY_18_T = sub(inSpriteYPreScaled[18], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_18_T_1 = tail(_inSpriteY_18_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_18_T_2 = asSInt(_inSpriteY_18_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_18_T_3 = shr(_inSpriteY_18_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:56]
+          inSpriteY[18] <= _inSpriteY_18_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:22]
+          node _inSpriteVertical_18_T_3 = geq(inSpriteYPreScaled[18], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:54]
+          node _inSpriteVertical_18_T_4 = lt(inSpriteYPreScaled[18], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:88]
+          node _inSpriteVertical_18_T_5 = and(_inSpriteVertical_18_T_3, _inSpriteVertical_18_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:63]
+          inSpriteVertical[18] <= _inSpriteVertical_18_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:29]
+        else :
+          node _inSpriteY_18_T_4 = shr(inSpriteYPreScaled[18], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:47]
+          inSpriteY[18] <= _inSpriteY_18_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:22]
+          node _inSpriteVertical_18_T_6 = geq(inSpriteYPreScaled[18], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:54]
+          node _inSpriteVertical_18_T_7 = lt(inSpriteYPreScaled[18], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:86]
+          node _inSpriteVertical_18_T_8 = and(_inSpriteVertical_18_T_6, _inSpriteVertical_18_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:61]
+          inSpriteVertical[18] <= _inSpriteVertical_18_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:29]
+      else :
+        node _inSpriteY_18_T_5 = shl(inSpriteYPreScaled[18], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:45]
+        inSpriteY[18] <= _inSpriteY_18_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:20]
+        when spriteFlipVerticalReg[18] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 314:38]
+          node _inSpriteVertical_18_T_9 = geq(inSpriteYPreScaled[18], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:54]
+          node _inSpriteVertical_18_T_10 = lt(inSpriteYPreScaled[18], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:87]
+          node _inSpriteVertical_18_T_11 = and(_inSpriteVertical_18_T_9, _inSpriteVertical_18_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:62]
+          inSpriteVertical[18] <= _inSpriteVertical_18_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:29]
+        else :
+          node _inSpriteVertical_18_T_12 = geq(inSpriteYPreScaled[18], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:54]
+          node _inSpriteVertical_18_T_13 = lt(inSpriteYPreScaled[18], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:86]
+          node _inSpriteVertical_18_T_14 = and(_inSpriteVertical_18_T_12, _inSpriteVertical_18_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:61]
+          inSpriteVertical[18] <= _inSpriteVertical_18_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:29]
+    node _inSprite_18_T = and(inSpriteHorizontal[18], inSpriteVertical[18]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:42]
+    inSprite[18] <= _inSprite_18_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:17]
+    node _inSpriteXValue_T_38 = cat(UInt<1>("h0"), CounterXReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:36]
+    node _inSpriteXValue_T_39 = asSInt(_inSpriteXValue_T_38) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:47]
+    node inSpriteXValue_19 = sub(_inSpriteXValue_T_39, spriteXPositionReg[19]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:54]
+    when spriteFlipHorizontalReg[19] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 264:38]
+      node _inSpriteXPreScaled_19_T = sub(asSInt(UInt<6>("h1f")), inSpriteXValue_19) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_19_T_1 = tail(_inSpriteXPreScaled_19_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_19_T_2 = asSInt(_inSpriteXPreScaled_19_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      inSpriteXPreScaled[19] <= _inSpriteXPreScaled_19_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:29]
+    else :
+      inSpriteXPreScaled[19] <= inSpriteXValue_19 @[\\src\\main\\scala\\GraphicEngineVGA.scala 267:29]
+    node _T_200 = and(spriteScaleUpHorizontalReg[19], spriteScaleDownHorizontalReg[19]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:41]
+    node _T_201 = eq(spriteScaleUpHorizontalReg[19], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:81]
+    node _T_202 = eq(spriteScaleDownHorizontalReg[19], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:115]
+    node _T_203 = and(_T_201, _T_202) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:112]
+    node _T_204 = or(_T_200, _T_203) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:77]
+    when _T_204 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:149]
+      inSpriteX[19] <= inSpriteXPreScaled[19] @[\\src\\main\\scala\\GraphicEngineVGA.scala 271:20]
+      node _inSpriteHorizontal_19_T = geq(inSpriteXPreScaled[19], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:54]
+      node _inSpriteHorizontal_19_T_1 = lt(inSpriteXPreScaled[19], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:86]
+      node _inSpriteHorizontal_19_T_2 = and(_inSpriteHorizontal_19_T, _inSpriteHorizontal_19_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:61]
+      inSpriteHorizontal[19] <= _inSpriteHorizontal_19_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:29]
+    else :
+      when spriteScaleUpHorizontalReg[19] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 273:48]
+        when spriteFlipHorizontalReg[19] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 275:40]
+          node _inSpriteX_19_T = sub(inSpriteXPreScaled[19], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_19_T_1 = tail(_inSpriteX_19_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_19_T_2 = asSInt(_inSpriteX_19_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_19_T_3 = shr(_inSpriteX_19_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:56]
+          inSpriteX[19] <= _inSpriteX_19_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:22]
+          node _inSpriteHorizontal_19_T_3 = geq(inSpriteXPreScaled[19], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:56]
+          node _inSpriteHorizontal_19_T_4 = lt(inSpriteXPreScaled[19], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:90]
+          node _inSpriteHorizontal_19_T_5 = and(_inSpriteHorizontal_19_T_3, _inSpriteHorizontal_19_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:65]
+          inSpriteHorizontal[19] <= _inSpriteHorizontal_19_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:31]
+        else :
+          node _inSpriteX_19_T_4 = shr(inSpriteXPreScaled[19], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:47]
+          inSpriteX[19] <= _inSpriteX_19_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:22]
+          node _inSpriteHorizontal_19_T_6 = geq(inSpriteXPreScaled[19], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:56]
+          node _inSpriteHorizontal_19_T_7 = lt(inSpriteXPreScaled[19], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:88]
+          node _inSpriteHorizontal_19_T_8 = and(_inSpriteHorizontal_19_T_6, _inSpriteHorizontal_19_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:63]
+          inSpriteHorizontal[19] <= _inSpriteHorizontal_19_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:31]
+      else :
+        node _inSpriteX_19_T_5 = shl(inSpriteXPreScaled[19], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:45]
+        inSpriteX[19] <= _inSpriteX_19_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:20]
+        when spriteFlipHorizontalReg[19] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 285:40]
+          node _inSpriteHorizontal_19_T_9 = geq(inSpriteXPreScaled[19], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:56]
+          node _inSpriteHorizontal_19_T_10 = lt(inSpriteXPreScaled[19], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:89]
+          node _inSpriteHorizontal_19_T_11 = and(_inSpriteHorizontal_19_T_9, _inSpriteHorizontal_19_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:64]
+          inSpriteHorizontal[19] <= _inSpriteHorizontal_19_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:31]
+        else :
+          node _inSpriteHorizontal_19_T_12 = geq(inSpriteXPreScaled[19], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:56]
+          node _inSpriteHorizontal_19_T_13 = lt(inSpriteXPreScaled[19], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:88]
+          node _inSpriteHorizontal_19_T_14 = and(_inSpriteHorizontal_19_T_12, _inSpriteHorizontal_19_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:63]
+          inSpriteHorizontal[19] <= _inSpriteHorizontal_19_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:31]
+    node _inSpriteYValue_T_38 = cat(UInt<1>("h0"), CounterYReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:36]
+    node _inSpriteYValue_T_39 = asSInt(_inSpriteYValue_T_38) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:47]
+    node inSpriteYValue_19 = sub(_inSpriteYValue_T_39, spriteYPositionReg[19]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:54]
+    when spriteFlipVerticalReg[19] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 293:35]
+      node _inSpriteYPreScaled_19_T = sub(asSInt(UInt<6>("h1f")), inSpriteYValue_19) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_19_T_1 = tail(_inSpriteYPreScaled_19_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_19_T_2 = asSInt(_inSpriteYPreScaled_19_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      inSpriteYPreScaled[19] <= _inSpriteYPreScaled_19_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:29]
+    else :
+      inSpriteYPreScaled[19] <= inSpriteYValue_19 @[\\src\\main\\scala\\GraphicEngineVGA.scala 296:29]
+    node _T_205 = and(spriteScaleUpVerticalReg[19], spriteScaleDownVerticalReg[19]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:39]
+    node _T_206 = eq(spriteScaleUpVerticalReg[19], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:77]
+    node _T_207 = eq(spriteScaleDownVerticalReg[19], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:109]
+    node _T_208 = and(_T_206, _T_207) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:106]
+    node _T_209 = or(_T_205, _T_208) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:73]
+    when _T_209 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:142]
+      inSpriteY[19] <= inSpriteYPreScaled[19] @[\\src\\main\\scala\\GraphicEngineVGA.scala 300:20]
+      node _inSpriteVertical_19_T = geq(inSpriteYPreScaled[19], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:52]
+      node _inSpriteVertical_19_T_1 = lt(inSpriteYPreScaled[19], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:84]
+      node _inSpriteVertical_19_T_2 = and(_inSpriteVertical_19_T, _inSpriteVertical_19_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:59]
+      inSpriteVertical[19] <= _inSpriteVertical_19_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:27]
+    else :
+      when spriteScaleUpVerticalReg[19] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 302:45]
+        when spriteFlipVerticalReg[19] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 304:38]
+          node _inSpriteY_19_T = sub(inSpriteYPreScaled[19], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_19_T_1 = tail(_inSpriteY_19_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_19_T_2 = asSInt(_inSpriteY_19_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_19_T_3 = shr(_inSpriteY_19_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:56]
+          inSpriteY[19] <= _inSpriteY_19_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:22]
+          node _inSpriteVertical_19_T_3 = geq(inSpriteYPreScaled[19], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:54]
+          node _inSpriteVertical_19_T_4 = lt(inSpriteYPreScaled[19], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:88]
+          node _inSpriteVertical_19_T_5 = and(_inSpriteVertical_19_T_3, _inSpriteVertical_19_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:63]
+          inSpriteVertical[19] <= _inSpriteVertical_19_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:29]
+        else :
+          node _inSpriteY_19_T_4 = shr(inSpriteYPreScaled[19], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:47]
+          inSpriteY[19] <= _inSpriteY_19_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:22]
+          node _inSpriteVertical_19_T_6 = geq(inSpriteYPreScaled[19], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:54]
+          node _inSpriteVertical_19_T_7 = lt(inSpriteYPreScaled[19], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:86]
+          node _inSpriteVertical_19_T_8 = and(_inSpriteVertical_19_T_6, _inSpriteVertical_19_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:61]
+          inSpriteVertical[19] <= _inSpriteVertical_19_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:29]
+      else :
+        node _inSpriteY_19_T_5 = shl(inSpriteYPreScaled[19], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:45]
+        inSpriteY[19] <= _inSpriteY_19_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:20]
+        when spriteFlipVerticalReg[19] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 314:38]
+          node _inSpriteVertical_19_T_9 = geq(inSpriteYPreScaled[19], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:54]
+          node _inSpriteVertical_19_T_10 = lt(inSpriteYPreScaled[19], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:87]
+          node _inSpriteVertical_19_T_11 = and(_inSpriteVertical_19_T_9, _inSpriteVertical_19_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:62]
+          inSpriteVertical[19] <= _inSpriteVertical_19_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:29]
+        else :
+          node _inSpriteVertical_19_T_12 = geq(inSpriteYPreScaled[19], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:54]
+          node _inSpriteVertical_19_T_13 = lt(inSpriteYPreScaled[19], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:86]
+          node _inSpriteVertical_19_T_14 = and(_inSpriteVertical_19_T_12, _inSpriteVertical_19_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:61]
+          inSpriteVertical[19] <= _inSpriteVertical_19_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:29]
+    node _inSprite_19_T = and(inSpriteHorizontal[19], inSpriteVertical[19]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:42]
+    inSprite[19] <= _inSprite_19_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:17]
+    node _inSpriteXValue_T_40 = cat(UInt<1>("h0"), CounterXReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:36]
+    node _inSpriteXValue_T_41 = asSInt(_inSpriteXValue_T_40) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:47]
+    node inSpriteXValue_20 = sub(_inSpriteXValue_T_41, spriteXPositionReg[20]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:54]
+    when spriteFlipHorizontalReg[20] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 264:38]
+      node _inSpriteXPreScaled_20_T = sub(asSInt(UInt<6>("h1f")), inSpriteXValue_20) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_20_T_1 = tail(_inSpriteXPreScaled_20_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_20_T_2 = asSInt(_inSpriteXPreScaled_20_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      inSpriteXPreScaled[20] <= _inSpriteXPreScaled_20_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:29]
+    else :
+      inSpriteXPreScaled[20] <= inSpriteXValue_20 @[\\src\\main\\scala\\GraphicEngineVGA.scala 267:29]
+    node _T_210 = and(spriteScaleUpHorizontalReg[20], spriteScaleDownHorizontalReg[20]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:41]
+    node _T_211 = eq(spriteScaleUpHorizontalReg[20], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:81]
+    node _T_212 = eq(spriteScaleDownHorizontalReg[20], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:115]
+    node _T_213 = and(_T_211, _T_212) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:112]
+    node _T_214 = or(_T_210, _T_213) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:77]
+    when _T_214 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:149]
+      inSpriteX[20] <= inSpriteXPreScaled[20] @[\\src\\main\\scala\\GraphicEngineVGA.scala 271:20]
+      node _inSpriteHorizontal_20_T = geq(inSpriteXPreScaled[20], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:54]
+      node _inSpriteHorizontal_20_T_1 = lt(inSpriteXPreScaled[20], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:86]
+      node _inSpriteHorizontal_20_T_2 = and(_inSpriteHorizontal_20_T, _inSpriteHorizontal_20_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:61]
+      inSpriteHorizontal[20] <= _inSpriteHorizontal_20_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:29]
+    else :
+      when spriteScaleUpHorizontalReg[20] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 273:48]
+        when spriteFlipHorizontalReg[20] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 275:40]
+          node _inSpriteX_20_T = sub(inSpriteXPreScaled[20], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_20_T_1 = tail(_inSpriteX_20_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_20_T_2 = asSInt(_inSpriteX_20_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_20_T_3 = shr(_inSpriteX_20_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:56]
+          inSpriteX[20] <= _inSpriteX_20_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:22]
+          node _inSpriteHorizontal_20_T_3 = geq(inSpriteXPreScaled[20], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:56]
+          node _inSpriteHorizontal_20_T_4 = lt(inSpriteXPreScaled[20], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:90]
+          node _inSpriteHorizontal_20_T_5 = and(_inSpriteHorizontal_20_T_3, _inSpriteHorizontal_20_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:65]
+          inSpriteHorizontal[20] <= _inSpriteHorizontal_20_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:31]
+        else :
+          node _inSpriteX_20_T_4 = shr(inSpriteXPreScaled[20], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:47]
+          inSpriteX[20] <= _inSpriteX_20_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:22]
+          node _inSpriteHorizontal_20_T_6 = geq(inSpriteXPreScaled[20], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:56]
+          node _inSpriteHorizontal_20_T_7 = lt(inSpriteXPreScaled[20], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:88]
+          node _inSpriteHorizontal_20_T_8 = and(_inSpriteHorizontal_20_T_6, _inSpriteHorizontal_20_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:63]
+          inSpriteHorizontal[20] <= _inSpriteHorizontal_20_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:31]
+      else :
+        node _inSpriteX_20_T_5 = shl(inSpriteXPreScaled[20], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:45]
+        inSpriteX[20] <= _inSpriteX_20_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:20]
+        when spriteFlipHorizontalReg[20] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 285:40]
+          node _inSpriteHorizontal_20_T_9 = geq(inSpriteXPreScaled[20], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:56]
+          node _inSpriteHorizontal_20_T_10 = lt(inSpriteXPreScaled[20], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:89]
+          node _inSpriteHorizontal_20_T_11 = and(_inSpriteHorizontal_20_T_9, _inSpriteHorizontal_20_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:64]
+          inSpriteHorizontal[20] <= _inSpriteHorizontal_20_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:31]
+        else :
+          node _inSpriteHorizontal_20_T_12 = geq(inSpriteXPreScaled[20], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:56]
+          node _inSpriteHorizontal_20_T_13 = lt(inSpriteXPreScaled[20], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:88]
+          node _inSpriteHorizontal_20_T_14 = and(_inSpriteHorizontal_20_T_12, _inSpriteHorizontal_20_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:63]
+          inSpriteHorizontal[20] <= _inSpriteHorizontal_20_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:31]
+    node _inSpriteYValue_T_40 = cat(UInt<1>("h0"), CounterYReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:36]
+    node _inSpriteYValue_T_41 = asSInt(_inSpriteYValue_T_40) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:47]
+    node inSpriteYValue_20 = sub(_inSpriteYValue_T_41, spriteYPositionReg[20]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:54]
+    when spriteFlipVerticalReg[20] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 293:35]
+      node _inSpriteYPreScaled_20_T = sub(asSInt(UInt<6>("h1f")), inSpriteYValue_20) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_20_T_1 = tail(_inSpriteYPreScaled_20_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_20_T_2 = asSInt(_inSpriteYPreScaled_20_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      inSpriteYPreScaled[20] <= _inSpriteYPreScaled_20_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:29]
+    else :
+      inSpriteYPreScaled[20] <= inSpriteYValue_20 @[\\src\\main\\scala\\GraphicEngineVGA.scala 296:29]
+    node _T_215 = and(spriteScaleUpVerticalReg[20], spriteScaleDownVerticalReg[20]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:39]
+    node _T_216 = eq(spriteScaleUpVerticalReg[20], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:77]
+    node _T_217 = eq(spriteScaleDownVerticalReg[20], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:109]
+    node _T_218 = and(_T_216, _T_217) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:106]
+    node _T_219 = or(_T_215, _T_218) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:73]
+    when _T_219 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:142]
+      inSpriteY[20] <= inSpriteYPreScaled[20] @[\\src\\main\\scala\\GraphicEngineVGA.scala 300:20]
+      node _inSpriteVertical_20_T = geq(inSpriteYPreScaled[20], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:52]
+      node _inSpriteVertical_20_T_1 = lt(inSpriteYPreScaled[20], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:84]
+      node _inSpriteVertical_20_T_2 = and(_inSpriteVertical_20_T, _inSpriteVertical_20_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:59]
+      inSpriteVertical[20] <= _inSpriteVertical_20_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:27]
+    else :
+      when spriteScaleUpVerticalReg[20] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 302:45]
+        when spriteFlipVerticalReg[20] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 304:38]
+          node _inSpriteY_20_T = sub(inSpriteYPreScaled[20], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_20_T_1 = tail(_inSpriteY_20_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_20_T_2 = asSInt(_inSpriteY_20_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_20_T_3 = shr(_inSpriteY_20_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:56]
+          inSpriteY[20] <= _inSpriteY_20_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:22]
+          node _inSpriteVertical_20_T_3 = geq(inSpriteYPreScaled[20], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:54]
+          node _inSpriteVertical_20_T_4 = lt(inSpriteYPreScaled[20], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:88]
+          node _inSpriteVertical_20_T_5 = and(_inSpriteVertical_20_T_3, _inSpriteVertical_20_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:63]
+          inSpriteVertical[20] <= _inSpriteVertical_20_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:29]
+        else :
+          node _inSpriteY_20_T_4 = shr(inSpriteYPreScaled[20], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:47]
+          inSpriteY[20] <= _inSpriteY_20_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:22]
+          node _inSpriteVertical_20_T_6 = geq(inSpriteYPreScaled[20], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:54]
+          node _inSpriteVertical_20_T_7 = lt(inSpriteYPreScaled[20], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:86]
+          node _inSpriteVertical_20_T_8 = and(_inSpriteVertical_20_T_6, _inSpriteVertical_20_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:61]
+          inSpriteVertical[20] <= _inSpriteVertical_20_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:29]
+      else :
+        node _inSpriteY_20_T_5 = shl(inSpriteYPreScaled[20], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:45]
+        inSpriteY[20] <= _inSpriteY_20_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:20]
+        when spriteFlipVerticalReg[20] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 314:38]
+          node _inSpriteVertical_20_T_9 = geq(inSpriteYPreScaled[20], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:54]
+          node _inSpriteVertical_20_T_10 = lt(inSpriteYPreScaled[20], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:87]
+          node _inSpriteVertical_20_T_11 = and(_inSpriteVertical_20_T_9, _inSpriteVertical_20_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:62]
+          inSpriteVertical[20] <= _inSpriteVertical_20_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:29]
+        else :
+          node _inSpriteVertical_20_T_12 = geq(inSpriteYPreScaled[20], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:54]
+          node _inSpriteVertical_20_T_13 = lt(inSpriteYPreScaled[20], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:86]
+          node _inSpriteVertical_20_T_14 = and(_inSpriteVertical_20_T_12, _inSpriteVertical_20_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:61]
+          inSpriteVertical[20] <= _inSpriteVertical_20_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:29]
+    node _inSprite_20_T = and(inSpriteHorizontal[20], inSpriteVertical[20]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:42]
+    inSprite[20] <= _inSprite_20_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:17]
+    node _inSpriteXValue_T_42 = cat(UInt<1>("h0"), CounterXReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:36]
+    node _inSpriteXValue_T_43 = asSInt(_inSpriteXValue_T_42) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:47]
+    node inSpriteXValue_21 = sub(_inSpriteXValue_T_43, spriteXPositionReg[21]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:54]
+    when spriteFlipHorizontalReg[21] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 264:38]
+      node _inSpriteXPreScaled_21_T = sub(asSInt(UInt<6>("h1f")), inSpriteXValue_21) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_21_T_1 = tail(_inSpriteXPreScaled_21_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_21_T_2 = asSInt(_inSpriteXPreScaled_21_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      inSpriteXPreScaled[21] <= _inSpriteXPreScaled_21_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:29]
+    else :
+      inSpriteXPreScaled[21] <= inSpriteXValue_21 @[\\src\\main\\scala\\GraphicEngineVGA.scala 267:29]
+    node _T_220 = and(spriteScaleUpHorizontalReg[21], spriteScaleDownHorizontalReg[21]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:41]
+    node _T_221 = eq(spriteScaleUpHorizontalReg[21], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:81]
+    node _T_222 = eq(spriteScaleDownHorizontalReg[21], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:115]
+    node _T_223 = and(_T_221, _T_222) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:112]
+    node _T_224 = or(_T_220, _T_223) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:77]
+    when _T_224 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:149]
+      inSpriteX[21] <= inSpriteXPreScaled[21] @[\\src\\main\\scala\\GraphicEngineVGA.scala 271:20]
+      node _inSpriteHorizontal_21_T = geq(inSpriteXPreScaled[21], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:54]
+      node _inSpriteHorizontal_21_T_1 = lt(inSpriteXPreScaled[21], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:86]
+      node _inSpriteHorizontal_21_T_2 = and(_inSpriteHorizontal_21_T, _inSpriteHorizontal_21_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:61]
+      inSpriteHorizontal[21] <= _inSpriteHorizontal_21_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:29]
+    else :
+      when spriteScaleUpHorizontalReg[21] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 273:48]
+        when spriteFlipHorizontalReg[21] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 275:40]
+          node _inSpriteX_21_T = sub(inSpriteXPreScaled[21], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_21_T_1 = tail(_inSpriteX_21_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_21_T_2 = asSInt(_inSpriteX_21_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_21_T_3 = shr(_inSpriteX_21_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:56]
+          inSpriteX[21] <= _inSpriteX_21_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:22]
+          node _inSpriteHorizontal_21_T_3 = geq(inSpriteXPreScaled[21], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:56]
+          node _inSpriteHorizontal_21_T_4 = lt(inSpriteXPreScaled[21], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:90]
+          node _inSpriteHorizontal_21_T_5 = and(_inSpriteHorizontal_21_T_3, _inSpriteHorizontal_21_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:65]
+          inSpriteHorizontal[21] <= _inSpriteHorizontal_21_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:31]
+        else :
+          node _inSpriteX_21_T_4 = shr(inSpriteXPreScaled[21], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:47]
+          inSpriteX[21] <= _inSpriteX_21_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:22]
+          node _inSpriteHorizontal_21_T_6 = geq(inSpriteXPreScaled[21], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:56]
+          node _inSpriteHorizontal_21_T_7 = lt(inSpriteXPreScaled[21], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:88]
+          node _inSpriteHorizontal_21_T_8 = and(_inSpriteHorizontal_21_T_6, _inSpriteHorizontal_21_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:63]
+          inSpriteHorizontal[21] <= _inSpriteHorizontal_21_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:31]
+      else :
+        node _inSpriteX_21_T_5 = shl(inSpriteXPreScaled[21], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:45]
+        inSpriteX[21] <= _inSpriteX_21_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:20]
+        when spriteFlipHorizontalReg[21] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 285:40]
+          node _inSpriteHorizontal_21_T_9 = geq(inSpriteXPreScaled[21], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:56]
+          node _inSpriteHorizontal_21_T_10 = lt(inSpriteXPreScaled[21], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:89]
+          node _inSpriteHorizontal_21_T_11 = and(_inSpriteHorizontal_21_T_9, _inSpriteHorizontal_21_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:64]
+          inSpriteHorizontal[21] <= _inSpriteHorizontal_21_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:31]
+        else :
+          node _inSpriteHorizontal_21_T_12 = geq(inSpriteXPreScaled[21], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:56]
+          node _inSpriteHorizontal_21_T_13 = lt(inSpriteXPreScaled[21], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:88]
+          node _inSpriteHorizontal_21_T_14 = and(_inSpriteHorizontal_21_T_12, _inSpriteHorizontal_21_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:63]
+          inSpriteHorizontal[21] <= _inSpriteHorizontal_21_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:31]
+    node _inSpriteYValue_T_42 = cat(UInt<1>("h0"), CounterYReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:36]
+    node _inSpriteYValue_T_43 = asSInt(_inSpriteYValue_T_42) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:47]
+    node inSpriteYValue_21 = sub(_inSpriteYValue_T_43, spriteYPositionReg[21]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:54]
+    when spriteFlipVerticalReg[21] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 293:35]
+      node _inSpriteYPreScaled_21_T = sub(asSInt(UInt<6>("h1f")), inSpriteYValue_21) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_21_T_1 = tail(_inSpriteYPreScaled_21_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_21_T_2 = asSInt(_inSpriteYPreScaled_21_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      inSpriteYPreScaled[21] <= _inSpriteYPreScaled_21_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:29]
+    else :
+      inSpriteYPreScaled[21] <= inSpriteYValue_21 @[\\src\\main\\scala\\GraphicEngineVGA.scala 296:29]
+    node _T_225 = and(spriteScaleUpVerticalReg[21], spriteScaleDownVerticalReg[21]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:39]
+    node _T_226 = eq(spriteScaleUpVerticalReg[21], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:77]
+    node _T_227 = eq(spriteScaleDownVerticalReg[21], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:109]
+    node _T_228 = and(_T_226, _T_227) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:106]
+    node _T_229 = or(_T_225, _T_228) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:73]
+    when _T_229 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:142]
+      inSpriteY[21] <= inSpriteYPreScaled[21] @[\\src\\main\\scala\\GraphicEngineVGA.scala 300:20]
+      node _inSpriteVertical_21_T = geq(inSpriteYPreScaled[21], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:52]
+      node _inSpriteVertical_21_T_1 = lt(inSpriteYPreScaled[21], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:84]
+      node _inSpriteVertical_21_T_2 = and(_inSpriteVertical_21_T, _inSpriteVertical_21_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:59]
+      inSpriteVertical[21] <= _inSpriteVertical_21_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:27]
+    else :
+      when spriteScaleUpVerticalReg[21] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 302:45]
+        when spriteFlipVerticalReg[21] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 304:38]
+          node _inSpriteY_21_T = sub(inSpriteYPreScaled[21], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_21_T_1 = tail(_inSpriteY_21_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_21_T_2 = asSInt(_inSpriteY_21_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_21_T_3 = shr(_inSpriteY_21_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:56]
+          inSpriteY[21] <= _inSpriteY_21_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:22]
+          node _inSpriteVertical_21_T_3 = geq(inSpriteYPreScaled[21], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:54]
+          node _inSpriteVertical_21_T_4 = lt(inSpriteYPreScaled[21], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:88]
+          node _inSpriteVertical_21_T_5 = and(_inSpriteVertical_21_T_3, _inSpriteVertical_21_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:63]
+          inSpriteVertical[21] <= _inSpriteVertical_21_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:29]
+        else :
+          node _inSpriteY_21_T_4 = shr(inSpriteYPreScaled[21], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:47]
+          inSpriteY[21] <= _inSpriteY_21_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:22]
+          node _inSpriteVertical_21_T_6 = geq(inSpriteYPreScaled[21], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:54]
+          node _inSpriteVertical_21_T_7 = lt(inSpriteYPreScaled[21], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:86]
+          node _inSpriteVertical_21_T_8 = and(_inSpriteVertical_21_T_6, _inSpriteVertical_21_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:61]
+          inSpriteVertical[21] <= _inSpriteVertical_21_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:29]
+      else :
+        node _inSpriteY_21_T_5 = shl(inSpriteYPreScaled[21], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:45]
+        inSpriteY[21] <= _inSpriteY_21_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:20]
+        when spriteFlipVerticalReg[21] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 314:38]
+          node _inSpriteVertical_21_T_9 = geq(inSpriteYPreScaled[21], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:54]
+          node _inSpriteVertical_21_T_10 = lt(inSpriteYPreScaled[21], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:87]
+          node _inSpriteVertical_21_T_11 = and(_inSpriteVertical_21_T_9, _inSpriteVertical_21_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:62]
+          inSpriteVertical[21] <= _inSpriteVertical_21_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:29]
+        else :
+          node _inSpriteVertical_21_T_12 = geq(inSpriteYPreScaled[21], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:54]
+          node _inSpriteVertical_21_T_13 = lt(inSpriteYPreScaled[21], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:86]
+          node _inSpriteVertical_21_T_14 = and(_inSpriteVertical_21_T_12, _inSpriteVertical_21_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:61]
+          inSpriteVertical[21] <= _inSpriteVertical_21_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:29]
+    node _inSprite_21_T = and(inSpriteHorizontal[21], inSpriteVertical[21]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:42]
+    inSprite[21] <= _inSprite_21_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:17]
+    node _inSpriteXValue_T_44 = cat(UInt<1>("h0"), CounterXReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:36]
+    node _inSpriteXValue_T_45 = asSInt(_inSpriteXValue_T_44) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:47]
+    node inSpriteXValue_22 = sub(_inSpriteXValue_T_45, spriteXPositionReg[22]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:54]
+    when spriteFlipHorizontalReg[22] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 264:38]
+      node _inSpriteXPreScaled_22_T = sub(asSInt(UInt<6>("h1f")), inSpriteXValue_22) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_22_T_1 = tail(_inSpriteXPreScaled_22_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_22_T_2 = asSInt(_inSpriteXPreScaled_22_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      inSpriteXPreScaled[22] <= _inSpriteXPreScaled_22_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:29]
+    else :
+      inSpriteXPreScaled[22] <= inSpriteXValue_22 @[\\src\\main\\scala\\GraphicEngineVGA.scala 267:29]
+    node _T_230 = and(spriteScaleUpHorizontalReg[22], spriteScaleDownHorizontalReg[22]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:41]
+    node _T_231 = eq(spriteScaleUpHorizontalReg[22], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:81]
+    node _T_232 = eq(spriteScaleDownHorizontalReg[22], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:115]
+    node _T_233 = and(_T_231, _T_232) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:112]
+    node _T_234 = or(_T_230, _T_233) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:77]
+    when _T_234 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:149]
+      inSpriteX[22] <= inSpriteXPreScaled[22] @[\\src\\main\\scala\\GraphicEngineVGA.scala 271:20]
+      node _inSpriteHorizontal_22_T = geq(inSpriteXPreScaled[22], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:54]
+      node _inSpriteHorizontal_22_T_1 = lt(inSpriteXPreScaled[22], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:86]
+      node _inSpriteHorizontal_22_T_2 = and(_inSpriteHorizontal_22_T, _inSpriteHorizontal_22_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:61]
+      inSpriteHorizontal[22] <= _inSpriteHorizontal_22_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:29]
+    else :
+      when spriteScaleUpHorizontalReg[22] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 273:48]
+        when spriteFlipHorizontalReg[22] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 275:40]
+          node _inSpriteX_22_T = sub(inSpriteXPreScaled[22], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_22_T_1 = tail(_inSpriteX_22_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_22_T_2 = asSInt(_inSpriteX_22_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_22_T_3 = shr(_inSpriteX_22_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:56]
+          inSpriteX[22] <= _inSpriteX_22_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:22]
+          node _inSpriteHorizontal_22_T_3 = geq(inSpriteXPreScaled[22], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:56]
+          node _inSpriteHorizontal_22_T_4 = lt(inSpriteXPreScaled[22], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:90]
+          node _inSpriteHorizontal_22_T_5 = and(_inSpriteHorizontal_22_T_3, _inSpriteHorizontal_22_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:65]
+          inSpriteHorizontal[22] <= _inSpriteHorizontal_22_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:31]
+        else :
+          node _inSpriteX_22_T_4 = shr(inSpriteXPreScaled[22], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:47]
+          inSpriteX[22] <= _inSpriteX_22_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:22]
+          node _inSpriteHorizontal_22_T_6 = geq(inSpriteXPreScaled[22], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:56]
+          node _inSpriteHorizontal_22_T_7 = lt(inSpriteXPreScaled[22], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:88]
+          node _inSpriteHorizontal_22_T_8 = and(_inSpriteHorizontal_22_T_6, _inSpriteHorizontal_22_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:63]
+          inSpriteHorizontal[22] <= _inSpriteHorizontal_22_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:31]
+      else :
+        node _inSpriteX_22_T_5 = shl(inSpriteXPreScaled[22], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:45]
+        inSpriteX[22] <= _inSpriteX_22_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:20]
+        when spriteFlipHorizontalReg[22] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 285:40]
+          node _inSpriteHorizontal_22_T_9 = geq(inSpriteXPreScaled[22], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:56]
+          node _inSpriteHorizontal_22_T_10 = lt(inSpriteXPreScaled[22], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:89]
+          node _inSpriteHorizontal_22_T_11 = and(_inSpriteHorizontal_22_T_9, _inSpriteHorizontal_22_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:64]
+          inSpriteHorizontal[22] <= _inSpriteHorizontal_22_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:31]
+        else :
+          node _inSpriteHorizontal_22_T_12 = geq(inSpriteXPreScaled[22], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:56]
+          node _inSpriteHorizontal_22_T_13 = lt(inSpriteXPreScaled[22], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:88]
+          node _inSpriteHorizontal_22_T_14 = and(_inSpriteHorizontal_22_T_12, _inSpriteHorizontal_22_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:63]
+          inSpriteHorizontal[22] <= _inSpriteHorizontal_22_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:31]
+    node _inSpriteYValue_T_44 = cat(UInt<1>("h0"), CounterYReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:36]
+    node _inSpriteYValue_T_45 = asSInt(_inSpriteYValue_T_44) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:47]
+    node inSpriteYValue_22 = sub(_inSpriteYValue_T_45, spriteYPositionReg[22]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:54]
+    when spriteFlipVerticalReg[22] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 293:35]
+      node _inSpriteYPreScaled_22_T = sub(asSInt(UInt<6>("h1f")), inSpriteYValue_22) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_22_T_1 = tail(_inSpriteYPreScaled_22_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_22_T_2 = asSInt(_inSpriteYPreScaled_22_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      inSpriteYPreScaled[22] <= _inSpriteYPreScaled_22_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:29]
+    else :
+      inSpriteYPreScaled[22] <= inSpriteYValue_22 @[\\src\\main\\scala\\GraphicEngineVGA.scala 296:29]
+    node _T_235 = and(spriteScaleUpVerticalReg[22], spriteScaleDownVerticalReg[22]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:39]
+    node _T_236 = eq(spriteScaleUpVerticalReg[22], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:77]
+    node _T_237 = eq(spriteScaleDownVerticalReg[22], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:109]
+    node _T_238 = and(_T_236, _T_237) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:106]
+    node _T_239 = or(_T_235, _T_238) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:73]
+    when _T_239 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:142]
+      inSpriteY[22] <= inSpriteYPreScaled[22] @[\\src\\main\\scala\\GraphicEngineVGA.scala 300:20]
+      node _inSpriteVertical_22_T = geq(inSpriteYPreScaled[22], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:52]
+      node _inSpriteVertical_22_T_1 = lt(inSpriteYPreScaled[22], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:84]
+      node _inSpriteVertical_22_T_2 = and(_inSpriteVertical_22_T, _inSpriteVertical_22_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:59]
+      inSpriteVertical[22] <= _inSpriteVertical_22_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:27]
+    else :
+      when spriteScaleUpVerticalReg[22] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 302:45]
+        when spriteFlipVerticalReg[22] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 304:38]
+          node _inSpriteY_22_T = sub(inSpriteYPreScaled[22], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_22_T_1 = tail(_inSpriteY_22_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_22_T_2 = asSInt(_inSpriteY_22_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_22_T_3 = shr(_inSpriteY_22_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:56]
+          inSpriteY[22] <= _inSpriteY_22_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:22]
+          node _inSpriteVertical_22_T_3 = geq(inSpriteYPreScaled[22], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:54]
+          node _inSpriteVertical_22_T_4 = lt(inSpriteYPreScaled[22], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:88]
+          node _inSpriteVertical_22_T_5 = and(_inSpriteVertical_22_T_3, _inSpriteVertical_22_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:63]
+          inSpriteVertical[22] <= _inSpriteVertical_22_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:29]
+        else :
+          node _inSpriteY_22_T_4 = shr(inSpriteYPreScaled[22], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:47]
+          inSpriteY[22] <= _inSpriteY_22_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:22]
+          node _inSpriteVertical_22_T_6 = geq(inSpriteYPreScaled[22], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:54]
+          node _inSpriteVertical_22_T_7 = lt(inSpriteYPreScaled[22], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:86]
+          node _inSpriteVertical_22_T_8 = and(_inSpriteVertical_22_T_6, _inSpriteVertical_22_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:61]
+          inSpriteVertical[22] <= _inSpriteVertical_22_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:29]
+      else :
+        node _inSpriteY_22_T_5 = shl(inSpriteYPreScaled[22], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:45]
+        inSpriteY[22] <= _inSpriteY_22_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:20]
+        when spriteFlipVerticalReg[22] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 314:38]
+          node _inSpriteVertical_22_T_9 = geq(inSpriteYPreScaled[22], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:54]
+          node _inSpriteVertical_22_T_10 = lt(inSpriteYPreScaled[22], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:87]
+          node _inSpriteVertical_22_T_11 = and(_inSpriteVertical_22_T_9, _inSpriteVertical_22_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:62]
+          inSpriteVertical[22] <= _inSpriteVertical_22_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:29]
+        else :
+          node _inSpriteVertical_22_T_12 = geq(inSpriteYPreScaled[22], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:54]
+          node _inSpriteVertical_22_T_13 = lt(inSpriteYPreScaled[22], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:86]
+          node _inSpriteVertical_22_T_14 = and(_inSpriteVertical_22_T_12, _inSpriteVertical_22_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:61]
+          inSpriteVertical[22] <= _inSpriteVertical_22_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:29]
+    node _inSprite_22_T = and(inSpriteHorizontal[22], inSpriteVertical[22]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:42]
+    inSprite[22] <= _inSprite_22_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:17]
+    node _inSpriteXValue_T_46 = cat(UInt<1>("h0"), CounterXReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:36]
+    node _inSpriteXValue_T_47 = asSInt(_inSpriteXValue_T_46) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:47]
+    node inSpriteXValue_23 = sub(_inSpriteXValue_T_47, spriteXPositionReg[23]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:54]
+    when spriteFlipHorizontalReg[23] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 264:38]
+      node _inSpriteXPreScaled_23_T = sub(asSInt(UInt<6>("h1f")), inSpriteXValue_23) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_23_T_1 = tail(_inSpriteXPreScaled_23_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_23_T_2 = asSInt(_inSpriteXPreScaled_23_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      inSpriteXPreScaled[23] <= _inSpriteXPreScaled_23_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:29]
+    else :
+      inSpriteXPreScaled[23] <= inSpriteXValue_23 @[\\src\\main\\scala\\GraphicEngineVGA.scala 267:29]
+    node _T_240 = and(spriteScaleUpHorizontalReg[23], spriteScaleDownHorizontalReg[23]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:41]
+    node _T_241 = eq(spriteScaleUpHorizontalReg[23], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:81]
+    node _T_242 = eq(spriteScaleDownHorizontalReg[23], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:115]
+    node _T_243 = and(_T_241, _T_242) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:112]
+    node _T_244 = or(_T_240, _T_243) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:77]
+    when _T_244 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:149]
+      inSpriteX[23] <= inSpriteXPreScaled[23] @[\\src\\main\\scala\\GraphicEngineVGA.scala 271:20]
+      node _inSpriteHorizontal_23_T = geq(inSpriteXPreScaled[23], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:54]
+      node _inSpriteHorizontal_23_T_1 = lt(inSpriteXPreScaled[23], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:86]
+      node _inSpriteHorizontal_23_T_2 = and(_inSpriteHorizontal_23_T, _inSpriteHorizontal_23_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:61]
+      inSpriteHorizontal[23] <= _inSpriteHorizontal_23_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:29]
+    else :
+      when spriteScaleUpHorizontalReg[23] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 273:48]
+        when spriteFlipHorizontalReg[23] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 275:40]
+          node _inSpriteX_23_T = sub(inSpriteXPreScaled[23], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_23_T_1 = tail(_inSpriteX_23_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_23_T_2 = asSInt(_inSpriteX_23_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_23_T_3 = shr(_inSpriteX_23_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:56]
+          inSpriteX[23] <= _inSpriteX_23_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:22]
+          node _inSpriteHorizontal_23_T_3 = geq(inSpriteXPreScaled[23], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:56]
+          node _inSpriteHorizontal_23_T_4 = lt(inSpriteXPreScaled[23], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:90]
+          node _inSpriteHorizontal_23_T_5 = and(_inSpriteHorizontal_23_T_3, _inSpriteHorizontal_23_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:65]
+          inSpriteHorizontal[23] <= _inSpriteHorizontal_23_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:31]
+        else :
+          node _inSpriteX_23_T_4 = shr(inSpriteXPreScaled[23], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:47]
+          inSpriteX[23] <= _inSpriteX_23_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:22]
+          node _inSpriteHorizontal_23_T_6 = geq(inSpriteXPreScaled[23], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:56]
+          node _inSpriteHorizontal_23_T_7 = lt(inSpriteXPreScaled[23], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:88]
+          node _inSpriteHorizontal_23_T_8 = and(_inSpriteHorizontal_23_T_6, _inSpriteHorizontal_23_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:63]
+          inSpriteHorizontal[23] <= _inSpriteHorizontal_23_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:31]
+      else :
+        node _inSpriteX_23_T_5 = shl(inSpriteXPreScaled[23], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:45]
+        inSpriteX[23] <= _inSpriteX_23_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:20]
+        when spriteFlipHorizontalReg[23] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 285:40]
+          node _inSpriteHorizontal_23_T_9 = geq(inSpriteXPreScaled[23], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:56]
+          node _inSpriteHorizontal_23_T_10 = lt(inSpriteXPreScaled[23], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:89]
+          node _inSpriteHorizontal_23_T_11 = and(_inSpriteHorizontal_23_T_9, _inSpriteHorizontal_23_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:64]
+          inSpriteHorizontal[23] <= _inSpriteHorizontal_23_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:31]
+        else :
+          node _inSpriteHorizontal_23_T_12 = geq(inSpriteXPreScaled[23], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:56]
+          node _inSpriteHorizontal_23_T_13 = lt(inSpriteXPreScaled[23], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:88]
+          node _inSpriteHorizontal_23_T_14 = and(_inSpriteHorizontal_23_T_12, _inSpriteHorizontal_23_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:63]
+          inSpriteHorizontal[23] <= _inSpriteHorizontal_23_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:31]
+    node _inSpriteYValue_T_46 = cat(UInt<1>("h0"), CounterYReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:36]
+    node _inSpriteYValue_T_47 = asSInt(_inSpriteYValue_T_46) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:47]
+    node inSpriteYValue_23 = sub(_inSpriteYValue_T_47, spriteYPositionReg[23]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:54]
+    when spriteFlipVerticalReg[23] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 293:35]
+      node _inSpriteYPreScaled_23_T = sub(asSInt(UInt<6>("h1f")), inSpriteYValue_23) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_23_T_1 = tail(_inSpriteYPreScaled_23_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_23_T_2 = asSInt(_inSpriteYPreScaled_23_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      inSpriteYPreScaled[23] <= _inSpriteYPreScaled_23_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:29]
+    else :
+      inSpriteYPreScaled[23] <= inSpriteYValue_23 @[\\src\\main\\scala\\GraphicEngineVGA.scala 296:29]
+    node _T_245 = and(spriteScaleUpVerticalReg[23], spriteScaleDownVerticalReg[23]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:39]
+    node _T_246 = eq(spriteScaleUpVerticalReg[23], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:77]
+    node _T_247 = eq(spriteScaleDownVerticalReg[23], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:109]
+    node _T_248 = and(_T_246, _T_247) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:106]
+    node _T_249 = or(_T_245, _T_248) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:73]
+    when _T_249 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:142]
+      inSpriteY[23] <= inSpriteYPreScaled[23] @[\\src\\main\\scala\\GraphicEngineVGA.scala 300:20]
+      node _inSpriteVertical_23_T = geq(inSpriteYPreScaled[23], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:52]
+      node _inSpriteVertical_23_T_1 = lt(inSpriteYPreScaled[23], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:84]
+      node _inSpriteVertical_23_T_2 = and(_inSpriteVertical_23_T, _inSpriteVertical_23_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:59]
+      inSpriteVertical[23] <= _inSpriteVertical_23_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:27]
+    else :
+      when spriteScaleUpVerticalReg[23] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 302:45]
+        when spriteFlipVerticalReg[23] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 304:38]
+          node _inSpriteY_23_T = sub(inSpriteYPreScaled[23], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_23_T_1 = tail(_inSpriteY_23_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_23_T_2 = asSInt(_inSpriteY_23_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_23_T_3 = shr(_inSpriteY_23_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:56]
+          inSpriteY[23] <= _inSpriteY_23_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:22]
+          node _inSpriteVertical_23_T_3 = geq(inSpriteYPreScaled[23], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:54]
+          node _inSpriteVertical_23_T_4 = lt(inSpriteYPreScaled[23], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:88]
+          node _inSpriteVertical_23_T_5 = and(_inSpriteVertical_23_T_3, _inSpriteVertical_23_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:63]
+          inSpriteVertical[23] <= _inSpriteVertical_23_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:29]
+        else :
+          node _inSpriteY_23_T_4 = shr(inSpriteYPreScaled[23], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:47]
+          inSpriteY[23] <= _inSpriteY_23_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:22]
+          node _inSpriteVertical_23_T_6 = geq(inSpriteYPreScaled[23], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:54]
+          node _inSpriteVertical_23_T_7 = lt(inSpriteYPreScaled[23], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:86]
+          node _inSpriteVertical_23_T_8 = and(_inSpriteVertical_23_T_6, _inSpriteVertical_23_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:61]
+          inSpriteVertical[23] <= _inSpriteVertical_23_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:29]
+      else :
+        node _inSpriteY_23_T_5 = shl(inSpriteYPreScaled[23], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:45]
+        inSpriteY[23] <= _inSpriteY_23_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:20]
+        when spriteFlipVerticalReg[23] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 314:38]
+          node _inSpriteVertical_23_T_9 = geq(inSpriteYPreScaled[23], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:54]
+          node _inSpriteVertical_23_T_10 = lt(inSpriteYPreScaled[23], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:87]
+          node _inSpriteVertical_23_T_11 = and(_inSpriteVertical_23_T_9, _inSpriteVertical_23_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:62]
+          inSpriteVertical[23] <= _inSpriteVertical_23_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:29]
+        else :
+          node _inSpriteVertical_23_T_12 = geq(inSpriteYPreScaled[23], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:54]
+          node _inSpriteVertical_23_T_13 = lt(inSpriteYPreScaled[23], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:86]
+          node _inSpriteVertical_23_T_14 = and(_inSpriteVertical_23_T_12, _inSpriteVertical_23_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:61]
+          inSpriteVertical[23] <= _inSpriteVertical_23_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:29]
+    node _inSprite_23_T = and(inSpriteHorizontal[23], inSpriteVertical[23]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:42]
+    inSprite[23] <= _inSprite_23_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:17]
+    node _inSpriteXValue_T_48 = cat(UInt<1>("h0"), CounterXReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:36]
+    node _inSpriteXValue_T_49 = asSInt(_inSpriteXValue_T_48) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:47]
+    node inSpriteXValue_24 = sub(_inSpriteXValue_T_49, spriteXPositionReg[24]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:54]
+    when spriteFlipHorizontalReg[24] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 264:38]
+      node _inSpriteXPreScaled_24_T = sub(asSInt(UInt<6>("h1f")), inSpriteXValue_24) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_24_T_1 = tail(_inSpriteXPreScaled_24_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_24_T_2 = asSInt(_inSpriteXPreScaled_24_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      inSpriteXPreScaled[24] <= _inSpriteXPreScaled_24_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:29]
+    else :
+      inSpriteXPreScaled[24] <= inSpriteXValue_24 @[\\src\\main\\scala\\GraphicEngineVGA.scala 267:29]
+    node _T_250 = and(spriteScaleUpHorizontalReg[24], spriteScaleDownHorizontalReg[24]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:41]
+    node _T_251 = eq(spriteScaleUpHorizontalReg[24], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:81]
+    node _T_252 = eq(spriteScaleDownHorizontalReg[24], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:115]
+    node _T_253 = and(_T_251, _T_252) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:112]
+    node _T_254 = or(_T_250, _T_253) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:77]
+    when _T_254 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:149]
+      inSpriteX[24] <= inSpriteXPreScaled[24] @[\\src\\main\\scala\\GraphicEngineVGA.scala 271:20]
+      node _inSpriteHorizontal_24_T = geq(inSpriteXPreScaled[24], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:54]
+      node _inSpriteHorizontal_24_T_1 = lt(inSpriteXPreScaled[24], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:86]
+      node _inSpriteHorizontal_24_T_2 = and(_inSpriteHorizontal_24_T, _inSpriteHorizontal_24_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:61]
+      inSpriteHorizontal[24] <= _inSpriteHorizontal_24_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:29]
+    else :
+      when spriteScaleUpHorizontalReg[24] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 273:48]
+        when spriteFlipHorizontalReg[24] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 275:40]
+          node _inSpriteX_24_T = sub(inSpriteXPreScaled[24], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_24_T_1 = tail(_inSpriteX_24_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_24_T_2 = asSInt(_inSpriteX_24_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_24_T_3 = shr(_inSpriteX_24_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:56]
+          inSpriteX[24] <= _inSpriteX_24_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:22]
+          node _inSpriteHorizontal_24_T_3 = geq(inSpriteXPreScaled[24], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:56]
+          node _inSpriteHorizontal_24_T_4 = lt(inSpriteXPreScaled[24], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:90]
+          node _inSpriteHorizontal_24_T_5 = and(_inSpriteHorizontal_24_T_3, _inSpriteHorizontal_24_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:65]
+          inSpriteHorizontal[24] <= _inSpriteHorizontal_24_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:31]
+        else :
+          node _inSpriteX_24_T_4 = shr(inSpriteXPreScaled[24], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:47]
+          inSpriteX[24] <= _inSpriteX_24_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:22]
+          node _inSpriteHorizontal_24_T_6 = geq(inSpriteXPreScaled[24], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:56]
+          node _inSpriteHorizontal_24_T_7 = lt(inSpriteXPreScaled[24], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:88]
+          node _inSpriteHorizontal_24_T_8 = and(_inSpriteHorizontal_24_T_6, _inSpriteHorizontal_24_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:63]
+          inSpriteHorizontal[24] <= _inSpriteHorizontal_24_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:31]
+      else :
+        node _inSpriteX_24_T_5 = shl(inSpriteXPreScaled[24], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:45]
+        inSpriteX[24] <= _inSpriteX_24_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:20]
+        when spriteFlipHorizontalReg[24] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 285:40]
+          node _inSpriteHorizontal_24_T_9 = geq(inSpriteXPreScaled[24], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:56]
+          node _inSpriteHorizontal_24_T_10 = lt(inSpriteXPreScaled[24], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:89]
+          node _inSpriteHorizontal_24_T_11 = and(_inSpriteHorizontal_24_T_9, _inSpriteHorizontal_24_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:64]
+          inSpriteHorizontal[24] <= _inSpriteHorizontal_24_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:31]
+        else :
+          node _inSpriteHorizontal_24_T_12 = geq(inSpriteXPreScaled[24], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:56]
+          node _inSpriteHorizontal_24_T_13 = lt(inSpriteXPreScaled[24], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:88]
+          node _inSpriteHorizontal_24_T_14 = and(_inSpriteHorizontal_24_T_12, _inSpriteHorizontal_24_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:63]
+          inSpriteHorizontal[24] <= _inSpriteHorizontal_24_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:31]
+    node _inSpriteYValue_T_48 = cat(UInt<1>("h0"), CounterYReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:36]
+    node _inSpriteYValue_T_49 = asSInt(_inSpriteYValue_T_48) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:47]
+    node inSpriteYValue_24 = sub(_inSpriteYValue_T_49, spriteYPositionReg[24]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:54]
+    when spriteFlipVerticalReg[24] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 293:35]
+      node _inSpriteYPreScaled_24_T = sub(asSInt(UInt<6>("h1f")), inSpriteYValue_24) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_24_T_1 = tail(_inSpriteYPreScaled_24_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_24_T_2 = asSInt(_inSpriteYPreScaled_24_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      inSpriteYPreScaled[24] <= _inSpriteYPreScaled_24_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:29]
+    else :
+      inSpriteYPreScaled[24] <= inSpriteYValue_24 @[\\src\\main\\scala\\GraphicEngineVGA.scala 296:29]
+    node _T_255 = and(spriteScaleUpVerticalReg[24], spriteScaleDownVerticalReg[24]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:39]
+    node _T_256 = eq(spriteScaleUpVerticalReg[24], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:77]
+    node _T_257 = eq(spriteScaleDownVerticalReg[24], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:109]
+    node _T_258 = and(_T_256, _T_257) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:106]
+    node _T_259 = or(_T_255, _T_258) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:73]
+    when _T_259 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:142]
+      inSpriteY[24] <= inSpriteYPreScaled[24] @[\\src\\main\\scala\\GraphicEngineVGA.scala 300:20]
+      node _inSpriteVertical_24_T = geq(inSpriteYPreScaled[24], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:52]
+      node _inSpriteVertical_24_T_1 = lt(inSpriteYPreScaled[24], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:84]
+      node _inSpriteVertical_24_T_2 = and(_inSpriteVertical_24_T, _inSpriteVertical_24_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:59]
+      inSpriteVertical[24] <= _inSpriteVertical_24_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:27]
+    else :
+      when spriteScaleUpVerticalReg[24] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 302:45]
+        when spriteFlipVerticalReg[24] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 304:38]
+          node _inSpriteY_24_T = sub(inSpriteYPreScaled[24], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_24_T_1 = tail(_inSpriteY_24_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_24_T_2 = asSInt(_inSpriteY_24_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_24_T_3 = shr(_inSpriteY_24_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:56]
+          inSpriteY[24] <= _inSpriteY_24_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:22]
+          node _inSpriteVertical_24_T_3 = geq(inSpriteYPreScaled[24], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:54]
+          node _inSpriteVertical_24_T_4 = lt(inSpriteYPreScaled[24], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:88]
+          node _inSpriteVertical_24_T_5 = and(_inSpriteVertical_24_T_3, _inSpriteVertical_24_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:63]
+          inSpriteVertical[24] <= _inSpriteVertical_24_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:29]
+        else :
+          node _inSpriteY_24_T_4 = shr(inSpriteYPreScaled[24], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:47]
+          inSpriteY[24] <= _inSpriteY_24_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:22]
+          node _inSpriteVertical_24_T_6 = geq(inSpriteYPreScaled[24], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:54]
+          node _inSpriteVertical_24_T_7 = lt(inSpriteYPreScaled[24], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:86]
+          node _inSpriteVertical_24_T_8 = and(_inSpriteVertical_24_T_6, _inSpriteVertical_24_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:61]
+          inSpriteVertical[24] <= _inSpriteVertical_24_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:29]
+      else :
+        node _inSpriteY_24_T_5 = shl(inSpriteYPreScaled[24], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:45]
+        inSpriteY[24] <= _inSpriteY_24_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:20]
+        when spriteFlipVerticalReg[24] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 314:38]
+          node _inSpriteVertical_24_T_9 = geq(inSpriteYPreScaled[24], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:54]
+          node _inSpriteVertical_24_T_10 = lt(inSpriteYPreScaled[24], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:87]
+          node _inSpriteVertical_24_T_11 = and(_inSpriteVertical_24_T_9, _inSpriteVertical_24_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:62]
+          inSpriteVertical[24] <= _inSpriteVertical_24_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:29]
+        else :
+          node _inSpriteVertical_24_T_12 = geq(inSpriteYPreScaled[24], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:54]
+          node _inSpriteVertical_24_T_13 = lt(inSpriteYPreScaled[24], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:86]
+          node _inSpriteVertical_24_T_14 = and(_inSpriteVertical_24_T_12, _inSpriteVertical_24_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:61]
+          inSpriteVertical[24] <= _inSpriteVertical_24_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:29]
+    node _inSprite_24_T = and(inSpriteHorizontal[24], inSpriteVertical[24]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:42]
+    inSprite[24] <= _inSprite_24_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:17]
+    node _inSpriteXValue_T_50 = cat(UInt<1>("h0"), CounterXReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:36]
+    node _inSpriteXValue_T_51 = asSInt(_inSpriteXValue_T_50) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:47]
+    node inSpriteXValue_25 = sub(_inSpriteXValue_T_51, spriteXPositionReg[25]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:54]
+    when spriteFlipHorizontalReg[25] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 264:38]
+      node _inSpriteXPreScaled_25_T = sub(asSInt(UInt<6>("h1f")), inSpriteXValue_25) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_25_T_1 = tail(_inSpriteXPreScaled_25_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_25_T_2 = asSInt(_inSpriteXPreScaled_25_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      inSpriteXPreScaled[25] <= _inSpriteXPreScaled_25_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:29]
+    else :
+      inSpriteXPreScaled[25] <= inSpriteXValue_25 @[\\src\\main\\scala\\GraphicEngineVGA.scala 267:29]
+    node _T_260 = and(spriteScaleUpHorizontalReg[25], spriteScaleDownHorizontalReg[25]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:41]
+    node _T_261 = eq(spriteScaleUpHorizontalReg[25], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:81]
+    node _T_262 = eq(spriteScaleDownHorizontalReg[25], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:115]
+    node _T_263 = and(_T_261, _T_262) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:112]
+    node _T_264 = or(_T_260, _T_263) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:77]
+    when _T_264 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:149]
+      inSpriteX[25] <= inSpriteXPreScaled[25] @[\\src\\main\\scala\\GraphicEngineVGA.scala 271:20]
+      node _inSpriteHorizontal_25_T = geq(inSpriteXPreScaled[25], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:54]
+      node _inSpriteHorizontal_25_T_1 = lt(inSpriteXPreScaled[25], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:86]
+      node _inSpriteHorizontal_25_T_2 = and(_inSpriteHorizontal_25_T, _inSpriteHorizontal_25_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:61]
+      inSpriteHorizontal[25] <= _inSpriteHorizontal_25_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:29]
+    else :
+      when spriteScaleUpHorizontalReg[25] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 273:48]
+        when spriteFlipHorizontalReg[25] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 275:40]
+          node _inSpriteX_25_T = sub(inSpriteXPreScaled[25], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_25_T_1 = tail(_inSpriteX_25_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_25_T_2 = asSInt(_inSpriteX_25_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_25_T_3 = shr(_inSpriteX_25_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:56]
+          inSpriteX[25] <= _inSpriteX_25_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:22]
+          node _inSpriteHorizontal_25_T_3 = geq(inSpriteXPreScaled[25], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:56]
+          node _inSpriteHorizontal_25_T_4 = lt(inSpriteXPreScaled[25], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:90]
+          node _inSpriteHorizontal_25_T_5 = and(_inSpriteHorizontal_25_T_3, _inSpriteHorizontal_25_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:65]
+          inSpriteHorizontal[25] <= _inSpriteHorizontal_25_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:31]
+        else :
+          node _inSpriteX_25_T_4 = shr(inSpriteXPreScaled[25], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:47]
+          inSpriteX[25] <= _inSpriteX_25_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:22]
+          node _inSpriteHorizontal_25_T_6 = geq(inSpriteXPreScaled[25], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:56]
+          node _inSpriteHorizontal_25_T_7 = lt(inSpriteXPreScaled[25], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:88]
+          node _inSpriteHorizontal_25_T_8 = and(_inSpriteHorizontal_25_T_6, _inSpriteHorizontal_25_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:63]
+          inSpriteHorizontal[25] <= _inSpriteHorizontal_25_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:31]
+      else :
+        node _inSpriteX_25_T_5 = shl(inSpriteXPreScaled[25], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:45]
+        inSpriteX[25] <= _inSpriteX_25_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:20]
+        when spriteFlipHorizontalReg[25] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 285:40]
+          node _inSpriteHorizontal_25_T_9 = geq(inSpriteXPreScaled[25], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:56]
+          node _inSpriteHorizontal_25_T_10 = lt(inSpriteXPreScaled[25], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:89]
+          node _inSpriteHorizontal_25_T_11 = and(_inSpriteHorizontal_25_T_9, _inSpriteHorizontal_25_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:64]
+          inSpriteHorizontal[25] <= _inSpriteHorizontal_25_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:31]
+        else :
+          node _inSpriteHorizontal_25_T_12 = geq(inSpriteXPreScaled[25], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:56]
+          node _inSpriteHorizontal_25_T_13 = lt(inSpriteXPreScaled[25], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:88]
+          node _inSpriteHorizontal_25_T_14 = and(_inSpriteHorizontal_25_T_12, _inSpriteHorizontal_25_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:63]
+          inSpriteHorizontal[25] <= _inSpriteHorizontal_25_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:31]
+    node _inSpriteYValue_T_50 = cat(UInt<1>("h0"), CounterYReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:36]
+    node _inSpriteYValue_T_51 = asSInt(_inSpriteYValue_T_50) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:47]
+    node inSpriteYValue_25 = sub(_inSpriteYValue_T_51, spriteYPositionReg[25]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:54]
+    when spriteFlipVerticalReg[25] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 293:35]
+      node _inSpriteYPreScaled_25_T = sub(asSInt(UInt<6>("h1f")), inSpriteYValue_25) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_25_T_1 = tail(_inSpriteYPreScaled_25_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_25_T_2 = asSInt(_inSpriteYPreScaled_25_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      inSpriteYPreScaled[25] <= _inSpriteYPreScaled_25_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:29]
+    else :
+      inSpriteYPreScaled[25] <= inSpriteYValue_25 @[\\src\\main\\scala\\GraphicEngineVGA.scala 296:29]
+    node _T_265 = and(spriteScaleUpVerticalReg[25], spriteScaleDownVerticalReg[25]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:39]
+    node _T_266 = eq(spriteScaleUpVerticalReg[25], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:77]
+    node _T_267 = eq(spriteScaleDownVerticalReg[25], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:109]
+    node _T_268 = and(_T_266, _T_267) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:106]
+    node _T_269 = or(_T_265, _T_268) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:73]
+    when _T_269 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:142]
+      inSpriteY[25] <= inSpriteYPreScaled[25] @[\\src\\main\\scala\\GraphicEngineVGA.scala 300:20]
+      node _inSpriteVertical_25_T = geq(inSpriteYPreScaled[25], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:52]
+      node _inSpriteVertical_25_T_1 = lt(inSpriteYPreScaled[25], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:84]
+      node _inSpriteVertical_25_T_2 = and(_inSpriteVertical_25_T, _inSpriteVertical_25_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:59]
+      inSpriteVertical[25] <= _inSpriteVertical_25_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:27]
+    else :
+      when spriteScaleUpVerticalReg[25] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 302:45]
+        when spriteFlipVerticalReg[25] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 304:38]
+          node _inSpriteY_25_T = sub(inSpriteYPreScaled[25], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_25_T_1 = tail(_inSpriteY_25_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_25_T_2 = asSInt(_inSpriteY_25_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_25_T_3 = shr(_inSpriteY_25_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:56]
+          inSpriteY[25] <= _inSpriteY_25_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:22]
+          node _inSpriteVertical_25_T_3 = geq(inSpriteYPreScaled[25], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:54]
+          node _inSpriteVertical_25_T_4 = lt(inSpriteYPreScaled[25], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:88]
+          node _inSpriteVertical_25_T_5 = and(_inSpriteVertical_25_T_3, _inSpriteVertical_25_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:63]
+          inSpriteVertical[25] <= _inSpriteVertical_25_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:29]
+        else :
+          node _inSpriteY_25_T_4 = shr(inSpriteYPreScaled[25], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:47]
+          inSpriteY[25] <= _inSpriteY_25_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:22]
+          node _inSpriteVertical_25_T_6 = geq(inSpriteYPreScaled[25], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:54]
+          node _inSpriteVertical_25_T_7 = lt(inSpriteYPreScaled[25], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:86]
+          node _inSpriteVertical_25_T_8 = and(_inSpriteVertical_25_T_6, _inSpriteVertical_25_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:61]
+          inSpriteVertical[25] <= _inSpriteVertical_25_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:29]
+      else :
+        node _inSpriteY_25_T_5 = shl(inSpriteYPreScaled[25], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:45]
+        inSpriteY[25] <= _inSpriteY_25_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:20]
+        when spriteFlipVerticalReg[25] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 314:38]
+          node _inSpriteVertical_25_T_9 = geq(inSpriteYPreScaled[25], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:54]
+          node _inSpriteVertical_25_T_10 = lt(inSpriteYPreScaled[25], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:87]
+          node _inSpriteVertical_25_T_11 = and(_inSpriteVertical_25_T_9, _inSpriteVertical_25_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:62]
+          inSpriteVertical[25] <= _inSpriteVertical_25_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:29]
+        else :
+          node _inSpriteVertical_25_T_12 = geq(inSpriteYPreScaled[25], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:54]
+          node _inSpriteVertical_25_T_13 = lt(inSpriteYPreScaled[25], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:86]
+          node _inSpriteVertical_25_T_14 = and(_inSpriteVertical_25_T_12, _inSpriteVertical_25_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:61]
+          inSpriteVertical[25] <= _inSpriteVertical_25_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:29]
+    node _inSprite_25_T = and(inSpriteHorizontal[25], inSpriteVertical[25]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:42]
+    inSprite[25] <= _inSprite_25_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:17]
+    node _inSpriteXValue_T_52 = cat(UInt<1>("h0"), CounterXReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:36]
+    node _inSpriteXValue_T_53 = asSInt(_inSpriteXValue_T_52) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:47]
+    node inSpriteXValue_26 = sub(_inSpriteXValue_T_53, spriteXPositionReg[26]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:54]
+    when spriteFlipHorizontalReg[26] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 264:38]
+      node _inSpriteXPreScaled_26_T = sub(asSInt(UInt<6>("h1f")), inSpriteXValue_26) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_26_T_1 = tail(_inSpriteXPreScaled_26_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_26_T_2 = asSInt(_inSpriteXPreScaled_26_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      inSpriteXPreScaled[26] <= _inSpriteXPreScaled_26_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:29]
+    else :
+      inSpriteXPreScaled[26] <= inSpriteXValue_26 @[\\src\\main\\scala\\GraphicEngineVGA.scala 267:29]
+    node _T_270 = and(spriteScaleUpHorizontalReg[26], spriteScaleDownHorizontalReg[26]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:41]
+    node _T_271 = eq(spriteScaleUpHorizontalReg[26], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:81]
+    node _T_272 = eq(spriteScaleDownHorizontalReg[26], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:115]
+    node _T_273 = and(_T_271, _T_272) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:112]
+    node _T_274 = or(_T_270, _T_273) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:77]
+    when _T_274 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:149]
+      inSpriteX[26] <= inSpriteXPreScaled[26] @[\\src\\main\\scala\\GraphicEngineVGA.scala 271:20]
+      node _inSpriteHorizontal_26_T = geq(inSpriteXPreScaled[26], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:54]
+      node _inSpriteHorizontal_26_T_1 = lt(inSpriteXPreScaled[26], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:86]
+      node _inSpriteHorizontal_26_T_2 = and(_inSpriteHorizontal_26_T, _inSpriteHorizontal_26_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:61]
+      inSpriteHorizontal[26] <= _inSpriteHorizontal_26_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:29]
+    else :
+      when spriteScaleUpHorizontalReg[26] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 273:48]
+        when spriteFlipHorizontalReg[26] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 275:40]
+          node _inSpriteX_26_T = sub(inSpriteXPreScaled[26], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_26_T_1 = tail(_inSpriteX_26_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_26_T_2 = asSInt(_inSpriteX_26_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_26_T_3 = shr(_inSpriteX_26_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:56]
+          inSpriteX[26] <= _inSpriteX_26_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:22]
+          node _inSpriteHorizontal_26_T_3 = geq(inSpriteXPreScaled[26], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:56]
+          node _inSpriteHorizontal_26_T_4 = lt(inSpriteXPreScaled[26], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:90]
+          node _inSpriteHorizontal_26_T_5 = and(_inSpriteHorizontal_26_T_3, _inSpriteHorizontal_26_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:65]
+          inSpriteHorizontal[26] <= _inSpriteHorizontal_26_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:31]
+        else :
+          node _inSpriteX_26_T_4 = shr(inSpriteXPreScaled[26], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:47]
+          inSpriteX[26] <= _inSpriteX_26_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:22]
+          node _inSpriteHorizontal_26_T_6 = geq(inSpriteXPreScaled[26], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:56]
+          node _inSpriteHorizontal_26_T_7 = lt(inSpriteXPreScaled[26], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:88]
+          node _inSpriteHorizontal_26_T_8 = and(_inSpriteHorizontal_26_T_6, _inSpriteHorizontal_26_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:63]
+          inSpriteHorizontal[26] <= _inSpriteHorizontal_26_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:31]
+      else :
+        node _inSpriteX_26_T_5 = shl(inSpriteXPreScaled[26], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:45]
+        inSpriteX[26] <= _inSpriteX_26_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:20]
+        when spriteFlipHorizontalReg[26] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 285:40]
+          node _inSpriteHorizontal_26_T_9 = geq(inSpriteXPreScaled[26], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:56]
+          node _inSpriteHorizontal_26_T_10 = lt(inSpriteXPreScaled[26], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:89]
+          node _inSpriteHorizontal_26_T_11 = and(_inSpriteHorizontal_26_T_9, _inSpriteHorizontal_26_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:64]
+          inSpriteHorizontal[26] <= _inSpriteHorizontal_26_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:31]
+        else :
+          node _inSpriteHorizontal_26_T_12 = geq(inSpriteXPreScaled[26], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:56]
+          node _inSpriteHorizontal_26_T_13 = lt(inSpriteXPreScaled[26], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:88]
+          node _inSpriteHorizontal_26_T_14 = and(_inSpriteHorizontal_26_T_12, _inSpriteHorizontal_26_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:63]
+          inSpriteHorizontal[26] <= _inSpriteHorizontal_26_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:31]
+    node _inSpriteYValue_T_52 = cat(UInt<1>("h0"), CounterYReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:36]
+    node _inSpriteYValue_T_53 = asSInt(_inSpriteYValue_T_52) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:47]
+    node inSpriteYValue_26 = sub(_inSpriteYValue_T_53, spriteYPositionReg[26]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:54]
+    when spriteFlipVerticalReg[26] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 293:35]
+      node _inSpriteYPreScaled_26_T = sub(asSInt(UInt<6>("h1f")), inSpriteYValue_26) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_26_T_1 = tail(_inSpriteYPreScaled_26_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_26_T_2 = asSInt(_inSpriteYPreScaled_26_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      inSpriteYPreScaled[26] <= _inSpriteYPreScaled_26_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:29]
+    else :
+      inSpriteYPreScaled[26] <= inSpriteYValue_26 @[\\src\\main\\scala\\GraphicEngineVGA.scala 296:29]
+    node _T_275 = and(spriteScaleUpVerticalReg[26], spriteScaleDownVerticalReg[26]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:39]
+    node _T_276 = eq(spriteScaleUpVerticalReg[26], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:77]
+    node _T_277 = eq(spriteScaleDownVerticalReg[26], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:109]
+    node _T_278 = and(_T_276, _T_277) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:106]
+    node _T_279 = or(_T_275, _T_278) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:73]
+    when _T_279 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:142]
+      inSpriteY[26] <= inSpriteYPreScaled[26] @[\\src\\main\\scala\\GraphicEngineVGA.scala 300:20]
+      node _inSpriteVertical_26_T = geq(inSpriteYPreScaled[26], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:52]
+      node _inSpriteVertical_26_T_1 = lt(inSpriteYPreScaled[26], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:84]
+      node _inSpriteVertical_26_T_2 = and(_inSpriteVertical_26_T, _inSpriteVertical_26_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:59]
+      inSpriteVertical[26] <= _inSpriteVertical_26_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:27]
+    else :
+      when spriteScaleUpVerticalReg[26] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 302:45]
+        when spriteFlipVerticalReg[26] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 304:38]
+          node _inSpriteY_26_T = sub(inSpriteYPreScaled[26], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_26_T_1 = tail(_inSpriteY_26_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_26_T_2 = asSInt(_inSpriteY_26_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_26_T_3 = shr(_inSpriteY_26_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:56]
+          inSpriteY[26] <= _inSpriteY_26_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:22]
+          node _inSpriteVertical_26_T_3 = geq(inSpriteYPreScaled[26], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:54]
+          node _inSpriteVertical_26_T_4 = lt(inSpriteYPreScaled[26], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:88]
+          node _inSpriteVertical_26_T_5 = and(_inSpriteVertical_26_T_3, _inSpriteVertical_26_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:63]
+          inSpriteVertical[26] <= _inSpriteVertical_26_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:29]
+        else :
+          node _inSpriteY_26_T_4 = shr(inSpriteYPreScaled[26], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:47]
+          inSpriteY[26] <= _inSpriteY_26_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:22]
+          node _inSpriteVertical_26_T_6 = geq(inSpriteYPreScaled[26], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:54]
+          node _inSpriteVertical_26_T_7 = lt(inSpriteYPreScaled[26], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:86]
+          node _inSpriteVertical_26_T_8 = and(_inSpriteVertical_26_T_6, _inSpriteVertical_26_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:61]
+          inSpriteVertical[26] <= _inSpriteVertical_26_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:29]
+      else :
+        node _inSpriteY_26_T_5 = shl(inSpriteYPreScaled[26], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:45]
+        inSpriteY[26] <= _inSpriteY_26_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:20]
+        when spriteFlipVerticalReg[26] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 314:38]
+          node _inSpriteVertical_26_T_9 = geq(inSpriteYPreScaled[26], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:54]
+          node _inSpriteVertical_26_T_10 = lt(inSpriteYPreScaled[26], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:87]
+          node _inSpriteVertical_26_T_11 = and(_inSpriteVertical_26_T_9, _inSpriteVertical_26_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:62]
+          inSpriteVertical[26] <= _inSpriteVertical_26_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:29]
+        else :
+          node _inSpriteVertical_26_T_12 = geq(inSpriteYPreScaled[26], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:54]
+          node _inSpriteVertical_26_T_13 = lt(inSpriteYPreScaled[26], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:86]
+          node _inSpriteVertical_26_T_14 = and(_inSpriteVertical_26_T_12, _inSpriteVertical_26_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:61]
+          inSpriteVertical[26] <= _inSpriteVertical_26_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:29]
+    node _inSprite_26_T = and(inSpriteHorizontal[26], inSpriteVertical[26]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:42]
+    inSprite[26] <= _inSprite_26_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:17]
+    node _inSpriteXValue_T_54 = cat(UInt<1>("h0"), CounterXReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:36]
+    node _inSpriteXValue_T_55 = asSInt(_inSpriteXValue_T_54) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:47]
+    node inSpriteXValue_27 = sub(_inSpriteXValue_T_55, spriteXPositionReg[27]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:54]
+    when spriteFlipHorizontalReg[27] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 264:38]
+      node _inSpriteXPreScaled_27_T = sub(asSInt(UInt<6>("h1f")), inSpriteXValue_27) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_27_T_1 = tail(_inSpriteXPreScaled_27_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_27_T_2 = asSInt(_inSpriteXPreScaled_27_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      inSpriteXPreScaled[27] <= _inSpriteXPreScaled_27_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:29]
+    else :
+      inSpriteXPreScaled[27] <= inSpriteXValue_27 @[\\src\\main\\scala\\GraphicEngineVGA.scala 267:29]
+    node _T_280 = and(spriteScaleUpHorizontalReg[27], spriteScaleDownHorizontalReg[27]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:41]
+    node _T_281 = eq(spriteScaleUpHorizontalReg[27], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:81]
+    node _T_282 = eq(spriteScaleDownHorizontalReg[27], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:115]
+    node _T_283 = and(_T_281, _T_282) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:112]
+    node _T_284 = or(_T_280, _T_283) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:77]
+    when _T_284 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:149]
+      inSpriteX[27] <= inSpriteXPreScaled[27] @[\\src\\main\\scala\\GraphicEngineVGA.scala 271:20]
+      node _inSpriteHorizontal_27_T = geq(inSpriteXPreScaled[27], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:54]
+      node _inSpriteHorizontal_27_T_1 = lt(inSpriteXPreScaled[27], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:86]
+      node _inSpriteHorizontal_27_T_2 = and(_inSpriteHorizontal_27_T, _inSpriteHorizontal_27_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:61]
+      inSpriteHorizontal[27] <= _inSpriteHorizontal_27_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:29]
+    else :
+      when spriteScaleUpHorizontalReg[27] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 273:48]
+        when spriteFlipHorizontalReg[27] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 275:40]
+          node _inSpriteX_27_T = sub(inSpriteXPreScaled[27], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_27_T_1 = tail(_inSpriteX_27_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_27_T_2 = asSInt(_inSpriteX_27_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_27_T_3 = shr(_inSpriteX_27_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:56]
+          inSpriteX[27] <= _inSpriteX_27_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:22]
+          node _inSpriteHorizontal_27_T_3 = geq(inSpriteXPreScaled[27], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:56]
+          node _inSpriteHorizontal_27_T_4 = lt(inSpriteXPreScaled[27], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:90]
+          node _inSpriteHorizontal_27_T_5 = and(_inSpriteHorizontal_27_T_3, _inSpriteHorizontal_27_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:65]
+          inSpriteHorizontal[27] <= _inSpriteHorizontal_27_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:31]
+        else :
+          node _inSpriteX_27_T_4 = shr(inSpriteXPreScaled[27], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:47]
+          inSpriteX[27] <= _inSpriteX_27_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:22]
+          node _inSpriteHorizontal_27_T_6 = geq(inSpriteXPreScaled[27], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:56]
+          node _inSpriteHorizontal_27_T_7 = lt(inSpriteXPreScaled[27], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:88]
+          node _inSpriteHorizontal_27_T_8 = and(_inSpriteHorizontal_27_T_6, _inSpriteHorizontal_27_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:63]
+          inSpriteHorizontal[27] <= _inSpriteHorizontal_27_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:31]
+      else :
+        node _inSpriteX_27_T_5 = shl(inSpriteXPreScaled[27], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:45]
+        inSpriteX[27] <= _inSpriteX_27_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:20]
+        when spriteFlipHorizontalReg[27] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 285:40]
+          node _inSpriteHorizontal_27_T_9 = geq(inSpriteXPreScaled[27], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:56]
+          node _inSpriteHorizontal_27_T_10 = lt(inSpriteXPreScaled[27], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:89]
+          node _inSpriteHorizontal_27_T_11 = and(_inSpriteHorizontal_27_T_9, _inSpriteHorizontal_27_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:64]
+          inSpriteHorizontal[27] <= _inSpriteHorizontal_27_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:31]
+        else :
+          node _inSpriteHorizontal_27_T_12 = geq(inSpriteXPreScaled[27], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:56]
+          node _inSpriteHorizontal_27_T_13 = lt(inSpriteXPreScaled[27], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:88]
+          node _inSpriteHorizontal_27_T_14 = and(_inSpriteHorizontal_27_T_12, _inSpriteHorizontal_27_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:63]
+          inSpriteHorizontal[27] <= _inSpriteHorizontal_27_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:31]
+    node _inSpriteYValue_T_54 = cat(UInt<1>("h0"), CounterYReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:36]
+    node _inSpriteYValue_T_55 = asSInt(_inSpriteYValue_T_54) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:47]
+    node inSpriteYValue_27 = sub(_inSpriteYValue_T_55, spriteYPositionReg[27]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:54]
+    when spriteFlipVerticalReg[27] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 293:35]
+      node _inSpriteYPreScaled_27_T = sub(asSInt(UInt<6>("h1f")), inSpriteYValue_27) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_27_T_1 = tail(_inSpriteYPreScaled_27_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_27_T_2 = asSInt(_inSpriteYPreScaled_27_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      inSpriteYPreScaled[27] <= _inSpriteYPreScaled_27_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:29]
+    else :
+      inSpriteYPreScaled[27] <= inSpriteYValue_27 @[\\src\\main\\scala\\GraphicEngineVGA.scala 296:29]
+    node _T_285 = and(spriteScaleUpVerticalReg[27], spriteScaleDownVerticalReg[27]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:39]
+    node _T_286 = eq(spriteScaleUpVerticalReg[27], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:77]
+    node _T_287 = eq(spriteScaleDownVerticalReg[27], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:109]
+    node _T_288 = and(_T_286, _T_287) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:106]
+    node _T_289 = or(_T_285, _T_288) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:73]
+    when _T_289 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:142]
+      inSpriteY[27] <= inSpriteYPreScaled[27] @[\\src\\main\\scala\\GraphicEngineVGA.scala 300:20]
+      node _inSpriteVertical_27_T = geq(inSpriteYPreScaled[27], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:52]
+      node _inSpriteVertical_27_T_1 = lt(inSpriteYPreScaled[27], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:84]
+      node _inSpriteVertical_27_T_2 = and(_inSpriteVertical_27_T, _inSpriteVertical_27_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:59]
+      inSpriteVertical[27] <= _inSpriteVertical_27_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:27]
+    else :
+      when spriteScaleUpVerticalReg[27] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 302:45]
+        when spriteFlipVerticalReg[27] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 304:38]
+          node _inSpriteY_27_T = sub(inSpriteYPreScaled[27], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_27_T_1 = tail(_inSpriteY_27_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_27_T_2 = asSInt(_inSpriteY_27_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_27_T_3 = shr(_inSpriteY_27_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:56]
+          inSpriteY[27] <= _inSpriteY_27_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:22]
+          node _inSpriteVertical_27_T_3 = geq(inSpriteYPreScaled[27], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:54]
+          node _inSpriteVertical_27_T_4 = lt(inSpriteYPreScaled[27], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:88]
+          node _inSpriteVertical_27_T_5 = and(_inSpriteVertical_27_T_3, _inSpriteVertical_27_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:63]
+          inSpriteVertical[27] <= _inSpriteVertical_27_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:29]
+        else :
+          node _inSpriteY_27_T_4 = shr(inSpriteYPreScaled[27], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:47]
+          inSpriteY[27] <= _inSpriteY_27_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:22]
+          node _inSpriteVertical_27_T_6 = geq(inSpriteYPreScaled[27], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:54]
+          node _inSpriteVertical_27_T_7 = lt(inSpriteYPreScaled[27], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:86]
+          node _inSpriteVertical_27_T_8 = and(_inSpriteVertical_27_T_6, _inSpriteVertical_27_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:61]
+          inSpriteVertical[27] <= _inSpriteVertical_27_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:29]
+      else :
+        node _inSpriteY_27_T_5 = shl(inSpriteYPreScaled[27], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:45]
+        inSpriteY[27] <= _inSpriteY_27_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:20]
+        when spriteFlipVerticalReg[27] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 314:38]
+          node _inSpriteVertical_27_T_9 = geq(inSpriteYPreScaled[27], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:54]
+          node _inSpriteVertical_27_T_10 = lt(inSpriteYPreScaled[27], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:87]
+          node _inSpriteVertical_27_T_11 = and(_inSpriteVertical_27_T_9, _inSpriteVertical_27_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:62]
+          inSpriteVertical[27] <= _inSpriteVertical_27_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:29]
+        else :
+          node _inSpriteVertical_27_T_12 = geq(inSpriteYPreScaled[27], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:54]
+          node _inSpriteVertical_27_T_13 = lt(inSpriteYPreScaled[27], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:86]
+          node _inSpriteVertical_27_T_14 = and(_inSpriteVertical_27_T_12, _inSpriteVertical_27_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:61]
+          inSpriteVertical[27] <= _inSpriteVertical_27_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:29]
+    node _inSprite_27_T = and(inSpriteHorizontal[27], inSpriteVertical[27]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:42]
+    inSprite[27] <= _inSprite_27_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:17]
+    node _inSpriteXValue_T_56 = cat(UInt<1>("h0"), CounterXReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:36]
+    node _inSpriteXValue_T_57 = asSInt(_inSpriteXValue_T_56) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:47]
+    node inSpriteXValue_28 = sub(_inSpriteXValue_T_57, spriteXPositionReg[28]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:54]
+    when spriteFlipHorizontalReg[28] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 264:38]
+      node _inSpriteXPreScaled_28_T = sub(asSInt(UInt<6>("h1f")), inSpriteXValue_28) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_28_T_1 = tail(_inSpriteXPreScaled_28_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_28_T_2 = asSInt(_inSpriteXPreScaled_28_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      inSpriteXPreScaled[28] <= _inSpriteXPreScaled_28_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:29]
+    else :
+      inSpriteXPreScaled[28] <= inSpriteXValue_28 @[\\src\\main\\scala\\GraphicEngineVGA.scala 267:29]
+    node _T_290 = and(spriteScaleUpHorizontalReg[28], spriteScaleDownHorizontalReg[28]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:41]
+    node _T_291 = eq(spriteScaleUpHorizontalReg[28], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:81]
+    node _T_292 = eq(spriteScaleDownHorizontalReg[28], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:115]
+    node _T_293 = and(_T_291, _T_292) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:112]
+    node _T_294 = or(_T_290, _T_293) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:77]
+    when _T_294 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:149]
+      inSpriteX[28] <= inSpriteXPreScaled[28] @[\\src\\main\\scala\\GraphicEngineVGA.scala 271:20]
+      node _inSpriteHorizontal_28_T = geq(inSpriteXPreScaled[28], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:54]
+      node _inSpriteHorizontal_28_T_1 = lt(inSpriteXPreScaled[28], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:86]
+      node _inSpriteHorizontal_28_T_2 = and(_inSpriteHorizontal_28_T, _inSpriteHorizontal_28_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:61]
+      inSpriteHorizontal[28] <= _inSpriteHorizontal_28_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:29]
+    else :
+      when spriteScaleUpHorizontalReg[28] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 273:48]
+        when spriteFlipHorizontalReg[28] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 275:40]
+          node _inSpriteX_28_T = sub(inSpriteXPreScaled[28], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_28_T_1 = tail(_inSpriteX_28_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_28_T_2 = asSInt(_inSpriteX_28_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_28_T_3 = shr(_inSpriteX_28_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:56]
+          inSpriteX[28] <= _inSpriteX_28_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:22]
+          node _inSpriteHorizontal_28_T_3 = geq(inSpriteXPreScaled[28], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:56]
+          node _inSpriteHorizontal_28_T_4 = lt(inSpriteXPreScaled[28], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:90]
+          node _inSpriteHorizontal_28_T_5 = and(_inSpriteHorizontal_28_T_3, _inSpriteHorizontal_28_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:65]
+          inSpriteHorizontal[28] <= _inSpriteHorizontal_28_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:31]
+        else :
+          node _inSpriteX_28_T_4 = shr(inSpriteXPreScaled[28], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:47]
+          inSpriteX[28] <= _inSpriteX_28_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:22]
+          node _inSpriteHorizontal_28_T_6 = geq(inSpriteXPreScaled[28], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:56]
+          node _inSpriteHorizontal_28_T_7 = lt(inSpriteXPreScaled[28], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:88]
+          node _inSpriteHorizontal_28_T_8 = and(_inSpriteHorizontal_28_T_6, _inSpriteHorizontal_28_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:63]
+          inSpriteHorizontal[28] <= _inSpriteHorizontal_28_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:31]
+      else :
+        node _inSpriteX_28_T_5 = shl(inSpriteXPreScaled[28], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:45]
+        inSpriteX[28] <= _inSpriteX_28_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:20]
+        when spriteFlipHorizontalReg[28] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 285:40]
+          node _inSpriteHorizontal_28_T_9 = geq(inSpriteXPreScaled[28], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:56]
+          node _inSpriteHorizontal_28_T_10 = lt(inSpriteXPreScaled[28], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:89]
+          node _inSpriteHorizontal_28_T_11 = and(_inSpriteHorizontal_28_T_9, _inSpriteHorizontal_28_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:64]
+          inSpriteHorizontal[28] <= _inSpriteHorizontal_28_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:31]
+        else :
+          node _inSpriteHorizontal_28_T_12 = geq(inSpriteXPreScaled[28], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:56]
+          node _inSpriteHorizontal_28_T_13 = lt(inSpriteXPreScaled[28], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:88]
+          node _inSpriteHorizontal_28_T_14 = and(_inSpriteHorizontal_28_T_12, _inSpriteHorizontal_28_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:63]
+          inSpriteHorizontal[28] <= _inSpriteHorizontal_28_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:31]
+    node _inSpriteYValue_T_56 = cat(UInt<1>("h0"), CounterYReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:36]
+    node _inSpriteYValue_T_57 = asSInt(_inSpriteYValue_T_56) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:47]
+    node inSpriteYValue_28 = sub(_inSpriteYValue_T_57, spriteYPositionReg[28]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:54]
+    when spriteFlipVerticalReg[28] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 293:35]
+      node _inSpriteYPreScaled_28_T = sub(asSInt(UInt<6>("h1f")), inSpriteYValue_28) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_28_T_1 = tail(_inSpriteYPreScaled_28_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_28_T_2 = asSInt(_inSpriteYPreScaled_28_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      inSpriteYPreScaled[28] <= _inSpriteYPreScaled_28_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:29]
+    else :
+      inSpriteYPreScaled[28] <= inSpriteYValue_28 @[\\src\\main\\scala\\GraphicEngineVGA.scala 296:29]
+    node _T_295 = and(spriteScaleUpVerticalReg[28], spriteScaleDownVerticalReg[28]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:39]
+    node _T_296 = eq(spriteScaleUpVerticalReg[28], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:77]
+    node _T_297 = eq(spriteScaleDownVerticalReg[28], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:109]
+    node _T_298 = and(_T_296, _T_297) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:106]
+    node _T_299 = or(_T_295, _T_298) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:73]
+    when _T_299 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:142]
+      inSpriteY[28] <= inSpriteYPreScaled[28] @[\\src\\main\\scala\\GraphicEngineVGA.scala 300:20]
+      node _inSpriteVertical_28_T = geq(inSpriteYPreScaled[28], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:52]
+      node _inSpriteVertical_28_T_1 = lt(inSpriteYPreScaled[28], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:84]
+      node _inSpriteVertical_28_T_2 = and(_inSpriteVertical_28_T, _inSpriteVertical_28_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:59]
+      inSpriteVertical[28] <= _inSpriteVertical_28_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:27]
+    else :
+      when spriteScaleUpVerticalReg[28] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 302:45]
+        when spriteFlipVerticalReg[28] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 304:38]
+          node _inSpriteY_28_T = sub(inSpriteYPreScaled[28], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_28_T_1 = tail(_inSpriteY_28_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_28_T_2 = asSInt(_inSpriteY_28_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_28_T_3 = shr(_inSpriteY_28_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:56]
+          inSpriteY[28] <= _inSpriteY_28_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:22]
+          node _inSpriteVertical_28_T_3 = geq(inSpriteYPreScaled[28], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:54]
+          node _inSpriteVertical_28_T_4 = lt(inSpriteYPreScaled[28], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:88]
+          node _inSpriteVertical_28_T_5 = and(_inSpriteVertical_28_T_3, _inSpriteVertical_28_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:63]
+          inSpriteVertical[28] <= _inSpriteVertical_28_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:29]
+        else :
+          node _inSpriteY_28_T_4 = shr(inSpriteYPreScaled[28], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:47]
+          inSpriteY[28] <= _inSpriteY_28_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:22]
+          node _inSpriteVertical_28_T_6 = geq(inSpriteYPreScaled[28], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:54]
+          node _inSpriteVertical_28_T_7 = lt(inSpriteYPreScaled[28], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:86]
+          node _inSpriteVertical_28_T_8 = and(_inSpriteVertical_28_T_6, _inSpriteVertical_28_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:61]
+          inSpriteVertical[28] <= _inSpriteVertical_28_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:29]
+      else :
+        node _inSpriteY_28_T_5 = shl(inSpriteYPreScaled[28], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:45]
+        inSpriteY[28] <= _inSpriteY_28_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:20]
+        when spriteFlipVerticalReg[28] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 314:38]
+          node _inSpriteVertical_28_T_9 = geq(inSpriteYPreScaled[28], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:54]
+          node _inSpriteVertical_28_T_10 = lt(inSpriteYPreScaled[28], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:87]
+          node _inSpriteVertical_28_T_11 = and(_inSpriteVertical_28_T_9, _inSpriteVertical_28_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:62]
+          inSpriteVertical[28] <= _inSpriteVertical_28_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:29]
+        else :
+          node _inSpriteVertical_28_T_12 = geq(inSpriteYPreScaled[28], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:54]
+          node _inSpriteVertical_28_T_13 = lt(inSpriteYPreScaled[28], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:86]
+          node _inSpriteVertical_28_T_14 = and(_inSpriteVertical_28_T_12, _inSpriteVertical_28_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:61]
+          inSpriteVertical[28] <= _inSpriteVertical_28_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:29]
+    node _inSprite_28_T = and(inSpriteHorizontal[28], inSpriteVertical[28]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:42]
+    inSprite[28] <= _inSprite_28_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:17]
+    node _inSpriteXValue_T_58 = cat(UInt<1>("h0"), CounterXReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:36]
+    node _inSpriteXValue_T_59 = asSInt(_inSpriteXValue_T_58) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:47]
+    node inSpriteXValue_29 = sub(_inSpriteXValue_T_59, spriteXPositionReg[29]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:54]
+    when spriteFlipHorizontalReg[29] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 264:38]
+      node _inSpriteXPreScaled_29_T = sub(asSInt(UInt<6>("h1f")), inSpriteXValue_29) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_29_T_1 = tail(_inSpriteXPreScaled_29_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_29_T_2 = asSInt(_inSpriteXPreScaled_29_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      inSpriteXPreScaled[29] <= _inSpriteXPreScaled_29_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:29]
+    else :
+      inSpriteXPreScaled[29] <= inSpriteXValue_29 @[\\src\\main\\scala\\GraphicEngineVGA.scala 267:29]
+    node _T_300 = and(spriteScaleUpHorizontalReg[29], spriteScaleDownHorizontalReg[29]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:41]
+    node _T_301 = eq(spriteScaleUpHorizontalReg[29], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:81]
+    node _T_302 = eq(spriteScaleDownHorizontalReg[29], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:115]
+    node _T_303 = and(_T_301, _T_302) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:112]
+    node _T_304 = or(_T_300, _T_303) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:77]
+    when _T_304 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:149]
+      inSpriteX[29] <= inSpriteXPreScaled[29] @[\\src\\main\\scala\\GraphicEngineVGA.scala 271:20]
+      node _inSpriteHorizontal_29_T = geq(inSpriteXPreScaled[29], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:54]
+      node _inSpriteHorizontal_29_T_1 = lt(inSpriteXPreScaled[29], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:86]
+      node _inSpriteHorizontal_29_T_2 = and(_inSpriteHorizontal_29_T, _inSpriteHorizontal_29_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:61]
+      inSpriteHorizontal[29] <= _inSpriteHorizontal_29_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:29]
+    else :
+      when spriteScaleUpHorizontalReg[29] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 273:48]
+        when spriteFlipHorizontalReg[29] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 275:40]
+          node _inSpriteX_29_T = sub(inSpriteXPreScaled[29], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_29_T_1 = tail(_inSpriteX_29_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_29_T_2 = asSInt(_inSpriteX_29_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_29_T_3 = shr(_inSpriteX_29_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:56]
+          inSpriteX[29] <= _inSpriteX_29_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:22]
+          node _inSpriteHorizontal_29_T_3 = geq(inSpriteXPreScaled[29], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:56]
+          node _inSpriteHorizontal_29_T_4 = lt(inSpriteXPreScaled[29], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:90]
+          node _inSpriteHorizontal_29_T_5 = and(_inSpriteHorizontal_29_T_3, _inSpriteHorizontal_29_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:65]
+          inSpriteHorizontal[29] <= _inSpriteHorizontal_29_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:31]
+        else :
+          node _inSpriteX_29_T_4 = shr(inSpriteXPreScaled[29], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:47]
+          inSpriteX[29] <= _inSpriteX_29_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:22]
+          node _inSpriteHorizontal_29_T_6 = geq(inSpriteXPreScaled[29], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:56]
+          node _inSpriteHorizontal_29_T_7 = lt(inSpriteXPreScaled[29], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:88]
+          node _inSpriteHorizontal_29_T_8 = and(_inSpriteHorizontal_29_T_6, _inSpriteHorizontal_29_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:63]
+          inSpriteHorizontal[29] <= _inSpriteHorizontal_29_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:31]
+      else :
+        node _inSpriteX_29_T_5 = shl(inSpriteXPreScaled[29], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:45]
+        inSpriteX[29] <= _inSpriteX_29_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:20]
+        when spriteFlipHorizontalReg[29] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 285:40]
+          node _inSpriteHorizontal_29_T_9 = geq(inSpriteXPreScaled[29], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:56]
+          node _inSpriteHorizontal_29_T_10 = lt(inSpriteXPreScaled[29], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:89]
+          node _inSpriteHorizontal_29_T_11 = and(_inSpriteHorizontal_29_T_9, _inSpriteHorizontal_29_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:64]
+          inSpriteHorizontal[29] <= _inSpriteHorizontal_29_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:31]
+        else :
+          node _inSpriteHorizontal_29_T_12 = geq(inSpriteXPreScaled[29], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:56]
+          node _inSpriteHorizontal_29_T_13 = lt(inSpriteXPreScaled[29], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:88]
+          node _inSpriteHorizontal_29_T_14 = and(_inSpriteHorizontal_29_T_12, _inSpriteHorizontal_29_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:63]
+          inSpriteHorizontal[29] <= _inSpriteHorizontal_29_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:31]
+    node _inSpriteYValue_T_58 = cat(UInt<1>("h0"), CounterYReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:36]
+    node _inSpriteYValue_T_59 = asSInt(_inSpriteYValue_T_58) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:47]
+    node inSpriteYValue_29 = sub(_inSpriteYValue_T_59, spriteYPositionReg[29]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:54]
+    when spriteFlipVerticalReg[29] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 293:35]
+      node _inSpriteYPreScaled_29_T = sub(asSInt(UInt<6>("h1f")), inSpriteYValue_29) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_29_T_1 = tail(_inSpriteYPreScaled_29_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_29_T_2 = asSInt(_inSpriteYPreScaled_29_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      inSpriteYPreScaled[29] <= _inSpriteYPreScaled_29_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:29]
+    else :
+      inSpriteYPreScaled[29] <= inSpriteYValue_29 @[\\src\\main\\scala\\GraphicEngineVGA.scala 296:29]
+    node _T_305 = and(spriteScaleUpVerticalReg[29], spriteScaleDownVerticalReg[29]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:39]
+    node _T_306 = eq(spriteScaleUpVerticalReg[29], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:77]
+    node _T_307 = eq(spriteScaleDownVerticalReg[29], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:109]
+    node _T_308 = and(_T_306, _T_307) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:106]
+    node _T_309 = or(_T_305, _T_308) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:73]
+    when _T_309 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:142]
+      inSpriteY[29] <= inSpriteYPreScaled[29] @[\\src\\main\\scala\\GraphicEngineVGA.scala 300:20]
+      node _inSpriteVertical_29_T = geq(inSpriteYPreScaled[29], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:52]
+      node _inSpriteVertical_29_T_1 = lt(inSpriteYPreScaled[29], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:84]
+      node _inSpriteVertical_29_T_2 = and(_inSpriteVertical_29_T, _inSpriteVertical_29_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:59]
+      inSpriteVertical[29] <= _inSpriteVertical_29_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:27]
+    else :
+      when spriteScaleUpVerticalReg[29] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 302:45]
+        when spriteFlipVerticalReg[29] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 304:38]
+          node _inSpriteY_29_T = sub(inSpriteYPreScaled[29], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_29_T_1 = tail(_inSpriteY_29_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_29_T_2 = asSInt(_inSpriteY_29_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_29_T_3 = shr(_inSpriteY_29_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:56]
+          inSpriteY[29] <= _inSpriteY_29_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:22]
+          node _inSpriteVertical_29_T_3 = geq(inSpriteYPreScaled[29], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:54]
+          node _inSpriteVertical_29_T_4 = lt(inSpriteYPreScaled[29], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:88]
+          node _inSpriteVertical_29_T_5 = and(_inSpriteVertical_29_T_3, _inSpriteVertical_29_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:63]
+          inSpriteVertical[29] <= _inSpriteVertical_29_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:29]
+        else :
+          node _inSpriteY_29_T_4 = shr(inSpriteYPreScaled[29], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:47]
+          inSpriteY[29] <= _inSpriteY_29_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:22]
+          node _inSpriteVertical_29_T_6 = geq(inSpriteYPreScaled[29], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:54]
+          node _inSpriteVertical_29_T_7 = lt(inSpriteYPreScaled[29], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:86]
+          node _inSpriteVertical_29_T_8 = and(_inSpriteVertical_29_T_6, _inSpriteVertical_29_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:61]
+          inSpriteVertical[29] <= _inSpriteVertical_29_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:29]
+      else :
+        node _inSpriteY_29_T_5 = shl(inSpriteYPreScaled[29], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:45]
+        inSpriteY[29] <= _inSpriteY_29_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:20]
+        when spriteFlipVerticalReg[29] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 314:38]
+          node _inSpriteVertical_29_T_9 = geq(inSpriteYPreScaled[29], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:54]
+          node _inSpriteVertical_29_T_10 = lt(inSpriteYPreScaled[29], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:87]
+          node _inSpriteVertical_29_T_11 = and(_inSpriteVertical_29_T_9, _inSpriteVertical_29_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:62]
+          inSpriteVertical[29] <= _inSpriteVertical_29_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:29]
+        else :
+          node _inSpriteVertical_29_T_12 = geq(inSpriteYPreScaled[29], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:54]
+          node _inSpriteVertical_29_T_13 = lt(inSpriteYPreScaled[29], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:86]
+          node _inSpriteVertical_29_T_14 = and(_inSpriteVertical_29_T_12, _inSpriteVertical_29_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:61]
+          inSpriteVertical[29] <= _inSpriteVertical_29_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:29]
+    node _inSprite_29_T = and(inSpriteHorizontal[29], inSpriteVertical[29]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:42]
+    inSprite[29] <= _inSprite_29_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:17]
+    node _inSpriteXValue_T_60 = cat(UInt<1>("h0"), CounterXReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:36]
+    node _inSpriteXValue_T_61 = asSInt(_inSpriteXValue_T_60) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:47]
+    node inSpriteXValue_30 = sub(_inSpriteXValue_T_61, spriteXPositionReg[30]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:54]
+    when spriteFlipHorizontalReg[30] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 264:38]
+      node _inSpriteXPreScaled_30_T = sub(asSInt(UInt<6>("h1f")), inSpriteXValue_30) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_30_T_1 = tail(_inSpriteXPreScaled_30_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_30_T_2 = asSInt(_inSpriteXPreScaled_30_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      inSpriteXPreScaled[30] <= _inSpriteXPreScaled_30_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:29]
+    else :
+      inSpriteXPreScaled[30] <= inSpriteXValue_30 @[\\src\\main\\scala\\GraphicEngineVGA.scala 267:29]
+    node _T_310 = and(spriteScaleUpHorizontalReg[30], spriteScaleDownHorizontalReg[30]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:41]
+    node _T_311 = eq(spriteScaleUpHorizontalReg[30], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:81]
+    node _T_312 = eq(spriteScaleDownHorizontalReg[30], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:115]
+    node _T_313 = and(_T_311, _T_312) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:112]
+    node _T_314 = or(_T_310, _T_313) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:77]
+    when _T_314 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:149]
+      inSpriteX[30] <= inSpriteXPreScaled[30] @[\\src\\main\\scala\\GraphicEngineVGA.scala 271:20]
+      node _inSpriteHorizontal_30_T = geq(inSpriteXPreScaled[30], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:54]
+      node _inSpriteHorizontal_30_T_1 = lt(inSpriteXPreScaled[30], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:86]
+      node _inSpriteHorizontal_30_T_2 = and(_inSpriteHorizontal_30_T, _inSpriteHorizontal_30_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:61]
+      inSpriteHorizontal[30] <= _inSpriteHorizontal_30_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:29]
+    else :
+      when spriteScaleUpHorizontalReg[30] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 273:48]
+        when spriteFlipHorizontalReg[30] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 275:40]
+          node _inSpriteX_30_T = sub(inSpriteXPreScaled[30], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_30_T_1 = tail(_inSpriteX_30_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_30_T_2 = asSInt(_inSpriteX_30_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_30_T_3 = shr(_inSpriteX_30_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:56]
+          inSpriteX[30] <= _inSpriteX_30_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:22]
+          node _inSpriteHorizontal_30_T_3 = geq(inSpriteXPreScaled[30], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:56]
+          node _inSpriteHorizontal_30_T_4 = lt(inSpriteXPreScaled[30], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:90]
+          node _inSpriteHorizontal_30_T_5 = and(_inSpriteHorizontal_30_T_3, _inSpriteHorizontal_30_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:65]
+          inSpriteHorizontal[30] <= _inSpriteHorizontal_30_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:31]
+        else :
+          node _inSpriteX_30_T_4 = shr(inSpriteXPreScaled[30], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:47]
+          inSpriteX[30] <= _inSpriteX_30_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:22]
+          node _inSpriteHorizontal_30_T_6 = geq(inSpriteXPreScaled[30], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:56]
+          node _inSpriteHorizontal_30_T_7 = lt(inSpriteXPreScaled[30], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:88]
+          node _inSpriteHorizontal_30_T_8 = and(_inSpriteHorizontal_30_T_6, _inSpriteHorizontal_30_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:63]
+          inSpriteHorizontal[30] <= _inSpriteHorizontal_30_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:31]
+      else :
+        node _inSpriteX_30_T_5 = shl(inSpriteXPreScaled[30], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:45]
+        inSpriteX[30] <= _inSpriteX_30_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:20]
+        when spriteFlipHorizontalReg[30] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 285:40]
+          node _inSpriteHorizontal_30_T_9 = geq(inSpriteXPreScaled[30], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:56]
+          node _inSpriteHorizontal_30_T_10 = lt(inSpriteXPreScaled[30], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:89]
+          node _inSpriteHorizontal_30_T_11 = and(_inSpriteHorizontal_30_T_9, _inSpriteHorizontal_30_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:64]
+          inSpriteHorizontal[30] <= _inSpriteHorizontal_30_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:31]
+        else :
+          node _inSpriteHorizontal_30_T_12 = geq(inSpriteXPreScaled[30], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:56]
+          node _inSpriteHorizontal_30_T_13 = lt(inSpriteXPreScaled[30], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:88]
+          node _inSpriteHorizontal_30_T_14 = and(_inSpriteHorizontal_30_T_12, _inSpriteHorizontal_30_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:63]
+          inSpriteHorizontal[30] <= _inSpriteHorizontal_30_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:31]
+    node _inSpriteYValue_T_60 = cat(UInt<1>("h0"), CounterYReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:36]
+    node _inSpriteYValue_T_61 = asSInt(_inSpriteYValue_T_60) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:47]
+    node inSpriteYValue_30 = sub(_inSpriteYValue_T_61, spriteYPositionReg[30]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:54]
+    when spriteFlipVerticalReg[30] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 293:35]
+      node _inSpriteYPreScaled_30_T = sub(asSInt(UInt<6>("h1f")), inSpriteYValue_30) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_30_T_1 = tail(_inSpriteYPreScaled_30_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_30_T_2 = asSInt(_inSpriteYPreScaled_30_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      inSpriteYPreScaled[30] <= _inSpriteYPreScaled_30_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:29]
+    else :
+      inSpriteYPreScaled[30] <= inSpriteYValue_30 @[\\src\\main\\scala\\GraphicEngineVGA.scala 296:29]
+    node _T_315 = and(spriteScaleUpVerticalReg[30], spriteScaleDownVerticalReg[30]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:39]
+    node _T_316 = eq(spriteScaleUpVerticalReg[30], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:77]
+    node _T_317 = eq(spriteScaleDownVerticalReg[30], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:109]
+    node _T_318 = and(_T_316, _T_317) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:106]
+    node _T_319 = or(_T_315, _T_318) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:73]
+    when _T_319 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:142]
+      inSpriteY[30] <= inSpriteYPreScaled[30] @[\\src\\main\\scala\\GraphicEngineVGA.scala 300:20]
+      node _inSpriteVertical_30_T = geq(inSpriteYPreScaled[30], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:52]
+      node _inSpriteVertical_30_T_1 = lt(inSpriteYPreScaled[30], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:84]
+      node _inSpriteVertical_30_T_2 = and(_inSpriteVertical_30_T, _inSpriteVertical_30_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:59]
+      inSpriteVertical[30] <= _inSpriteVertical_30_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:27]
+    else :
+      when spriteScaleUpVerticalReg[30] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 302:45]
+        when spriteFlipVerticalReg[30] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 304:38]
+          node _inSpriteY_30_T = sub(inSpriteYPreScaled[30], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_30_T_1 = tail(_inSpriteY_30_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_30_T_2 = asSInt(_inSpriteY_30_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_30_T_3 = shr(_inSpriteY_30_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:56]
+          inSpriteY[30] <= _inSpriteY_30_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:22]
+          node _inSpriteVertical_30_T_3 = geq(inSpriteYPreScaled[30], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:54]
+          node _inSpriteVertical_30_T_4 = lt(inSpriteYPreScaled[30], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:88]
+          node _inSpriteVertical_30_T_5 = and(_inSpriteVertical_30_T_3, _inSpriteVertical_30_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:63]
+          inSpriteVertical[30] <= _inSpriteVertical_30_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:29]
+        else :
+          node _inSpriteY_30_T_4 = shr(inSpriteYPreScaled[30], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:47]
+          inSpriteY[30] <= _inSpriteY_30_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:22]
+          node _inSpriteVertical_30_T_6 = geq(inSpriteYPreScaled[30], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:54]
+          node _inSpriteVertical_30_T_7 = lt(inSpriteYPreScaled[30], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:86]
+          node _inSpriteVertical_30_T_8 = and(_inSpriteVertical_30_T_6, _inSpriteVertical_30_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:61]
+          inSpriteVertical[30] <= _inSpriteVertical_30_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:29]
+      else :
+        node _inSpriteY_30_T_5 = shl(inSpriteYPreScaled[30], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:45]
+        inSpriteY[30] <= _inSpriteY_30_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:20]
+        when spriteFlipVerticalReg[30] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 314:38]
+          node _inSpriteVertical_30_T_9 = geq(inSpriteYPreScaled[30], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:54]
+          node _inSpriteVertical_30_T_10 = lt(inSpriteYPreScaled[30], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:87]
+          node _inSpriteVertical_30_T_11 = and(_inSpriteVertical_30_T_9, _inSpriteVertical_30_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:62]
+          inSpriteVertical[30] <= _inSpriteVertical_30_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:29]
+        else :
+          node _inSpriteVertical_30_T_12 = geq(inSpriteYPreScaled[30], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:54]
+          node _inSpriteVertical_30_T_13 = lt(inSpriteYPreScaled[30], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:86]
+          node _inSpriteVertical_30_T_14 = and(_inSpriteVertical_30_T_12, _inSpriteVertical_30_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:61]
+          inSpriteVertical[30] <= _inSpriteVertical_30_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:29]
+    node _inSprite_30_T = and(inSpriteHorizontal[30], inSpriteVertical[30]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:42]
+    inSprite[30] <= _inSprite_30_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:17]
+    node _inSpriteXValue_T_62 = cat(UInt<1>("h0"), CounterXReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:36]
+    node _inSpriteXValue_T_63 = asSInt(_inSpriteXValue_T_62) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:47]
+    node inSpriteXValue_31 = sub(_inSpriteXValue_T_63, spriteXPositionReg[31]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 263:54]
+    when spriteFlipHorizontalReg[31] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 264:38]
+      node _inSpriteXPreScaled_31_T = sub(asSInt(UInt<6>("h1f")), inSpriteXValue_31) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_31_T_1 = tail(_inSpriteXPreScaled_31_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      node _inSpriteXPreScaled_31_T_2 = asSInt(_inSpriteXPreScaled_31_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:37]
+      inSpriteXPreScaled[31] <= _inSpriteXPreScaled_31_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 265:29]
+    else :
+      inSpriteXPreScaled[31] <= inSpriteXValue_31 @[\\src\\main\\scala\\GraphicEngineVGA.scala 267:29]
+    node _T_320 = and(spriteScaleUpHorizontalReg[31], spriteScaleDownHorizontalReg[31]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:41]
+    node _T_321 = eq(spriteScaleUpHorizontalReg[31], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:81]
+    node _T_322 = eq(spriteScaleDownHorizontalReg[31], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:115]
+    node _T_323 = and(_T_321, _T_322) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:112]
+    node _T_324 = or(_T_320, _T_323) @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:77]
+    when _T_324 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 269:149]
+      inSpriteX[31] <= inSpriteXPreScaled[31] @[\\src\\main\\scala\\GraphicEngineVGA.scala 271:20]
+      node _inSpriteHorizontal_31_T = geq(inSpriteXPreScaled[31], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:54]
+      node _inSpriteHorizontal_31_T_1 = lt(inSpriteXPreScaled[31], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:86]
+      node _inSpriteHorizontal_31_T_2 = and(_inSpriteHorizontal_31_T, _inSpriteHorizontal_31_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:61]
+      inSpriteHorizontal[31] <= _inSpriteHorizontal_31_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 272:29]
+    else :
+      when spriteScaleUpHorizontalReg[31] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 273:48]
+        when spriteFlipHorizontalReg[31] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 275:40]
+          node _inSpriteX_31_T = sub(inSpriteXPreScaled[31], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_31_T_1 = tail(_inSpriteX_31_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_31_T_2 = asSInt(_inSpriteX_31_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:48]
+          node _inSpriteX_31_T_3 = shr(_inSpriteX_31_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:56]
+          inSpriteX[31] <= _inSpriteX_31_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 276:22]
+          node _inSpriteHorizontal_31_T_3 = geq(inSpriteXPreScaled[31], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:56]
+          node _inSpriteHorizontal_31_T_4 = lt(inSpriteXPreScaled[31], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:90]
+          node _inSpriteHorizontal_31_T_5 = and(_inSpriteHorizontal_31_T_3, _inSpriteHorizontal_31_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:65]
+          inSpriteHorizontal[31] <= _inSpriteHorizontal_31_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 277:31]
+        else :
+          node _inSpriteX_31_T_4 = shr(inSpriteXPreScaled[31], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:47]
+          inSpriteX[31] <= _inSpriteX_31_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 279:22]
+          node _inSpriteHorizontal_31_T_6 = geq(inSpriteXPreScaled[31], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:56]
+          node _inSpriteHorizontal_31_T_7 = lt(inSpriteXPreScaled[31], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:88]
+          node _inSpriteHorizontal_31_T_8 = and(_inSpriteHorizontal_31_T_6, _inSpriteHorizontal_31_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:63]
+          inSpriteHorizontal[31] <= _inSpriteHorizontal_31_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 280:31]
+      else :
+        node _inSpriteX_31_T_5 = shl(inSpriteXPreScaled[31], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:45]
+        inSpriteX[31] <= _inSpriteX_31_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 284:20]
+        when spriteFlipHorizontalReg[31] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 285:40]
+          node _inSpriteHorizontal_31_T_9 = geq(inSpriteXPreScaled[31], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:56]
+          node _inSpriteHorizontal_31_T_10 = lt(inSpriteXPreScaled[31], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:89]
+          node _inSpriteHorizontal_31_T_11 = and(_inSpriteHorizontal_31_T_9, _inSpriteHorizontal_31_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:64]
+          inSpriteHorizontal[31] <= _inSpriteHorizontal_31_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 286:31]
+        else :
+          node _inSpriteHorizontal_31_T_12 = geq(inSpriteXPreScaled[31], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:56]
+          node _inSpriteHorizontal_31_T_13 = lt(inSpriteXPreScaled[31], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:88]
+          node _inSpriteHorizontal_31_T_14 = and(_inSpriteHorizontal_31_T_12, _inSpriteHorizontal_31_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:63]
+          inSpriteHorizontal[31] <= _inSpriteHorizontal_31_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 288:31]
+    node _inSpriteYValue_T_62 = cat(UInt<1>("h0"), CounterYReg) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:36]
+    node _inSpriteYValue_T_63 = asSInt(_inSpriteYValue_T_62) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:47]
+    node inSpriteYValue_31 = sub(_inSpriteYValue_T_63, spriteYPositionReg[31]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 292:54]
+    when spriteFlipVerticalReg[31] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 293:35]
+      node _inSpriteYPreScaled_31_T = sub(asSInt(UInt<6>("h1f")), inSpriteYValue_31) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_31_T_1 = tail(_inSpriteYPreScaled_31_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      node _inSpriteYPreScaled_31_T_2 = asSInt(_inSpriteYPreScaled_31_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:37]
+      inSpriteYPreScaled[31] <= _inSpriteYPreScaled_31_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 294:29]
+    else :
+      inSpriteYPreScaled[31] <= inSpriteYValue_31 @[\\src\\main\\scala\\GraphicEngineVGA.scala 296:29]
+    node _T_325 = and(spriteScaleUpVerticalReg[31], spriteScaleDownVerticalReg[31]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:39]
+    node _T_326 = eq(spriteScaleUpVerticalReg[31], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:77]
+    node _T_327 = eq(spriteScaleDownVerticalReg[31], UInt<1>("h0")) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:109]
+    node _T_328 = and(_T_326, _T_327) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:106]
+    node _T_329 = or(_T_325, _T_328) @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:73]
+    when _T_329 : @[\\src\\main\\scala\\GraphicEngineVGA.scala 298:142]
+      inSpriteY[31] <= inSpriteYPreScaled[31] @[\\src\\main\\scala\\GraphicEngineVGA.scala 300:20]
+      node _inSpriteVertical_31_T = geq(inSpriteYPreScaled[31], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:52]
+      node _inSpriteVertical_31_T_1 = lt(inSpriteYPreScaled[31], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:84]
+      node _inSpriteVertical_31_T_2 = and(_inSpriteVertical_31_T, _inSpriteVertical_31_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:59]
+      inSpriteVertical[31] <= _inSpriteVertical_31_T_2 @[\\src\\main\\scala\\GraphicEngineVGA.scala 301:27]
+    else :
+      when spriteScaleUpVerticalReg[31] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 302:45]
+        when spriteFlipVerticalReg[31] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 304:38]
+          node _inSpriteY_31_T = sub(inSpriteYPreScaled[31], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_31_T_1 = tail(_inSpriteY_31_T, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_31_T_2 = asSInt(_inSpriteY_31_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:48]
+          node _inSpriteY_31_T_3 = shr(_inSpriteY_31_T_2, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:56]
+          inSpriteY[31] <= _inSpriteY_31_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 305:22]
+          node _inSpriteVertical_31_T_3 = geq(inSpriteYPreScaled[31], asSInt(UInt<6>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:54]
+          node _inSpriteVertical_31_T_4 = lt(inSpriteYPreScaled[31], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:88]
+          node _inSpriteVertical_31_T_5 = and(_inSpriteVertical_31_T_3, _inSpriteVertical_31_T_4) @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:63]
+          inSpriteVertical[31] <= _inSpriteVertical_31_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 306:29]
+        else :
+          node _inSpriteY_31_T_4 = shr(inSpriteYPreScaled[31], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:47]
+          inSpriteY[31] <= _inSpriteY_31_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 308:22]
+          node _inSpriteVertical_31_T_6 = geq(inSpriteYPreScaled[31], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:54]
+          node _inSpriteVertical_31_T_7 = lt(inSpriteYPreScaled[31], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:86]
+          node _inSpriteVertical_31_T_8 = and(_inSpriteVertical_31_T_6, _inSpriteVertical_31_T_7) @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:61]
+          inSpriteVertical[31] <= _inSpriteVertical_31_T_8 @[\\src\\main\\scala\\GraphicEngineVGA.scala 309:29]
+      else :
+        node _inSpriteY_31_T_5 = shl(inSpriteYPreScaled[31], 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:45]
+        inSpriteY[31] <= _inSpriteY_31_T_5 @[\\src\\main\\scala\\GraphicEngineVGA.scala 313:20]
+        when spriteFlipVerticalReg[31] : @[\\src\\main\\scala\\GraphicEngineVGA.scala 314:38]
+          node _inSpriteVertical_31_T_9 = geq(inSpriteYPreScaled[31], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:54]
+          node _inSpriteVertical_31_T_10 = lt(inSpriteYPreScaled[31], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:87]
+          node _inSpriteVertical_31_T_11 = and(_inSpriteVertical_31_T_9, _inSpriteVertical_31_T_10) @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:62]
+          inSpriteVertical[31] <= _inSpriteVertical_31_T_11 @[\\src\\main\\scala\\GraphicEngineVGA.scala 315:29]
+        else :
+          node _inSpriteVertical_31_T_12 = geq(inSpriteYPreScaled[31], asSInt(UInt<1>("h0"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:54]
+          node _inSpriteVertical_31_T_13 = lt(inSpriteYPreScaled[31], asSInt(UInt<6>("h10"))) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:86]
+          node _inSpriteVertical_31_T_14 = and(_inSpriteVertical_31_T_12, _inSpriteVertical_31_T_13) @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:61]
+          inSpriteVertical[31] <= _inSpriteVertical_31_T_14 @[\\src\\main\\scala\\GraphicEngineVGA.scala 317:29]
+    node _inSprite_31_T = and(inSpriteHorizontal[31], inSpriteVertical[31]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:42]
+    inSprite[31] <= _inSprite_31_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 321:17]
     spriteMemories_0.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 326:33]
     spriteMemories_0.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 327:36]
     spriteMemories_0.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 328:38]
@@ -4184,6 +7880,150 @@ circuit Top :
     node _spriteMemories_15_io_address_T_3 = add(_spriteMemories_15_io_address_T, _spriteMemories_15_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
     node _spriteMemories_15_io_address_T_4 = tail(_spriteMemories_15_io_address_T_3, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
     spriteMemories_15.io.address <= _spriteMemories_15_io_address_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:34]
+    spriteMemories_16.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 326:33]
+    spriteMemories_16.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 327:36]
+    spriteMemories_16.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 328:38]
+    node _spriteMemories_16_io_address_T = bits(inSpriteX[16], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:49]
+    node _spriteMemories_16_io_address_T_1 = bits(inSpriteY[16], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:88]
+    node _spriteMemories_16_io_address_T_2 = mul(UInt<6>("h20"), _spriteMemories_16_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:74]
+    node _spriteMemories_16_io_address_T_3 = add(_spriteMemories_16_io_address_T, _spriteMemories_16_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    node _spriteMemories_16_io_address_T_4 = tail(_spriteMemories_16_io_address_T_3, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    spriteMemories_16.io.address <= _spriteMemories_16_io_address_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:34]
+    spriteMemories_17.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 326:33]
+    spriteMemories_17.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 327:36]
+    spriteMemories_17.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 328:38]
+    node _spriteMemories_17_io_address_T = bits(inSpriteX[17], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:49]
+    node _spriteMemories_17_io_address_T_1 = bits(inSpriteY[17], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:88]
+    node _spriteMemories_17_io_address_T_2 = mul(UInt<6>("h20"), _spriteMemories_17_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:74]
+    node _spriteMemories_17_io_address_T_3 = add(_spriteMemories_17_io_address_T, _spriteMemories_17_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    node _spriteMemories_17_io_address_T_4 = tail(_spriteMemories_17_io_address_T_3, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    spriteMemories_17.io.address <= _spriteMemories_17_io_address_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:34]
+    spriteMemories_18.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 326:33]
+    spriteMemories_18.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 327:36]
+    spriteMemories_18.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 328:38]
+    node _spriteMemories_18_io_address_T = bits(inSpriteX[18], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:49]
+    node _spriteMemories_18_io_address_T_1 = bits(inSpriteY[18], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:88]
+    node _spriteMemories_18_io_address_T_2 = mul(UInt<6>("h20"), _spriteMemories_18_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:74]
+    node _spriteMemories_18_io_address_T_3 = add(_spriteMemories_18_io_address_T, _spriteMemories_18_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    node _spriteMemories_18_io_address_T_4 = tail(_spriteMemories_18_io_address_T_3, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    spriteMemories_18.io.address <= _spriteMemories_18_io_address_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:34]
+    spriteMemories_19.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 326:33]
+    spriteMemories_19.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 327:36]
+    spriteMemories_19.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 328:38]
+    node _spriteMemories_19_io_address_T = bits(inSpriteX[19], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:49]
+    node _spriteMemories_19_io_address_T_1 = bits(inSpriteY[19], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:88]
+    node _spriteMemories_19_io_address_T_2 = mul(UInt<6>("h20"), _spriteMemories_19_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:74]
+    node _spriteMemories_19_io_address_T_3 = add(_spriteMemories_19_io_address_T, _spriteMemories_19_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    node _spriteMemories_19_io_address_T_4 = tail(_spriteMemories_19_io_address_T_3, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    spriteMemories_19.io.address <= _spriteMemories_19_io_address_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:34]
+    spriteMemories_20.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 326:33]
+    spriteMemories_20.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 327:36]
+    spriteMemories_20.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 328:38]
+    node _spriteMemories_20_io_address_T = bits(inSpriteX[20], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:49]
+    node _spriteMemories_20_io_address_T_1 = bits(inSpriteY[20], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:88]
+    node _spriteMemories_20_io_address_T_2 = mul(UInt<6>("h20"), _spriteMemories_20_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:74]
+    node _spriteMemories_20_io_address_T_3 = add(_spriteMemories_20_io_address_T, _spriteMemories_20_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    node _spriteMemories_20_io_address_T_4 = tail(_spriteMemories_20_io_address_T_3, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    spriteMemories_20.io.address <= _spriteMemories_20_io_address_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:34]
+    spriteMemories_21.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 326:33]
+    spriteMemories_21.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 327:36]
+    spriteMemories_21.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 328:38]
+    node _spriteMemories_21_io_address_T = bits(inSpriteX[21], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:49]
+    node _spriteMemories_21_io_address_T_1 = bits(inSpriteY[21], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:88]
+    node _spriteMemories_21_io_address_T_2 = mul(UInt<6>("h20"), _spriteMemories_21_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:74]
+    node _spriteMemories_21_io_address_T_3 = add(_spriteMemories_21_io_address_T, _spriteMemories_21_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    node _spriteMemories_21_io_address_T_4 = tail(_spriteMemories_21_io_address_T_3, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    spriteMemories_21.io.address <= _spriteMemories_21_io_address_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:34]
+    spriteMemories_22.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 326:33]
+    spriteMemories_22.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 327:36]
+    spriteMemories_22.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 328:38]
+    node _spriteMemories_22_io_address_T = bits(inSpriteX[22], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:49]
+    node _spriteMemories_22_io_address_T_1 = bits(inSpriteY[22], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:88]
+    node _spriteMemories_22_io_address_T_2 = mul(UInt<6>("h20"), _spriteMemories_22_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:74]
+    node _spriteMemories_22_io_address_T_3 = add(_spriteMemories_22_io_address_T, _spriteMemories_22_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    node _spriteMemories_22_io_address_T_4 = tail(_spriteMemories_22_io_address_T_3, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    spriteMemories_22.io.address <= _spriteMemories_22_io_address_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:34]
+    spriteMemories_23.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 326:33]
+    spriteMemories_23.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 327:36]
+    spriteMemories_23.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 328:38]
+    node _spriteMemories_23_io_address_T = bits(inSpriteX[23], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:49]
+    node _spriteMemories_23_io_address_T_1 = bits(inSpriteY[23], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:88]
+    node _spriteMemories_23_io_address_T_2 = mul(UInt<6>("h20"), _spriteMemories_23_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:74]
+    node _spriteMemories_23_io_address_T_3 = add(_spriteMemories_23_io_address_T, _spriteMemories_23_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    node _spriteMemories_23_io_address_T_4 = tail(_spriteMemories_23_io_address_T_3, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    spriteMemories_23.io.address <= _spriteMemories_23_io_address_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:34]
+    spriteMemories_24.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 326:33]
+    spriteMemories_24.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 327:36]
+    spriteMemories_24.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 328:38]
+    node _spriteMemories_24_io_address_T = bits(inSpriteX[24], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:49]
+    node _spriteMemories_24_io_address_T_1 = bits(inSpriteY[24], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:88]
+    node _spriteMemories_24_io_address_T_2 = mul(UInt<6>("h20"), _spriteMemories_24_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:74]
+    node _spriteMemories_24_io_address_T_3 = add(_spriteMemories_24_io_address_T, _spriteMemories_24_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    node _spriteMemories_24_io_address_T_4 = tail(_spriteMemories_24_io_address_T_3, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    spriteMemories_24.io.address <= _spriteMemories_24_io_address_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:34]
+    spriteMemories_25.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 326:33]
+    spriteMemories_25.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 327:36]
+    spriteMemories_25.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 328:38]
+    node _spriteMemories_25_io_address_T = bits(inSpriteX[25], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:49]
+    node _spriteMemories_25_io_address_T_1 = bits(inSpriteY[25], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:88]
+    node _spriteMemories_25_io_address_T_2 = mul(UInt<6>("h20"), _spriteMemories_25_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:74]
+    node _spriteMemories_25_io_address_T_3 = add(_spriteMemories_25_io_address_T, _spriteMemories_25_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    node _spriteMemories_25_io_address_T_4 = tail(_spriteMemories_25_io_address_T_3, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    spriteMemories_25.io.address <= _spriteMemories_25_io_address_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:34]
+    spriteMemories_26.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 326:33]
+    spriteMemories_26.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 327:36]
+    spriteMemories_26.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 328:38]
+    node _spriteMemories_26_io_address_T = bits(inSpriteX[26], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:49]
+    node _spriteMemories_26_io_address_T_1 = bits(inSpriteY[26], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:88]
+    node _spriteMemories_26_io_address_T_2 = mul(UInt<6>("h20"), _spriteMemories_26_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:74]
+    node _spriteMemories_26_io_address_T_3 = add(_spriteMemories_26_io_address_T, _spriteMemories_26_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    node _spriteMemories_26_io_address_T_4 = tail(_spriteMemories_26_io_address_T_3, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    spriteMemories_26.io.address <= _spriteMemories_26_io_address_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:34]
+    spriteMemories_27.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 326:33]
+    spriteMemories_27.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 327:36]
+    spriteMemories_27.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 328:38]
+    node _spriteMemories_27_io_address_T = bits(inSpriteX[27], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:49]
+    node _spriteMemories_27_io_address_T_1 = bits(inSpriteY[27], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:88]
+    node _spriteMemories_27_io_address_T_2 = mul(UInt<6>("h20"), _spriteMemories_27_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:74]
+    node _spriteMemories_27_io_address_T_3 = add(_spriteMemories_27_io_address_T, _spriteMemories_27_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    node _spriteMemories_27_io_address_T_4 = tail(_spriteMemories_27_io_address_T_3, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    spriteMemories_27.io.address <= _spriteMemories_27_io_address_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:34]
+    spriteMemories_28.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 326:33]
+    spriteMemories_28.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 327:36]
+    spriteMemories_28.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 328:38]
+    node _spriteMemories_28_io_address_T = bits(inSpriteX[28], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:49]
+    node _spriteMemories_28_io_address_T_1 = bits(inSpriteY[28], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:88]
+    node _spriteMemories_28_io_address_T_2 = mul(UInt<6>("h20"), _spriteMemories_28_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:74]
+    node _spriteMemories_28_io_address_T_3 = add(_spriteMemories_28_io_address_T, _spriteMemories_28_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    node _spriteMemories_28_io_address_T_4 = tail(_spriteMemories_28_io_address_T_3, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    spriteMemories_28.io.address <= _spriteMemories_28_io_address_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:34]
+    spriteMemories_29.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 326:33]
+    spriteMemories_29.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 327:36]
+    spriteMemories_29.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 328:38]
+    node _spriteMemories_29_io_address_T = bits(inSpriteX[29], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:49]
+    node _spriteMemories_29_io_address_T_1 = bits(inSpriteY[29], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:88]
+    node _spriteMemories_29_io_address_T_2 = mul(UInt<6>("h20"), _spriteMemories_29_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:74]
+    node _spriteMemories_29_io_address_T_3 = add(_spriteMemories_29_io_address_T, _spriteMemories_29_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    node _spriteMemories_29_io_address_T_4 = tail(_spriteMemories_29_io_address_T_3, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    spriteMemories_29.io.address <= _spriteMemories_29_io_address_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:34]
+    spriteMemories_30.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 326:33]
+    spriteMemories_30.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 327:36]
+    spriteMemories_30.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 328:38]
+    node _spriteMemories_30_io_address_T = bits(inSpriteX[30], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:49]
+    node _spriteMemories_30_io_address_T_1 = bits(inSpriteY[30], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:88]
+    node _spriteMemories_30_io_address_T_2 = mul(UInt<6>("h20"), _spriteMemories_30_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:74]
+    node _spriteMemories_30_io_address_T_3 = add(_spriteMemories_30_io_address_T, _spriteMemories_30_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    node _spriteMemories_30_io_address_T_4 = tail(_spriteMemories_30_io_address_T_3, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    spriteMemories_30.io.address <= _spriteMemories_30_io_address_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:34]
+    spriteMemories_31.io.enable <= UInt<1>("h1") @[\\src\\main\\scala\\GraphicEngineVGA.scala 326:33]
+    spriteMemories_31.io.dataWrite <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 327:36]
+    spriteMemories_31.io.writeEnable <= UInt<1>("h0") @[\\src\\main\\scala\\GraphicEngineVGA.scala 328:38]
+    node _spriteMemories_31_io_address_T = bits(inSpriteX[31], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:49]
+    node _spriteMemories_31_io_address_T_1 = bits(inSpriteY[31], 4, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:88]
+    node _spriteMemories_31_io_address_T_2 = mul(UInt<6>("h20"), _spriteMemories_31_io_address_T_1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:74]
+    node _spriteMemories_31_io_address_T_3 = add(_spriteMemories_31_io_address_T, _spriteMemories_31_io_address_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    node _spriteMemories_31_io_address_T_4 = tail(_spriteMemories_31_io_address_T_3, 1) @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:62]
+    spriteMemories_31.io.address <= _spriteMemories_31_io_address_T_4 @[\\src\\main\\scala\\GraphicEngineVGA.scala 329:34]
     inst multiHotPriortyReductionTree of MultiHotPriortyReductionTree @[\\src\\main\\scala\\GraphicEngineVGA.scala 334:44]
     multiHotPriortyReductionTree.clock <= clock
     multiHotPriortyReductionTree.reset <= reset
@@ -4523,6 +8363,342 @@ circuit Top :
     node _multiHotPriortyReductionTree_io_selectInput_15_T_2 = not(multiHotPriortyReductionTree_io_selectInput_15_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:123]
     node _multiHotPriortyReductionTree_io_selectInput_15_T_3 = and(_multiHotPriortyReductionTree_io_selectInput_15_T, _multiHotPriortyReductionTree_io_selectInput_15_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:121]
     multiHotPriortyReductionTree.io.selectInput[15] <= _multiHotPriortyReductionTree_io_selectInput_15_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:52]
+    node _multiHotPriortyReductionTree_io_dataInput_16_T = bits(spriteMemories_16.io.dataRead, 5, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:90]
+    reg multiHotPriortyReductionTree_io_dataInput_16_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_dataInput_16_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree_io_dataInput_16_REG <= _multiHotPriortyReductionTree_io_dataInput_16_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree.io.dataInput[16] <= multiHotPriortyReductionTree_io_dataInput_16_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:50]
+    reg multiHotPriortyReductionTree_io_selectInput_16_pipeReg : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_16_pipeReg) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_16_pipeReg[1] <= spriteVisibleReg[16] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_16_pipeReg[0] <= multiHotPriortyReductionTree_io_selectInput_16_pipeReg[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    reg multiHotPriortyReductionTree_io_selectInput_16_pipeReg_1 : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_16_pipeReg_1) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_16_pipeReg_1[1] <= inSprite[16] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_16_pipeReg_1[0] <= multiHotPriortyReductionTree_io_selectInput_16_pipeReg_1[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    node _multiHotPriortyReductionTree_io_selectInput_16_T = and(multiHotPriortyReductionTree_io_selectInput_16_pipeReg[0], multiHotPriortyReductionTree_io_selectInput_16_pipeReg_1[0]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:91]
+    node _multiHotPriortyReductionTree_io_selectInput_16_T_1 = bits(spriteMemories_16.io.dataRead, 6, 6) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:162]
+    reg multiHotPriortyReductionTree_io_selectInput_16_REG : UInt<1>, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_16_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    multiHotPriortyReductionTree_io_selectInput_16_REG <= _multiHotPriortyReductionTree_io_selectInput_16_T_1 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    node _multiHotPriortyReductionTree_io_selectInput_16_T_2 = not(multiHotPriortyReductionTree_io_selectInput_16_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:123]
+    node _multiHotPriortyReductionTree_io_selectInput_16_T_3 = and(_multiHotPriortyReductionTree_io_selectInput_16_T, _multiHotPriortyReductionTree_io_selectInput_16_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:121]
+    multiHotPriortyReductionTree.io.selectInput[16] <= _multiHotPriortyReductionTree_io_selectInput_16_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:52]
+    node _multiHotPriortyReductionTree_io_dataInput_17_T = bits(spriteMemories_17.io.dataRead, 5, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:90]
+    reg multiHotPriortyReductionTree_io_dataInput_17_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_dataInput_17_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree_io_dataInput_17_REG <= _multiHotPriortyReductionTree_io_dataInput_17_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree.io.dataInput[17] <= multiHotPriortyReductionTree_io_dataInput_17_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:50]
+    reg multiHotPriortyReductionTree_io_selectInput_17_pipeReg : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_17_pipeReg) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_17_pipeReg[1] <= spriteVisibleReg[17] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_17_pipeReg[0] <= multiHotPriortyReductionTree_io_selectInput_17_pipeReg[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    reg multiHotPriortyReductionTree_io_selectInput_17_pipeReg_1 : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_17_pipeReg_1) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_17_pipeReg_1[1] <= inSprite[17] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_17_pipeReg_1[0] <= multiHotPriortyReductionTree_io_selectInput_17_pipeReg_1[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    node _multiHotPriortyReductionTree_io_selectInput_17_T = and(multiHotPriortyReductionTree_io_selectInput_17_pipeReg[0], multiHotPriortyReductionTree_io_selectInput_17_pipeReg_1[0]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:91]
+    node _multiHotPriortyReductionTree_io_selectInput_17_T_1 = bits(spriteMemories_17.io.dataRead, 6, 6) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:162]
+    reg multiHotPriortyReductionTree_io_selectInput_17_REG : UInt<1>, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_17_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    multiHotPriortyReductionTree_io_selectInput_17_REG <= _multiHotPriortyReductionTree_io_selectInput_17_T_1 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    node _multiHotPriortyReductionTree_io_selectInput_17_T_2 = not(multiHotPriortyReductionTree_io_selectInput_17_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:123]
+    node _multiHotPriortyReductionTree_io_selectInput_17_T_3 = and(_multiHotPriortyReductionTree_io_selectInput_17_T, _multiHotPriortyReductionTree_io_selectInput_17_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:121]
+    multiHotPriortyReductionTree.io.selectInput[17] <= _multiHotPriortyReductionTree_io_selectInput_17_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:52]
+    node _multiHotPriortyReductionTree_io_dataInput_18_T = bits(spriteMemories_18.io.dataRead, 5, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:90]
+    reg multiHotPriortyReductionTree_io_dataInput_18_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_dataInput_18_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree_io_dataInput_18_REG <= _multiHotPriortyReductionTree_io_dataInput_18_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree.io.dataInput[18] <= multiHotPriortyReductionTree_io_dataInput_18_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:50]
+    reg multiHotPriortyReductionTree_io_selectInput_18_pipeReg : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_18_pipeReg) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_18_pipeReg[1] <= spriteVisibleReg[18] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_18_pipeReg[0] <= multiHotPriortyReductionTree_io_selectInput_18_pipeReg[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    reg multiHotPriortyReductionTree_io_selectInput_18_pipeReg_1 : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_18_pipeReg_1) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_18_pipeReg_1[1] <= inSprite[18] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_18_pipeReg_1[0] <= multiHotPriortyReductionTree_io_selectInput_18_pipeReg_1[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    node _multiHotPriortyReductionTree_io_selectInput_18_T = and(multiHotPriortyReductionTree_io_selectInput_18_pipeReg[0], multiHotPriortyReductionTree_io_selectInput_18_pipeReg_1[0]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:91]
+    node _multiHotPriortyReductionTree_io_selectInput_18_T_1 = bits(spriteMemories_18.io.dataRead, 6, 6) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:162]
+    reg multiHotPriortyReductionTree_io_selectInput_18_REG : UInt<1>, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_18_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    multiHotPriortyReductionTree_io_selectInput_18_REG <= _multiHotPriortyReductionTree_io_selectInput_18_T_1 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    node _multiHotPriortyReductionTree_io_selectInput_18_T_2 = not(multiHotPriortyReductionTree_io_selectInput_18_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:123]
+    node _multiHotPriortyReductionTree_io_selectInput_18_T_3 = and(_multiHotPriortyReductionTree_io_selectInput_18_T, _multiHotPriortyReductionTree_io_selectInput_18_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:121]
+    multiHotPriortyReductionTree.io.selectInput[18] <= _multiHotPriortyReductionTree_io_selectInput_18_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:52]
+    node _multiHotPriortyReductionTree_io_dataInput_19_T = bits(spriteMemories_19.io.dataRead, 5, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:90]
+    reg multiHotPriortyReductionTree_io_dataInput_19_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_dataInput_19_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree_io_dataInput_19_REG <= _multiHotPriortyReductionTree_io_dataInput_19_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree.io.dataInput[19] <= multiHotPriortyReductionTree_io_dataInput_19_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:50]
+    reg multiHotPriortyReductionTree_io_selectInput_19_pipeReg : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_19_pipeReg) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_19_pipeReg[1] <= spriteVisibleReg[19] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_19_pipeReg[0] <= multiHotPriortyReductionTree_io_selectInput_19_pipeReg[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    reg multiHotPriortyReductionTree_io_selectInput_19_pipeReg_1 : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_19_pipeReg_1) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_19_pipeReg_1[1] <= inSprite[19] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_19_pipeReg_1[0] <= multiHotPriortyReductionTree_io_selectInput_19_pipeReg_1[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    node _multiHotPriortyReductionTree_io_selectInput_19_T = and(multiHotPriortyReductionTree_io_selectInput_19_pipeReg[0], multiHotPriortyReductionTree_io_selectInput_19_pipeReg_1[0]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:91]
+    node _multiHotPriortyReductionTree_io_selectInput_19_T_1 = bits(spriteMemories_19.io.dataRead, 6, 6) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:162]
+    reg multiHotPriortyReductionTree_io_selectInput_19_REG : UInt<1>, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_19_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    multiHotPriortyReductionTree_io_selectInput_19_REG <= _multiHotPriortyReductionTree_io_selectInput_19_T_1 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    node _multiHotPriortyReductionTree_io_selectInput_19_T_2 = not(multiHotPriortyReductionTree_io_selectInput_19_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:123]
+    node _multiHotPriortyReductionTree_io_selectInput_19_T_3 = and(_multiHotPriortyReductionTree_io_selectInput_19_T, _multiHotPriortyReductionTree_io_selectInput_19_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:121]
+    multiHotPriortyReductionTree.io.selectInput[19] <= _multiHotPriortyReductionTree_io_selectInput_19_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:52]
+    node _multiHotPriortyReductionTree_io_dataInput_20_T = bits(spriteMemories_20.io.dataRead, 5, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:90]
+    reg multiHotPriortyReductionTree_io_dataInput_20_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_dataInput_20_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree_io_dataInput_20_REG <= _multiHotPriortyReductionTree_io_dataInput_20_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree.io.dataInput[20] <= multiHotPriortyReductionTree_io_dataInput_20_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:50]
+    reg multiHotPriortyReductionTree_io_selectInput_20_pipeReg : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_20_pipeReg) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_20_pipeReg[1] <= spriteVisibleReg[20] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_20_pipeReg[0] <= multiHotPriortyReductionTree_io_selectInput_20_pipeReg[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    reg multiHotPriortyReductionTree_io_selectInput_20_pipeReg_1 : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_20_pipeReg_1) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_20_pipeReg_1[1] <= inSprite[20] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_20_pipeReg_1[0] <= multiHotPriortyReductionTree_io_selectInput_20_pipeReg_1[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    node _multiHotPriortyReductionTree_io_selectInput_20_T = and(multiHotPriortyReductionTree_io_selectInput_20_pipeReg[0], multiHotPriortyReductionTree_io_selectInput_20_pipeReg_1[0]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:91]
+    node _multiHotPriortyReductionTree_io_selectInput_20_T_1 = bits(spriteMemories_20.io.dataRead, 6, 6) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:162]
+    reg multiHotPriortyReductionTree_io_selectInput_20_REG : UInt<1>, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_20_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    multiHotPriortyReductionTree_io_selectInput_20_REG <= _multiHotPriortyReductionTree_io_selectInput_20_T_1 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    node _multiHotPriortyReductionTree_io_selectInput_20_T_2 = not(multiHotPriortyReductionTree_io_selectInput_20_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:123]
+    node _multiHotPriortyReductionTree_io_selectInput_20_T_3 = and(_multiHotPriortyReductionTree_io_selectInput_20_T, _multiHotPriortyReductionTree_io_selectInput_20_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:121]
+    multiHotPriortyReductionTree.io.selectInput[20] <= _multiHotPriortyReductionTree_io_selectInput_20_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:52]
+    node _multiHotPriortyReductionTree_io_dataInput_21_T = bits(spriteMemories_21.io.dataRead, 5, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:90]
+    reg multiHotPriortyReductionTree_io_dataInput_21_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_dataInput_21_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree_io_dataInput_21_REG <= _multiHotPriortyReductionTree_io_dataInput_21_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree.io.dataInput[21] <= multiHotPriortyReductionTree_io_dataInput_21_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:50]
+    reg multiHotPriortyReductionTree_io_selectInput_21_pipeReg : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_21_pipeReg) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_21_pipeReg[1] <= spriteVisibleReg[21] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_21_pipeReg[0] <= multiHotPriortyReductionTree_io_selectInput_21_pipeReg[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    reg multiHotPriortyReductionTree_io_selectInput_21_pipeReg_1 : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_21_pipeReg_1) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_21_pipeReg_1[1] <= inSprite[21] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_21_pipeReg_1[0] <= multiHotPriortyReductionTree_io_selectInput_21_pipeReg_1[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    node _multiHotPriortyReductionTree_io_selectInput_21_T = and(multiHotPriortyReductionTree_io_selectInput_21_pipeReg[0], multiHotPriortyReductionTree_io_selectInput_21_pipeReg_1[0]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:91]
+    node _multiHotPriortyReductionTree_io_selectInput_21_T_1 = bits(spriteMemories_21.io.dataRead, 6, 6) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:162]
+    reg multiHotPriortyReductionTree_io_selectInput_21_REG : UInt<1>, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_21_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    multiHotPriortyReductionTree_io_selectInput_21_REG <= _multiHotPriortyReductionTree_io_selectInput_21_T_1 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    node _multiHotPriortyReductionTree_io_selectInput_21_T_2 = not(multiHotPriortyReductionTree_io_selectInput_21_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:123]
+    node _multiHotPriortyReductionTree_io_selectInput_21_T_3 = and(_multiHotPriortyReductionTree_io_selectInput_21_T, _multiHotPriortyReductionTree_io_selectInput_21_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:121]
+    multiHotPriortyReductionTree.io.selectInput[21] <= _multiHotPriortyReductionTree_io_selectInput_21_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:52]
+    node _multiHotPriortyReductionTree_io_dataInput_22_T = bits(spriteMemories_22.io.dataRead, 5, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:90]
+    reg multiHotPriortyReductionTree_io_dataInput_22_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_dataInput_22_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree_io_dataInput_22_REG <= _multiHotPriortyReductionTree_io_dataInput_22_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree.io.dataInput[22] <= multiHotPriortyReductionTree_io_dataInput_22_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:50]
+    reg multiHotPriortyReductionTree_io_selectInput_22_pipeReg : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_22_pipeReg) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_22_pipeReg[1] <= spriteVisibleReg[22] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_22_pipeReg[0] <= multiHotPriortyReductionTree_io_selectInput_22_pipeReg[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    reg multiHotPriortyReductionTree_io_selectInput_22_pipeReg_1 : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_22_pipeReg_1) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_22_pipeReg_1[1] <= inSprite[22] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_22_pipeReg_1[0] <= multiHotPriortyReductionTree_io_selectInput_22_pipeReg_1[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    node _multiHotPriortyReductionTree_io_selectInput_22_T = and(multiHotPriortyReductionTree_io_selectInput_22_pipeReg[0], multiHotPriortyReductionTree_io_selectInput_22_pipeReg_1[0]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:91]
+    node _multiHotPriortyReductionTree_io_selectInput_22_T_1 = bits(spriteMemories_22.io.dataRead, 6, 6) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:162]
+    reg multiHotPriortyReductionTree_io_selectInput_22_REG : UInt<1>, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_22_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    multiHotPriortyReductionTree_io_selectInput_22_REG <= _multiHotPriortyReductionTree_io_selectInput_22_T_1 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    node _multiHotPriortyReductionTree_io_selectInput_22_T_2 = not(multiHotPriortyReductionTree_io_selectInput_22_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:123]
+    node _multiHotPriortyReductionTree_io_selectInput_22_T_3 = and(_multiHotPriortyReductionTree_io_selectInput_22_T, _multiHotPriortyReductionTree_io_selectInput_22_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:121]
+    multiHotPriortyReductionTree.io.selectInput[22] <= _multiHotPriortyReductionTree_io_selectInput_22_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:52]
+    node _multiHotPriortyReductionTree_io_dataInput_23_T = bits(spriteMemories_23.io.dataRead, 5, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:90]
+    reg multiHotPriortyReductionTree_io_dataInput_23_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_dataInput_23_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree_io_dataInput_23_REG <= _multiHotPriortyReductionTree_io_dataInput_23_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree.io.dataInput[23] <= multiHotPriortyReductionTree_io_dataInput_23_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:50]
+    reg multiHotPriortyReductionTree_io_selectInput_23_pipeReg : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_23_pipeReg) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_23_pipeReg[1] <= spriteVisibleReg[23] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_23_pipeReg[0] <= multiHotPriortyReductionTree_io_selectInput_23_pipeReg[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    reg multiHotPriortyReductionTree_io_selectInput_23_pipeReg_1 : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_23_pipeReg_1) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_23_pipeReg_1[1] <= inSprite[23] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_23_pipeReg_1[0] <= multiHotPriortyReductionTree_io_selectInput_23_pipeReg_1[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    node _multiHotPriortyReductionTree_io_selectInput_23_T = and(multiHotPriortyReductionTree_io_selectInput_23_pipeReg[0], multiHotPriortyReductionTree_io_selectInput_23_pipeReg_1[0]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:91]
+    node _multiHotPriortyReductionTree_io_selectInput_23_T_1 = bits(spriteMemories_23.io.dataRead, 6, 6) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:162]
+    reg multiHotPriortyReductionTree_io_selectInput_23_REG : UInt<1>, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_23_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    multiHotPriortyReductionTree_io_selectInput_23_REG <= _multiHotPriortyReductionTree_io_selectInput_23_T_1 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    node _multiHotPriortyReductionTree_io_selectInput_23_T_2 = not(multiHotPriortyReductionTree_io_selectInput_23_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:123]
+    node _multiHotPriortyReductionTree_io_selectInput_23_T_3 = and(_multiHotPriortyReductionTree_io_selectInput_23_T, _multiHotPriortyReductionTree_io_selectInput_23_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:121]
+    multiHotPriortyReductionTree.io.selectInput[23] <= _multiHotPriortyReductionTree_io_selectInput_23_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:52]
+    node _multiHotPriortyReductionTree_io_dataInput_24_T = bits(spriteMemories_24.io.dataRead, 5, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:90]
+    reg multiHotPriortyReductionTree_io_dataInput_24_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_dataInput_24_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree_io_dataInput_24_REG <= _multiHotPriortyReductionTree_io_dataInput_24_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree.io.dataInput[24] <= multiHotPriortyReductionTree_io_dataInput_24_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:50]
+    reg multiHotPriortyReductionTree_io_selectInput_24_pipeReg : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_24_pipeReg) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_24_pipeReg[1] <= spriteVisibleReg[24] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_24_pipeReg[0] <= multiHotPriortyReductionTree_io_selectInput_24_pipeReg[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    reg multiHotPriortyReductionTree_io_selectInput_24_pipeReg_1 : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_24_pipeReg_1) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_24_pipeReg_1[1] <= inSprite[24] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_24_pipeReg_1[0] <= multiHotPriortyReductionTree_io_selectInput_24_pipeReg_1[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    node _multiHotPriortyReductionTree_io_selectInput_24_T = and(multiHotPriortyReductionTree_io_selectInput_24_pipeReg[0], multiHotPriortyReductionTree_io_selectInput_24_pipeReg_1[0]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:91]
+    node _multiHotPriortyReductionTree_io_selectInput_24_T_1 = bits(spriteMemories_24.io.dataRead, 6, 6) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:162]
+    reg multiHotPriortyReductionTree_io_selectInput_24_REG : UInt<1>, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_24_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    multiHotPriortyReductionTree_io_selectInput_24_REG <= _multiHotPriortyReductionTree_io_selectInput_24_T_1 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    node _multiHotPriortyReductionTree_io_selectInput_24_T_2 = not(multiHotPriortyReductionTree_io_selectInput_24_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:123]
+    node _multiHotPriortyReductionTree_io_selectInput_24_T_3 = and(_multiHotPriortyReductionTree_io_selectInput_24_T, _multiHotPriortyReductionTree_io_selectInput_24_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:121]
+    multiHotPriortyReductionTree.io.selectInput[24] <= _multiHotPriortyReductionTree_io_selectInput_24_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:52]
+    node _multiHotPriortyReductionTree_io_dataInput_25_T = bits(spriteMemories_25.io.dataRead, 5, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:90]
+    reg multiHotPriortyReductionTree_io_dataInput_25_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_dataInput_25_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree_io_dataInput_25_REG <= _multiHotPriortyReductionTree_io_dataInput_25_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree.io.dataInput[25] <= multiHotPriortyReductionTree_io_dataInput_25_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:50]
+    reg multiHotPriortyReductionTree_io_selectInput_25_pipeReg : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_25_pipeReg) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_25_pipeReg[1] <= spriteVisibleReg[25] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_25_pipeReg[0] <= multiHotPriortyReductionTree_io_selectInput_25_pipeReg[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    reg multiHotPriortyReductionTree_io_selectInput_25_pipeReg_1 : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_25_pipeReg_1) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_25_pipeReg_1[1] <= inSprite[25] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_25_pipeReg_1[0] <= multiHotPriortyReductionTree_io_selectInput_25_pipeReg_1[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    node _multiHotPriortyReductionTree_io_selectInput_25_T = and(multiHotPriortyReductionTree_io_selectInput_25_pipeReg[0], multiHotPriortyReductionTree_io_selectInput_25_pipeReg_1[0]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:91]
+    node _multiHotPriortyReductionTree_io_selectInput_25_T_1 = bits(spriteMemories_25.io.dataRead, 6, 6) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:162]
+    reg multiHotPriortyReductionTree_io_selectInput_25_REG : UInt<1>, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_25_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    multiHotPriortyReductionTree_io_selectInput_25_REG <= _multiHotPriortyReductionTree_io_selectInput_25_T_1 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    node _multiHotPriortyReductionTree_io_selectInput_25_T_2 = not(multiHotPriortyReductionTree_io_selectInput_25_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:123]
+    node _multiHotPriortyReductionTree_io_selectInput_25_T_3 = and(_multiHotPriortyReductionTree_io_selectInput_25_T, _multiHotPriortyReductionTree_io_selectInput_25_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:121]
+    multiHotPriortyReductionTree.io.selectInput[25] <= _multiHotPriortyReductionTree_io_selectInput_25_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:52]
+    node _multiHotPriortyReductionTree_io_dataInput_26_T = bits(spriteMemories_26.io.dataRead, 5, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:90]
+    reg multiHotPriortyReductionTree_io_dataInput_26_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_dataInput_26_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree_io_dataInput_26_REG <= _multiHotPriortyReductionTree_io_dataInput_26_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree.io.dataInput[26] <= multiHotPriortyReductionTree_io_dataInput_26_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:50]
+    reg multiHotPriortyReductionTree_io_selectInput_26_pipeReg : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_26_pipeReg) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_26_pipeReg[1] <= spriteVisibleReg[26] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_26_pipeReg[0] <= multiHotPriortyReductionTree_io_selectInput_26_pipeReg[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    reg multiHotPriortyReductionTree_io_selectInput_26_pipeReg_1 : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_26_pipeReg_1) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_26_pipeReg_1[1] <= inSprite[26] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_26_pipeReg_1[0] <= multiHotPriortyReductionTree_io_selectInput_26_pipeReg_1[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    node _multiHotPriortyReductionTree_io_selectInput_26_T = and(multiHotPriortyReductionTree_io_selectInput_26_pipeReg[0], multiHotPriortyReductionTree_io_selectInput_26_pipeReg_1[0]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:91]
+    node _multiHotPriortyReductionTree_io_selectInput_26_T_1 = bits(spriteMemories_26.io.dataRead, 6, 6) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:162]
+    reg multiHotPriortyReductionTree_io_selectInput_26_REG : UInt<1>, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_26_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    multiHotPriortyReductionTree_io_selectInput_26_REG <= _multiHotPriortyReductionTree_io_selectInput_26_T_1 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    node _multiHotPriortyReductionTree_io_selectInput_26_T_2 = not(multiHotPriortyReductionTree_io_selectInput_26_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:123]
+    node _multiHotPriortyReductionTree_io_selectInput_26_T_3 = and(_multiHotPriortyReductionTree_io_selectInput_26_T, _multiHotPriortyReductionTree_io_selectInput_26_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:121]
+    multiHotPriortyReductionTree.io.selectInput[26] <= _multiHotPriortyReductionTree_io_selectInput_26_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:52]
+    node _multiHotPriortyReductionTree_io_dataInput_27_T = bits(spriteMemories_27.io.dataRead, 5, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:90]
+    reg multiHotPriortyReductionTree_io_dataInput_27_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_dataInput_27_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree_io_dataInput_27_REG <= _multiHotPriortyReductionTree_io_dataInput_27_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree.io.dataInput[27] <= multiHotPriortyReductionTree_io_dataInput_27_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:50]
+    reg multiHotPriortyReductionTree_io_selectInput_27_pipeReg : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_27_pipeReg) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_27_pipeReg[1] <= spriteVisibleReg[27] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_27_pipeReg[0] <= multiHotPriortyReductionTree_io_selectInput_27_pipeReg[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    reg multiHotPriortyReductionTree_io_selectInput_27_pipeReg_1 : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_27_pipeReg_1) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_27_pipeReg_1[1] <= inSprite[27] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_27_pipeReg_1[0] <= multiHotPriortyReductionTree_io_selectInput_27_pipeReg_1[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    node _multiHotPriortyReductionTree_io_selectInput_27_T = and(multiHotPriortyReductionTree_io_selectInput_27_pipeReg[0], multiHotPriortyReductionTree_io_selectInput_27_pipeReg_1[0]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:91]
+    node _multiHotPriortyReductionTree_io_selectInput_27_T_1 = bits(spriteMemories_27.io.dataRead, 6, 6) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:162]
+    reg multiHotPriortyReductionTree_io_selectInput_27_REG : UInt<1>, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_27_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    multiHotPriortyReductionTree_io_selectInput_27_REG <= _multiHotPriortyReductionTree_io_selectInput_27_T_1 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    node _multiHotPriortyReductionTree_io_selectInput_27_T_2 = not(multiHotPriortyReductionTree_io_selectInput_27_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:123]
+    node _multiHotPriortyReductionTree_io_selectInput_27_T_3 = and(_multiHotPriortyReductionTree_io_selectInput_27_T, _multiHotPriortyReductionTree_io_selectInput_27_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:121]
+    multiHotPriortyReductionTree.io.selectInput[27] <= _multiHotPriortyReductionTree_io_selectInput_27_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:52]
+    node _multiHotPriortyReductionTree_io_dataInput_28_T = bits(spriteMemories_28.io.dataRead, 5, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:90]
+    reg multiHotPriortyReductionTree_io_dataInput_28_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_dataInput_28_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree_io_dataInput_28_REG <= _multiHotPriortyReductionTree_io_dataInput_28_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree.io.dataInput[28] <= multiHotPriortyReductionTree_io_dataInput_28_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:50]
+    reg multiHotPriortyReductionTree_io_selectInput_28_pipeReg : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_28_pipeReg) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_28_pipeReg[1] <= spriteVisibleReg[28] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_28_pipeReg[0] <= multiHotPriortyReductionTree_io_selectInput_28_pipeReg[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    reg multiHotPriortyReductionTree_io_selectInput_28_pipeReg_1 : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_28_pipeReg_1) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_28_pipeReg_1[1] <= inSprite[28] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_28_pipeReg_1[0] <= multiHotPriortyReductionTree_io_selectInput_28_pipeReg_1[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    node _multiHotPriortyReductionTree_io_selectInput_28_T = and(multiHotPriortyReductionTree_io_selectInput_28_pipeReg[0], multiHotPriortyReductionTree_io_selectInput_28_pipeReg_1[0]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:91]
+    node _multiHotPriortyReductionTree_io_selectInput_28_T_1 = bits(spriteMemories_28.io.dataRead, 6, 6) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:162]
+    reg multiHotPriortyReductionTree_io_selectInput_28_REG : UInt<1>, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_28_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    multiHotPriortyReductionTree_io_selectInput_28_REG <= _multiHotPriortyReductionTree_io_selectInput_28_T_1 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    node _multiHotPriortyReductionTree_io_selectInput_28_T_2 = not(multiHotPriortyReductionTree_io_selectInput_28_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:123]
+    node _multiHotPriortyReductionTree_io_selectInput_28_T_3 = and(_multiHotPriortyReductionTree_io_selectInput_28_T, _multiHotPriortyReductionTree_io_selectInput_28_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:121]
+    multiHotPriortyReductionTree.io.selectInput[28] <= _multiHotPriortyReductionTree_io_selectInput_28_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:52]
+    node _multiHotPriortyReductionTree_io_dataInput_29_T = bits(spriteMemories_29.io.dataRead, 5, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:90]
+    reg multiHotPriortyReductionTree_io_dataInput_29_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_dataInput_29_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree_io_dataInput_29_REG <= _multiHotPriortyReductionTree_io_dataInput_29_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree.io.dataInput[29] <= multiHotPriortyReductionTree_io_dataInput_29_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:50]
+    reg multiHotPriortyReductionTree_io_selectInput_29_pipeReg : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_29_pipeReg) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_29_pipeReg[1] <= spriteVisibleReg[29] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_29_pipeReg[0] <= multiHotPriortyReductionTree_io_selectInput_29_pipeReg[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    reg multiHotPriortyReductionTree_io_selectInput_29_pipeReg_1 : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_29_pipeReg_1) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_29_pipeReg_1[1] <= inSprite[29] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_29_pipeReg_1[0] <= multiHotPriortyReductionTree_io_selectInput_29_pipeReg_1[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    node _multiHotPriortyReductionTree_io_selectInput_29_T = and(multiHotPriortyReductionTree_io_selectInput_29_pipeReg[0], multiHotPriortyReductionTree_io_selectInput_29_pipeReg_1[0]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:91]
+    node _multiHotPriortyReductionTree_io_selectInput_29_T_1 = bits(spriteMemories_29.io.dataRead, 6, 6) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:162]
+    reg multiHotPriortyReductionTree_io_selectInput_29_REG : UInt<1>, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_29_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    multiHotPriortyReductionTree_io_selectInput_29_REG <= _multiHotPriortyReductionTree_io_selectInput_29_T_1 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    node _multiHotPriortyReductionTree_io_selectInput_29_T_2 = not(multiHotPriortyReductionTree_io_selectInput_29_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:123]
+    node _multiHotPriortyReductionTree_io_selectInput_29_T_3 = and(_multiHotPriortyReductionTree_io_selectInput_29_T, _multiHotPriortyReductionTree_io_selectInput_29_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:121]
+    multiHotPriortyReductionTree.io.selectInput[29] <= _multiHotPriortyReductionTree_io_selectInput_29_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:52]
+    node _multiHotPriortyReductionTree_io_dataInput_30_T = bits(spriteMemories_30.io.dataRead, 5, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:90]
+    reg multiHotPriortyReductionTree_io_dataInput_30_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_dataInput_30_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree_io_dataInput_30_REG <= _multiHotPriortyReductionTree_io_dataInput_30_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree.io.dataInput[30] <= multiHotPriortyReductionTree_io_dataInput_30_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:50]
+    reg multiHotPriortyReductionTree_io_selectInput_30_pipeReg : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_30_pipeReg) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_30_pipeReg[1] <= spriteVisibleReg[30] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_30_pipeReg[0] <= multiHotPriortyReductionTree_io_selectInput_30_pipeReg[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    reg multiHotPriortyReductionTree_io_selectInput_30_pipeReg_1 : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_30_pipeReg_1) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_30_pipeReg_1[1] <= inSprite[30] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_30_pipeReg_1[0] <= multiHotPriortyReductionTree_io_selectInput_30_pipeReg_1[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    node _multiHotPriortyReductionTree_io_selectInput_30_T = and(multiHotPriortyReductionTree_io_selectInput_30_pipeReg[0], multiHotPriortyReductionTree_io_selectInput_30_pipeReg_1[0]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:91]
+    node _multiHotPriortyReductionTree_io_selectInput_30_T_1 = bits(spriteMemories_30.io.dataRead, 6, 6) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:162]
+    reg multiHotPriortyReductionTree_io_selectInput_30_REG : UInt<1>, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_30_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    multiHotPriortyReductionTree_io_selectInput_30_REG <= _multiHotPriortyReductionTree_io_selectInput_30_T_1 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    node _multiHotPriortyReductionTree_io_selectInput_30_T_2 = not(multiHotPriortyReductionTree_io_selectInput_30_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:123]
+    node _multiHotPriortyReductionTree_io_selectInput_30_T_3 = and(_multiHotPriortyReductionTree_io_selectInput_30_T, _multiHotPriortyReductionTree_io_selectInput_30_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:121]
+    multiHotPriortyReductionTree.io.selectInput[30] <= _multiHotPriortyReductionTree_io_selectInput_30_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:52]
+    node _multiHotPriortyReductionTree_io_dataInput_31_T = bits(spriteMemories_31.io.dataRead, 5, 0) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:90]
+    reg multiHotPriortyReductionTree_io_dataInput_31_REG : UInt, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_dataInput_31_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree_io_dataInput_31_REG <= _multiHotPriortyReductionTree_io_dataInput_31_T @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:60]
+    multiHotPriortyReductionTree.io.dataInput[31] <= multiHotPriortyReductionTree_io_dataInput_31_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 336:50]
+    reg multiHotPriortyReductionTree_io_selectInput_31_pipeReg : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_31_pipeReg) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_31_pipeReg[1] <= spriteVisibleReg[31] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_31_pipeReg[0] <= multiHotPriortyReductionTree_io_selectInput_31_pipeReg[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    reg multiHotPriortyReductionTree_io_selectInput_31_pipeReg_1 : UInt<1>[2], clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_31_pipeReg_1) @[\\src\\main\\scala\\GameUtilities.scala 21:24]
+    multiHotPriortyReductionTree_io_selectInput_31_pipeReg_1[1] <= inSprite[31] @[\\src\\main\\scala\\GameUtilities.scala 23:30]
+    multiHotPriortyReductionTree_io_selectInput_31_pipeReg_1[0] <= multiHotPriortyReductionTree_io_selectInput_31_pipeReg_1[1] @[\\src\\main\\scala\\GameUtilities.scala 25:20]
+    node _multiHotPriortyReductionTree_io_selectInput_31_T = and(multiHotPriortyReductionTree_io_selectInput_31_pipeReg[0], multiHotPriortyReductionTree_io_selectInput_31_pipeReg_1[0]) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:91]
+    node _multiHotPriortyReductionTree_io_selectInput_31_T_1 = bits(spriteMemories_31.io.dataRead, 6, 6) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:162]
+    reg multiHotPriortyReductionTree_io_selectInput_31_REG : UInt<1>, clock with :
+      reset => (UInt<1>("h0"), multiHotPriortyReductionTree_io_selectInput_31_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    multiHotPriortyReductionTree_io_selectInput_31_REG <= _multiHotPriortyReductionTree_io_selectInput_31_T_1 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:132]
+    node _multiHotPriortyReductionTree_io_selectInput_31_T_2 = not(multiHotPriortyReductionTree_io_selectInput_31_REG) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:123]
+    node _multiHotPriortyReductionTree_io_selectInput_31_T_3 = and(_multiHotPriortyReductionTree_io_selectInput_31_T, _multiHotPriortyReductionTree_io_selectInput_31_T_2) @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:121]
+    multiHotPriortyReductionTree.io.selectInput[31] <= _multiHotPriortyReductionTree_io_selectInput_31_T_3 @[\\src\\main\\scala\\GraphicEngineVGA.scala 337:52]
     reg pixelColorSprite : UInt, clock with :
       reset => (UInt<1>("h0"), pixelColorSprite) @[\\src\\main\\scala\\GraphicEngineVGA.scala 339:33]
     pixelColorSprite <= multiHotPriortyReductionTree.io.dataOutput @[\\src\\main\\scala\\GraphicEngineVGA.scala 339:33]
@@ -4558,7 +8734,7 @@ circuit Top :
     io_vgaBlue_REG <= pixelColorBlue @[\\src\\main\\scala\\GraphicEngineVGA.scala 351:24]
     io.vgaBlue <= io_vgaBlue_REG @[\\src\\main\\scala\\GraphicEngineVGA.scala 351:14]
 
-  extmodule RamInitSpWf_49 :
+  extmodule RamInitSpWf_97 :
     input clk : Clock
     input we : UInt<1>
     input en : UInt<1>
@@ -4570,12 +8746,12 @@ circuit Top :
     parameter DATA_WIDTH = 28
     parameter LOAD_FILE = "memory_init/tune_init_0.mem"
 
-  module Memory_51 :
+  module Memory_99 :
     input clock : Clock
     input reset : Reset
     output io : { flip address : UInt<8>, dataRead : UInt<28>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<28>} @[\\src\\main\\scala\\Memory.scala 48:14]
 
-    inst ramsSpWf of RamInitSpWf_49 @[\\src\\main\\scala\\Memory.scala 65:26]
+    inst ramsSpWf of RamInitSpWf_97 @[\\src\\main\\scala\\Memory.scala 65:26]
     ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
     ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
     ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
@@ -4583,7 +8759,7 @@ circuit Top :
     ramsSpWf.di <= io.dataWrite @[\\src\\main\\scala\\Memory.scala 70:20]
     io.dataRead <= ramsSpWf.dout @[\\src\\main\\scala\\Memory.scala 71:17]
 
-  extmodule RamInitSpWf_50 :
+  extmodule RamInitSpWf_98 :
     input clk : Clock
     input we : UInt<1>
     input en : UInt<1>
@@ -4595,12 +8771,12 @@ circuit Top :
     parameter DATA_WIDTH = 28
     parameter LOAD_FILE = "memory_init/tune_init_1.mem"
 
-  module Memory_52 :
+  module Memory_100 :
     input clock : Clock
     input reset : Reset
     output io : { flip address : UInt<8>, dataRead : UInt<28>, flip enable : UInt<1>, flip writeEnable : UInt<1>, flip dataWrite : UInt<28>} @[\\src\\main\\scala\\Memory.scala 48:14]
 
-    inst ramsSpWf of RamInitSpWf_50 @[\\src\\main\\scala\\Memory.scala 65:26]
+    inst ramsSpWf of RamInitSpWf_98 @[\\src\\main\\scala\\Memory.scala 65:26]
     ramsSpWf.clk <= clock @[\\src\\main\\scala\\Memory.scala 66:21]
     ramsSpWf.we <= io.writeEnable @[\\src\\main\\scala\\Memory.scala 67:20]
     ramsSpWf.en <= io.enable @[\\src\\main\\scala\\Memory.scala 68:20]
@@ -4613,10 +8789,10 @@ circuit Top :
     input reset : Reset
     output io : { soundOut : UInt<1>, flip startTune : UInt<1>[2], flip stopTune : UInt<1>[2], flip pauseTune : UInt<1>[2], playingTune : UInt<1>[2], flip tuneId : UInt<1>} @[\\src\\main\\scala\\SoundEngine.scala 13:14]
 
-    inst tuneMemories_0 of Memory_51 @[\\src\\main\\scala\\SoundEngine.scala 26:28]
+    inst tuneMemories_0 of Memory_99 @[\\src\\main\\scala\\SoundEngine.scala 26:28]
     tuneMemories_0.clock <= clock
     tuneMemories_0.reset <= reset
-    inst tuneMemories_1 of Memory_52 @[\\src\\main\\scala\\SoundEngine.scala 26:28]
+    inst tuneMemories_1 of Memory_100 @[\\src\\main\\scala\\SoundEngine.scala 26:28]
     tuneMemories_1.clock <= clock
     tuneMemories_1.reset <= reset
     reg counter1msReg : UInt<17>, clock with :
@@ -4883,7 +9059,7 @@ circuit Top :
   module GameLogic :
     input clock : Clock
     input reset : Reset
-    output io : { flip btnC : UInt<1>, flip btnU : UInt<1>, flip btnL : UInt<1>, flip btnR : UInt<1>, flip btnD : UInt<1>, flip sw : UInt<1>[8], led : UInt<1>[8], spriteXPosition : SInt<11>[16], spriteYPosition : SInt<10>[16], spriteVisible : UInt<1>[16], spriteFlipHorizontal : UInt<1>[16], spriteFlipVertical : UInt<1>[16], spriteScaleUpHorizontal : UInt<1>[16], spriteScaleDownHorizontal : UInt<1>[16], spriteScaleUpVertical : UInt<1>[16], spriteScaleDownVertical : UInt<1>[16], viewBoxX : UInt<10>, viewBoxY : UInt<9>, backBufferWriteData : UInt<5>, backBufferWriteAddress : UInt<11>, backBufferWriteEnable : UInt<1>, flip newFrame : UInt<1>, frameUpdateDone : UInt<1>, startTune : UInt<1>[2], stopTune : UInt<1>[2], pauseTune : UInt<1>[2], flip playingTune : UInt<1>[2], tuneId : UInt<1>} @[\\src\\main\\scala\\GameLogic.scala 12:14]
+    output io : { flip btnC : UInt<1>, flip btnU : UInt<1>, flip btnL : UInt<1>, flip btnR : UInt<1>, flip btnD : UInt<1>, flip sw : UInt<1>[8], led : UInt<1>[8], spriteXPosition : SInt<11>[32], spriteYPosition : SInt<10>[32], spriteVisible : UInt<1>[32], spriteFlipHorizontal : UInt<1>[32], spriteFlipVertical : UInt<1>[32], spriteScaleUpHorizontal : UInt<1>[32], spriteScaleDownHorizontal : UInt<1>[32], spriteScaleUpVertical : UInt<1>[32], spriteScaleDownVertical : UInt<1>[32], viewBoxX : UInt<10>, viewBoxY : UInt<9>, backBufferWriteData : UInt<6>, backBufferWriteAddress : UInt<11>, backBufferWriteEnable : UInt<1>, flip newFrame : UInt<1>, frameUpdateDone : UInt<1>, startTune : UInt<1>[2], stopTune : UInt<1>[2], pauseTune : UInt<1>[2], flip playingTune : UInt<1>[2], tuneId : UInt<1>} @[\\src\\main\\scala\\GameLogic.scala 12:14]
 
     io.led[0] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 61:10]
     io.led[1] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 61:10]
@@ -4909,6 +9085,22 @@ circuit Top :
     io.spriteXPosition[13] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 80:22]
     io.spriteXPosition[14] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 80:22]
     io.spriteXPosition[15] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 80:22]
+    io.spriteXPosition[16] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 80:22]
+    io.spriteXPosition[17] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 80:22]
+    io.spriteXPosition[18] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 80:22]
+    io.spriteXPosition[19] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 80:22]
+    io.spriteXPosition[20] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 80:22]
+    io.spriteXPosition[21] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 80:22]
+    io.spriteXPosition[22] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 80:22]
+    io.spriteXPosition[23] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 80:22]
+    io.spriteXPosition[24] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 80:22]
+    io.spriteXPosition[25] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 80:22]
+    io.spriteXPosition[26] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 80:22]
+    io.spriteXPosition[27] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 80:22]
+    io.spriteXPosition[28] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 80:22]
+    io.spriteXPosition[29] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 80:22]
+    io.spriteXPosition[30] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 80:22]
+    io.spriteXPosition[31] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 80:22]
     io.spriteYPosition[0] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
     io.spriteYPosition[1] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
     io.spriteYPosition[2] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
@@ -4925,6 +9117,22 @@ circuit Top :
     io.spriteYPosition[13] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
     io.spriteYPosition[14] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
     io.spriteYPosition[15] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
+    io.spriteYPosition[16] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
+    io.spriteYPosition[17] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
+    io.spriteYPosition[18] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
+    io.spriteYPosition[19] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
+    io.spriteYPosition[20] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
+    io.spriteYPosition[21] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
+    io.spriteYPosition[22] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
+    io.spriteYPosition[23] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
+    io.spriteYPosition[24] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
+    io.spriteYPosition[25] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
+    io.spriteYPosition[26] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
+    io.spriteYPosition[27] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
+    io.spriteYPosition[28] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
+    io.spriteYPosition[29] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
+    io.spriteYPosition[30] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
+    io.spriteYPosition[31] <= asSInt(UInt<1>("h0")) @[\\src\\main\\scala\\GameLogic.scala 81:22]
     io.spriteVisible[0] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
     io.spriteVisible[1] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
     io.spriteVisible[2] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
@@ -4941,6 +9149,22 @@ circuit Top :
     io.spriteVisible[13] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
     io.spriteVisible[14] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
     io.spriteVisible[15] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
+    io.spriteVisible[16] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
+    io.spriteVisible[17] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
+    io.spriteVisible[18] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
+    io.spriteVisible[19] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
+    io.spriteVisible[20] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
+    io.spriteVisible[21] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
+    io.spriteVisible[22] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
+    io.spriteVisible[23] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
+    io.spriteVisible[24] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
+    io.spriteVisible[25] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
+    io.spriteVisible[26] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
+    io.spriteVisible[27] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
+    io.spriteVisible[28] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
+    io.spriteVisible[29] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
+    io.spriteVisible[30] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
+    io.spriteVisible[31] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 82:20]
     io.spriteFlipHorizontal[0] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
     io.spriteFlipHorizontal[1] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
     io.spriteFlipHorizontal[2] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
@@ -4957,6 +9181,22 @@ circuit Top :
     io.spriteFlipHorizontal[13] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
     io.spriteFlipHorizontal[14] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
     io.spriteFlipHorizontal[15] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
+    io.spriteFlipHorizontal[16] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
+    io.spriteFlipHorizontal[17] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
+    io.spriteFlipHorizontal[18] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
+    io.spriteFlipHorizontal[19] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
+    io.spriteFlipHorizontal[20] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
+    io.spriteFlipHorizontal[21] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
+    io.spriteFlipHorizontal[22] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
+    io.spriteFlipHorizontal[23] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
+    io.spriteFlipHorizontal[24] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
+    io.spriteFlipHorizontal[25] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
+    io.spriteFlipHorizontal[26] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
+    io.spriteFlipHorizontal[27] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
+    io.spriteFlipHorizontal[28] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
+    io.spriteFlipHorizontal[29] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
+    io.spriteFlipHorizontal[30] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
+    io.spriteFlipHorizontal[31] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 83:27]
     io.spriteFlipVertical[0] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
     io.spriteFlipVertical[1] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
     io.spriteFlipVertical[2] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
@@ -4973,6 +9213,22 @@ circuit Top :
     io.spriteFlipVertical[13] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
     io.spriteFlipVertical[14] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
     io.spriteFlipVertical[15] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
+    io.spriteFlipVertical[16] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
+    io.spriteFlipVertical[17] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
+    io.spriteFlipVertical[18] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
+    io.spriteFlipVertical[19] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
+    io.spriteFlipVertical[20] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
+    io.spriteFlipVertical[21] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
+    io.spriteFlipVertical[22] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
+    io.spriteFlipVertical[23] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
+    io.spriteFlipVertical[24] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
+    io.spriteFlipVertical[25] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
+    io.spriteFlipVertical[26] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
+    io.spriteFlipVertical[27] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
+    io.spriteFlipVertical[28] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
+    io.spriteFlipVertical[29] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
+    io.spriteFlipVertical[30] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
+    io.spriteFlipVertical[31] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 84:25]
     io.spriteScaleUpHorizontal[0] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
     io.spriteScaleUpHorizontal[1] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
     io.spriteScaleUpHorizontal[2] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
@@ -4989,6 +9245,22 @@ circuit Top :
     io.spriteScaleUpHorizontal[13] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
     io.spriteScaleUpHorizontal[14] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
     io.spriteScaleUpHorizontal[15] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
+    io.spriteScaleUpHorizontal[16] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
+    io.spriteScaleUpHorizontal[17] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
+    io.spriteScaleUpHorizontal[18] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
+    io.spriteScaleUpHorizontal[19] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
+    io.spriteScaleUpHorizontal[20] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
+    io.spriteScaleUpHorizontal[21] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
+    io.spriteScaleUpHorizontal[22] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
+    io.spriteScaleUpHorizontal[23] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
+    io.spriteScaleUpHorizontal[24] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
+    io.spriteScaleUpHorizontal[25] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
+    io.spriteScaleUpHorizontal[26] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
+    io.spriteScaleUpHorizontal[27] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
+    io.spriteScaleUpHorizontal[28] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
+    io.spriteScaleUpHorizontal[29] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
+    io.spriteScaleUpHorizontal[30] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
+    io.spriteScaleUpHorizontal[31] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 85:30]
     io.spriteScaleDownHorizontal[0] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
     io.spriteScaleDownHorizontal[1] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
     io.spriteScaleDownHorizontal[2] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
@@ -5005,6 +9277,22 @@ circuit Top :
     io.spriteScaleDownHorizontal[13] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
     io.spriteScaleDownHorizontal[14] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
     io.spriteScaleDownHorizontal[15] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
+    io.spriteScaleDownHorizontal[16] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
+    io.spriteScaleDownHorizontal[17] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
+    io.spriteScaleDownHorizontal[18] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
+    io.spriteScaleDownHorizontal[19] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
+    io.spriteScaleDownHorizontal[20] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
+    io.spriteScaleDownHorizontal[21] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
+    io.spriteScaleDownHorizontal[22] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
+    io.spriteScaleDownHorizontal[23] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
+    io.spriteScaleDownHorizontal[24] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
+    io.spriteScaleDownHorizontal[25] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
+    io.spriteScaleDownHorizontal[26] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
+    io.spriteScaleDownHorizontal[27] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
+    io.spriteScaleDownHorizontal[28] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
+    io.spriteScaleDownHorizontal[29] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
+    io.spriteScaleDownHorizontal[30] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
+    io.spriteScaleDownHorizontal[31] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 86:32]
     io.spriteScaleUpVertical[0] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
     io.spriteScaleUpVertical[1] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
     io.spriteScaleUpVertical[2] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
@@ -5021,6 +9309,22 @@ circuit Top :
     io.spriteScaleUpVertical[13] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
     io.spriteScaleUpVertical[14] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
     io.spriteScaleUpVertical[15] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
+    io.spriteScaleUpVertical[16] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
+    io.spriteScaleUpVertical[17] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
+    io.spriteScaleUpVertical[18] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
+    io.spriteScaleUpVertical[19] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
+    io.spriteScaleUpVertical[20] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
+    io.spriteScaleUpVertical[21] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
+    io.spriteScaleUpVertical[22] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
+    io.spriteScaleUpVertical[23] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
+    io.spriteScaleUpVertical[24] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
+    io.spriteScaleUpVertical[25] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
+    io.spriteScaleUpVertical[26] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
+    io.spriteScaleUpVertical[27] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
+    io.spriteScaleUpVertical[28] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
+    io.spriteScaleUpVertical[29] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
+    io.spriteScaleUpVertical[30] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
+    io.spriteScaleUpVertical[31] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 87:28]
     io.spriteScaleDownVertical[0] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
     io.spriteScaleDownVertical[1] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
     io.spriteScaleDownVertical[2] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
@@ -5037,6 +9341,22 @@ circuit Top :
     io.spriteScaleDownVertical[13] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
     io.spriteScaleDownVertical[14] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
     io.spriteScaleDownVertical[15] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
+    io.spriteScaleDownVertical[16] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
+    io.spriteScaleDownVertical[17] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
+    io.spriteScaleDownVertical[18] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
+    io.spriteScaleDownVertical[19] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
+    io.spriteScaleDownVertical[20] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
+    io.spriteScaleDownVertical[21] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
+    io.spriteScaleDownVertical[22] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
+    io.spriteScaleDownVertical[23] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
+    io.spriteScaleDownVertical[24] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
+    io.spriteScaleDownVertical[25] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
+    io.spriteScaleDownVertical[26] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
+    io.spriteScaleDownVertical[27] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
+    io.spriteScaleDownVertical[28] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
+    io.spriteScaleDownVertical[29] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
+    io.spriteScaleDownVertical[30] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
+    io.spriteScaleDownVertical[31] <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 88:30]
     io.viewBoxX <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 91:15]
     io.viewBoxY <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 92:15]
     io.backBufferWriteData <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 95:26]
@@ -5206,8 +9526,8 @@ circuit Top :
             sprite10Visible <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 238:25]
             sprite11Visible <= UInt<1>("h1") @[\\src\\main\\scala\\GameLogic.scala 239:25]
             sprite12Visible <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 240:25]
-            node _T_5 = gt(sprite13XReg, asSInt(UInt<10>("h100"))) @[\\src\\main\\scala\\GameLogic.scala 241:27]
-            node _T_6 = lt(sprite13XReg, asSInt(UInt<10>("h120"))) @[\\src\\main\\scala\\GameLogic.scala 241:51]
+            node _T_5 = gt(sprite13XReg, asSInt(UInt<9>("he3"))) @[\\src\\main\\scala\\GameLogic.scala 241:27]
+            node _T_6 = lt(sprite13XReg, asSInt(UInt<10>("h103"))) @[\\src\\main\\scala\\GameLogic.scala 241:51]
             node _T_7 = and(_T_5, _T_6) @[\\src\\main\\scala\\GameLogic.scala 241:35]
             node _T_8 = gt(sprite13YReg, asSInt(UInt<10>("h12c"))) @[\\src\\main\\scala\\GameLogic.scala 241:75]
             node _T_9 = and(_T_7, _T_8) @[\\src\\main\\scala\\GameLogic.scala 241:59]
@@ -5222,8 +9542,8 @@ circuit Top :
               else :
                 stateReg <= UInt<3>("h6") @[\\src\\main\\scala\\GameLogic.scala 248:22]
             else :
-              node _T_12 = gt(sprite13XReg, asSInt(UInt<10>("h130"))) @[\\src\\main\\scala\\GameLogic.scala 250:33]
-              node _T_13 = lt(sprite13XReg, asSInt(UInt<10>("h150"))) @[\\src\\main\\scala\\GameLogic.scala 250:57]
+              node _T_12 = gt(sprite13XReg, asSInt(UInt<10>("h113"))) @[\\src\\main\\scala\\GameLogic.scala 250:33]
+              node _T_13 = lt(sprite13XReg, asSInt(UInt<10>("h133"))) @[\\src\\main\\scala\\GameLogic.scala 250:57]
               node _T_14 = and(_T_12, _T_13) @[\\src\\main\\scala\\GameLogic.scala 250:41]
               node _T_15 = gt(sprite13YReg, asSInt(UInt<10>("h12c"))) @[\\src\\main\\scala\\GameLogic.scala 250:81]
               node _T_16 = and(_T_14, _T_15) @[\\src\\main\\scala\\GameLogic.scala 250:65]
@@ -5238,8 +9558,8 @@ circuit Top :
                 else :
                   stateReg <= UInt<3>("h6") @[\\src\\main\\scala\\GameLogic.scala 257:22]
               else :
-                node _T_19 = gt(sprite13XReg, asSInt(UInt<10>("h160"))) @[\\src\\main\\scala\\GameLogic.scala 259:33]
-                node _T_20 = lt(sprite13XReg, asSInt(UInt<10>("h184"))) @[\\src\\main\\scala\\GameLogic.scala 259:57]
+                node _T_19 = gt(sprite13XReg, asSInt(UInt<10>("h143"))) @[\\src\\main\\scala\\GameLogic.scala 259:33]
+                node _T_20 = lt(sprite13XReg, asSInt(UInt<10>("h163"))) @[\\src\\main\\scala\\GameLogic.scala 259:57]
                 node _T_21 = and(_T_19, _T_20) @[\\src\\main\\scala\\GameLogic.scala 259:41]
                 node _T_22 = gt(sprite13YReg, asSInt(UInt<10>("h12c"))) @[\\src\\main\\scala\\GameLogic.scala 259:81]
                 node _T_23 = and(_T_21, _T_22) @[\\src\\main\\scala\\GameLogic.scala 259:65]
@@ -5585,6 +9905,22 @@ circuit Top :
     graphicEngineVGA.io.spriteXPosition[13] <= gameLogic.io.spriteXPosition[13] @[\\src\\main\\scala\\GameTop.scala 125:39]
     graphicEngineVGA.io.spriteXPosition[14] <= gameLogic.io.spriteXPosition[14] @[\\src\\main\\scala\\GameTop.scala 125:39]
     graphicEngineVGA.io.spriteXPosition[15] <= gameLogic.io.spriteXPosition[15] @[\\src\\main\\scala\\GameTop.scala 125:39]
+    graphicEngineVGA.io.spriteXPosition[16] <= gameLogic.io.spriteXPosition[16] @[\\src\\main\\scala\\GameTop.scala 125:39]
+    graphicEngineVGA.io.spriteXPosition[17] <= gameLogic.io.spriteXPosition[17] @[\\src\\main\\scala\\GameTop.scala 125:39]
+    graphicEngineVGA.io.spriteXPosition[18] <= gameLogic.io.spriteXPosition[18] @[\\src\\main\\scala\\GameTop.scala 125:39]
+    graphicEngineVGA.io.spriteXPosition[19] <= gameLogic.io.spriteXPosition[19] @[\\src\\main\\scala\\GameTop.scala 125:39]
+    graphicEngineVGA.io.spriteXPosition[20] <= gameLogic.io.spriteXPosition[20] @[\\src\\main\\scala\\GameTop.scala 125:39]
+    graphicEngineVGA.io.spriteXPosition[21] <= gameLogic.io.spriteXPosition[21] @[\\src\\main\\scala\\GameTop.scala 125:39]
+    graphicEngineVGA.io.spriteXPosition[22] <= gameLogic.io.spriteXPosition[22] @[\\src\\main\\scala\\GameTop.scala 125:39]
+    graphicEngineVGA.io.spriteXPosition[23] <= gameLogic.io.spriteXPosition[23] @[\\src\\main\\scala\\GameTop.scala 125:39]
+    graphicEngineVGA.io.spriteXPosition[24] <= gameLogic.io.spriteXPosition[24] @[\\src\\main\\scala\\GameTop.scala 125:39]
+    graphicEngineVGA.io.spriteXPosition[25] <= gameLogic.io.spriteXPosition[25] @[\\src\\main\\scala\\GameTop.scala 125:39]
+    graphicEngineVGA.io.spriteXPosition[26] <= gameLogic.io.spriteXPosition[26] @[\\src\\main\\scala\\GameTop.scala 125:39]
+    graphicEngineVGA.io.spriteXPosition[27] <= gameLogic.io.spriteXPosition[27] @[\\src\\main\\scala\\GameTop.scala 125:39]
+    graphicEngineVGA.io.spriteXPosition[28] <= gameLogic.io.spriteXPosition[28] @[\\src\\main\\scala\\GameTop.scala 125:39]
+    graphicEngineVGA.io.spriteXPosition[29] <= gameLogic.io.spriteXPosition[29] @[\\src\\main\\scala\\GameTop.scala 125:39]
+    graphicEngineVGA.io.spriteXPosition[30] <= gameLogic.io.spriteXPosition[30] @[\\src\\main\\scala\\GameTop.scala 125:39]
+    graphicEngineVGA.io.spriteXPosition[31] <= gameLogic.io.spriteXPosition[31] @[\\src\\main\\scala\\GameTop.scala 125:39]
     graphicEngineVGA.io.spriteYPosition[0] <= gameLogic.io.spriteYPosition[0] @[\\src\\main\\scala\\GameTop.scala 126:39]
     graphicEngineVGA.io.spriteYPosition[1] <= gameLogic.io.spriteYPosition[1] @[\\src\\main\\scala\\GameTop.scala 126:39]
     graphicEngineVGA.io.spriteYPosition[2] <= gameLogic.io.spriteYPosition[2] @[\\src\\main\\scala\\GameTop.scala 126:39]
@@ -5601,6 +9937,22 @@ circuit Top :
     graphicEngineVGA.io.spriteYPosition[13] <= gameLogic.io.spriteYPosition[13] @[\\src\\main\\scala\\GameTop.scala 126:39]
     graphicEngineVGA.io.spriteYPosition[14] <= gameLogic.io.spriteYPosition[14] @[\\src\\main\\scala\\GameTop.scala 126:39]
     graphicEngineVGA.io.spriteYPosition[15] <= gameLogic.io.spriteYPosition[15] @[\\src\\main\\scala\\GameTop.scala 126:39]
+    graphicEngineVGA.io.spriteYPosition[16] <= gameLogic.io.spriteYPosition[16] @[\\src\\main\\scala\\GameTop.scala 126:39]
+    graphicEngineVGA.io.spriteYPosition[17] <= gameLogic.io.spriteYPosition[17] @[\\src\\main\\scala\\GameTop.scala 126:39]
+    graphicEngineVGA.io.spriteYPosition[18] <= gameLogic.io.spriteYPosition[18] @[\\src\\main\\scala\\GameTop.scala 126:39]
+    graphicEngineVGA.io.spriteYPosition[19] <= gameLogic.io.spriteYPosition[19] @[\\src\\main\\scala\\GameTop.scala 126:39]
+    graphicEngineVGA.io.spriteYPosition[20] <= gameLogic.io.spriteYPosition[20] @[\\src\\main\\scala\\GameTop.scala 126:39]
+    graphicEngineVGA.io.spriteYPosition[21] <= gameLogic.io.spriteYPosition[21] @[\\src\\main\\scala\\GameTop.scala 126:39]
+    graphicEngineVGA.io.spriteYPosition[22] <= gameLogic.io.spriteYPosition[22] @[\\src\\main\\scala\\GameTop.scala 126:39]
+    graphicEngineVGA.io.spriteYPosition[23] <= gameLogic.io.spriteYPosition[23] @[\\src\\main\\scala\\GameTop.scala 126:39]
+    graphicEngineVGA.io.spriteYPosition[24] <= gameLogic.io.spriteYPosition[24] @[\\src\\main\\scala\\GameTop.scala 126:39]
+    graphicEngineVGA.io.spriteYPosition[25] <= gameLogic.io.spriteYPosition[25] @[\\src\\main\\scala\\GameTop.scala 126:39]
+    graphicEngineVGA.io.spriteYPosition[26] <= gameLogic.io.spriteYPosition[26] @[\\src\\main\\scala\\GameTop.scala 126:39]
+    graphicEngineVGA.io.spriteYPosition[27] <= gameLogic.io.spriteYPosition[27] @[\\src\\main\\scala\\GameTop.scala 126:39]
+    graphicEngineVGA.io.spriteYPosition[28] <= gameLogic.io.spriteYPosition[28] @[\\src\\main\\scala\\GameTop.scala 126:39]
+    graphicEngineVGA.io.spriteYPosition[29] <= gameLogic.io.spriteYPosition[29] @[\\src\\main\\scala\\GameTop.scala 126:39]
+    graphicEngineVGA.io.spriteYPosition[30] <= gameLogic.io.spriteYPosition[30] @[\\src\\main\\scala\\GameTop.scala 126:39]
+    graphicEngineVGA.io.spriteYPosition[31] <= gameLogic.io.spriteYPosition[31] @[\\src\\main\\scala\\GameTop.scala 126:39]
     graphicEngineVGA.io.spriteVisible[0] <= gameLogic.io.spriteVisible[0] @[\\src\\main\\scala\\GameTop.scala 127:37]
     graphicEngineVGA.io.spriteVisible[1] <= gameLogic.io.spriteVisible[1] @[\\src\\main\\scala\\GameTop.scala 127:37]
     graphicEngineVGA.io.spriteVisible[2] <= gameLogic.io.spriteVisible[2] @[\\src\\main\\scala\\GameTop.scala 127:37]
@@ -5617,6 +9969,22 @@ circuit Top :
     graphicEngineVGA.io.spriteVisible[13] <= gameLogic.io.spriteVisible[13] @[\\src\\main\\scala\\GameTop.scala 127:37]
     graphicEngineVGA.io.spriteVisible[14] <= gameLogic.io.spriteVisible[14] @[\\src\\main\\scala\\GameTop.scala 127:37]
     graphicEngineVGA.io.spriteVisible[15] <= gameLogic.io.spriteVisible[15] @[\\src\\main\\scala\\GameTop.scala 127:37]
+    graphicEngineVGA.io.spriteVisible[16] <= gameLogic.io.spriteVisible[16] @[\\src\\main\\scala\\GameTop.scala 127:37]
+    graphicEngineVGA.io.spriteVisible[17] <= gameLogic.io.spriteVisible[17] @[\\src\\main\\scala\\GameTop.scala 127:37]
+    graphicEngineVGA.io.spriteVisible[18] <= gameLogic.io.spriteVisible[18] @[\\src\\main\\scala\\GameTop.scala 127:37]
+    graphicEngineVGA.io.spriteVisible[19] <= gameLogic.io.spriteVisible[19] @[\\src\\main\\scala\\GameTop.scala 127:37]
+    graphicEngineVGA.io.spriteVisible[20] <= gameLogic.io.spriteVisible[20] @[\\src\\main\\scala\\GameTop.scala 127:37]
+    graphicEngineVGA.io.spriteVisible[21] <= gameLogic.io.spriteVisible[21] @[\\src\\main\\scala\\GameTop.scala 127:37]
+    graphicEngineVGA.io.spriteVisible[22] <= gameLogic.io.spriteVisible[22] @[\\src\\main\\scala\\GameTop.scala 127:37]
+    graphicEngineVGA.io.spriteVisible[23] <= gameLogic.io.spriteVisible[23] @[\\src\\main\\scala\\GameTop.scala 127:37]
+    graphicEngineVGA.io.spriteVisible[24] <= gameLogic.io.spriteVisible[24] @[\\src\\main\\scala\\GameTop.scala 127:37]
+    graphicEngineVGA.io.spriteVisible[25] <= gameLogic.io.spriteVisible[25] @[\\src\\main\\scala\\GameTop.scala 127:37]
+    graphicEngineVGA.io.spriteVisible[26] <= gameLogic.io.spriteVisible[26] @[\\src\\main\\scala\\GameTop.scala 127:37]
+    graphicEngineVGA.io.spriteVisible[27] <= gameLogic.io.spriteVisible[27] @[\\src\\main\\scala\\GameTop.scala 127:37]
+    graphicEngineVGA.io.spriteVisible[28] <= gameLogic.io.spriteVisible[28] @[\\src\\main\\scala\\GameTop.scala 127:37]
+    graphicEngineVGA.io.spriteVisible[29] <= gameLogic.io.spriteVisible[29] @[\\src\\main\\scala\\GameTop.scala 127:37]
+    graphicEngineVGA.io.spriteVisible[30] <= gameLogic.io.spriteVisible[30] @[\\src\\main\\scala\\GameTop.scala 127:37]
+    graphicEngineVGA.io.spriteVisible[31] <= gameLogic.io.spriteVisible[31] @[\\src\\main\\scala\\GameTop.scala 127:37]
     graphicEngineVGA.io.spriteFlipHorizontal[0] <= gameLogic.io.spriteFlipHorizontal[0] @[\\src\\main\\scala\\GameTop.scala 128:44]
     graphicEngineVGA.io.spriteFlipHorizontal[1] <= gameLogic.io.spriteFlipHorizontal[1] @[\\src\\main\\scala\\GameTop.scala 128:44]
     graphicEngineVGA.io.spriteFlipHorizontal[2] <= gameLogic.io.spriteFlipHorizontal[2] @[\\src\\main\\scala\\GameTop.scala 128:44]
@@ -5633,6 +10001,22 @@ circuit Top :
     graphicEngineVGA.io.spriteFlipHorizontal[13] <= gameLogic.io.spriteFlipHorizontal[13] @[\\src\\main\\scala\\GameTop.scala 128:44]
     graphicEngineVGA.io.spriteFlipHorizontal[14] <= gameLogic.io.spriteFlipHorizontal[14] @[\\src\\main\\scala\\GameTop.scala 128:44]
     graphicEngineVGA.io.spriteFlipHorizontal[15] <= gameLogic.io.spriteFlipHorizontal[15] @[\\src\\main\\scala\\GameTop.scala 128:44]
+    graphicEngineVGA.io.spriteFlipHorizontal[16] <= gameLogic.io.spriteFlipHorizontal[16] @[\\src\\main\\scala\\GameTop.scala 128:44]
+    graphicEngineVGA.io.spriteFlipHorizontal[17] <= gameLogic.io.spriteFlipHorizontal[17] @[\\src\\main\\scala\\GameTop.scala 128:44]
+    graphicEngineVGA.io.spriteFlipHorizontal[18] <= gameLogic.io.spriteFlipHorizontal[18] @[\\src\\main\\scala\\GameTop.scala 128:44]
+    graphicEngineVGA.io.spriteFlipHorizontal[19] <= gameLogic.io.spriteFlipHorizontal[19] @[\\src\\main\\scala\\GameTop.scala 128:44]
+    graphicEngineVGA.io.spriteFlipHorizontal[20] <= gameLogic.io.spriteFlipHorizontal[20] @[\\src\\main\\scala\\GameTop.scala 128:44]
+    graphicEngineVGA.io.spriteFlipHorizontal[21] <= gameLogic.io.spriteFlipHorizontal[21] @[\\src\\main\\scala\\GameTop.scala 128:44]
+    graphicEngineVGA.io.spriteFlipHorizontal[22] <= gameLogic.io.spriteFlipHorizontal[22] @[\\src\\main\\scala\\GameTop.scala 128:44]
+    graphicEngineVGA.io.spriteFlipHorizontal[23] <= gameLogic.io.spriteFlipHorizontal[23] @[\\src\\main\\scala\\GameTop.scala 128:44]
+    graphicEngineVGA.io.spriteFlipHorizontal[24] <= gameLogic.io.spriteFlipHorizontal[24] @[\\src\\main\\scala\\GameTop.scala 128:44]
+    graphicEngineVGA.io.spriteFlipHorizontal[25] <= gameLogic.io.spriteFlipHorizontal[25] @[\\src\\main\\scala\\GameTop.scala 128:44]
+    graphicEngineVGA.io.spriteFlipHorizontal[26] <= gameLogic.io.spriteFlipHorizontal[26] @[\\src\\main\\scala\\GameTop.scala 128:44]
+    graphicEngineVGA.io.spriteFlipHorizontal[27] <= gameLogic.io.spriteFlipHorizontal[27] @[\\src\\main\\scala\\GameTop.scala 128:44]
+    graphicEngineVGA.io.spriteFlipHorizontal[28] <= gameLogic.io.spriteFlipHorizontal[28] @[\\src\\main\\scala\\GameTop.scala 128:44]
+    graphicEngineVGA.io.spriteFlipHorizontal[29] <= gameLogic.io.spriteFlipHorizontal[29] @[\\src\\main\\scala\\GameTop.scala 128:44]
+    graphicEngineVGA.io.spriteFlipHorizontal[30] <= gameLogic.io.spriteFlipHorizontal[30] @[\\src\\main\\scala\\GameTop.scala 128:44]
+    graphicEngineVGA.io.spriteFlipHorizontal[31] <= gameLogic.io.spriteFlipHorizontal[31] @[\\src\\main\\scala\\GameTop.scala 128:44]
     graphicEngineVGA.io.spriteFlipVertical[0] <= gameLogic.io.spriteFlipVertical[0] @[\\src\\main\\scala\\GameTop.scala 129:42]
     graphicEngineVGA.io.spriteFlipVertical[1] <= gameLogic.io.spriteFlipVertical[1] @[\\src\\main\\scala\\GameTop.scala 129:42]
     graphicEngineVGA.io.spriteFlipVertical[2] <= gameLogic.io.spriteFlipVertical[2] @[\\src\\main\\scala\\GameTop.scala 129:42]
@@ -5649,6 +10033,22 @@ circuit Top :
     graphicEngineVGA.io.spriteFlipVertical[13] <= gameLogic.io.spriteFlipVertical[13] @[\\src\\main\\scala\\GameTop.scala 129:42]
     graphicEngineVGA.io.spriteFlipVertical[14] <= gameLogic.io.spriteFlipVertical[14] @[\\src\\main\\scala\\GameTop.scala 129:42]
     graphicEngineVGA.io.spriteFlipVertical[15] <= gameLogic.io.spriteFlipVertical[15] @[\\src\\main\\scala\\GameTop.scala 129:42]
+    graphicEngineVGA.io.spriteFlipVertical[16] <= gameLogic.io.spriteFlipVertical[16] @[\\src\\main\\scala\\GameTop.scala 129:42]
+    graphicEngineVGA.io.spriteFlipVertical[17] <= gameLogic.io.spriteFlipVertical[17] @[\\src\\main\\scala\\GameTop.scala 129:42]
+    graphicEngineVGA.io.spriteFlipVertical[18] <= gameLogic.io.spriteFlipVertical[18] @[\\src\\main\\scala\\GameTop.scala 129:42]
+    graphicEngineVGA.io.spriteFlipVertical[19] <= gameLogic.io.spriteFlipVertical[19] @[\\src\\main\\scala\\GameTop.scala 129:42]
+    graphicEngineVGA.io.spriteFlipVertical[20] <= gameLogic.io.spriteFlipVertical[20] @[\\src\\main\\scala\\GameTop.scala 129:42]
+    graphicEngineVGA.io.spriteFlipVertical[21] <= gameLogic.io.spriteFlipVertical[21] @[\\src\\main\\scala\\GameTop.scala 129:42]
+    graphicEngineVGA.io.spriteFlipVertical[22] <= gameLogic.io.spriteFlipVertical[22] @[\\src\\main\\scala\\GameTop.scala 129:42]
+    graphicEngineVGA.io.spriteFlipVertical[23] <= gameLogic.io.spriteFlipVertical[23] @[\\src\\main\\scala\\GameTop.scala 129:42]
+    graphicEngineVGA.io.spriteFlipVertical[24] <= gameLogic.io.spriteFlipVertical[24] @[\\src\\main\\scala\\GameTop.scala 129:42]
+    graphicEngineVGA.io.spriteFlipVertical[25] <= gameLogic.io.spriteFlipVertical[25] @[\\src\\main\\scala\\GameTop.scala 129:42]
+    graphicEngineVGA.io.spriteFlipVertical[26] <= gameLogic.io.spriteFlipVertical[26] @[\\src\\main\\scala\\GameTop.scala 129:42]
+    graphicEngineVGA.io.spriteFlipVertical[27] <= gameLogic.io.spriteFlipVertical[27] @[\\src\\main\\scala\\GameTop.scala 129:42]
+    graphicEngineVGA.io.spriteFlipVertical[28] <= gameLogic.io.spriteFlipVertical[28] @[\\src\\main\\scala\\GameTop.scala 129:42]
+    graphicEngineVGA.io.spriteFlipVertical[29] <= gameLogic.io.spriteFlipVertical[29] @[\\src\\main\\scala\\GameTop.scala 129:42]
+    graphicEngineVGA.io.spriteFlipVertical[30] <= gameLogic.io.spriteFlipVertical[30] @[\\src\\main\\scala\\GameTop.scala 129:42]
+    graphicEngineVGA.io.spriteFlipVertical[31] <= gameLogic.io.spriteFlipVertical[31] @[\\src\\main\\scala\\GameTop.scala 129:42]
     graphicEngineVGA.io.spriteScaleUpHorizontal[0] <= gameLogic.io.spriteScaleUpHorizontal[0] @[\\src\\main\\scala\\GameTop.scala 132:47]
     graphicEngineVGA.io.spriteScaleUpHorizontal[1] <= gameLogic.io.spriteScaleUpHorizontal[1] @[\\src\\main\\scala\\GameTop.scala 132:47]
     graphicEngineVGA.io.spriteScaleUpHorizontal[2] <= gameLogic.io.spriteScaleUpHorizontal[2] @[\\src\\main\\scala\\GameTop.scala 132:47]
@@ -5665,6 +10065,22 @@ circuit Top :
     graphicEngineVGA.io.spriteScaleUpHorizontal[13] <= gameLogic.io.spriteScaleUpHorizontal[13] @[\\src\\main\\scala\\GameTop.scala 132:47]
     graphicEngineVGA.io.spriteScaleUpHorizontal[14] <= gameLogic.io.spriteScaleUpHorizontal[14] @[\\src\\main\\scala\\GameTop.scala 132:47]
     graphicEngineVGA.io.spriteScaleUpHorizontal[15] <= gameLogic.io.spriteScaleUpHorizontal[15] @[\\src\\main\\scala\\GameTop.scala 132:47]
+    graphicEngineVGA.io.spriteScaleUpHorizontal[16] <= gameLogic.io.spriteScaleUpHorizontal[16] @[\\src\\main\\scala\\GameTop.scala 132:47]
+    graphicEngineVGA.io.spriteScaleUpHorizontal[17] <= gameLogic.io.spriteScaleUpHorizontal[17] @[\\src\\main\\scala\\GameTop.scala 132:47]
+    graphicEngineVGA.io.spriteScaleUpHorizontal[18] <= gameLogic.io.spriteScaleUpHorizontal[18] @[\\src\\main\\scala\\GameTop.scala 132:47]
+    graphicEngineVGA.io.spriteScaleUpHorizontal[19] <= gameLogic.io.spriteScaleUpHorizontal[19] @[\\src\\main\\scala\\GameTop.scala 132:47]
+    graphicEngineVGA.io.spriteScaleUpHorizontal[20] <= gameLogic.io.spriteScaleUpHorizontal[20] @[\\src\\main\\scala\\GameTop.scala 132:47]
+    graphicEngineVGA.io.spriteScaleUpHorizontal[21] <= gameLogic.io.spriteScaleUpHorizontal[21] @[\\src\\main\\scala\\GameTop.scala 132:47]
+    graphicEngineVGA.io.spriteScaleUpHorizontal[22] <= gameLogic.io.spriteScaleUpHorizontal[22] @[\\src\\main\\scala\\GameTop.scala 132:47]
+    graphicEngineVGA.io.spriteScaleUpHorizontal[23] <= gameLogic.io.spriteScaleUpHorizontal[23] @[\\src\\main\\scala\\GameTop.scala 132:47]
+    graphicEngineVGA.io.spriteScaleUpHorizontal[24] <= gameLogic.io.spriteScaleUpHorizontal[24] @[\\src\\main\\scala\\GameTop.scala 132:47]
+    graphicEngineVGA.io.spriteScaleUpHorizontal[25] <= gameLogic.io.spriteScaleUpHorizontal[25] @[\\src\\main\\scala\\GameTop.scala 132:47]
+    graphicEngineVGA.io.spriteScaleUpHorizontal[26] <= gameLogic.io.spriteScaleUpHorizontal[26] @[\\src\\main\\scala\\GameTop.scala 132:47]
+    graphicEngineVGA.io.spriteScaleUpHorizontal[27] <= gameLogic.io.spriteScaleUpHorizontal[27] @[\\src\\main\\scala\\GameTop.scala 132:47]
+    graphicEngineVGA.io.spriteScaleUpHorizontal[28] <= gameLogic.io.spriteScaleUpHorizontal[28] @[\\src\\main\\scala\\GameTop.scala 132:47]
+    graphicEngineVGA.io.spriteScaleUpHorizontal[29] <= gameLogic.io.spriteScaleUpHorizontal[29] @[\\src\\main\\scala\\GameTop.scala 132:47]
+    graphicEngineVGA.io.spriteScaleUpHorizontal[30] <= gameLogic.io.spriteScaleUpHorizontal[30] @[\\src\\main\\scala\\GameTop.scala 132:47]
+    graphicEngineVGA.io.spriteScaleUpHorizontal[31] <= gameLogic.io.spriteScaleUpHorizontal[31] @[\\src\\main\\scala\\GameTop.scala 132:47]
     graphicEngineVGA.io.spriteScaleDownHorizontal[0] <= gameLogic.io.spriteScaleDownHorizontal[0] @[\\src\\main\\scala\\GameTop.scala 133:49]
     graphicEngineVGA.io.spriteScaleDownHorizontal[1] <= gameLogic.io.spriteScaleDownHorizontal[1] @[\\src\\main\\scala\\GameTop.scala 133:49]
     graphicEngineVGA.io.spriteScaleDownHorizontal[2] <= gameLogic.io.spriteScaleDownHorizontal[2] @[\\src\\main\\scala\\GameTop.scala 133:49]
@@ -5681,6 +10097,22 @@ circuit Top :
     graphicEngineVGA.io.spriteScaleDownHorizontal[13] <= gameLogic.io.spriteScaleDownHorizontal[13] @[\\src\\main\\scala\\GameTop.scala 133:49]
     graphicEngineVGA.io.spriteScaleDownHorizontal[14] <= gameLogic.io.spriteScaleDownHorizontal[14] @[\\src\\main\\scala\\GameTop.scala 133:49]
     graphicEngineVGA.io.spriteScaleDownHorizontal[15] <= gameLogic.io.spriteScaleDownHorizontal[15] @[\\src\\main\\scala\\GameTop.scala 133:49]
+    graphicEngineVGA.io.spriteScaleDownHorizontal[16] <= gameLogic.io.spriteScaleDownHorizontal[16] @[\\src\\main\\scala\\GameTop.scala 133:49]
+    graphicEngineVGA.io.spriteScaleDownHorizontal[17] <= gameLogic.io.spriteScaleDownHorizontal[17] @[\\src\\main\\scala\\GameTop.scala 133:49]
+    graphicEngineVGA.io.spriteScaleDownHorizontal[18] <= gameLogic.io.spriteScaleDownHorizontal[18] @[\\src\\main\\scala\\GameTop.scala 133:49]
+    graphicEngineVGA.io.spriteScaleDownHorizontal[19] <= gameLogic.io.spriteScaleDownHorizontal[19] @[\\src\\main\\scala\\GameTop.scala 133:49]
+    graphicEngineVGA.io.spriteScaleDownHorizontal[20] <= gameLogic.io.spriteScaleDownHorizontal[20] @[\\src\\main\\scala\\GameTop.scala 133:49]
+    graphicEngineVGA.io.spriteScaleDownHorizontal[21] <= gameLogic.io.spriteScaleDownHorizontal[21] @[\\src\\main\\scala\\GameTop.scala 133:49]
+    graphicEngineVGA.io.spriteScaleDownHorizontal[22] <= gameLogic.io.spriteScaleDownHorizontal[22] @[\\src\\main\\scala\\GameTop.scala 133:49]
+    graphicEngineVGA.io.spriteScaleDownHorizontal[23] <= gameLogic.io.spriteScaleDownHorizontal[23] @[\\src\\main\\scala\\GameTop.scala 133:49]
+    graphicEngineVGA.io.spriteScaleDownHorizontal[24] <= gameLogic.io.spriteScaleDownHorizontal[24] @[\\src\\main\\scala\\GameTop.scala 133:49]
+    graphicEngineVGA.io.spriteScaleDownHorizontal[25] <= gameLogic.io.spriteScaleDownHorizontal[25] @[\\src\\main\\scala\\GameTop.scala 133:49]
+    graphicEngineVGA.io.spriteScaleDownHorizontal[26] <= gameLogic.io.spriteScaleDownHorizontal[26] @[\\src\\main\\scala\\GameTop.scala 133:49]
+    graphicEngineVGA.io.spriteScaleDownHorizontal[27] <= gameLogic.io.spriteScaleDownHorizontal[27] @[\\src\\main\\scala\\GameTop.scala 133:49]
+    graphicEngineVGA.io.spriteScaleDownHorizontal[28] <= gameLogic.io.spriteScaleDownHorizontal[28] @[\\src\\main\\scala\\GameTop.scala 133:49]
+    graphicEngineVGA.io.spriteScaleDownHorizontal[29] <= gameLogic.io.spriteScaleDownHorizontal[29] @[\\src\\main\\scala\\GameTop.scala 133:49]
+    graphicEngineVGA.io.spriteScaleDownHorizontal[30] <= gameLogic.io.spriteScaleDownHorizontal[30] @[\\src\\main\\scala\\GameTop.scala 133:49]
+    graphicEngineVGA.io.spriteScaleDownHorizontal[31] <= gameLogic.io.spriteScaleDownHorizontal[31] @[\\src\\main\\scala\\GameTop.scala 133:49]
     graphicEngineVGA.io.spriteScaleUpVertical[0] <= gameLogic.io.spriteScaleUpVertical[0] @[\\src\\main\\scala\\GameTop.scala 134:45]
     graphicEngineVGA.io.spriteScaleUpVertical[1] <= gameLogic.io.spriteScaleUpVertical[1] @[\\src\\main\\scala\\GameTop.scala 134:45]
     graphicEngineVGA.io.spriteScaleUpVertical[2] <= gameLogic.io.spriteScaleUpVertical[2] @[\\src\\main\\scala\\GameTop.scala 134:45]
@@ -5697,6 +10129,22 @@ circuit Top :
     graphicEngineVGA.io.spriteScaleUpVertical[13] <= gameLogic.io.spriteScaleUpVertical[13] @[\\src\\main\\scala\\GameTop.scala 134:45]
     graphicEngineVGA.io.spriteScaleUpVertical[14] <= gameLogic.io.spriteScaleUpVertical[14] @[\\src\\main\\scala\\GameTop.scala 134:45]
     graphicEngineVGA.io.spriteScaleUpVertical[15] <= gameLogic.io.spriteScaleUpVertical[15] @[\\src\\main\\scala\\GameTop.scala 134:45]
+    graphicEngineVGA.io.spriteScaleUpVertical[16] <= gameLogic.io.spriteScaleUpVertical[16] @[\\src\\main\\scala\\GameTop.scala 134:45]
+    graphicEngineVGA.io.spriteScaleUpVertical[17] <= gameLogic.io.spriteScaleUpVertical[17] @[\\src\\main\\scala\\GameTop.scala 134:45]
+    graphicEngineVGA.io.spriteScaleUpVertical[18] <= gameLogic.io.spriteScaleUpVertical[18] @[\\src\\main\\scala\\GameTop.scala 134:45]
+    graphicEngineVGA.io.spriteScaleUpVertical[19] <= gameLogic.io.spriteScaleUpVertical[19] @[\\src\\main\\scala\\GameTop.scala 134:45]
+    graphicEngineVGA.io.spriteScaleUpVertical[20] <= gameLogic.io.spriteScaleUpVertical[20] @[\\src\\main\\scala\\GameTop.scala 134:45]
+    graphicEngineVGA.io.spriteScaleUpVertical[21] <= gameLogic.io.spriteScaleUpVertical[21] @[\\src\\main\\scala\\GameTop.scala 134:45]
+    graphicEngineVGA.io.spriteScaleUpVertical[22] <= gameLogic.io.spriteScaleUpVertical[22] @[\\src\\main\\scala\\GameTop.scala 134:45]
+    graphicEngineVGA.io.spriteScaleUpVertical[23] <= gameLogic.io.spriteScaleUpVertical[23] @[\\src\\main\\scala\\GameTop.scala 134:45]
+    graphicEngineVGA.io.spriteScaleUpVertical[24] <= gameLogic.io.spriteScaleUpVertical[24] @[\\src\\main\\scala\\GameTop.scala 134:45]
+    graphicEngineVGA.io.spriteScaleUpVertical[25] <= gameLogic.io.spriteScaleUpVertical[25] @[\\src\\main\\scala\\GameTop.scala 134:45]
+    graphicEngineVGA.io.spriteScaleUpVertical[26] <= gameLogic.io.spriteScaleUpVertical[26] @[\\src\\main\\scala\\GameTop.scala 134:45]
+    graphicEngineVGA.io.spriteScaleUpVertical[27] <= gameLogic.io.spriteScaleUpVertical[27] @[\\src\\main\\scala\\GameTop.scala 134:45]
+    graphicEngineVGA.io.spriteScaleUpVertical[28] <= gameLogic.io.spriteScaleUpVertical[28] @[\\src\\main\\scala\\GameTop.scala 134:45]
+    graphicEngineVGA.io.spriteScaleUpVertical[29] <= gameLogic.io.spriteScaleUpVertical[29] @[\\src\\main\\scala\\GameTop.scala 134:45]
+    graphicEngineVGA.io.spriteScaleUpVertical[30] <= gameLogic.io.spriteScaleUpVertical[30] @[\\src\\main\\scala\\GameTop.scala 134:45]
+    graphicEngineVGA.io.spriteScaleUpVertical[31] <= gameLogic.io.spriteScaleUpVertical[31] @[\\src\\main\\scala\\GameTop.scala 134:45]
     graphicEngineVGA.io.spriteScaleDownVertical[0] <= gameLogic.io.spriteScaleDownVertical[0] @[\\src\\main\\scala\\GameTop.scala 135:47]
     graphicEngineVGA.io.spriteScaleDownVertical[1] <= gameLogic.io.spriteScaleDownVertical[1] @[\\src\\main\\scala\\GameTop.scala 135:47]
     graphicEngineVGA.io.spriteScaleDownVertical[2] <= gameLogic.io.spriteScaleDownVertical[2] @[\\src\\main\\scala\\GameTop.scala 135:47]
@@ -5713,6 +10161,22 @@ circuit Top :
     graphicEngineVGA.io.spriteScaleDownVertical[13] <= gameLogic.io.spriteScaleDownVertical[13] @[\\src\\main\\scala\\GameTop.scala 135:47]
     graphicEngineVGA.io.spriteScaleDownVertical[14] <= gameLogic.io.spriteScaleDownVertical[14] @[\\src\\main\\scala\\GameTop.scala 135:47]
     graphicEngineVGA.io.spriteScaleDownVertical[15] <= gameLogic.io.spriteScaleDownVertical[15] @[\\src\\main\\scala\\GameTop.scala 135:47]
+    graphicEngineVGA.io.spriteScaleDownVertical[16] <= gameLogic.io.spriteScaleDownVertical[16] @[\\src\\main\\scala\\GameTop.scala 135:47]
+    graphicEngineVGA.io.spriteScaleDownVertical[17] <= gameLogic.io.spriteScaleDownVertical[17] @[\\src\\main\\scala\\GameTop.scala 135:47]
+    graphicEngineVGA.io.spriteScaleDownVertical[18] <= gameLogic.io.spriteScaleDownVertical[18] @[\\src\\main\\scala\\GameTop.scala 135:47]
+    graphicEngineVGA.io.spriteScaleDownVertical[19] <= gameLogic.io.spriteScaleDownVertical[19] @[\\src\\main\\scala\\GameTop.scala 135:47]
+    graphicEngineVGA.io.spriteScaleDownVertical[20] <= gameLogic.io.spriteScaleDownVertical[20] @[\\src\\main\\scala\\GameTop.scala 135:47]
+    graphicEngineVGA.io.spriteScaleDownVertical[21] <= gameLogic.io.spriteScaleDownVertical[21] @[\\src\\main\\scala\\GameTop.scala 135:47]
+    graphicEngineVGA.io.spriteScaleDownVertical[22] <= gameLogic.io.spriteScaleDownVertical[22] @[\\src\\main\\scala\\GameTop.scala 135:47]
+    graphicEngineVGA.io.spriteScaleDownVertical[23] <= gameLogic.io.spriteScaleDownVertical[23] @[\\src\\main\\scala\\GameTop.scala 135:47]
+    graphicEngineVGA.io.spriteScaleDownVertical[24] <= gameLogic.io.spriteScaleDownVertical[24] @[\\src\\main\\scala\\GameTop.scala 135:47]
+    graphicEngineVGA.io.spriteScaleDownVertical[25] <= gameLogic.io.spriteScaleDownVertical[25] @[\\src\\main\\scala\\GameTop.scala 135:47]
+    graphicEngineVGA.io.spriteScaleDownVertical[26] <= gameLogic.io.spriteScaleDownVertical[26] @[\\src\\main\\scala\\GameTop.scala 135:47]
+    graphicEngineVGA.io.spriteScaleDownVertical[27] <= gameLogic.io.spriteScaleDownVertical[27] @[\\src\\main\\scala\\GameTop.scala 135:47]
+    graphicEngineVGA.io.spriteScaleDownVertical[28] <= gameLogic.io.spriteScaleDownVertical[28] @[\\src\\main\\scala\\GameTop.scala 135:47]
+    graphicEngineVGA.io.spriteScaleDownVertical[29] <= gameLogic.io.spriteScaleDownVertical[29] @[\\src\\main\\scala\\GameTop.scala 135:47]
+    graphicEngineVGA.io.spriteScaleDownVertical[30] <= gameLogic.io.spriteScaleDownVertical[30] @[\\src\\main\\scala\\GameTop.scala 135:47]
+    graphicEngineVGA.io.spriteScaleDownVertical[31] <= gameLogic.io.spriteScaleDownVertical[31] @[\\src\\main\\scala\\GameTop.scala 135:47]
     graphicEngineVGA.io.viewBoxX <= gameLogic.io.viewBoxX @[\\src\\main\\scala\\GameTop.scala 138:32]
     graphicEngineVGA.io.viewBoxY <= gameLogic.io.viewBoxY @[\\src\\main\\scala\\GameTop.scala 139:32]
     graphicEngineVGA.io.backBufferWriteData <= gameLogic.io.backBufferWriteData @[\\src\\main\\scala\\GameTop.scala 142:43]
