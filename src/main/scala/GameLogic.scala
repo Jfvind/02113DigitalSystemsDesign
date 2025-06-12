@@ -265,8 +265,9 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           }.otherwise {
             stateReg := move
           }
+        }.otherwise {
+          stateReg := move
         }
-        stateReg := move
       }
     }
 

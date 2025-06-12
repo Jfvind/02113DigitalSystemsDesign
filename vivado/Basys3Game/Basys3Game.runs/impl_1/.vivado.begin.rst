@@ -1,50 +1,15 @@
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jfvin" Host="JEPPE2024" Pid="7592" HostCore="20" HostMemory="034014814208">
+    <Process Command="vivado.bat" Owner="jfvin" Host="JEPPE2024" Pid="1456" HostCore="20" HostMemory="034014814208">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jfvin" Host="JEPPE2024" Pid="34884" HostCore="20" HostMemory="034014814208">
+    <Process Command="vivado.bat" Owner="jfvin" Host="JEPPE2024" Pid="4000" HostCore="20" HostMemory="034014814208">
     </Process>
 </ProcessHandle>
 <?xml version="1.0"?>
 <ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jfvin" Host="JEPPE2024" Pid="38604" HostCore="20" HostMemory="034014814208">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jfvin" Host="JEPPE2024" Pid="30740" HostCore="20" HostMemory="034014814208">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jfvin" Host="JEPPE2024" Pid="1316" HostCore="20" HostMemory="034014814208">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jfvin" Host="JEPPE2024" Pid="27232" HostCore="20" HostMemory="034014814208">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jfvin" Host="JEPPE2024" Pid="32612" HostCore="20" HostMemory="034014814208">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jfvin" Host="JEPPE2024" Pid="14740" HostCore="20" HostMemory="034014814208">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jfvin" Host="JEPPE2024" Pid="30044" HostCore="20" HostMemory="034014814208">
-    </Process>
-</ProcessHandle>
-<?xml version="1.0"?>
-<ProcessHandle Version="1" Minor="0">
-    <Process Command="vivado.bat" Owner="jfvin" Host="JEPPE2024" Pid="24072" HostCore="20" HostMemory="034014814208">
+    <Process Command="vivado.bat" Owner="jfvin" Host="JEPPE2024" Pid="44168" HostCore="20" HostMemory="034014814208">
     </Process>
 </ProcessHandle>

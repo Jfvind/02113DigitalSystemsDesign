@@ -50,7 +50,7 @@ class GameTop extends Module {
 
   //Uncomment one of the following lines to use the module related to the learning tasks
   //Use the module GameLogic to implement your game
-  //val gameLogic = Module(new GameLogic(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
+  val gameLogic = Module(new GameLogic(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
   //val gameLogic = Module(new GameLogicTask0(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
   //val gameLogic = Module(new GameLogicTask1(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
   //val gameLogic = Module(new GameLogicTask2(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
@@ -59,7 +59,7 @@ class GameTop extends Module {
   //val gameLogic = Module(new GameLogicTask5(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
   //val gameLogic = Module(new GameLogicTask6(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
   //val gameLogic = Module(new GameLogicTask7(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
-  val gameLogic = Module(new GameLogicTask8(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
+  //val gameLogic = Module(new GameLogicTask8(SPRITE_NUMBER, BACK_TILE_NUMBER, TUNE_NUMBER))
 
   //Debouncing
   val CLOCK_FREQUENCY_HZ = 100000000 //100 MHz
