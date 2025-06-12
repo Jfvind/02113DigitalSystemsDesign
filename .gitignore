@@ -1,21 +1,59 @@
-gitignore
-# Java compiled class files
-*.class
-
-# IntelliJ project files
-.idea/
-*.iml
-out/
-
-# VSCode project files
-.vscode/
-
-# Bloop build output
+# === Scala / SBT / Chisel ===
+target/
+project/target/
+project/project/
 .bloop/
 .metals/
 .bsp/
-target/
-
-# OS-specific files
+.idea/
+.vscode/
+*.class
+*.lock
+*.log
+*.tmp
+.cache/
 .DS_Store
 Thumbs.db
+
+# === Chisel generated outputs ===
+*.fir
+*.v
+*.anno.json
+*.lo.fir
+*.pb
+*.bin
+*.f
+
+# === Test outputs ===
+test_run_dir/
+*.vcd
+
+# === Vivado outputs ===
+vivado/.Xil/
+vivado/*.jou
+vivado/*.log
+vivado/*.str
+vivado/*.cache
+vivado/*.runs
+vivado/*.hw
+vivado/*.ip_user_files
+vivado/*.sim
+vivado/*.srcs
+vivado/*.webtalk
+vivado/.vivado*
+
+# === Memory init ===
+memory_init/*.mem
+!memory_init/sprite_init_*.mem
+!memory_init/backtile_init_*.mem
+
+# === Tune generator ===
+tune_generator/*.bin
+tune_generator/*.wav
+tune_generator/*.log
+
+# === Backup og editor-filer ===
+*~
+*.swp
+*.swo
+*.bak
