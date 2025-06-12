@@ -1,0 +1,21 @@
+gitignore
+# Java compiled class files
+*.class
+
+# IntelliJ project files
+.idea/
+*.iml
+out/
+
+# VSCode project files
+.vscode/
+
+# Bloop build output
+.bloop/
+.metals/
+.bsp/
+target/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
