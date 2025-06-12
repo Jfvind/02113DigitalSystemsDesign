@@ -2,15 +2,15 @@
 Project following the DTU course 02113 Digital Systems Design Project, to make a videogame in ChiselHDL.
 
 
-Sprite 7 = lvl1_1
-Sprite 8 = lvl1_2 
-Sprite 9 = lvl2_1
-Sprite 10 = lvl2_2
-Sprite 11 = lvl3_1
+Sprite 7 = lvl1_1(1-tal)
+Sprite 8 = lvl1_2(1-tal) 
+Sprite 9 = lvl2_1(2-tal)
+Sprite 10 = lvl2_2(2-tal)
+Sprite 11 = lvl3_1(3-tal)
 Sprite 12 = lvl3_2
 Sprite 13 = Cursor_foot
 Sprite 14 = Rumskib
-Sprite 15 = God sten
+Sprite 15 = God skib
 
 Backtile 10 = lvl1_1
 Backtile 11 = lvl1_2
