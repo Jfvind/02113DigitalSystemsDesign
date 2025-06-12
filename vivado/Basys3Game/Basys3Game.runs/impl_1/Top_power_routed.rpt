@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Thu Jun 12 13:07:12 2025
+| Date             : Thu Jun 12 13:15:29 2025
 | Host             : Jeppe2024 running 64-bit major release  (build 9200)
 | Command          : report_power -file Top_power_routed.rpt -pb Top_power_summary_routed.pb -rpx Top_power_routed.rpx
 | Design           : Top
@@ -52,15 +52,15 @@ Table of Contents
 +-------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
-| Clocks                  |     0.003 |        3 |       --- |             --- |
-| Slice Logic             |    <0.001 |     1012 |       --- |             --- |
+| Clocks                  |     0.004 |        3 |       --- |             --- |
+| Slice Logic             |    <0.001 |     1030 |       --- |             --- |
 |   CARRY4                |    <0.001 |       64 |      8150 |            0.79 |
-|   LUT as Logic          |    <0.001 |      418 |     20800 |            2.01 |
+|   LUT as Logic          |    <0.001 |      438 |     20800 |            2.11 |
 |   Register              |    <0.001 |      312 |     41600 |            0.75 |
 |   Others                |     0.000 |       90 |       --- |             --- |
 |   LUT as Shift Register |     0.000 |        3 |      9600 |            0.03 |
 |   F7/F8 Muxes           |     0.000 |       57 |     32600 |            0.17 |
-| Signals                 |    <0.001 |      953 |       --- |             --- |
+| Signals                 |    <0.001 |      972 |       --- |             --- |
 | Block RAM               |     0.035 |       19 |        50 |           38.00 |
 | I/O                     |    <0.001 |       33 |       106 |           31.13 |
 | Static Power            |     0.073 |          |           |                 |
@@ -74,7 +74,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.046 |       0.036 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.047 |       0.036 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
