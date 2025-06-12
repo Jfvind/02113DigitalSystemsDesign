@@ -1,5 +1,5 @@
 # === Scala / SBT / Chisel ===
-.target/
+target/
 project/target/
 project/project/
 .bloop/
@@ -12,6 +12,9 @@ project/project/
 *.log
 *.tmp
 .cache/
+.zinc/
+.ivy2/
+coursier/
 .DS_Store
 Thumbs.db
 
@@ -25,6 +28,7 @@ Top.v
 *.pb
 *.bin
 *.f
+generated/
 
 # === Test outputs ===
 test_run_dir/
@@ -32,6 +36,15 @@ test_run_dir/
 
 # === Vivado outputs ===
 .vivado/
+*.jou
+*.str
+*.xpr
+*.runs/
+*.sim/
+*.cache/
+*.hw/
+*.srcs/
+webtalk/
 
 # === Memory init ===
 memory_init/*.mem
@@ -48,3 +61,5 @@ tune_generator/*.log
 *.swp
 *.swo
 *.bak
+*.iml
+out/
