@@ -18,6 +18,8 @@ Thumbs.db
 # === Chisel generated outputs ===
 *.fir
 *.v
+Top.fir
+Top.v
 *.anno.json
 *.lo.fir
 *.pb
