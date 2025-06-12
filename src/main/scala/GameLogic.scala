@@ -113,6 +113,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val stateReg = RegInit(idle)
 
   //Two registers holding the sprite sprite X and Y with the sprite initial position
+  val sprite3XReg = RegInit(320.S(11.W))
+  val sprite3YReg = RegInit(240.S(10.W))
   val sprite7XReg = RegInit(256.S(11.W))
   val sprite7YReg = RegInit(300.S(10.W))
   val sprite8XReg = RegInit(256.S(11.W))
@@ -125,12 +127,13 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite11YReg = RegInit(300.S(10.W))
   val sprite12XReg = RegInit(352.S(11.W))
   val sprite12YReg = RegInit(300.S(10.W))
-  val sprite13XReg = RegInit(320.S(11.W))
-  val sprite13YReg = RegInit(240.S(10.W))
+  val sprite13XReg = RegInit(320.S(11.W)) //not used
+  val sprite13YReg = RegInit(240.S(10.W)) //not used
   val sprite14XReg = RegInit(320.S(11.W))
   val sprite14YReg = RegInit(240.S(10.W))
 
   //A registers holding the sprite horizontal flip
+  val sprite3FlipHorizontalReg = RegInit(false.B)
   val sprite7FlipHorizontalReg = RegInit(false.B)
   val sprite8FlipHorizontalReg = RegInit(false.B)
   val sprite9FlipHorizontalReg = RegInit(false.B)
@@ -141,6 +144,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite14FlipHorizontalReg = RegInit(false.B)
 
   //Registers controlling vertical flip
+  val sprite3FlipVerticalReg = RegInit(false.B)
   val sprite7FlipVerticalReg = RegInit(false.B)
   val sprite8FlipVerticalReg = RegInit(false.B)
   val sprite9FlipVerticalReg = RegInit(false.B)
@@ -151,16 +155,18 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite14FlipVerticalReg = RegInit(false.B)
 
   //Visibility registers
+  val sprite3Visible = RegInit(true.B)
   val sprite7Visible = RegInit(false.B)
   val sprite8Visible = RegInit(false.B)
   val sprite9Visible = RegInit(false.B)
   val sprite10Visible = RegInit(false.B)
   val sprite11Visible = RegInit(false.B)
   val sprite12Visible = RegInit(false.B)
-  val sprite13Visible = RegInit(true.B)
+  val sprite13Visible = RegInit(false.B)
   val sprite14Visible = RegInit(false.B)
 
   // Connecting visibility registers to the graphic engine
+  io.spriteVisible(3) := sprite3Visible
   io.spriteVisible(7) := sprite7Visible
   io.spriteVisible(8) := sprite8Visible
   io.spriteVisible(9) := sprite9Visible
@@ -171,6 +177,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   io.spriteVisible(14) := sprite14Visible
 
   //Connecting resiters to the graphic engine
+  io.spriteXPosition(3) := sprite3XReg
+  io.spriteYPosition(3) := sprite3YReg
+  io.spriteFlipHorizontal(3) := sprite3FlipHorizontalReg
+  io.spriteFlipVertical(3) := sprite3FlipVerticalReg
   io.spriteXPosition(7) := sprite7XReg
   io.spriteYPosition(7) := sprite7YReg
   io.spriteFlipHorizontal(7) := sprite7FlipHorizontalReg
@@ -199,8 +209,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   io.spriteYPosition(13) := sprite13YReg
   io.spriteFlipHorizontal(13) := sprite13FlipHorizontalReg
   io.spriteFlipVertical(13) := sprite13FlipVerticalReg
-  io.spriteXPosition(14) := sprite13XReg
-  io.spriteYPosition(14) := sprite13YReg
+  io.spriteXPosition(14) := sprite3XReg
+  io.spriteYPosition(14) := sprite3YReg
   io.spriteFlipHorizontal(14) := sprite14FlipHorizontalReg
   io.spriteFlipVertical(14) := sprite14FlipVerticalReg
 
@@ -238,7 +248,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         sprite10Visible := false.B
         sprite11Visible := true.B
         sprite12Visible := false.B
-        when(sprite13XReg > 227.S && sprite13XReg < 259.S && sprite13YReg > 300.S && sprite13YReg < 332.S) {
+        when(sprite3XReg > 227.S && sprite3XReg < 259.S && sprite3YReg > 300.S && sprite3YReg < 332.S) {
           sprite7Visible := false.B
           sprite8Visible := true.B
           when(io.btnC) {
@@ -247,7 +257,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           }.otherwise {
             stateReg := move
           }
-        }.elsewhen(sprite13XReg > 275.S && sprite13XReg < 307.S && sprite13YReg > 300.S && sprite13YReg < 332.S) {
+        }.elsewhen(sprite3XReg > 275.S && sprite3XReg < 307.S && sprite3YReg > 300.S && sprite3YReg < 332.S) {
           sprite9Visible := false.B
           sprite10Visible := true.B
           when(io.btnC) {
@@ -256,7 +266,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           }.otherwise {
             stateReg := move
           }
-        }.elsewhen(sprite13XReg > 323.S && sprite13XReg < 355.S && sprite13YReg > 300.S && sprite13YReg < 332.S) {
+        }.elsewhen(sprite3XReg > 323.S && sprite3XReg < 355.S && sprite3YReg > 300.S && sprite3YReg < 332.S) {
           sprite11Visible := false.B
           sprite12Visible := true.B
           when(io.btnC) {
@@ -272,15 +282,15 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     }
 
     is(lvl1) {
-      sprite13XReg := (640-32).S
-      sprite13YReg := 320.S
+      sprite3XReg := (640-32).S
+      sprite3YReg := 320.S
+      sprite3Visible := false.B
       sprite7Visible := false.B
       sprite8Visible := false.B
       sprite9Visible := false.B
       sprite10Visible := false.B
       sprite11Visible := false.B
       sprite12Visible := false.B
-      sprite13Visible := false.B
       sprite14Visible := true.B
       viewBoxXReg := 640.U
       viewBoxYReg := 0.U
@@ -299,31 +309,31 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     is(move) {
       when(lvl1Reg || lvl2Reg || lvl3Reg) {
         when(io.btnD){
-          when(sprite13YReg < (480 - 32).S) {
-            sprite13YReg := sprite13YReg + 2.S
+          when(sprite3YReg < (480 - 32).S) {
+            sprite3YReg := sprite3YReg + 2.S
           }
         } .elsewhen(io.btnU){
-          when(sprite13YReg > 32.S) {
-            sprite13YReg := sprite13YReg - 2.S
+          when(sprite3YReg > 32.S) {
+            sprite3YReg := sprite3YReg - 2.S
           }
         }
       }.otherwise {
         when(io.btnD){
-          when(sprite13YReg < (480 - 32).S) {
-            sprite13YReg := sprite13YReg + 2.S
+          when(sprite3YReg < (480 - 32).S) {
+            sprite3YReg := sprite3YReg + 2.S
           }
         } .elsewhen(io.btnU){
-          when(sprite13YReg > 32.S) {
-            sprite13YReg := sprite13YReg - 2.S
+          when(sprite3YReg > 32.S) {
+            sprite3YReg := sprite3YReg - 2.S
           }
         }
         when(io.btnR) {
-          when(sprite13XReg < (640 - 32).S) {
-            sprite13XReg := sprite13XReg + 2.S
+          when(sprite3XReg < (640 - 32).S) {
+            sprite3XReg := sprite3XReg + 2.S
           }
         } .elsewhen(io.btnL){
-          when(sprite13XReg > 32.S) {
-            sprite13XReg := sprite13XReg - 2.S
+          when(sprite3XReg > 32.S) {
+            sprite3XReg := sprite3XReg - 2.S
           }
         }
       }
