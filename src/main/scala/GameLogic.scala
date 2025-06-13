@@ -299,10 +299,36 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     }
 
     is(lvl2) {
+      sprite3XReg := (640-32).S
+      sprite3YReg := 320.S
+      sprite3Visible := false.B
+      sprite7Visible := false.B
+      sprite8Visible := false.B
+      sprite9Visible := false.B
+      sprite10Visible := false.B
+      sprite11Visible := false.B
+      sprite12Visible := false.B
+      sprite14Visible := true.B
+      viewBoxXReg := 0.U
+      viewBoxYReg := 480.U
+
       stateReg := move
     }
 
     is(lvl3) {
+      sprite3XReg := (640-32).S
+      sprite3YReg := 320.S
+      sprite3Visible := false.B
+      sprite7Visible := false.B
+      sprite8Visible := false.B
+      sprite9Visible := false.B
+      sprite10Visible := false.B
+      sprite11Visible := false.B
+      sprite12Visible := false.B
+      sprite14Visible := true.B
+      viewBoxXReg := 640.U
+      viewBoxYReg := 480.U
+
       stateReg := move
     }
 

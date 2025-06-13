@@ -26,3 +26,11 @@ Project following the DTU course 02113 Digital Systems Design Project, to make a
 - Backtile 18 = cosm
 - Backtile 19 = o_war
 - Backtile 20 = s_moon
+- Backtile 21 =
+- Backtile 22 =
+- Backtile 23 =
+- Backtile 24 =
+- Backtile 25 =
+- Backtile 26 =
+- Backtile 27 =
+- Backtile 28 =
