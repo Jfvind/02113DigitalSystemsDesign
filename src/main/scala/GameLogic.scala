@@ -292,6 +292,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val spriteCnt = RegInit(16.U(5.W))
 
   val lfsr = Module(new LFSR)
+  val randNum = lfsr.io.out
 
   switch(stateReg) {
     is(idle) {
@@ -308,7 +309,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           when(spriteCnt === 16.U && sprite16Visible === false.B) {
             sprite16Visible := true.B
             sprite16XReg := -32.S
-            sprite16YReg := (lfsr.io.out % 480.U).asSInt
+            sprite16YReg := (randNum * 2.U).asSInt
           }
           when(spriteCnt === 17.U) {
             sprite17Visible := true.B
@@ -332,13 +333,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
       //Controlling movement of sprites
       sprite16XReg := sprite16XReg + difficulty.io.speed
-      sprite16YReg := sprite16YReg + (difficulty.io.speed >> 1)
 
       //Mux controlling collision of sprites
       when(sprite16XReg === 640.S || sprite16YReg === 480.S) {
         sprite16Visible := false.B
-        sprite16XReg := -32.S
-        sprite16YReg := (lfsr.io.out % 480.U).asSInt
       }
 
       stateReg := menu
