@@ -339,7 +339,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         sprite16Visible := false.B
         sprite16XReg := -32.S
         sprite16YReg := (lfsr.io.out % 480.U).asSInt
-        printf(p"lfsr.io.out = ${lfsr.io.out}\n")
       }
 
       stateReg := menu

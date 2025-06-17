@@ -10,7 +10,7 @@ class LFSR extends Module {
   val reg = RegInit(1.U(8.W))
 
   // Feedback-bit beregnes som XOR af bit 7 og bit 5 (taps for 8-bit LFSR)
-  val feedback = reg(7) ^ reg(5)
+  val feedback = reg(7) ^ reg(5) ^ reg(4) ^ reg(3)
 
   // Shift registeret én til venstre og indsæt feedback som ny LSB
   reg := Cat(reg(6, 0), feedback)
