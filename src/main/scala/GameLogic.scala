@@ -278,8 +278,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val lvl3Reg = RegInit(false.B)
 
   val difficulty = Module(new Difficulty)
-  val spawnSprite = difficulty.io.spawnEn
-  val speed = difficulty.io.fallSpeed
+  val spawnSprite = difficulty.io.spawnEnable
+  val speed = difficulty.io.speed
   val damage = difficulty.io.damage
 
   //Controls which sprite to throw
@@ -352,7 +352,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       sprite14Visible := true.B
       viewBoxXReg := 640.U
       viewBoxYReg := 0.U
-      difficulty.io.level := 0.U
+      difficulty.io.level := 1.U
 
       when(spawnSprite) {
         // Make the current sprite visible
@@ -393,7 +393,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       sprite14Visible := true.B
       viewBoxXReg := 0.U
       viewBoxYReg := 480.U
-      difficulty.io.level := 1.U
+      difficulty.io.level := 2.U
 
       stateReg := move
     }
@@ -411,7 +411,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       sprite14Visible := true.B
       viewBoxXReg := 640.U
       viewBoxYReg := 480.U
-      difficulty.io.level := 2.U
+      difficulty.io.level := 3.U
 
       stateReg := move
     }

@@ -1,7 +1,7 @@
 import chisel3._
 import chisel3.util._
 
-class LSFR extends Module {
+class LFSR extends Module {
   val io = IO(new Bundle {
     val out = Output(UInt(8.W))
   })
