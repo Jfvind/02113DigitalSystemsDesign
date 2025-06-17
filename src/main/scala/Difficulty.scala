@@ -1,8 +1,8 @@
-import chisel13._
-import chisel3.util_
+import chisel3._
+import chisel3.util._
 
 /*
-*┌─────────┐       level      ┌───────────────┐        spawnEn, fallSpeed, damage
+┌─────────┐       level       ┌───────────────┐        spawnEn, fallSpeed, damage
 │  FSM    │ ─────────────────▶│ Difficulty    │─────────────────────────────────▶  Datapath
 │ (Level “state”)│            │  (GameLogic)  │
 └─────────┘       ◀─ spawnAck └───────────────┘
@@ -23,8 +23,8 @@ import chisel3.util_
  * - Computer hastigheden af faldende i tkat med man flyver højrere i lvl
  */
 
-class Difficulty extends GameLogic {
-  val io = IO(new Module {
+class Difficulty extends Module {
+  val io = IO(new Bundle {
     val level = Input(UInt(2.W)) // input fra vores FSM (0,1,2) lvl-1
     val spawnEn = Output(Bool()) // Signal til at spawn nyt objekt
     val fallSpeed = Output(SInt(10.W))
@@ -35,13 +35,28 @@ class Difficulty extends GameLogic {
   // LSFR submodule
   val lfsr = Module(new LSFR)
 
+  // Define MeteorParams as a Bundle
+  class MeteorParams extends Bundle {
+    val spawnInterval = UInt(10.W) // Adjust width as needed
+    val fallSpeed = SInt(4.W)
+    val damage = UInt(3.W)
+  }
+
+  def meteorParams(spawn: UInt, speed: SInt, dmg: UInt): MeteorParams = {
+  val m = Wire(new MeteorParams)
+  m.spawnInterval := spawn
+  m.fallSpeed := speed
+  m.damage := dmg
+  m
+}
+
   // Base-params
-  val baseParams = VecInit(
-    // MeteorParams(spawnInterval, direction, styrke)
-    MeteorParams(30.U, 1.S, 1.U), // Level 0: standardfart=1, skade=1
-    MeteorParams(20.U, 2.S, 2.U), // Level 1: standardfart=2, skade=2
-    MeteorParams(10.U, 3.S, 3.U) // Level 2: standardfart=3, skade=3
-  )
+  val baseParams = VecInit(Seq(
+    meteorParams(30.U, 1.S, 1.U),
+    meteorParams(20.U, 2.S, 2.U),
+    meteorParams(10.U, 3.S, 3.U)
+  ))
+
   val p = baseParams(io.level)
 
   // Counter

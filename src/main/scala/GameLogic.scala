@@ -131,6 +131,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite13YReg = RegInit(240.S(10.W)) //not used
   val sprite14XReg = RegInit(320.S(11.W))
   val sprite14YReg = RegInit(240.S(10.W))
+  val sprite16XReg = RegInit(20.S(11.W))
+  val sprite16YReg = RegInit(20.S(10.W))
 
   //A registers holding the sprite horizontal flip
   val sprite3FlipHorizontalReg = RegInit(false.B)
@@ -142,6 +144,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite12FlipHorizontalReg = RegInit(false.B)
   val sprite13FlipHorizontalReg = RegInit(false.B)
   val sprite14FlipHorizontalReg = RegInit(false.B)
+  val sprite16FlipHorizontalReg = RegInit(false.B)
 
   //Registers controlling vertical flip
   val sprite3FlipVerticalReg = RegInit(false.B)
@@ -153,6 +156,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite12FlipVerticalReg = RegInit(false.B)
   val sprite13FlipVerticalReg = RegInit(false.B)
   val sprite14FlipVerticalReg = RegInit(false.B)
+  val sprite16FlipVerticalReg = RegInit(false.B)
 
   //Visibility registers
   val sprite3Visible = RegInit(true.B)
@@ -164,6 +168,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite12Visible = RegInit(false.B)
   val sprite13Visible = RegInit(false.B)
   val sprite14Visible = RegInit(false.B)
+  val sprite16Visible = RegInit(true.B)
 
   // Connecting visibility registers to the graphic engine
   io.spriteVisible(3) := sprite3Visible
@@ -175,6 +180,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   io.spriteVisible(12) := sprite12Visible
   io.spriteVisible(13) := sprite13Visible
   io.spriteVisible(14) := sprite14Visible
+  io.spriteVisible(16) := sprite16Visible
 
   //Connecting resiters to the graphic engine
   io.spriteXPosition(3) := sprite3XReg
@@ -213,6 +219,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   io.spriteYPosition(14) := sprite3YReg
   io.spriteFlipHorizontal(14) := sprite14FlipHorizontalReg
   io.spriteFlipVertical(14) := sprite14FlipVerticalReg
+  io.spriteXPosition(16) := sprite16XReg
+  io.spriteYPosition(16) := sprite16YReg
+  io.spriteFlipHorizontal(16) := sprite16FlipHorizontalReg
+  io.spriteFlipVertical(16) := sprite16FlipVerticalReg
 
   //Two registers holding the view box X and Y
   val viewBoxXReg = RegInit(0.U(10.W))
