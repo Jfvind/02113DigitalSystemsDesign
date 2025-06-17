@@ -61,7 +61,7 @@ class Difficulty extends Module {
 
   // Counter
   val cnt = RegInit(0.U(32.W)) // 32-bit counter til spawn-timing
-  val prevLevel = RegInit(io.level) // register til at huske forrige level
+  val prevLevel = RegInit(0.U(2.W)) // register til at huske forrige level
 
   // Hvis level ændrer sig, nulstilles tælleren, ellers tæller vi op
   when(prevLevel =/= io.level) {
@@ -80,7 +80,8 @@ class Difficulty extends Module {
   // Rå kurve: dividerer interval med 2^level
   val rawCurve = (BASE_INTERVAL >> (io.level * SHIFT_FACTOR))
   // Sørger for ikke at gå under MIN_INTERVAL
-  val intervalNoJitter = rawCurve.max(MIN_INTERVAL)
+  //val intervalNoJitter = rawCurve.max(MIN_INTERVAL)
+  val intervalNoJitter = Mux(rawCurve < MIN_INTERVAL, MIN_INTERVAL, rawCurve)
 
   // -------------------------------------------------------------------------
   // 5) Adaptiv jitter: mindre amplituder i højere levels

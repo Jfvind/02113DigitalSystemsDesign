@@ -133,6 +133,14 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite14YReg = RegInit(240.S(10.W))
   val sprite16XReg = RegInit(20.S(11.W)) //Seagull
   val sprite16YReg = RegInit(20.S(10.W))
+  val sprite17XReg = RegInit(20.S(11.W))
+  val sprite17YReg = RegInit(50.S(10.W))
+  val sprite18XReg = RegInit(20.S(11.W))
+  val sprite18YReg = RegInit(80.S(10.W))
+  val sprite19XReg = RegInit(20.S(11.W))
+  val sprite19YReg = RegInit(110.S(10.W))
+  val sprite20XReg = RegInit(20.S(11.W))
+  val sprite20YReg = RegInit(140.S(10.W))
 
   //A registers holding the sprite horizontal flip
   val sprite3FlipHorizontalReg = RegInit(false.B)
@@ -145,6 +153,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite13FlipHorizontalReg = RegInit(false.B)
   val sprite14FlipHorizontalReg = RegInit(false.B)
   val sprite16FlipHorizontalReg = RegInit(false.B)
+  val sprite17FlipHorizontalReg = RegInit(false.B)
+  val sprite18FlipHorizontalReg = RegInit(false.B)
+  val sprite19FlipHorizontalReg = RegInit(false.B)
+  val sprite20FlipHorizontalReg = RegInit(false.B)
 
   //Registers controlling vertical flip
   val sprite3FlipVerticalReg = RegInit(false.B)
@@ -157,6 +169,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite13FlipVerticalReg = RegInit(false.B)
   val sprite14FlipVerticalReg = RegInit(false.B)
   val sprite16FlipVerticalReg = RegInit(false.B)
+  val sprite17FlipVerticalReg = RegInit(false.B)
+  val sprite18FlipVerticalReg = RegInit(false.B)
+  val sprite19FlipVerticalReg = RegInit(false.B)
+  val sprite20FlipVerticalReg = RegInit(false.B)
 
   //Visibility registers
   val sprite3Visible = RegInit(true.B)
@@ -169,6 +185,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite13Visible = RegInit(false.B)
   val sprite14Visible = RegInit(false.B)
   val sprite16Visible = RegInit(false.B)
+  val sprite17Visible = RegInit(false.B)
+  val sprite18Visible = RegInit(false.B)
+  val sprite19Visible = RegInit(false.B)
+  val sprite20Visible = RegInit(false.B)
 
   // Connecting visibility registers to the graphic engine
   io.spriteVisible(3) := sprite3Visible
@@ -181,6 +201,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   io.spriteVisible(13) := sprite13Visible
   io.spriteVisible(14) := sprite14Visible
   io.spriteVisible(16) := sprite16Visible
+  io.spriteVisible(17) := sprite17Visible
+  io.spriteVisible(18) := sprite18Visible
+  io.spriteVisible(19) := sprite19Visible
+  io.spriteVisible(20) := sprite20Visible
 
   //Connecting resiters to the graphic engine
   io.spriteXPosition(3) := sprite3XReg
@@ -223,6 +247,22 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   io.spriteYPosition(16) := sprite16YReg
   io.spriteFlipHorizontal(16) := sprite16FlipHorizontalReg
   io.spriteFlipVertical(16) := sprite16FlipVerticalReg
+  io.spriteXPosition(17) := sprite17XReg
+  io.spriteYPosition(17) := sprite17YReg
+  io.spriteFlipHorizontal(17) := sprite17FlipHorizontalReg
+  io.spriteFlipVertical(17) := sprite17FlipVerticalReg
+  io.spriteXPosition(18) := sprite18XReg
+  io.spriteYPosition(18) := sprite18YReg
+  io.spriteFlipHorizontal(18) := sprite18FlipHorizontalReg
+  io.spriteFlipVertical(18) := sprite18FlipVerticalReg
+  io.spriteXPosition(19) := sprite19XReg
+  io.spriteYPosition(19) := sprite19YReg
+  io.spriteFlipHorizontal(19) := sprite19FlipHorizontalReg
+  io.spriteFlipVertical(19) := sprite19FlipVerticalReg
+  io.spriteXPosition(20) := sprite20XReg
+  io.spriteYPosition(20) := sprite20YReg
+  io.spriteFlipHorizontal(20) := sprite20FlipHorizontalReg
+  io.spriteFlipVertical(20) := sprite20FlipVerticalReg
 
   //Two registers holding the view box X and Y
   val viewBoxXReg = RegInit(0.U(10.W))
@@ -237,7 +277,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val lvl2Reg = RegInit(false.B)
   val lvl3Reg = RegInit(false.B)
 
-  //val difficulty = Module(new Difficulty)
+  val difficulty = Module(new Difficulty)
+  val spawnSprite = difficulty.io.spawnEn
+  val speed = difficulty.io.fallSpeed
+  val damage = difficulty.io.damage
 
   //Controls which sprite to throw
   val spriteCnt = RegInit(16.U(5.W))
@@ -309,11 +352,30 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       sprite14Visible := true.B
       viewBoxXReg := 640.U
       viewBoxYReg := 0.U
-      /*difficulty.io.level := 0.U
+      difficulty.io.level := 0.U
 
-      when(difficulty.io.spawnEn) {
-
-      }*/
+      when(spawnSprite) {
+        // Make the current sprite visible
+        when(spriteCnt === 16.U) {
+          sprite16Visible := true.B
+        }
+        when(spriteCnt === 17.U) {
+          sprite17Visible := true.B
+        }
+        when(spriteCnt === 18.U) {
+          sprite18Visible := true.B
+        }
+        when(spriteCnt === 19.U) {
+          sprite19Visible := true.B
+        }
+        when(spriteCnt === 20.U) {
+          sprite20Visible := true.B
+          spriteCnt := 15.U
+        }
+        
+        // Increment sprite counter for next spawn
+        spriteCnt := spriteCnt + 1.U
+      }
 
       stateReg := move
     }
@@ -331,7 +393,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       sprite14Visible := true.B
       viewBoxXReg := 0.U
       viewBoxYReg := 480.U
-      //difficulty.io.level := 1.U
+      difficulty.io.level := 1.U
 
       stateReg := move
     }
@@ -349,7 +411,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       sprite14Visible := true.B
       viewBoxXReg := 640.U
       viewBoxYReg := 480.U
-      //difficulty.io.level := 2.U
+      difficulty.io.level := 2.U
 
       stateReg := move
     }
