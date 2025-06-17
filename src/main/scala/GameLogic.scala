@@ -282,13 +282,16 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val spawnSprite = RegInit(false.B)
   val speed = difficulty.io.speed
   val damage = difficulty.io.damage
-  difficulty.io.level := 0.U
+  val lvlReg = RegInit(0.U(2.W))
+  difficulty.io.level := lvlReg
   when(difficulty.io.spawnEnable) {
     spawnSprite := true.B
   }
 
   //Controls which sprite to throw
   val spriteCnt = RegInit(16.U(5.W))
+
+  val lfsr = Module(new LFSR)
 
   switch(stateReg) {
     is(idle) {
@@ -298,28 +301,45 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     }
 
     is(autonomousMove) {
-      when(spawnSprite) {
-        // Make the current sprite visible
-        when(spriteCnt === 16.U) {
-          sprite16Visible := true.B
+      //mux to control visibility and position of sprites
+      when(lvl1Reg || lvl2Reg || lvl3Reg) {
+        when(spawnSprite) {
+          // Make the current sprite visible
+          when(spriteCnt === 16.U && sprite16Visible === false.B) {
+            sprite16Visible := true.B
+            sprite16XReg := -32.S
+            sprite16YReg := (lfsr.io.out % 480.U).asSInt
+          }
+          when(spriteCnt === 17.U) {
+            sprite17Visible := true.B
+          }
+          when(spriteCnt === 18.U) {
+            sprite18Visible := true.B
+          }
+          when(spriteCnt === 19.U) {
+            sprite19Visible := true.B
+          }
+          when(spriteCnt === 20.U) {
+            sprite20Visible := true.B
+            spriteCnt := 15.U
+          }
+          
+          // Increment sprite counter for next spawn
+          spriteCnt := spriteCnt + 1.U
+          spawnSprite := false.B
         }
-        when(spriteCnt === 17.U) {
-          sprite17Visible := true.B
-        }
-        when(spriteCnt === 18.U) {
-          sprite18Visible := true.B
-        }
-        when(spriteCnt === 19.U) {
-          sprite19Visible := true.B
-        }
-        when(spriteCnt === 20.U) {
-          sprite20Visible := true.B
-          spriteCnt := 15.U
-        }
-        
-        // Increment sprite counter for next spawn
-        spriteCnt := spriteCnt + 1.U
-        spawnSprite := false.B
+      }
+
+      //Controlling movement of sprites
+      sprite16XReg := sprite16XReg + difficulty.io.speed
+      sprite16YReg := sprite16YReg + (difficulty.io.speed >> 1)
+
+      //Mux controlling collision of sprites
+      when(sprite16XReg === 640.S || sprite16YReg === 480.S) {
+        sprite16Visible := false.B
+        sprite16XReg := -32.S
+        sprite16YReg := (lfsr.io.out % 480.U).asSInt
+        printf(p"lfsr.io.out = ${lfsr.io.out}\n")
       }
 
       stateReg := menu
@@ -381,7 +401,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       sprite14Visible := true.B
       viewBoxXReg := 640.U
       viewBoxYReg := 0.U
-      difficulty.io.level := 1.U
+      lvlReg := 1.U
 
       stateReg := move
     }
@@ -399,7 +419,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       sprite14Visible := true.B
       viewBoxXReg := 0.U
       viewBoxYReg := 480.U
-      difficulty.io.level := 2.U
+      lvlReg := 2.U
 
       stateReg := move
     }
@@ -417,7 +437,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       sprite14Visible := true.B
       viewBoxXReg := 640.U
       viewBoxYReg := 480.U
-      difficulty.io.level := 3.U
+      lvlReg := 3.U
 
       stateReg := move
     }

@@ -3,25 +3,37 @@
     "class":"firrtl.transforms.DedupedResult",
     "original":"~Top|RamSpWf",
     "duplicate":"~Top|Top/gameTop:GameTop/graphicEngineVGA:GraphicEngineVGA/backBufferMemory:Memory_64/ramsSpWf:RamSpWf",
-    "index":0.6124401913875598
+    "index":0.6095238095238096
   },
   {
     "class":"firrtl.transforms.DedupedResult",
     "original":"~Top|Memory_64",
     "duplicate":"~Top|Top/gameTop:GameTop/graphicEngineVGA:GraphicEngineVGA/backBufferMemory:Memory_64",
-    "index":0.6172248803827751
+    "index":0.6142857142857143
   },
   {
     "class":"firrtl.transforms.DedupedResult",
     "original":"~Top|RamSpWf_1",
     "duplicate":"~Top|Top/gameTop:GameTop/graphicEngineVGA:GraphicEngineVGA/backBufferShadowMemory:Memory_64/ramsSpWf:RamSpWf",
-    "index":0.6220095693779905
+    "index":0.6190476190476191
   },
   {
     "class":"firrtl.transforms.DedupedResult",
     "original":"~Top|Memory_65",
     "duplicate":"~Top|Top/gameTop:GameTop/graphicEngineVGA:GraphicEngineVGA/backBufferShadowMemory:Memory_64",
-    "index":0.6267942583732058
+    "index":0.6238095238095238
+  },
+  {
+    "class":"firrtl.transforms.DedupedResult",
+    "original":"~Top|LFSR",
+    "duplicate":"~Top|Top/gameTop:GameTop/gameLogic:GameLogic/difficulty:Difficulty/lfsr:LFSR",
+    "index":0.9761904761904762
+  },
+  {
+    "class":"firrtl.transforms.DedupedResult",
+    "original":"~Top|LFSR_1",
+    "duplicate":"~Top|Top/gameTop:GameTop/gameLogic:GameLogic/lfsr:LFSR",
+    "index":0.9857142857142858
   },
   {
     "class":"firrtl.EmitCircuitAnnotation",
