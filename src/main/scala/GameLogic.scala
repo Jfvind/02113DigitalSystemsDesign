@@ -277,10 +277,15 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val lvl2Reg = RegInit(false.B)
   val lvl3Reg = RegInit(false.B)
 
+  //Dificulty control variables
   val difficulty = Module(new Difficulty)
-  val spawnSprite = difficulty.io.spawnEnable
+  val spawnSprite = RegInit(false.B)
   val speed = difficulty.io.speed
   val damage = difficulty.io.damage
+  difficulty.io.level := 0.U
+  when(difficulty.io.spawnEnable) {
+    spawnSprite := true.B
+  }
 
   //Controls which sprite to throw
   val spriteCnt = RegInit(16.U(5.W))
@@ -293,6 +298,30 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     }
 
     is(autonomousMove) {
+      when(spawnSprite) {
+        // Make the current sprite visible
+        when(spriteCnt === 16.U) {
+          sprite16Visible := true.B
+        }
+        when(spriteCnt === 17.U) {
+          sprite17Visible := true.B
+        }
+        when(spriteCnt === 18.U) {
+          sprite18Visible := true.B
+        }
+        when(spriteCnt === 19.U) {
+          sprite19Visible := true.B
+        }
+        when(spriteCnt === 20.U) {
+          sprite20Visible := true.B
+          spriteCnt := 15.U
+        }
+        
+        // Increment sprite counter for next spawn
+        spriteCnt := spriteCnt + 1.U
+        spawnSprite := false.B
+      }
+
       stateReg := menu
     }
 
@@ -353,29 +382,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       viewBoxXReg := 640.U
       viewBoxYReg := 0.U
       difficulty.io.level := 1.U
-
-      when(spawnSprite) {
-        // Make the current sprite visible
-        when(spriteCnt === 16.U) {
-          sprite16Visible := true.B
-        }
-        when(spriteCnt === 17.U) {
-          sprite17Visible := true.B
-        }
-        when(spriteCnt === 18.U) {
-          sprite18Visible := true.B
-        }
-        when(spriteCnt === 19.U) {
-          sprite19Visible := true.B
-        }
-        when(spriteCnt === 20.U) {
-          sprite20Visible := true.B
-          spriteCnt := 15.U
-        }
-        
-        // Increment sprite counter for next spawn
-        spriteCnt := spriteCnt + 1.U
-      }
 
       stateReg := move
     }

@@ -24,6 +24,7 @@ class Difficulty extends Module {
         spawn := false.B
         x := x + 1.U
     }
+    val fherjk = lfsr.io.out
 
     io.spawnEnable := spawn
     io.speed := io.level * x
