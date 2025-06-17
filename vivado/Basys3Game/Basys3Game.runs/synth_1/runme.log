@@ -8,12 +8,12 @@
   **** SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
   **** IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
   **** SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-  **** Start of session at: Fri Jun 13 11:20:34 2025
+  **** Start of session at: Tue Jun 17 10:07:10 2025
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source Top.tcl -notrace
-create_project: Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 538.516 ; gain = 235.852
+create_project: Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 539.238 ; gain = 237.371
 Command: synth_design -top Top -part xc7a35tcpg236-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
@@ -22,12 +22,12 @@ INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Device 21-9227] Part: xc7a35tcpg236-1 does not have CEAM library.
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 43384
+INFO: [Synth 8-7075] Helper process launched with PID 41784
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1385.598 ; gain = 446.418
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1387.055 ; gain = 447.699
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'Top' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:7280]
-INFO: [Synth 8-6157] synthesizing module 'GameTop' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:6873]
+INFO: [Synth 8-6157] synthesizing module 'Top' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:7297]
+INFO: [Synth 8-6157] synthesizing module 'GameTop' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:6890]
 INFO: [Synth 8-6157] synthesizing module 'GraphicEngineVGA' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:2682]
 INFO: [Synth 8-6157] synthesizing module 'Memory' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:1]
 INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf' [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:11]
@@ -618,7 +618,7 @@ INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_30.mem' is read
 	Parameter DATA_WIDTH bound to: 7 - type: integer 
 	Parameter LOAD_FILE bound to: memory_init/sprite_init_31.mem - type: string 
 INFO: [Synth 8-3876] $readmem data file 'memory_init/sprite_init_31.mem' is read successfully [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:7015]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:7032]
 	Parameter ADDR_WIDTH bound to: 8 - type: integer 
 	Parameter DATA_WIDTH bound to: 28 - type: integer 
 	Parameter LOAD_FILE bound to: memory_init/tune_init_0.mem - type: string 
@@ -627,50 +627,48 @@ INFO: [Synth 8-3876] $readmem data file 'memory_init/tune_init_0.mem' is read su
 	Parameter DATA_WIDTH bound to: 28 - type: integer 
 	Parameter LOAD_FILE bound to: memory_init/tune_init_1.mem - type: string 
 INFO: [Synth 8-3876] $readmem data file 'memory_init/tune_init_1.mem' is read successfully [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4833]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5190]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4835]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5198]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4839]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5214]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4841]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5222]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4843]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5230]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4861]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5302]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_16_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4863]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_16_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5310]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_17_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4865]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_17_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5318]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_18_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4867]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_18_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5326]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_19_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4869]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_19_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5334]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_20_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4871]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_20_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5342]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_21_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4873]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_21_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5350]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_22_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4875]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_22_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5358]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_23_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4877]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_23_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5366]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_24_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4879]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_24_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5374]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_25_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4881]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_25_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5382]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_26_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4883]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_26_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5390]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_27_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4885]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_27_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5398]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_28_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4887]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_28_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5406]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_29_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4889]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_29_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5414]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_30_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4891]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_30_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5422]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_31_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4893]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_31_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5430]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4850]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5217]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4852]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5225]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4856]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5241]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4858]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5249]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4860]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5257]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4878]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5329]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_17_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4882]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_17_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5345]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_18_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4884]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_18_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5353]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_19_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4886]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_19_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5361]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_20_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4888]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_20_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5369]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_21_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4890]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_21_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5377]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_22_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4892]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_22_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5385]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_23_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4894]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_23_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5393]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_24_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4896]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_24_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5401]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_25_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4898]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_25_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5409]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_26_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4900]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_26_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5417]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_27_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4902]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_27_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5425]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_28_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4904]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_28_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5433]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_29_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4906]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_29_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5441]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_30_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4908]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_30_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5449]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_31_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:4910]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_31_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5457]
 WARNING: [Synth 8-3917] design Top has port io_led_0 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_1 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_2 driven by constant 0
@@ -690,18 +688,18 @@ WARNING: [Synth 8-7129] Port io_sw_5 in module Top is either unconnected or has 
 WARNING: [Synth 8-7129] Port io_sw_6 in module Top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_sw_7 in module Top is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1562.195 ; gain = 623.016
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1562.969 ; gain = 623.613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1562.195 ; gain = 623.016
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1562.969 ; gain = 623.613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1562.195 ; gain = 623.016
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1562.969 ; gain = 623.613
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.049 . Memory (MB): peak = 1562.195 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.050 . Memory (MB): peak = 1562.969 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -712,37 +710,37 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/Top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1615.645 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1659.492 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 1615.645 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.019 . Memory (MB): peak = 1659.492 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 1615.645 ; gain = 676.465
+Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1659.492 ; gain = 720.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 1615.645 ; gain = 676.465
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1659.492 ; gain = 720.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 1615.645 ; gain = 676.465
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1659.492 ; gain = 720.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 1615.645 ; gain = 676.465
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1659.492 ; gain = 720.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   3 Input   12 Bit       Adders := 6     
-	   3 Input   11 Bit       Adders := 4     
+	   3 Input   12 Bit       Adders := 7     
+	   3 Input   11 Bit       Adders := 5     
 	   2 Input   11 Bit       Adders := 3     
 	   2 Input   10 Bit       Adders := 3     
 	   2 Input    8 Bit       Adders := 2     
@@ -750,8 +748,8 @@ Detailed RTL Component Info :
 +---Registers : 
 	               28 Bit    Registers := 2     
 	               12 Bit    Registers := 4     
-	               11 Bit    Registers := 9     
-	               10 Bit    Registers := 9     
+	               11 Bit    Registers := 10    
+	               10 Bit    Registers := 10    
 	                9 Bit    Registers := 2     
 	                8 Bit    Registers := 2     
 	                7 Bit    Registers := 160   
@@ -759,16 +757,16 @@ Detailed RTL Component Info :
 	                4 Bit    Registers := 3     
 	                3 Bit    Registers := 1     
 	                2 Bit    Registers := 3     
-	                1 Bit    Registers := 201   
+	                1 Bit    Registers := 203   
 +---RAMs : 
 	              12K Bit	(2048 X 6 bit)          RAMs := 3     
 	               7K Bit	(1024 X 7 bit)          RAMs := 96    
 	               7K Bit	(256 X 28 bit)          RAMs := 2     
 +---Muxes : 
-	   3 Input   11 Bit        Muxes := 4     
+	   3 Input   11 Bit        Muxes := 5     
 	   2 Input   11 Bit        Muxes := 7     
 	   4 Input   11 Bit        Muxes := 1     
-	   3 Input   10 Bit        Muxes := 3     
+	   3 Input   10 Bit        Muxes := 4     
 	   2 Input   10 Bit        Muxes := 12    
 	   4 Input   10 Bit        Muxes := 3     
 	   2 Input    9 Bit        Muxes := 16    
@@ -782,10 +780,9 @@ Detailed RTL Component Info :
 	   3 Input    3 Bit        Muxes := 1     
 	   5 Input    3 Bit        Muxes := 1     
 	   2 Input    2 Bit        Muxes := 7     
-	   2 Input    1 Bit        Muxes := 45    
-	   4 Input    1 Bit        Muxes := 8     
+	   2 Input    1 Bit        Muxes := 50    
+	   4 Input    1 Bit        Muxes := 4     
 	   9 Input    1 Bit        Muxes := 1     
-	   7 Input    1 Bit        Muxes := 1     
 	   8 Input    1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -824,7 +821,7 @@ WARNING: [Synth 8-7129] Port io_sw_7 in module Top is either unconnected or has 
 WARNING: [Synth 8-7257] Removed RAM (gameTop/graphicEngineVGA/backTileMemories_17/ramsSpWf/RAM_reg) due to inactive write enable.
 WARNING: [Synth 8-6014] Unused sequential element gameTop/graphicEngineVGA/backTileMemories_17/ramsSpWf/RAM_reg was removed. 
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:29 . Memory (MB): peak = 1615.645 ; gain = 676.465
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1659.492 ; gain = 720.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -942,13 +939,13 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:33 ; elapsed = 00:00:37 . Memory (MB): peak = 1615.645 ; gain = 676.465
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1659.492 ; gain = 720.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:35 ; elapsed = 00:00:39 . Memory (MB): peak = 1615.645 ; gain = 676.465
+Finished Timing Optimization : Time (s): cpu = 00:00:37 ; elapsed = 00:00:39 . Memory (MB): peak = 1659.492 ; gain = 720.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1116,7 +1113,7 @@ INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_
 INFO: [Synth 8-7052] The timing for the instance gameTop/graphicEngineVGA/backBufferShadowMemory/ramsSpWf/RAM_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance gameTop/graphicEngineVGA/backBufferRestoreMemory/ramsSpWf/RAM_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:36 ; elapsed = 00:00:39 . Memory (MB): peak = 1615.645 ; gain = 676.465
+Finished Technology Mapping : Time (s): cpu = 00:00:38 ; elapsed = 00:00:40 . Memory (MB): peak = 1659.492 ; gain = 720.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -1134,37 +1131,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:41 ; elapsed = 00:00:45 . Memory (MB): peak = 1615.645 ; gain = 676.465
+Finished IO Insertion : Time (s): cpu = 00:00:43 ; elapsed = 00:00:45 . Memory (MB): peak = 1659.492 ; gain = 720.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:41 ; elapsed = 00:00:45 . Memory (MB): peak = 1615.645 ; gain = 676.465
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:43 ; elapsed = 00:00:45 . Memory (MB): peak = 1659.492 ; gain = 720.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:41 ; elapsed = 00:00:45 . Memory (MB): peak = 1615.645 ; gain = 676.465
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:43 ; elapsed = 00:00:45 . Memory (MB): peak = 1659.492 ; gain = 720.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:41 ; elapsed = 00:00:45 . Memory (MB): peak = 1615.645 ; gain = 676.465
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:43 ; elapsed = 00:00:45 . Memory (MB): peak = 1659.492 ; gain = 720.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:41 ; elapsed = 00:00:45 . Memory (MB): peak = 1615.645 ; gain = 676.465
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:43 ; elapsed = 00:00:45 . Memory (MB): peak = 1659.492 ; gain = 720.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:41 ; elapsed = 00:00:45 . Memory (MB): peak = 1615.645 ; gain = 676.465
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:43 ; elapsed = 00:00:45 . Memory (MB): peak = 1659.492 ; gain = 720.137
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1197,44 +1194,44 @@ Report Cell Usage:
 |      |Cell     |Count |
 +------+---------+------+
 |1     |BUFG     |     1|
-|2     |CARRY4   |    73|
-|3     |LUT1     |    76|
-|4     |LUT2     |   146|
-|5     |LUT3     |    43|
-|6     |LUT4     |    51|
-|7     |LUT5     |    82|
-|8     |LUT6     |   219|
+|2     |CARRY4   |    80|
+|3     |LUT1     |    94|
+|4     |LUT2     |   150|
+|5     |LUT3     |    51|
+|6     |LUT4     |    56|
+|7     |LUT5     |    84|
+|8     |LUT6     |   210|
 |9     |MUXF7    |    28|
 |10    |MUXF8    |    14|
 |11    |RAMB18E1 |    47|
 |57    |SRL16E   |     3|
-|58    |FDRE     |   325|
-|59    |FDSE     |    31|
+|58    |FDRE     |   329|
+|59    |FDSE     |    30|
 |60    |IBUF     |     7|
 |61    |OBUF     |    26|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:41 ; elapsed = 00:00:45 . Memory (MB): peak = 1615.645 ; gain = 676.465
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:43 ; elapsed = 00:00:45 . Memory (MB): peak = 1659.492 ; gain = 720.137
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 21 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:29 ; elapsed = 00:00:42 . Memory (MB): peak = 1615.645 ; gain = 623.016
-Synthesis Optimization Complete : Time (s): cpu = 00:00:41 ; elapsed = 00:00:45 . Memory (MB): peak = 1615.645 ; gain = 676.465
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:30 ; elapsed = 00:00:43 . Memory (MB): peak = 1659.492 ; gain = 623.613
+Synthesis Optimization Complete : Time (s): cpu = 00:00:43 ; elapsed = 00:00:46 . Memory (MB): peak = 1659.492 ; gain = 720.137
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.019 . Memory (MB): peak = 1615.645 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 162 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.019 . Memory (MB): peak = 1659.492 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 169 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1615.645 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1659.492 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: 7739254
+Synth Design complete | Checksum: 9c422322
 INFO: [Common 17-83] Releasing license: Synthesis
-368 Infos, 84 Warnings, 0 Critical Warnings and 0 Errors encountered.
+368 Infos, 82 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:47 ; elapsed = 00:00:52 . Memory (MB): peak = 1615.645 ; gain = 1077.129
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1615.645 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:48 ; elapsed = 00:00:53 . Memory (MB): peak = 1659.492 ; gain = 1120.254
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1659.492 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/DTU-local/Repos/02113DigitalSystemsDesign/vivado/Basys3Game/Basys3Game.runs/synth_1/Top.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file Top_utilization_synth.rpt -pb Top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Jun 13 11:21:43 2025...
+INFO: [Common 17-206] Exiting Vivado at Tue Jun 17 10:08:19 2025...

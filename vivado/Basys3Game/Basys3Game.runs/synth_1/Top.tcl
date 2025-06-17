@@ -127,6 +127,54 @@ read_mem {
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_11.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/tune_init_0.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/tune_init_1.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_16.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_32.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_26.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_21.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_41.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_45.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_54.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_59.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_33.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_46.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_17.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_30.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_37.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_61.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_63.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_19.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_49.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_50.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_57.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_44.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_22.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_18.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_53.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_23.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_31.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_40.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_58.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_62.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_36.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_27.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_48.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_43.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_56.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_52.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_24.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_39.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_28.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_35.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_55.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_42.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_20.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_47.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_34.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_29.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_60.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_38.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_51.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_25.mem
 }
 read_verilog -library xil_defaultlib {
   C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v
