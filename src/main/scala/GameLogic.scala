@@ -310,24 +310,29 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
             sprite16Visible := true.B
             sprite16XReg := -32.S
             sprite16YReg := (randNum * 2.U).asSInt
+            spawnSprite := false.B
           }
           when(spriteCnt === 17.U) {
             sprite17Visible := true.B
+            spawnSprite := false.B
           }
           when(spriteCnt === 18.U) {
             sprite18Visible := true.B
+            spawnSprite := false.B
           }
           when(spriteCnt === 19.U) {
             sprite19Visible := true.B
+            spawnSprite := false.B
           }
           when(spriteCnt === 20.U) {
             sprite20Visible := true.B
+            spawnSprite := false.B
             spriteCnt := 15.U
           }
           
           // Increment sprite counter for next spawn
           spriteCnt := spriteCnt + 1.U
-          spawnSprite := false.B
+          //spawnSprite := false.B //Forsøgt sat op i spriteCnt === 16.U
         }
       }
 
@@ -335,7 +340,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       sprite16XReg := sprite16XReg + difficulty.io.speed
 
       //Mux controlling collision of sprites
-      when(sprite16XReg === 640.S || sprite16YReg === 480.S) {
+      when(sprite16XReg === 640.S || (sprite16XReg < sprite14XReg + 24.S && sprite14XReg < sprite16XReg + 32.S && sprite16YReg < sprite14YReg + 24.S && sprite14YReg < sprite16YReg + 15.S)) {
         sprite16Visible := false.B
       }
 
