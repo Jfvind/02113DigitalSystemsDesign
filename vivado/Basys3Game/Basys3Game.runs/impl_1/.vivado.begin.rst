@@ -68,3 +68,18 @@
     <Process Command="vivado.bat" Owner="jfvin" Host="JEPPE2024" Pid="15604" HostCore="20" HostMemory="034014814208">
     </Process>
 </ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="jfvin" Host="JEPPE2024" Pid="41916" HostCore="20" HostMemory="034014814208">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="jfvin" Host="JEPPE2024" Pid="49524" HostCore="20" HostMemory="034014814208">
+    </Process>
+</ProcessHandle>
+<?xml version="1.0"?>
+<ProcessHandle Version="1" Minor="0">
+    <Process Command="vivado.bat" Owner="jfvin" Host="JEPPE2024" Pid="30108" HostCore="20" HostMemory="034014814208">
+    </Process>
+</ProcessHandle>
