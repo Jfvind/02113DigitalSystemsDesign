@@ -6619,30 +6619,22 @@ module Difficulty(
 );
 `ifdef RANDOMIZE_REG_INIT
   reg [31:0] _RAND_0;
-  reg [31:0] _RAND_1;
 `endif // RANDOMIZE_REG_INIT
   reg [26:0] spawnCnt; // @[\\src\\main\\scala\\Difficulty.scala 14:27]
-  reg  spawn; // @[\\src\\main\\scala\\Difficulty.scala 15:24]
-  wire  _T = spawnCnt == 27'h5f5e100; // @[\\src\\main\\scala\\Difficulty.scala 17:19]
-  wire [26:0] _spawnCnt_T_1 = spawnCnt + 27'h1; // @[\\src\\main\\scala\\Difficulty.scala 24:30]
-  wire [26:0] _GEN_1 = spawnCnt == 27'h5f5e100 ? 27'h0 : _spawnCnt_T_1; // @[\\src\\main\\scala\\Difficulty.scala 17:36 18:18 24:18]
-  assign io_spawnEnable = spawn; // @[\\src\\main\\scala\\Difficulty.scala 49:20]
+  wire [26:0] _spawnCnt_T_1 = spawnCnt + 27'h1; // @[\\src\\main\\scala\\Difficulty.scala 25:30]
+  wire [26:0] _GEN_1 = spawnCnt == 27'h5f5e100 ? 27'h0 : _spawnCnt_T_1; // @[\\src\\main\\scala\\Difficulty.scala 17:36 18:18 25:18]
+  assign io_spawnEnable = spawnCnt == 27'h5f5e100; // @[\\src\\main\\scala\\Difficulty.scala 17:19]
   always @(posedge clock) begin
     if (reset) begin // @[\\src\\main\\scala\\Difficulty.scala 14:27]
       spawnCnt <= 27'h0; // @[\\src\\main\\scala\\Difficulty.scala 14:27]
-    end else if (io_level == 2'h1) begin // @[\\src\\main\\scala\\Difficulty.scala 28:28]
+    end else if (io_level == 2'h1) begin // @[\\src\\main\\scala\\Difficulty.scala 30:28]
       spawnCnt <= _GEN_1;
-    end else if (io_level == 2'h2) begin // @[\\src\\main\\scala\\Difficulty.scala 33:34]
+    end else if (io_level == 2'h2) begin // @[\\src\\main\\scala\\Difficulty.scala 35:34]
       spawnCnt <= _GEN_1;
-    end else if (io_level == 2'h3) begin // @[\\src\\main\\scala\\Difficulty.scala 38:34]
+    end else if (io_level == 2'h3) begin // @[\\src\\main\\scala\\Difficulty.scala 40:34]
       spawnCnt <= _GEN_1;
     end else begin
-      spawnCnt <= 27'h0; // @[\\src\\main\\scala\\Difficulty.scala 46:18]
-    end
-    if (reset) begin // @[\\src\\main\\scala\\Difficulty.scala 15:24]
-      spawn <= 1'h0; // @[\\src\\main\\scala\\Difficulty.scala 15:24]
-    end else begin
-      spawn <= _T;
+      spawnCnt <= 27'h0; // @[\\src\\main\\scala\\Difficulty.scala 48:18]
     end
   end
 // Register and memory initialization
@@ -6683,8 +6675,6 @@ initial begin
 `ifdef RANDOMIZE_REG_INIT
   _RAND_0 = {1{`RANDOM}};
   spawnCnt = _RAND_0[26:0];
-  _RAND_1 = {1{`RANDOM}};
-  spawn = _RAND_1[0:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
@@ -6853,13 +6843,10 @@ module GameLogic(
   wire  _GEN_0 = difficulty_io_spawnEnable | spawnSprite; // @[\\src\\main\\scala\\GameLogic.scala 287:35 288:17 282:28]
   reg [4:0] spriteCnt; // @[\\src\\main\\scala\\GameLogic.scala 292:26]
   wire  _T_3 = lvl1Reg | lvl2Reg | lvl3Reg; // @[\\src\\main\\scala\\GameLogic.scala 305:31]
-  wire [9:0] _sprite16YReg_T = lfsr_io_out * 2'h2; // @[\\src\\main\\scala\\GameLogic.scala 312:41]
-  wire [9:0] _GEN_9 = _sprite16YReg_T % 10'h1c0; // @[\\src\\main\\scala\\GameLogic.scala 312:48]
-  wire [8:0] _sprite16YReg_T_2 = _GEN_9[8:0]; // @[\\src\\main\\scala\\GameLogic.scala 312:57]
+  wire [9:0] _sprite16YReg_T_1 = lfsr_io_out * 2'h2; // @[\\src\\main\\scala\\GameLogic.scala 312:47]
   wire  _GEN_2 = spriteCnt == 5'h10 & ~sprite16Visible | sprite16Visible; // @[\\src\\main\\scala\\GameLogic.scala 308:65 309:27 187:32]
-  wire [10:0] _GEN_3 = spriteCnt == 5'h10 & ~sprite16Visible ? $signed(-11'sh20) : $signed(sprite16XReg); // @[\\src\\main\\scala\\GameLogic.scala 308:65 310:24 134:29]
-  wire [9:0] _GEN_4 = spriteCnt == 5'h10 & ~sprite16Visible ? $signed({{1{_sprite16YReg_T_2[8]}},_sprite16YReg_T_2}) :
-    $signed(sprite16YReg); // @[\\src\\main\\scala\\GameLogic.scala 308:65 312:24 135:29]
+  wire [10:0] _GEN_3 = spriteCnt == 5'h10 & ~sprite16Visible ? $signed(11'sh20) : $signed(sprite16XReg); // @[\\src\\main\\scala\\GameLogic.scala 308:65 310:24 134:29]
+  wire [9:0] _GEN_4 = spriteCnt == 5'h10 & ~sprite16Visible ? $signed(_sprite16YReg_T_1) : $signed(sprite16YReg); // @[\\src\\main\\scala\\GameLogic.scala 308:65 312:24 135:29]
   wire  _GEN_5 = spriteCnt == 5'h11 | sprite17Visible; // @[\\src\\main\\scala\\GameLogic.scala 314:34 315:27 188:32]
   wire  _GEN_6 = spriteCnt == 5'h12 | sprite18Visible; // @[\\src\\main\\scala\\GameLogic.scala 317:34 318:27 189:32]
   wire  _GEN_7 = spriteCnt == 5'h13 | sprite19Visible; // @[\\src\\main\\scala\\GameLogic.scala 320:34 321:27 190:32]
@@ -7167,7 +7154,7 @@ module GameLogic(
       sprite16Visible <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 187:32]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 296:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 296:20]
-        if ($signed(sprite16XReg) == 11'sh154) begin // @[\\src\\main\\scala\\GameLogic.scala 340:36]
+        if ($signed(sprite16XReg) > 11'sh154) begin // @[\\src\\main\\scala\\GameLogic.scala 340:34]
           sprite16Visible <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 341:25]
         end else begin
           sprite16Visible <= _GEN_19;

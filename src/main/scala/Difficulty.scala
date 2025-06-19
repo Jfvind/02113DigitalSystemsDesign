@@ -12,17 +12,19 @@ class Difficulty extends Module {
     val x = RegInit(1.S(7.W))
     val xDone = RegInit(false.B)
     val spawnCnt = RegInit(0.U(27.W))
-    val spawn = RegInit(false.B)
+    //val spawn = RegInit(false.B)
     
     when(spawnCnt === 100000000.U) {
         spawnCnt := 0.U
-        spawn := true.B
+        //spawn := true.B
+        io.spawnEnable := true.B
         when(~xDone) {
             x := x + 1.S
         }
     }.otherwise {
         spawnCnt := spawnCnt + 1.U
-        spawn := false.B
+        //spawn := false.B
+        io.spawnEnable := false.B
     }
 
     when(io.level === 1.U) {
@@ -46,7 +48,7 @@ class Difficulty extends Module {
         spawnCnt := 0.U
     }
 
-    io.spawnEnable := spawn
+    //io.spawnEnable := spawn
     io.speed := io.level * x
     io.damage := 1.U
 }

@@ -307,9 +307,9 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         // Make the current sprite visible
         when(spriteCnt === 16.U && sprite16Visible === false.B) {
           sprite16Visible := true.B
-          sprite16XReg := -32.S
+          sprite16XReg := 32.S
           // Use a new random value for Y position each spawn
-          sprite16YReg := ((lfsr.io.out * 2.U) % 448.U).asSInt // 448 = 480-32, keeps sprite on screen
+          sprite16YReg := (lfsr.io.out * 2.U).asSInt // 448 = 480-32, keeps sprite on screen //lfsr.io.out
         }
         when(spriteCnt === 17.U) {
           sprite17Visible := true.B
@@ -337,7 +337,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       }
 
       //Mux controlling collision of sprites
-      when(sprite16XReg === 340.S) { //|| (sprite16XReg < sprite14XReg + 32.S && sprite14XReg < sprite16XReg + 32.S && sprite16YReg < sprite14YReg + 32.S && sprite14YReg < sprite16YReg + 32.S)) {
+      when(sprite16XReg > 340.S) { //|| (sprite16XReg < sprite14XReg + 32.S && sprite14XReg < sprite16XReg + 32.S && sprite16YReg < sprite14YReg + 32.S && sprite14YReg < sprite16YReg + 32.S)) {
         sprite16Visible := false.B
       }
 

@@ -10,7 +10,7 @@ class LFSRTest extends AnyFlatSpec with ChiselScalatestTester {
 
       dut.clock.setTimeout(0)
 
-    for (i <- 0 until 50 by 1) {
+    for (i <- 0 until 500000000 by 100000000) {
       println(dut.io.out.peek().litValue)
       dut.clock.step(10)
     }
