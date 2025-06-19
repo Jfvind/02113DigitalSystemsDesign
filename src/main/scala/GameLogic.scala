@@ -33,7 +33,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     val spriteScaleUpHorizontal = Output(Vec(SpriteNumber, Bool()))
     val spriteScaleDownHorizontal = Output(Vec(SpriteNumber, Bool()))
     val spriteScaleUpVertical = Output(Vec(SpriteNumber, Bool()))
-    val spriteScaleDownVertical = Output(Vec(SpriteNumber, Bool()))
+    val spriteScaleDownVertical = Output(Vec(SpriteNumber, Bool())
 
     //Viewbox control output
     val viewBoxX = Output(UInt(10.W)) //0 to 640
@@ -278,6 +278,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val lvl3Reg = RegInit(false.B)
 
   //Dificulty control variables
+  val spawnPending    = RegInit(false.B)       // Låser spawnEnable indtil vi er klar
+  val frameSpawnCnt   = RegInit(0.U(27.W))     // Tæller nu i frames i stedet for clocks
   val difficulty = Module(new Difficulty)
   val spawnSprite = RegInit(false.B)
   val speed = difficulty.io.speed
@@ -296,7 +298,11 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   switch(stateReg) {
     is(idle) {
       when(io.newFrame) {
-        stateReg := autonomousMove
+        frameSpawnCnt := frameSpawnCnt + 1.U
+        when(frameSpawnCnt === 100.U) {           // 100 frames ≈ 1.67 s @60 Hz
+          frameSpawnCnt := 0.U
+          spawnPending  := true.B                 // Flag at vi skal spawne
+        }
       }
     }
 
@@ -307,9 +313,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         // Make the current sprite visible
         when(spriteCnt === 16.U && sprite16Visible === false.B) {
           sprite16Visible := true.B
-          sprite16XReg := 32.S
-          // Use a new random value for Y position each spawn
-          sprite16YReg := (lfsr.io.out * 2.U).asSInt // 448 = 480-32, keeps sprite on screen //lfsr.io.out
+          sprite16XReg    := -32.S
+          sprite16YReg    := ((lfsr.io.out * 2.U) % 448.U).asSInt
+          spawnPending    := false.B
+          spriteCnt       := 17.U
         }
         when(spriteCnt === 17.U) {
           sprite17Visible := true.B
@@ -333,11 +340,11 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
       //Controlling movement of sprites
       when(sprite16Visible) {
-        sprite16XReg := sprite16XReg + 5.S //difficulty.io.speed
+        sprite16XReg := sprite16XReg + difficulty.io.speed
       }
 
       //Mux controlling collision of sprites
-      when(sprite16XReg > 340.S) { //|| (sprite16XReg < sprite14XReg + 32.S && sprite14XReg < sprite16XReg + 32.S && sprite16YReg < sprite14YReg + 32.S && sprite14YReg < sprite16YReg + 32.S)) {
+      when(sprite16XReg >= 340.S) { //|| (sprite16XReg < sprite14XReg + 32.S && sprite14XReg < sprite16XReg + 32.S && sprite16YReg < sprite14YReg + 32.S && sprite14YReg < sprite16YReg + 32.S)) {
         sprite16Visible := false.B
       }
 
