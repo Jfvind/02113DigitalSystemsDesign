@@ -302,7 +302,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
     is(autonomousMove) {
       //mux to control visibility and position of sprites
-      when(spawnSprite) {
+      when(lvl1Reg || lvl2Reg || lvl3Reg) {
+        when(spawnSprite) {
         // Make the current sprite visible
         when(spriteCnt === 16.U && sprite16Visible === false.B) {
           sprite16Visible := true.B
@@ -327,13 +328,16 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         // Increment sprite counter for next spawn
         spriteCnt := spriteCnt + 1.U
         spawnSprite := false.B
+        }
       }
 
       //Controlling movement of sprites
-      sprite16XReg := sprite16XReg + difficulty.io.speed
+      when(sprite16Visible) {
+        sprite16XReg := sprite16XReg + 2.S //difficulty.io.speed
+      }
 
       //Mux controlling collision of sprites
-      when(sprite16XReg === 640.S || (sprite16XReg < sprite14XReg + 32.S && sprite14XReg < sprite16XReg + 32.S && sprite16YReg < sprite14YReg + 32.S && sprite14YReg < sprite16YReg + 32.S)) {
+      when(sprite16XReg === 340.S) { //|| (sprite16XReg < sprite14XReg + 32.S && sprite14XReg < sprite16XReg + 32.S && sprite16YReg < sprite14YReg + 32.S && sprite14YReg < sprite16YReg + 32.S)) {
         sprite16Visible := false.B
       }
 
