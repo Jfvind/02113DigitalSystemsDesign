@@ -291,6 +291,9 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   //Controls which sprite to throw
   val spriteCnt = RegInit(16.U(5.W))
 
+  //Controls the Random spawn by caching
+  val cashRegY = RegInit(0.S(10.W))
+
   val lfsr = Module(new LFSR)
 
   switch(stateReg) {
@@ -311,7 +314,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           when(sprite16Visible === false.B) {
             sprite16Visible := true.B
             sprite16XReg := 32.S
-            sprite16YReg := (chisel3.util.random.LFSR(8) * 2.U).asSInt
+            cashRegY := (lsfr.io.out * 2.U).asSInt
+            sprite16YReg := cashRegY
             spriteCnt := 17.U
           }
         }
