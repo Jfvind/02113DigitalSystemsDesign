@@ -309,31 +309,31 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           sprite16Visible := true.B
           sprite16XReg := 32.S
           // Use a new random value for Y position each spawn
-          sprite16YReg := (lfsr.io.out << 1).asSInt // 448 = 480-32, keeps sprite on screen //lfsr.io.out
+          sprite16YReg := (lfsr.io.out * 2.U).asSInt // 448 = 480-32, keeps sprite on screen //lfsr.io.out
           spriteCnt := 17.U
         }
         when(spriteCnt === 17.U) {
           sprite17Visible := true.B
           sprite17XReg := 32.S
-          sprite17YReg := (lfsr.io.out << 1).asSInt
+          sprite17YReg := (lfsr.io.out * 2.U).asSInt
           spriteCnt := 18.U
         }
         when(spriteCnt === 18.U) {
           sprite18Visible := true.B
           sprite18XReg := 32.S
-          sprite18YReg := (lfsr.io.out << 1).asSInt
+          sprite18YReg := (lfsr.io.out * 2.U).asSInt
           spriteCnt := 19.U
         }
         when(spriteCnt === 19.U) {
           sprite19Visible := true.B
           sprite19XReg := 32.S
-          sprite19YReg := (lfsr.io.out << 1).asSInt
+          sprite19YReg := (lfsr.io.out * 2.U).asSInt
           spriteCnt := 20.U
         }
         when(spriteCnt === 20.U) {
           sprite20Visible := true.B
           sprite20XReg := 32.S
-          sprite20YReg := (lfsr.io.out << 1).asSInt
+          sprite20YReg := (lfsr.io.out * 2.U).asSInt
           spriteCnt := 16.U
         }
         spawnSprite := false.B
@@ -344,10 +344,34 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       when(sprite16Visible) {
         sprite16XReg := sprite16XReg + 5.S //difficulty.io.speed
       }
+      when(sprite17Visible) {
+        sprite17XReg := sprite17XReg + 5.S //difficulty.io.speed
+      }
+      when(sprite18Visible) {
+        sprite18XReg := sprite18XReg + 5.S //difficulty.io.speed
+      }
+      when(sprite19Visible) {
+        sprite19XReg := sprite19XReg + 5.S //difficulty.io.speed
+      }
+      when(sprite20Visible) {
+        sprite20XReg := sprite20XReg + 5.S //difficulty.io.speed
+      }
 
       //Mux controlling collision of sprites
       when(sprite16XReg >= 340.S) { //|| (sprite16XReg < sprite14XReg + 32.S && sprite14XReg < sprite16XReg + 32.S && sprite16YReg < sprite14YReg + 32.S && sprite14YReg < sprite16YReg + 32.S)) {
         sprite16Visible := false.B
+      }
+      when(sprite17XReg >= 340.S) {
+        sprite17Visible := false.B
+      }
+      when(sprite18XReg >= 340.S) {
+        sprite18Visible := false.B
+      }
+      when(sprite19XReg >= 340.S) {
+        sprite19Visible := false.B
+      }
+      when(sprite20XReg >= 340.S) {
+        sprite20Visible := false.B
       }
 
       stateReg := menu
