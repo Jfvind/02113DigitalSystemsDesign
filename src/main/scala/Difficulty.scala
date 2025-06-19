@@ -4,27 +4,18 @@ import chisel3.util._
 class Difficulty extends Module {
   val io = IO(new Bundle {
     val level = Input(UInt(2.W)) // input fra vores FSM (0,1,2) lvl-1
-    val spawnEnable = Output(Bool()) // Signal til at spawn nyt objekt
     val speed = Output(SInt(27.W))
     val damage = Output(UInt(8.W)) // pr meteor
   })
 
     val x = RegInit(1.S(7.W))
     val xDone = RegInit(false.B)
-    val spawnCnt = RegInit(0.U(27.W))
-    //val spawn = RegInit(false.B)
-    
-    when(spawnCnt === 100000000.U) {
-        spawnCnt := 0.U
-        //spawn := true.B
-        io.spawnEnable := true.B
+    val speedCnt = RegInit(0.U(27.W))
+
+    when(speedCnt === 150000000.U) {
         when(~xDone) {
             x := x + 1.S
         }
-    }.otherwise {
-        spawnCnt := spawnCnt + 1.U
-        //spawn := false.B
-        io.spawnEnable := false.B
     }
 
     when(io.level === 1.U) {
@@ -45,10 +36,8 @@ class Difficulty extends Module {
     }.otherwise {
         xDone := false.B
         x := 0.S
-        spawnCnt := 0.U
     }
 
-    //io.spawnEnable := spawn
     io.speed := io.level * x
     io.damage := 1.U
 }

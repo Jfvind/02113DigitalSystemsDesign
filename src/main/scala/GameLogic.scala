@@ -131,7 +131,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite13YReg = RegInit(240.S(10.W))
   val sprite14XReg = RegInit(320.S(11.W)) //Spaceship
   val sprite14YReg = RegInit(240.S(10.W))
-  val sprite16XReg = RegInit(20.S(11.W)) //Seagull
+  val sprite16XReg = RegInit(360.S(11.W)) //Seagull
   val sprite16YReg = RegInit(20.S(10.W))
   val sprite17XReg = RegInit(20.S(11.W))
   val sprite17YReg = RegInit(50.S(10.W))
@@ -279,27 +279,17 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
   //Dificulty control variables
   val difficulty = Module(new Difficulty)
-  val spawnSprite = RegInit(false.B)
+  val spawnSprite = RegInit(VecInit(Seq.fill(5)(false.B)))
   val speed = difficulty.io.speed
   val damage = difficulty.io.damage
   val lvlReg = RegInit(0.U(2.W))
   difficulty.io.level := lvlReg
-  when(difficulty.io.spawnEnable) {
+  /*when(difficulty.io.spawnEnable) {
     spawnSprite := true.B
-  }
+  }*/
 
   //Controls which sprite to throw
   val spriteCnt = RegInit(16.U(5.W))
-
-  //Controls the Random spawn by caching into Regs
-  val cashRegY16 = RegInit(0.S(10.W))
-  val cashRegY17 = RegInit(1.S(10.W))
-  val cashRegY18 = RegInit(2.S(10.W))
-  val cashRegY19 = RegInit(3.S(10.W))
-  val cashRegY20 = RegInit(4.S(10.W))
-
-  val lfsrSample = RegInit(0.U(8.W))
-
 
   val lfsr = Module(new LFSR)
 
@@ -315,51 +305,37 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       val spawnConditions = lvl1Reg || lvl2Reg || lvl3Reg
       val spawnActions = WireInit(false.B)
 
-      when(spawnConditions && spawnSprite) {
-        lfsrSample := lfsr.io.out
-      switch(spriteCnt) {
-        is(16.U) {
-          when(sprite16Visible === false.B) {
-            sprite16Visible := true.B
-            sprite16XReg := 32.S
-            cashRegY16 := (lfsrSample * 2.U).asSInt
-            sprite16YReg := cashRegY16
-            spriteCnt := 17.U
-          }
-        }
-        is(17.U) {
+      when(spawnConditions) {
+        when(spawnSprite(0)) {
+          sprite16Visible := true.B
+          sprite16XReg := 32.S
+          sprite16YReg := (lfsr.io.out * 2.U).asSInt
+          spawnSprite(0) := false.B
+          spawnSprite(1) := true.B
+        }.elsewhen(spawnSprite(1)) {
           sprite17Visible := true.B
           sprite17XReg := 32.S
-          cashRegY17 := (lfsrSample * 2.U).asSInt
-          sprite17YReg := cashRegY17
-          spriteCnt := 18.U
-        }
-        is(18.U) {
+          sprite17YReg := (lfsr.io.out * 2.U).asSInt
+          spawnSprite(1) := false.B
+          spawnSprite(2) := true.B
+        }.elsewhen(spawnSprite(2)) {
           sprite18Visible := true.B
           sprite18XReg := 32.S
-          cashRegY18 := (lfsrSample * 2.U).asSInt
-          sprite18YReg := cashRegY18
-          spriteCnt := 19.U
-        }
-        is(19.U) {
+          sprite18YReg := (lfsr.io.out * 2.U).asSInt
+          spawnSprite(2) := false.B
+          spawnSprite(3) := true.B
+        }.elsewhen(spawnSprite(3)) {
           sprite19Visible := true.B
           sprite19XReg := 32.S
-          cashRegY19 := (lfsrSample * 2.U).asSInt
-          sprite19YReg := cashRegY19
-          spriteCnt := 20.U
-        }
-        is(20.U) {
+          sprite19YReg := (lfsr.io.out * 2.U).asSInt
+          spawnSprite(3) := false.B
+          spawnSprite(4) := true.B
+        }.elsewhen(spawnSprite(4)) {
           sprite20Visible := true.B
           sprite20XReg := 32.S
-          cashRegY20 := (lfsrSample * 2.U).asSInt
-          sprite20YReg := cashRegY20
-          spriteCnt := 16.U
+          sprite20YReg := (lfsr.io.out * 2.U).asSInt
+          spawnSprite(4) := false.B
         }
-      }
-      spawnActions := true.B
-      }
-      when(spawnActions) {
-      spawnSprite := false.B
       }
 
       // Move logic
@@ -372,12 +348,13 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       }
       }
 
-      // Collision/visibility logic
+      // Collision/visibility and spawn logic
       val spriteXRegsArr = Array(sprite16XReg, sprite17XReg, sprite18XReg, sprite19XReg, sprite20XReg)
       val spriteVisibleRegsArr = Array(sprite16Visible, sprite17Visible, sprite18Visible, sprite19Visible, sprite20Visible)
       for (i <- 0 until 5) {
       when(spriteXRegsArr(i) >= 340.S) {
         spriteVisibleRegsArr(i) := false.B
+        spawnSprite(i) := true.B
       }
       }
 
