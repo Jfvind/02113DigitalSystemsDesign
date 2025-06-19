@@ -311,32 +311,32 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           when(sprite16Visible === false.B) {
             sprite16Visible := true.B
             sprite16XReg := 32.S
-            sprite16YReg := (lfsr.io.out * 2.U).asSInt
+            sprite16YReg := (chisel3.util.random.LFSR(8) * 2.U).asSInt
             spriteCnt := 17.U
           }
         }
         is(17.U) {
           sprite17Visible := true.B
           sprite17XReg := 32.S
-          sprite17YReg := (lfsr.io.out * 2.U).asSInt
+          sprite17YReg := (chisel3.util.random.LFSR(8) * 2.U).asSInt
           spriteCnt := 18.U
         }
         is(18.U) {
           sprite18Visible := true.B
           sprite18XReg := 32.S
-          sprite18YReg := (lfsr.io.out * 2.U).asSInt
+          sprite18YReg := (chisel3.util.random.LFSR(8) * 2.U).asSInt
           spriteCnt := 19.U
         }
         is(19.U) {
           sprite19Visible := true.B
           sprite19XReg := 32.S
-          sprite19YReg := (lfsr.io.out * 2.U).asSInt
+          sprite19YReg := (chisel3.util.random.LFSR(8) * 2.U).asSInt
           spriteCnt := 20.U
         }
         is(20.U) {
           sprite20Visible := true.B
           sprite20XReg := 32.S
-          sprite20YReg := (lfsr.io.out * 2.U).asSInt
+          sprite20YReg := (chisel3.util.random.LFSR(8) * 2.U).asSInt
           spriteCnt := 16.U
         }
       }

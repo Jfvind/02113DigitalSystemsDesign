@@ -3,25 +3,55 @@
     "class":"firrtl.transforms.DedupedResult",
     "original":"~Top|RamSpWf",
     "duplicate":"~Top|Top/gameTop:GameTop/graphicEngineVGA:GraphicEngineVGA/backBufferMemory:Memory_64/ramsSpWf:RamSpWf",
-    "index":0.6124401913875598
+    "index":0.5981308411214953
   },
   {
     "class":"firrtl.transforms.DedupedResult",
     "original":"~Top|Memory_64",
     "duplicate":"~Top|Top/gameTop:GameTop/graphicEngineVGA:GraphicEngineVGA/backBufferMemory:Memory_64",
-    "index":0.6172248803827751
+    "index":0.602803738317757
   },
   {
     "class":"firrtl.transforms.DedupedResult",
     "original":"~Top|RamSpWf_1",
     "duplicate":"~Top|Top/gameTop:GameTop/graphicEngineVGA:GraphicEngineVGA/backBufferShadowMemory:Memory_64/ramsSpWf:RamSpWf",
-    "index":0.6220095693779905
+    "index":0.6074766355140186
   },
   {
     "class":"firrtl.transforms.DedupedResult",
     "original":"~Top|Memory_65",
     "duplicate":"~Top|Top/gameTop:GameTop/graphicEngineVGA:GraphicEngineVGA/backBufferShadowMemory:Memory_64",
-    "index":0.6267942583732058
+    "index":0.6121495327102804
+  },
+  {
+    "class":"firrtl.transforms.DedupedResult",
+    "original":"~Top|MaxPeriodFibonacciLFSR",
+    "duplicate":"~Top|Top/gameTop:GameTop/gameLogic:GameLogic/sprite16YReg_prng:MaxPeriodFibonacciLFSR",
+    "index":0.9672897196261683
+  },
+  {
+    "class":"firrtl.transforms.DedupedResult",
+    "original":"~Top|MaxPeriodFibonacciLFSR_1",
+    "duplicate":"~Top|Top/gameTop:GameTop/gameLogic:GameLogic/sprite17YReg_prng:MaxPeriodFibonacciLFSR",
+    "index":0.9719626168224299
+  },
+  {
+    "class":"firrtl.transforms.DedupedResult",
+    "original":"~Top|MaxPeriodFibonacciLFSR_2",
+    "duplicate":"~Top|Top/gameTop:GameTop/gameLogic:GameLogic/sprite18YReg_prng:MaxPeriodFibonacciLFSR",
+    "index":0.9766355140186916
+  },
+  {
+    "class":"firrtl.transforms.DedupedResult",
+    "original":"~Top|MaxPeriodFibonacciLFSR_3",
+    "duplicate":"~Top|Top/gameTop:GameTop/gameLogic:GameLogic/sprite19YReg_prng:MaxPeriodFibonacciLFSR",
+    "index":0.9813084112149533
+  },
+  {
+    "class":"firrtl.transforms.DedupedResult",
+    "original":"~Top|MaxPeriodFibonacciLFSR_4",
+    "duplicate":"~Top|Top/gameTop:GameTop/gameLogic:GameLogic/sprite20YReg_prng:MaxPeriodFibonacciLFSR",
+    "index":0.985981308411215
   },
   {
     "class":"firrtl.EmitCircuitAnnotation",
