@@ -109,7 +109,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   // Write here your game logic
   // (you might need to change the initialization values above)
   /////////////////////////////////////////////////////////////////
-  val idle :: autonomousMoveEnable ::autonomousMove :: menu :: lvl1 :: lvl2 :: lvl3 :: move :: slut :: Nil = Enum(9)
+  val idle :: autonomousMove :: menu :: lvl1 :: lvl2 :: lvl3 :: move :: slut :: Nil = Enum(8)
   val stateReg = RegInit(idle)
 
   //Two registers holding the sprite sprite X and Y with the sprite initial position
@@ -292,7 +292,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val spriteCnt = RegInit(16.U(5.W))
 
   val lfsr = Module(new LFSR)
-  val randNum = lfsr.io.out
 
   switch(stateReg) {
     is(idle) {
@@ -301,50 +300,42 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       }
     }
 
-    is(autonomousMoveEnable) {
-      when(lvl1Reg || lvl2Reg || lvl3Reg) {
-        when(spawnSprite) {
-          stateReg := autonomousMove
-        }.otherwise {
-          stateReg := move
+    is(autonomousMove) {
+      //mux to control visibility and position of sprites
+      when(spawnSprite) {
+        // Make the current sprite visible
+        when(spriteCnt === 16.U && sprite16Visible === false.B) {
+          sprite16Visible := true.B
+          sprite16XReg := -32.S
+          // Use a new random value for Y position each spawn
+          sprite16YReg := ((lfsr.io.out * 2.U) % 448.U).asSInt // 448 = 480-32, keeps sprite on screen
         }
-      }.otherwise {
-        stateReg := menu
+        when(spriteCnt === 17.U) {
+          sprite17Visible := true.B
+        }
+        when(spriteCnt === 18.U) {
+          sprite18Visible := true.B
+        }
+        when(spriteCnt === 19.U) {
+          sprite19Visible := true.B
+        }
+        when(spriteCnt === 20.U) {
+          sprite20Visible := true.B
+          spriteCnt := 15.U
+        }
+        
+        // Increment sprite counter for next spawn
+        spriteCnt := spriteCnt + 1.U
+        spawnSprite := false.B
       }
+
       //Controlling movement of sprites
       sprite16XReg := sprite16XReg + difficulty.io.speed
 
       //Mux controlling collision of sprites
-      when(sprite16XReg === 640.S || (sprite16XReg < sprite14XReg + 24.S && sprite14XReg < sprite16XReg + 32.S && sprite16YReg < sprite14YReg + 24.S && sprite14YReg < sprite16YReg + 15.S)) {
+      when(sprite16XReg === 640.S || (sprite16XReg < sprite14XReg + 32.S && sprite14XReg < sprite16XReg + 32.S && sprite16YReg < sprite14YReg + 32.S && sprite14YReg < sprite16YReg + 32.S)) {
         sprite16Visible := false.B
       }
-    }
-
-    is(autonomousMove) {
-      //mux to control visibility and position of sprites
-      // Make the current sprite visible
-      when(spriteCnt === 16.U && sprite16Visible === false.B) {
-        sprite16Visible := true.B
-        sprite16XReg := -32.S
-        sprite16YReg := (randNum * 2.U).asSInt
-      }
-      when(spriteCnt === 17.U) {
-        sprite17Visible := true.B
-      }
-      when(spriteCnt === 18.U) {
-        sprite18Visible := true.B
-      }
-      when(spriteCnt === 19.U) {
-        sprite19Visible := true.B
-      }
-      when(spriteCnt === 20.U) {
-        sprite20Visible := true.B
-        spriteCnt := 15.U
-      }
-      
-      // Increment sprite counter for next spawn
-      spriteCnt := spriteCnt + 1.U
-      spawnSprite := false.B
 
       stateReg := menu
     }
