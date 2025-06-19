@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Tue Jun 17 15:47:00 2025
+| Date             : Wed Jun 18 17:28:33 2025
 | Host             : Jeppe2024 running 64-bit major release  (build 9200)
 | Command          : report_power -file Top_power_routed.rpt -pb Top_power_summary_routed.pb -rpx Top_power_routed.rpx
 | Design           : Top
@@ -33,7 +33,7 @@ Table of Contents
 | Total On-Chip Power (W)  | 0.125        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.051        |
+| Dynamic (W)              | 0.052        |
 | Device Static (W)        | 0.073        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.4         |
@@ -53,14 +53,14 @@ Table of Contents
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
 | Clocks                  |     0.004 |        3 |       --- |             --- |
-| Slice Logic             |    <0.001 |     1552 |       --- |             --- |
+| Slice Logic             |    <0.001 |     1574 |       --- |             --- |
 |   CARRY4                |    <0.001 |      109 |      8150 |            1.34 |
-|   LUT as Logic          |    <0.001 |      701 |     20800 |            3.37 |
+|   LUT as Logic          |    <0.001 |      712 |     20800 |            3.42 |
 |   Register              |    <0.001 |      472 |     41600 |            1.13 |
 |   Others                |     0.000 |      113 |       --- |             --- |
 |   LUT as Shift Register |     0.000 |        3 |      9600 |            0.03 |
 |   F7/F8 Muxes           |     0.000 |       42 |     32600 |            0.13 |
-| Signals                 |    <0.001 |     1499 |       --- |             --- |
+| Signals                 |    <0.001 |     1525 |       --- |             --- |
 | Block RAM               |     0.047 |     24.5 |        50 |           49.00 |
 | I/O                     |    <0.001 |       33 |       106 |           31.13 |
 | Static Power            |     0.073 |          |           |                 |
@@ -143,10 +143,10 @@ Table of Contents
 +------------------------------+-----------+
 | Name                         | Power (W) |
 +------------------------------+-----------+
-| Top                          |     0.051 |
+| Top                          |     0.052 |
 |   gameTop                    |     0.051 |
 |     gameLogic                |     0.001 |
-|     graphicEngineVGA         |     0.049 |
+|     graphicEngineVGA         |     0.050 |
 |       backBufferShadowMemory |     0.001 |
 |       spriteMemories_12      |     0.002 |
 |       spriteMemories_17      |     0.002 |

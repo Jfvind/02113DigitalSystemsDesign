@@ -28,8 +28,8 @@ class Difficulty extends Module {
     }
 
     when(io.level === 1.U) {
-        when(x === 30.S) {
-            x := 30.S
+        when(x === 15.S) {
+            x := 15.S
             xDone := true.B
         }
     }.elsewhen(io.level === 2.U) {
