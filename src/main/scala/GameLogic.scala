@@ -291,8 +291,14 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   //Controls which sprite to throw
   val spriteCnt = RegInit(16.U(5.W))
 
-  //Controls the Random spawn by caching
-  val cashRegY = RegInit(0.S(10.W))
+  //Controls the Random spawn by caching into Regs
+  val cashRegY16 = RegInit(0.S(10.W))
+  val cashRegY17 = RegInit(1.S(10.W))
+  val cashRegY18 = RegInit(2.S(10.W))
+  val cashRegY19 = RegInit(3.S(10.W))
+  val cashRegY20 = RegInit(4.S(10.W))
+
+
 
   val lfsr = Module(new LFSR)
 
@@ -314,33 +320,37 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           when(sprite16Visible === false.B) {
             sprite16Visible := true.B
             sprite16XReg := 32.S
-            cashRegY := (lsfr.io.out * 2.U).asSInt
-            sprite16YReg := cashRegY
+            cashRegY16 := (lfsr.io.out * 2.U).asSInt
+            sprite16YReg := cashRegY16
             spriteCnt := 17.U
           }
         }
         is(17.U) {
           sprite17Visible := true.B
           sprite17XReg := 32.S
-          sprite17YReg := (chisel3.util.random.LFSR(8) * 2.U).asSInt
+          cashRegY17 := (lfsr.io.out * 2.U).asSInt
+          sprite17YReg := cashRegY17
           spriteCnt := 18.U
         }
         is(18.U) {
           sprite18Visible := true.B
           sprite18XReg := 32.S
-          sprite18YReg := (chisel3.util.random.LFSR(8) * 2.U).asSInt
+          cashRegY18 := (lfsr.io.out * 2.U).asSInt
+          sprite18YReg := cashRegY18
           spriteCnt := 19.U
         }
         is(19.U) {
           sprite19Visible := true.B
           sprite19XReg := 32.S
-          sprite19YReg := (chisel3.util.random.LFSR(8) * 2.U).asSInt
+          cashRegY19 := (lfsr.io.out * 2.U).asSInt
+          sprite19YReg := cashRegY19
           spriteCnt := 20.U
         }
         is(20.U) {
           sprite20Visible := true.B
           sprite20XReg := 32.S
-          sprite20YReg := (chisel3.util.random.LFSR(8) * 2.U).asSInt
+          cashRegY20 := (lfsr.io.out * 2.U).asSInt
+          sprite20YReg := cashRegY20
           spriteCnt := 16.U
         }
       }
