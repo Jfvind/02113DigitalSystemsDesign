@@ -7,7 +7,7 @@ class LFSR extends Module {
   })
 
   // 8-bit register med initialværdi 1 (må ikke være 0, ellers stopper sekvensen)
-  val reg = RegInit(1.U(8.W))
+  val reg = RegInit(23.U(8.W))
 
   // Feedback-bit beregnes som XOR af bit 7 og bit 5 (taps for 8-bit LFSR)
   val feedback = reg(7) ^ reg(5) ^ reg(4) ^ reg(3)

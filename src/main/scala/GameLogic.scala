@@ -301,77 +301,68 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     }
 
     is(autonomousMove) {
-      //mux to control visibility and position of sprites
-      when(lvl1Reg || lvl2Reg || lvl3Reg) {
-        when(spawnSprite) {
-        // Make the current sprite visible
-        when(spriteCnt === 16.U && sprite16Visible === false.B) {
+      // Spawn logic
+      val spawnConditions = lvl1Reg || lvl2Reg || lvl3Reg
+      val spawnActions = WireInit(false.B)
+
+      when(spawnConditions && spawnSprite) {
+      switch(spriteCnt) {
+        is(16.U) {
+        when(sprite16Visible === false.B) {
           sprite16Visible := true.B
           sprite16XReg := 32.S
-          // Use a new random value for Y position each spawn
-          sprite16YReg := (lfsr.io.out * 2.U).asSInt // 448 = 480-32, keeps sprite on screen //lfsr.io.out
+          sprite16YReg := (lfsr.io.out * 2.U).asSInt
           spriteCnt := 17.U
         }
-        when(spriteCnt === 17.U) {
-          sprite17Visible := true.B
-          sprite17XReg := 32.S
-          sprite17YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 18.U
         }
-        when(spriteCnt === 18.U) {
-          sprite18Visible := true.B
-          sprite18XReg := 32.S
-          sprite18YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 19.U
+        is(17.U) {
+        sprite17Visible := true.B
+        sprite17XReg := 32.S
+        sprite17YReg := (lfsr.io.out * 2.U).asSInt
+        spriteCnt := 18.U
         }
-        when(spriteCnt === 19.U) {
-          sprite19Visible := true.B
-          sprite19XReg := 32.S
-          sprite19YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 20.U
+        is(18.U) {
+        sprite18Visible := true.B
+        sprite18XReg := 32.S
+        sprite18YReg := (lfsr.io.out * 2.U).asSInt
+        spriteCnt := 19.U
         }
-        when(spriteCnt === 20.U) {
-          sprite20Visible := true.B
-          sprite20XReg := 32.S
-          sprite20YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 16.U
+        is(19.U) {
+        sprite19Visible := true.B
+        sprite19XReg := 32.S
+        sprite19YReg := (lfsr.io.out * 2.U).asSInt
+        spriteCnt := 20.U
         }
-        spawnSprite := false.B
+        is(20.U) {
+        sprite20Visible := true.B
+        sprite20XReg := 32.S
+        sprite20YReg := (lfsr.io.out * 2.U).asSInt
+        spriteCnt := 16.U
         }
+      }
+      spawnActions := true.B
+      }
+      when(spawnActions) {
+      spawnSprite := false.B
       }
 
-      //Controlling movement of sprites
-      when(sprite16Visible) {
-        sprite16XReg := sprite16XReg + 5.S //difficulty.io.speed
+      // Move logic
+      val moveAmount = 5.S //difficulty.io.speed
+      val spriteXRegs = Seq(sprite16XReg, sprite17XReg, sprite18XReg, sprite19XReg, sprite20XReg)
+      val spriteVisibleRegs = Seq(sprite16Visible, sprite17Visible, sprite18Visible, sprite19Visible, sprite20Visible)
+      for (i <- 0 until 5) {
+      when(spriteVisibleRegs(i)) {
+        spriteXRegs(i) := spriteXRegs(i) + moveAmount
       }
-      when(sprite17Visible) {
-        sprite17XReg := sprite17XReg + 5.S //difficulty.io.speed
-      }
-      when(sprite18Visible) {
-        sprite18XReg := sprite18XReg + 5.S //difficulty.io.speed
-      }
-      when(sprite19Visible) {
-        sprite19XReg := sprite19XReg + 5.S //difficulty.io.speed
-      }
-      when(sprite20Visible) {
-        sprite20XReg := sprite20XReg + 5.S //difficulty.io.speed
       }
 
-      //Mux controlling collision of sprites
-      when(sprite16XReg >= 340.S) { //|| (sprite16XReg < sprite14XReg + 32.S && sprite14XReg < sprite16XReg + 32.S && sprite16YReg < sprite14YReg + 32.S && sprite14YReg < sprite16YReg + 32.S)) {
-        sprite16Visible := false.B
+      // Collision/visibility logic
+      val spriteXRegsArr = Array(sprite16XReg, sprite17XReg, sprite18XReg, sprite19XReg, sprite20XReg)
+      val spriteVisibleRegsArr = Array(sprite16Visible, sprite17Visible, sprite18Visible, sprite19Visible, sprite20Visible)
+      for (i <- 0 until 5) {
+      when(spriteXRegsArr(i) >= 340.S) {
+        spriteVisibleRegsArr(i) := false.B
       }
-      when(sprite17XReg >= 340.S) {
-        sprite17Visible := false.B
-      }
-      when(sprite18XReg >= 340.S) {
-        sprite18Visible := false.B
-      }
-      when(sprite19XReg >= 340.S) {
-        sprite19Visible := false.B
-      }
-      when(sprite20XReg >= 340.S) {
-        sprite20Visible := false.B
       }
 
       stateReg := menu
