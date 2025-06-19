@@ -298,6 +298,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val cashRegY19 = RegInit(3.S(10.W))
   val cashRegY20 = RegInit(4.S(10.W))
 
+  val lfsrSample = RegInit(0.U(8.W))
 
 
   val lfsr = Module(new LFSR)
@@ -315,12 +316,13 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       val spawnActions = WireInit(false.B)
 
       when(spawnConditions && spawnSprite) {
+        lfsrSample := lfsr.io.out
       switch(spriteCnt) {
         is(16.U) {
           when(sprite16Visible === false.B) {
             sprite16Visible := true.B
             sprite16XReg := 32.S
-            cashRegY16 := (lfsr.io.out * 2.U).asSInt
+            cashRegY16 := (lfsrSample * 2.U).asSInt
             sprite16YReg := cashRegY16
             spriteCnt := 17.U
           }
@@ -328,28 +330,28 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         is(17.U) {
           sprite17Visible := true.B
           sprite17XReg := 32.S
-          cashRegY17 := (lfsr.io.out * 2.U).asSInt
+          cashRegY17 := (lfsrSample * 2.U).asSInt
           sprite17YReg := cashRegY17
           spriteCnt := 18.U
         }
         is(18.U) {
           sprite18Visible := true.B
           sprite18XReg := 32.S
-          cashRegY18 := (lfsr.io.out * 2.U).asSInt
+          cashRegY18 := (lfsrSample * 2.U).asSInt
           sprite18YReg := cashRegY18
           spriteCnt := 19.U
         }
         is(19.U) {
           sprite19Visible := true.B
           sprite19XReg := 32.S
-          cashRegY19 := (lfsr.io.out * 2.U).asSInt
+          cashRegY19 := (lfsrSample * 2.U).asSInt
           sprite19YReg := cashRegY19
           spriteCnt := 20.U
         }
         is(20.U) {
           sprite20Visible := true.B
           sprite20XReg := 32.S
-          cashRegY20 := (lfsr.io.out * 2.U).asSInt
+          cashRegY20 := (lfsrSample * 2.U).asSInt
           sprite20YReg := cashRegY20
           spriteCnt := 16.U
         }
