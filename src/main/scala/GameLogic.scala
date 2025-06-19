@@ -309,24 +309,33 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           sprite16Visible := true.B
           sprite16XReg := 32.S
           // Use a new random value for Y position each spawn
-          sprite16YReg := (lfsr.io.out * 2.U).asSInt // 448 = 480-32, keeps sprite on screen //lfsr.io.out
+          sprite16YReg := (lfsr.io.out << 1).asSInt // 448 = 480-32, keeps sprite on screen //lfsr.io.out
+          spriteCnt := 17.U
         }
         when(spriteCnt === 17.U) {
           sprite17Visible := true.B
+          sprite17XReg := 32.S
+          sprite17YReg := (lfsr.io.out << 1).asSInt
+          spriteCnt := 18.U
         }
         when(spriteCnt === 18.U) {
           sprite18Visible := true.B
+          sprite18XReg := 32.S
+          sprite18YReg := (lfsr.io.out << 1).asSInt
+          spriteCnt := 19.U
         }
         when(spriteCnt === 19.U) {
           sprite19Visible := true.B
+          sprite19XReg := 32.S
+          sprite19YReg := (lfsr.io.out << 1).asSInt
+          spriteCnt := 20.U
         }
         when(spriteCnt === 20.U) {
           sprite20Visible := true.B
-          spriteCnt := 15.U
+          sprite20XReg := 32.S
+          sprite20YReg := (lfsr.io.out << 1).asSInt
+          spriteCnt := 16.U
         }
-        
-        // Increment sprite counter for next spawn
-        spriteCnt := spriteCnt + 1.U
         spawnSprite := false.B
         }
       }
@@ -337,7 +346,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       }
 
       //Mux controlling collision of sprites
-      when(sprite16XReg > 340.S) { //|| (sprite16XReg < sprite14XReg + 32.S && sprite14XReg < sprite16XReg + 32.S && sprite16YReg < sprite14YReg + 32.S && sprite14YReg < sprite16YReg + 32.S)) {
+      when(sprite16XReg >= 340.S) { //|| (sprite16XReg < sprite14XReg + 32.S && sprite14XReg < sprite16XReg + 32.S && sprite16YReg < sprite14YReg + 32.S && sprite14YReg < sprite16YReg + 32.S)) {
         sprite16Visible := false.B
       }
 
