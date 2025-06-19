@@ -333,7 +333,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
       //Controlling movement of sprites
       when(sprite16Visible) {
-        sprite16XReg := sprite16XReg + 2.S //difficulty.io.speed
+        sprite16XReg := sprite16XReg + 5.S //difficulty.io.speed
       }
 
       //Mux controlling collision of sprites

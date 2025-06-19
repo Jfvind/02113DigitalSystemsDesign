@@ -9,8 +9,6 @@ class Difficulty extends Module {
     val damage = Output(UInt(8.W)) // pr meteor
   })
 
-    val lfsr = Module(new LFSR)
-
     val x = RegInit(1.S(7.W))
     val xDone = RegInit(false.B)
     val spawnCnt = RegInit(0.U(27.W))
@@ -45,9 +43,8 @@ class Difficulty extends Module {
     }.otherwise {
         xDone := false.B
         x := 0.S
+        spawnCnt := 0.U
     }
-
-    val fherjk = lfsr.io.out
 
     io.spawnEnable := spawn
     io.speed := io.level * x

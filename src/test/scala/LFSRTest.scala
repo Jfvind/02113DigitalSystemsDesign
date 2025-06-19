@@ -5,7 +5,7 @@ import org.scalatest.flatspec.AnyFlatSpec
 class LFSRTest extends AnyFlatSpec with ChiselScalatestTester {
 
   "LFSRTest" should "pass" in {
-    test(new GameLogic(32, 64, 2)) { dut =>
+    test(new LFSR) { dut =>
       println("Running the LFSR Tester")
 
       dut.clock.setTimeout(0)
