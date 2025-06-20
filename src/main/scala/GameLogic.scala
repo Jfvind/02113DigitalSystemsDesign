@@ -657,7 +657,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
   //Controls which sprite to throw
   val spriteCnt = RegInit(16.U(6.W))
-  val spriteCntMax = RegInit(25.U(6.W))
 
   val lfsr = Module(new LFSR)
 
@@ -671,10 +670,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     is(autonomousMove) {
       // Spawn logic
       spawnCounter := Mux(spawnReady, 0.U, spawnCounter + 1.U)
-      val spawnConditions = (lvlReg =/= 0.U) && spawnReady
+      val spawnConditions = (lvlReg =/= 0.U) //&& spawnReady
 
       when(spawnConditions) {
-        scoreReg := scoreReg + lvlReg
+        /*scoreReg := scoreReg + lvlReg
         switch(spriteCnt) {
           is(16.U) {
             sprite16Visible := true.B
@@ -737,22 +736,22 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
             spriteCnt := 16.U
           }
           is(26.U) {
-          sprite26Visible := true.B
-          sprite26XReg := -32.S
-          sprite26YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 27.U
+            sprite26Visible := true.B
+            sprite26XReg := -32.S
+            sprite26YReg := (lfsr.io.out * 2.U).asSInt
+            spriteCnt := 27.U
           }
           is(27.U) {
-          sprite27Visible := true.B
-          sprite27XReg := -32.S
-          sprite27YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 28.U
+            sprite27Visible := true.B
+            sprite27XReg := -32.S
+            sprite27YReg := (lfsr.io.out * 2.U).asSInt
+            spriteCnt := 28.U
           }
           is(28.U) {
-          sprite28Visible := true.B
-          sprite28XReg := -32.S
-          sprite28YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 29.U
+            sprite28Visible := true.B
+            sprite28XReg := -32.S
+            sprite28YReg := (lfsr.io.out * 2.U).asSInt
+            spriteCnt := 29.U
           }
           is(29.U) {
           sprite29Visible := true.B
@@ -856,6 +855,157 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           sprite45YReg := (lfsr.io.out * 2.U).asSInt
           spriteCnt := 36.U
           }
+        }*/
+
+        when(sprite16Visible && sprite16XReg >= 640.S) {
+          sprite16XReg := -32.S
+          sprite16YReg := (lfsr.io.out(0) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite17Visible && sprite17XReg >= 640.S) {
+          sprite17XReg := -32.S
+          sprite17YReg := (lfsr.io.out(1) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite18Visible && sprite18XReg >= 640.S) {
+          sprite18XReg := -32.S
+          sprite18YReg := (lfsr.io.out(2) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite19Visible && sprite19XReg >= 640.S) {
+          sprite19XReg := -32.S
+          sprite19YReg := (lfsr.io.out(3) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite20Visible && sprite20XReg >= 640.S) {
+          sprite20XReg := -32.S
+          sprite20YReg := (lfsr.io.out(4) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite21Visible && sprite21XReg >= 640.S) {
+          sprite21XReg := -32.S
+          sprite21YReg := (lfsr.io.out(5) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite22Visible && sprite22XReg >= 640.S) {
+          sprite22XReg := -32.S
+          sprite22YReg := (lfsr.io.out(6) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite23Visible && sprite23XReg >= 640.S) {
+          sprite23XReg := -32.S
+          sprite23YReg := (lfsr.io.out(7) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite24Visible && sprite24XReg >= 640.S) {
+          sprite24XReg := -32.S
+          sprite24YReg := (lfsr.io.out(8) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite25Visible && sprite25XReg >= 640.S) {
+          sprite25XReg := -32.S
+          sprite25YReg := (lfsr.io.out(9) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite26Visible && sprite26XReg >= 640.S) {
+          sprite26XReg := -32.S
+          sprite26YReg := (lfsr.io.out(10) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite27Visible && sprite27XReg >= 640.S) {
+          sprite27XReg := -32.S
+          sprite27YReg := (lfsr.io.out(11) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite28Visible && sprite28XReg >= 640.S) {
+          sprite28XReg := -32.S
+          sprite28YReg := (lfsr.io.out(12) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite29Visible && sprite29XReg >= 640.S) {
+          sprite29XReg := -32.S
+          sprite29YReg := (lfsr.io.out(13) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite30Visible && sprite30XReg >= 640.S) {
+          sprite30XReg := -32.S
+          sprite30YReg := (lfsr.io.out(14) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite31Visible && sprite31XReg >= 640.S) {
+          sprite31XReg := -32.S
+          sprite31YReg := (lfsr.io.out(15) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite32Visible && sprite32XReg >= 640.S) {
+          sprite32XReg := -32.S
+          sprite32YReg := (lfsr.io.out(16) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite33Visible && sprite33XReg >= 640.S) {
+          sprite33XReg := -32.S
+          sprite33YReg := (lfsr.io.out(17) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite34Visible && sprite34XReg >= 640.S) {
+          sprite34XReg := -32.S
+          sprite34YReg := (lfsr.io.out(18) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite35Visible && sprite35XReg >= 640.S) {
+          sprite35XReg := -32.S
+          sprite35YReg := (lfsr.io.out(19) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite36Visible && sprite36XReg >= 640.S) {
+          sprite36XReg := -32.S
+          sprite36YReg := (lfsr.io.out(20) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite37Visible && sprite37XReg >= 640.S) {
+          sprite37XReg := -32.S
+          sprite37YReg := (lfsr.io.out(21) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite38Visible && sprite38XReg >= 640.S) {
+          sprite38XReg := -32.S
+          sprite38YReg := (lfsr.io.out(22) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite39Visible && sprite39XReg >= 640.S) {
+          sprite39XReg := -32.S
+          sprite39YReg := (lfsr.io.out(23) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite40Visible && sprite40XReg >= 640.S) {
+          sprite40XReg := -32.S
+          sprite40YReg := (lfsr.io.out(24) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite41Visible && sprite41XReg >= 640.S) {
+          sprite41XReg := -32.S
+          sprite41YReg := (lfsr.io.out(25) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite42Visible && sprite42XReg >= 640.S) {
+          sprite42XReg := -32.S
+          sprite42YReg := (lfsr.io.out(26) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite43Visible && sprite43XReg >= 640.S) {
+          sprite43XReg := -32.S
+          sprite43YReg := (lfsr.io.out(27) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite44Visible && sprite44XReg >= 640.S) {
+          sprite44XReg := -32.S
+          sprite44YReg := (lfsr.io.out(28) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }
+        when(sprite45Visible && sprite45XReg >= 640.S) {
+          sprite45XReg := -32.S
+          sprite45YReg := (lfsr.io.out(29) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
         }
       }
 
@@ -900,9 +1050,33 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         sprite36Visible, sprite37Visible, sprite38Visible, sprite39Visible, sprite40Visible,
         sprite41Visible, sprite42Visible, sprite43Visible, sprite44Visible, sprite45Visible
       )
-      for (i <- 0 until 30) {
-        when(spriteXRegsArr(i) >= 640.S) {
+      when(lvlReg === 0.U) {
+        for (i <- 0 until 30) {
           spriteVisibleRegsArr(i) := false.B
+        }
+      }.elsewhen(lvlReg === 1.U) {
+        for (i <- 0 until 10) {
+          spriteVisibleRegsArr(i) := true.B
+        }
+        for (i <- 11 until 30) {
+          spriteVisibleRegsArr(i) := false.B
+        }
+      }.elsewhen(lvlReg === 2.U) {
+        for (i <- 11 until 20) {
+          spriteVisibleRegsArr(i) := true.B
+        }
+        for (i <- 0 until 10) {
+          spriteVisibleRegsArr(i) := false.B
+        }
+        for (i <- 21 until 30) {
+          spriteVisibleRegsArr(i) := false.B
+        }
+      }.otherwise {
+        for (i <- 0 until 20) {
+          spriteVisibleRegsArr(i) := false.B
+        }
+        for (i <- 21 until 30) {
+          spriteVisibleRegsArr(i) := true.B
         }
       }
 
@@ -966,7 +1140,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       viewBoxXReg := 640.U
       viewBoxYReg := 0.U
       spriteCnt := 16.U
-      spriteCntMax := 25.U
 
       stateReg := move
     }
@@ -984,6 +1157,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       sprite14Visible := true.B
       viewBoxXReg := 0.U
       viewBoxYReg := 480.U
+      spriteCnt := 26.U
 
       stateReg := move
     }
@@ -1001,6 +1175,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       sprite14Visible := true.B
       viewBoxXReg := 640.U
       viewBoxYReg := 480.U
+      spriteCnt := 36.U
 
       stateReg := move
     }
