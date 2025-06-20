@@ -273,9 +273,9 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   io.viewBoxY := viewBoxYReg
   
   //Level active signals
-  val lvl1Reg = RegInit(false.B)
-  val lvl2Reg = RegInit(false.B)
-  val lvl3Reg = RegInit(false.B)
+  //val lvl1Reg = RegInit(false.B)
+  //val lvl2Reg = RegInit(false.B)
+  //val lvl3Reg = RegInit(false.B)
 
   //Dificulty control variables
   val difficulty = Module(new Difficulty)
@@ -284,12 +284,16 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val damage = difficulty.io.damage
   val lvlReg = RegInit(0.U(2.W))
   difficulty.io.level := lvlReg
-  /*when(difficulty.io.spawnEnable) {
-    spawnSprite := true.B
-  }*/
+  val spawnCounter = RegInit(0.U(8.W))
+  val spawnReady = spawnCounter === difficulty.io.spawnInterval
+
+
+  //Score Register
+  val scoreReg = RegInit(0.U(16.W))
 
   //Controls which sprite to throw
-  val spriteCnt = RegInit(16.U(5.W))
+  val spriteCnt = RegInit(16.U(6.W))
+  val spriteCntMax = RegInit(20.U(6.W))
 
   val lfsr = Module(new LFSR)
 
@@ -302,11 +306,12 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
     is(autonomousMove) {
       // Spawn logic
-      val spawnConditions = lvl1Reg || lvl2Reg || lvl3Reg
-      val spawnActions = WireInit(false.B)
+      spawnCounter := Mux(spawnReady, 0.U, spawnCounter + 1.U)
+      val spawnConditions = (lvlReg =/= 0.U) && spawnReady
 
       when(spawnConditions) {
-        when(spawnSprite(0)) {
+        scoreReg := scoreReg + lvlReg
+        /*when(spawnSprite(0)) {
           sprite16Visible := true.B
           sprite16XReg := 32.S
           sprite16YReg := (lfsr.io.out * 2.U).asSInt
@@ -335,34 +340,65 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           sprite20XReg := 32.S
           sprite20YReg := (lfsr.io.out * 2.U).asSInt
           spawnSprite(4) := false.B
+        }*/
+        switch(spriteCnt) {
+          is(16.U) {
+            sprite16Visible := true.B
+            sprite16XReg := 32.S
+            sprite16YReg := (lfsr.io.out * 2.U).asSInt
+            spriteCnt := 17.U
+          }
+          is(17.U) {
+            sprite17Visible := true.B
+            sprite17XReg := 32.S
+            sprite17YReg := (lfsr.io.out * 2.U).asSInt
+            spriteCnt := 18.U
+          }
+          is(18.U) {
+            sprite18Visible := true.B
+            sprite18XReg := 32.S
+            sprite18YReg := (lfsr.io.out * 2.U).asSInt
+            spriteCnt := 19.U
+          }
+          is(19.U) {
+            sprite19Visible := true.B
+            sprite19XReg := 32.S
+            sprite19YReg := (lfsr.io.out * 2.U).asSInt
+            spriteCnt := 20.U
+          }
+          is(20.U) {
+            sprite20Visible := true.B
+            sprite20XReg := 32.S
+            sprite20YReg := (lfsr.io.out * 2.U).asSInt
+            spriteCnt := 16.U
+          }
         }
       }
 
       // Move logic
-      val moveAmount = 5.S //difficulty.io.speed
+      val moveAmount = difficulty.io.speed
       val spriteXRegs = Seq(sprite16XReg, sprite17XReg, sprite18XReg, sprite19XReg, sprite20XReg)
       val spriteVisibleRegs = Seq(sprite16Visible, sprite17Visible, sprite18Visible, sprite19Visible, sprite20Visible)
       for (i <- 0 until 5) {
-      when(spriteVisibleRegs(i)) {
-        spriteXRegs(i) := spriteXRegs(i) + moveAmount
-      }
+        when(spriteVisibleRegs(i)) {
+          spriteXRegs(i) := spriteXRegs(i) + moveAmount
+        }
       }
 
       // Collision/visibility and spawn logic
       val spriteXRegsArr = Array(sprite16XReg, sprite17XReg, sprite18XReg, sprite19XReg, sprite20XReg)
       val spriteVisibleRegsArr = Array(sprite16Visible, sprite17Visible, sprite18Visible, sprite19Visible, sprite20Visible)
       for (i <- 0 until 5) {
-      when(spriteXRegsArr(i) >= 340.S) {
-        spriteVisibleRegsArr(i) := false.B
-        spawnSprite(i) := true.B
-      }
+        when(spriteXRegsArr(i) >= 340.S) {
+          spriteVisibleRegsArr(i) := false.B
+        }
       }
 
       stateReg := menu
     }
 
     is(menu) {
-      when(lvl1Reg || lvl2Reg || lvl3Reg) {
+      when(lvlReg =/= 0.U) {
         stateReg := move
       }.otherwise {
         sprite7Visible := true.B
@@ -375,7 +411,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           sprite7Visible := false.B
           sprite8Visible := true.B
           when(io.btnC) {
-            lvl1Reg := true.B
+            lvlReg := 1.U
             stateReg := lvl1
           }.otherwise {
             stateReg := move
@@ -384,7 +420,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           sprite9Visible := false.B
           sprite10Visible := true.B
           when(io.btnC) {
-            lvl2Reg := true.B
+            lvlReg := 2.U
             stateReg := lvl2
           }.otherwise {
             stateReg := move
@@ -393,7 +429,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           sprite11Visible := false.B
           sprite12Visible := true.B
           when(io.btnC) {
-            lvl3Reg := true.B
+            lvlReg := 3.U
             stateReg := lvl3
           }.otherwise {
             stateReg := move
@@ -417,7 +453,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       sprite14Visible := true.B
       viewBoxXReg := 640.U
       viewBoxYReg := 0.U
-      lvlReg := 1.U
 
       stateReg := move
     }
@@ -435,7 +470,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       sprite14Visible := true.B
       viewBoxXReg := 0.U
       viewBoxYReg := 480.U
-      lvlReg := 2.U
 
       stateReg := move
     }
@@ -453,13 +487,12 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       sprite14Visible := true.B
       viewBoxXReg := 640.U
       viewBoxYReg := 480.U
-      lvlReg := 3.U
 
       stateReg := move
     }
 
     is(move) {
-      when(lvl1Reg || lvl2Reg || lvl3Reg) {
+      when(lvlReg =/= 0.U) {
         when(io.btnD){
           when(sprite3YReg < (480 - 32).S) {
             sprite3YReg := sprite3YReg + 2.S

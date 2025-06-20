@@ -6,38 +6,30 @@ class Difficulty extends Module {
     val level = Input(UInt(2.W)) // input fra vores FSM (0,1,2) lvl-1
     val speed = Output(SInt(27.W))
     val damage = Output(UInt(8.W)) // pr meteor
+    val spawnInterval = Output(UInt(8.W))
   })
 
-    val x = RegInit(1.S(7.W))
-    val xDone = RegInit(false.B)
-    val speedCnt = RegInit(0.U(27.W))
+  val x = RegInit(1.S(7.W))
+  val xDone = RegInit(false.B)
+  val speedCnt = RegInit(0.U(27.W))
 
-    when(speedCnt === 150000000.U) {
-        when(~xDone) {
-            x := x + 1.S
-        }
-    }
+  io.speed := MuxLookup(io.level, 5.S) (Seq(
+    1.U -> 3.S, // Ezzzz
+    2.U -> 5.S, // Med
+    3.U -> 7.S, // svær
+  ))
 
-    when(io.level === 1.U) {
-        when(x === 15.S) {
-            x := 15.S
-            xDone := true.B
-        }
-    }.elsewhen(io.level === 2.U) {
-        when(x === 50.S) {
-            x := 50.S
-            xDone := true.B
-        }
-    }.elsewhen(io.level === 3.U) {
-        when(x === 70.S) {
-            x := 70.S
-            xDone := true.B
-        }
-    }.otherwise {
-        xDone := false.B
-        x := 0.S
-    }
+  io.damage := MuxLookup(io.level, 1.U) (Seq(
+    1.U -> 1.U,
+    2.U -> 2.U,
+    3.U -> 3.U,
+  ))
 
-    io.speed := io.level * x
-    io.damage := 1.U
+  io.spawnInterval := MuxLookup(io.level, 30.U) (Seq(
+    1.U -> 60.U,
+    2.U -> 40.U,
+    3.U -> 15.U
+  ))
+
+ //Husk Liv
 }
