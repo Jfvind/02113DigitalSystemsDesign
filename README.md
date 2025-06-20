@@ -54,6 +54,9 @@ Project following the DTU course 02113 Digital Systems Design Project, to make a
 - Sprite 55 = Return_2_1
 - Sprite 56 = Return_2_2
 - Sprite 57 = Return_2_3
+- Sprite 58 = Star_1
+- Sprite 59 = Star_2
+- Sprite 60 = Star_2
 
 **Backtiles:**
 - Backtile 10 = lvl1_1
@@ -75,11 +78,11 @@ Project following the DTU course 02113 Digital Systems Design Project, to make a
 - Backtile 26 = lvl2_6
 - Backtile 27 = lvl2_7
 - Backtile 28 = lvl2_8 (top)
-- Backtile 29 = lvl3_1 (top)
+- Backtile 29 = lvl3_1 (bund)
 - Backtile 30 = lvl3_2
 - Backtile 31 = lvl3_3
 - Backtile 32 = lvl3_4
-- Backtile 33 = lvl3_5 (bund)
+- Backtile 33 = lvl3_5 (top)
 - Backtile 34 = Moon_1_1
 - Backtile 35 = Moon_1_2
 - Backtile 36 = Moon_1_3
