@@ -13,6 +13,38 @@ Project following the DTU course 02113 Digital Systems Design Project, to make a
 - Sprite 14 = Rumskib
 - Sprite 15 = God skib
 - Sprite 16 = Seagul
+- Sprite 17 = Seagul
+- Sprite 18 = Seagul
+- Sprite 19 = Seagul
+- Sprite 20 = Seagul
+- Sprite 21 = Seagul
+- Sprite 22 = Seagul
+- Sprite 23 = Seagul
+- Sprite 24 = Seagul
+- Sprite 25 = Seagul
+- Sprite 26 = Meteor
+- Sprite 27 = Meteor
+- Sprite 28 = Meteor
+- Sprite 29 = Meteor
+- Sprite 30 = Meteor
+- Sprite 31 = Meteor
+- Sprite 32 = Meteor
+- Sprite 33 = Meteor
+- Sprite 34 = Meteor
+- Sprite 35 = Meteor
+- Sprite 36 = Gameover_1
+- sprite 37 = Gameover_2
+- sprite 38 = Gameover_3
+- sprite 39 = Gameover_4
+- sprite 40 = Gameover_5
+- sprite 41 = Gameover_6
+- Sprite 42 = Return_1_1
+- Sprite 43 = Return_1_2
+- Sprite 44 = Return_1_3
+- Sprite 45 = Return_2_1
+- Sprite 46 = Return_2_2
+- Sprite 47 = Return_2_3
+
 
 **Backtiles:**
 - Backtile 10 = lvl1_1
