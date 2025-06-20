@@ -56,8 +56,6 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 5
-set_param xicom.use_bs_reader 1
 set_msg_config  -id {Power 33-332}  -string {{WARNING: [Power 33-332] Found switching activity that implies high-fanout reset nets being asserted for excessive periods of time which may result in inaccurate power analysis.
 Resolution: To review and fix problems, please run Power Constraints Advisor in the GUI from Tools > Power Constraints Advisor or run report_power with the -advisory option to generate a text report.}}  -suppress 
 OPTRACE "Creating in-memory project" START { }
@@ -175,6 +173,38 @@ read_mem {
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_38.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/backtile_init_51.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_25.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_39.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_51.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_34.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_48.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_47.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_43.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_52.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_56.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_50.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_44.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_57.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_35.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_49.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_36.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_53.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_40.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_58.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_45.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_32.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_37.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_62.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_61.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_54.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_41.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_38.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_63.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_33.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_60.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_46.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_59.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_42.mem
+  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_55.mem
 }
 read_verilog -library xil_defaultlib {
   C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v
