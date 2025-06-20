@@ -219,8 +219,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite58YReg = RegInit(20.S(10.W))
   val sprite59XReg = RegInit(500.S(11.W))
   val sprite59YReg = RegInit(70.S(10.W))
-  val sprite60XReg = RegInit(340.S(11.W))
-  val sprite60YReg = RegInit(220.S(10.W))
+  val sprite60XReg = RegInit(150.S(11.W))
+  val sprite60YReg = RegInit(100.S(10.W))
 
   //A registers holding the sprite horizontal flip
   val sprite3FlipHorizontalReg = RegInit(false.B)
@@ -389,6 +389,14 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite58Visible = RegInit(false.B)
   val sprite59Visible = RegInit(false.B)
   val sprite60Visible = RegInit(false.B)
+
+  //Scalint registers
+  val sprite58ScaleUpHorizontal = RegInit(false.B)
+  val sprite58ScaleUpVertical = RegInit(false.B)
+  val sprite59ScaleUpHorizontal = RegInit(false.B)
+  val sprite59ScaleUpVertical = RegInit(false.B)
+  val sprite60ScaleUpHorizontal = RegInit(false.B)
+  val sprite60ScaleUpVertical = RegInit(false.B)
 
   // Connecting visibility registers to the graphic engine
   io.spriteVisible(3) := sprite3Visible
@@ -663,6 +671,14 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   io.spriteYPosition(60) := sprite60YReg
   io.spriteFlipHorizontal(60) := sprite60FlipHorizontalReg
   io.spriteFlipVertical(60) := sprite60FlipVerticalReg
+
+  //Connecting scaling
+  io.spriteScaleUpHorizontal(58) := sprite58ScaleUpHorizontal
+  io.spriteScaleUpVertical(58) := sprite58ScaleUpVertical
+  io.spriteScaleUpHorizontal(59) := sprite59ScaleUpHorizontal
+  io.spriteScaleUpVertical(59) := sprite59ScaleUpVertical
+  io.spriteScaleUpHorizontal(60) := sprite60ScaleUpHorizontal
+  io.spriteScaleUpVertical(60) := sprite60ScaleUpVertical
 
   //Two registers holding the view box X and Y
   val viewBoxXReg = RegInit(0.U(10.W))
@@ -1121,14 +1137,14 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         sprite59YReg := RegNext(sprite60YReg)
         sprite60XReg := RegNext(sprite58XReg)
         sprite60YReg := RegNext(sprite58YReg)
-        io.spriteScaleUpHorizontal(58) := true.B
-        io.spriteScaleUpHorizontal(59) := true.B
-        io.spriteScaleUpHorizontal(60) := true.B
+        sprite58ScaleUpHorizontal := true.B
+        sprite59ScaleUpHorizontal := true.B
+        sprite60ScaleUpHorizontal := true.B
         starCnt := starCnt + 1.U
       }.elsewhen(starCnt === 150.U) {
-        io.spriteScaleUpHorizontal(58) := false.B
-        io.spriteScaleUpHorizontal(59) := false.B
-        io.spriteScaleUpHorizontal(60) := false.B
+        sprite58ScaleUpHorizontal := false.B
+        sprite59ScaleUpHorizontal := false.B
+        sprite60ScaleUpHorizontal := false.B
         starCnt := starCnt + 1.U
       }.elsewhen(starCnt === 210.U) {
         sprite58XReg := RegNext(sprite59XReg)
@@ -1137,14 +1153,14 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         sprite59YReg := RegNext(sprite60YReg)
         sprite60XReg := RegNext(sprite58XReg)
         sprite60YReg := RegNext(sprite58YReg)
-        io.spriteScaleUpHorizontal(58) := true.B
-        io.spriteScaleUpHorizontal(59) := true.B
-        io.spriteScaleUpHorizontal(60) := true.B
+        sprite58ScaleUpHorizontal := true.B
+        sprite59ScaleUpHorizontal := true.B
+        sprite60ScaleUpHorizontal := true.B
         starCnt := starCnt + 1.U
       }.elsewhen(starCnt === 300.U) {
-        io.spriteScaleUpHorizontal(58) := false.B
-        io.spriteScaleUpHorizontal(59) := false.B
-        io.spriteScaleUpHorizontal(60) := false.B
+        sprite58ScaleUpHorizontal := false.B
+        sprite59ScaleUpHorizontal := false.B
+        sprite60ScaleUpHorizontal := false.B
         starCnt := starCnt + 1.U
       }.elsewhen(starCnt === 360.U) {
         sprite58XReg := RegNext(sprite59XReg)
@@ -1153,14 +1169,14 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         sprite59YReg := RegNext(sprite60YReg)
         sprite60XReg := RegNext(sprite58XReg)
         sprite60YReg := RegNext(sprite58YReg)
-        io.spriteScaleUpHorizontal(58) := true.B
-        io.spriteScaleUpHorizontal(59) := true.B
-        io.spriteScaleUpHorizontal(60) := true.B
+        sprite58ScaleUpHorizontal := true.B
+        sprite59ScaleUpHorizontal := true.B
+        sprite60ScaleUpHorizontal := true.B
         starCnt := starCnt + 1.U
       }.elsewhen(starCnt === 450.U) {
-        io.spriteScaleUpHorizontal(58) := false.B
-        io.spriteScaleUpHorizontal(59) := false.B
-        io.spriteScaleUpHorizontal(60) := false.B
+        sprite58ScaleUpHorizontal := false.B
+        sprite59ScaleUpHorizontal := false.B
+        sprite60ScaleUpHorizontal := false.B
         starCnt := starCnt + 1.U
       }.elsewhen(starCnt === 510.U) {
         starCnt := 0.U
