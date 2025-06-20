@@ -12,6 +12,9 @@ class LFSR extends Module {
 
   // History buffer
   val history = RegInit(VecInit(Seq.fill(30)(0.U(8.W))))
-  history := history.tail :+ reg
+  for (i <- 0 until 29) {
+    history(i) := history(i + 1)
+  }
+  history(29) := reg
   io.out := history
 }

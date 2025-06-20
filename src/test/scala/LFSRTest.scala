@@ -12,7 +12,7 @@ class LFSRTest extends AnyFlatSpec with ChiselScalatestTester {
 
     for (i <- 0 until 50 by 1) {
       println(dut.io.out.peek().litValue)
-      dut.clock.step(1666667)
+      dut.clock.step(10)
     }
 
       println("End of LFSR Tester")

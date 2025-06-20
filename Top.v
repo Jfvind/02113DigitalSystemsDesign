@@ -10664,34 +10664,34 @@ module LFSR(
   reg [7:0] history_27; // @[\\src\\main\\scala\\LFSR.scala 14:24]
   reg [7:0] history_28; // @[\\src\\main\\scala\\LFSR.scala 14:24]
   reg [7:0] history_29; // @[\\src\\main\\scala\\LFSR.scala 14:24]
-  assign io_out_0 = history_0; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_1 = history_1; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_2 = history_2; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_3 = history_3; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_4 = history_4; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_5 = history_5; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_6 = history_6; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_7 = history_7; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_8 = history_8; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_9 = history_9; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_11 = history_11; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_12 = history_12; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_13 = history_13; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_14 = history_14; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_15 = history_15; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_16 = history_16; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_17 = history_17; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_18 = history_18; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_19 = history_19; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_21 = history_21; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_22 = history_22; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_23 = history_23; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_24 = history_24; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_25 = history_25; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_26 = history_26; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_27 = history_27; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_28 = history_28; // @[\\src\\main\\scala\\LFSR.scala 16:10]
-  assign io_out_29 = history_29; // @[\\src\\main\\scala\\LFSR.scala 16:10]
+  assign io_out_0 = history_0; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_1 = history_1; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_2 = history_2; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_3 = history_3; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_4 = history_4; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_5 = history_5; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_6 = history_6; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_7 = history_7; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_8 = history_8; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_9 = history_9; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_11 = history_11; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_12 = history_12; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_13 = history_13; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_14 = history_14; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_15 = history_15; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_16 = history_16; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_17 = history_17; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_18 = history_18; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_19 = history_19; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_21 = history_21; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_22 = history_22; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_23 = history_23; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_24 = history_24; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_25 = history_25; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_26 = history_26; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_27 = history_27; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_28 = history_28; // @[\\src\\main\\scala\\LFSR.scala 19:10]
+  assign io_out_29 = history_29; // @[\\src\\main\\scala\\LFSR.scala 19:10]
   always @(posedge clock) begin
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 9:20]
       reg_ <= 8'h17; // @[\\src\\main\\scala\\LFSR.scala 9:20]
@@ -10701,152 +10701,152 @@ module LFSR(
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_0 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_0 <= history_1; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_0 <= history_1; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_1 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_1 <= history_2; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_1 <= history_2; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_2 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_2 <= history_3; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_2 <= history_3; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_3 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_3 <= history_4; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_3 <= history_4; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_4 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_4 <= history_5; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_4 <= history_5; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_5 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_5 <= history_6; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_5 <= history_6; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_6 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_6 <= history_7; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_6 <= history_7; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_7 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_7 <= history_8; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_7 <= history_8; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_8 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_8 <= history_9; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_8 <= history_9; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_9 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_9 <= history_10; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_9 <= history_10; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_10 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_10 <= history_11; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_10 <= history_11; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_11 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_11 <= history_12; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_11 <= history_12; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_12 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_12 <= history_13; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_12 <= history_13; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_13 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_13 <= history_14; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_13 <= history_14; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_14 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_14 <= history_15; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_14 <= history_15; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_15 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_15 <= history_16; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_15 <= history_16; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_16 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_16 <= history_17; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_16 <= history_17; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_17 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_17 <= history_18; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_17 <= history_18; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_18 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_18 <= history_19; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_18 <= history_19; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_19 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_19 <= history_20; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_19 <= history_20; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_20 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_20 <= history_21; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_20 <= history_21; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_21 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_21 <= history_22; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_21 <= history_22; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_22 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_22 <= history_23; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_22 <= history_23; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_23 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_23 <= history_24; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_23 <= history_24; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_24 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_24 <= history_25; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_24 <= history_25; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_25 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_25 <= history_26; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_25 <= history_26; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_26 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_26 <= history_27; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_26 <= history_27; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_27 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_27 <= history_28; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_27 <= history_28; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_28 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_28 <= history_29; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_28 <= history_29; // @[\\src\\main\\scala\\LFSR.scala 16:16]
     end
     if (reset) begin // @[\\src\\main\\scala\\LFSR.scala 14:24]
       history_29 <= 8'h0; // @[\\src\\main\\scala\\LFSR.scala 14:24]
     end else begin
-      history_29 <= reg_; // @[\\src\\main\\scala\\LFSR.scala 15:11]
+      history_29 <= reg_; // @[\\src\\main\\scala\\LFSR.scala 18:15]
     end
   end
 // Register and memory initialization
