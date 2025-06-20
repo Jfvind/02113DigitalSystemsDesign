@@ -215,6 +215,12 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite56YReg = RegInit(290.S(10.W))
   val sprite57XReg = RegInit(20.S(11.W))
   val sprite57YReg = RegInit(290.S(10.W))
+  val sprite58XReg = RegInit(320.S(11.W))
+  val sprite58YReg = RegInit(20.S(10.W))
+  val sprite59XReg = RegInit(500.S(11.W))
+  val sprite59YReg = RegInit(70.S(10.W))
+  val sprite60XReg = RegInit(340.S(11.W))
+  val sprite60YReg = RegInit(220.S(10.W))
 
   //A registers holding the sprite horizontal flip
   val sprite3FlipHorizontalReg = RegInit(false.B)
@@ -268,6 +274,9 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite55FlipHorizontalReg = RegInit(false.B)
   val sprite56FlipHorizontalReg = RegInit(false.B)
   val sprite57FlipHorizontalReg = RegInit(false.B)
+  val sprite58FlipHorizontalReg = RegInit(false.B)
+  val sprite59FlipHorizontalReg = RegInit(false.B)
+  val sprite60FlipHorizontalReg = RegInit(false.B)
 
   //Registers controlling vertical flip
   val sprite3FlipVerticalReg = RegInit(false.B)
@@ -321,6 +330,9 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite55FlipVerticalReg = RegInit(false.B)
   val sprite56FlipVerticalReg = RegInit(false.B)
   val sprite57FlipVerticalReg = RegInit(false.B)
+  val sprite58FlipVerticalReg = RegInit(false.B)
+  val sprite59FlipVerticalReg = RegInit(false.B)
+  val sprite60FlipVerticalReg = RegInit(false.B)
 
   //Visibility registers
   val sprite3Visible = RegInit(true.B)
@@ -374,6 +386,9 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite55Visible = RegInit(false.B)
   val sprite56Visible = RegInit(false.B)
   val sprite57Visible = RegInit(false.B)
+  val sprite58Visible = RegInit(false.B)
+  val sprite59Visible = RegInit(false.B)
+  val sprite60Visible = RegInit(false.B)
 
   // Connecting visibility registers to the graphic engine
   io.spriteVisible(3) := sprite3Visible
@@ -427,6 +442,9 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   io.spriteVisible(55) := sprite55Visible
   io.spriteVisible(56) := sprite56Visible
   io.spriteVisible(57) := sprite57Visible
+  io.spriteVisible(58) := sprite58Visible
+  io.spriteVisible(59) := sprite59Visible
+  io.spriteVisible(60) := sprite60Visible
 
   //Connecting resiters to the graphic engine
   io.spriteXPosition(3) := sprite3XReg
@@ -633,6 +651,18 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   io.spriteYPosition(57) := sprite57YReg
   io.spriteFlipHorizontal(57) := sprite57FlipHorizontalReg
   io.spriteFlipVertical(57) := sprite57FlipVerticalReg
+  io.spriteXPosition(58) := sprite58XReg
+  io.spriteYPosition(58) := sprite58YReg
+  io.spriteFlipHorizontal(58) := sprite58FlipHorizontalReg
+  io.spriteFlipVertical(58) := sprite58FlipVerticalReg
+  io.spriteXPosition(59) := sprite59XReg
+  io.spriteYPosition(59) := sprite59YReg
+  io.spriteFlipHorizontal(59) := sprite59FlipHorizontalReg
+  io.spriteFlipVertical(59) := sprite59FlipVerticalReg
+  io.spriteXPosition(60) := sprite60XReg
+  io.spriteYPosition(60) := sprite60YReg
+  io.spriteFlipHorizontal(60) := sprite60FlipHorizontalReg
+  io.spriteFlipVertical(60) := sprite60FlipVerticalReg
 
   //Two registers holding the view box X and Y
   val viewBoxXReg = RegInit(0.U(10.W))
@@ -657,6 +687,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
   //Controls which sprite to throw
   val spriteCnt = RegInit(16.U(6.W))
+
+  val starCnt = RegInit(0.U(10.W))
 
   val lfsr = Module(new LFSR)
 
@@ -1040,7 +1072,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         sprite26XReg, sprite27XReg, sprite28XReg, sprite29XReg, sprite30XReg,
         sprite31XReg, sprite32XReg, sprite33XReg, sprite34XReg, sprite35XReg,
         sprite36XReg, sprite37XReg, sprite38XReg, sprite39XReg, sprite40XReg,
-        sprite41XReg, sprite42XReg, sprite43XReg, sprite44XReg, sprite45XReg
+        sprite41XReg, sprite42XReg, sprite43XReg, sprite44XReg, sprite45XReg,
+        sprite58XReg, sprite59XReg, sprite60XReg
       )
       val spriteVisibleRegsArr = Array(
         sprite16Visible, sprite17Visible, sprite18Visible, sprite19Visible, sprite20Visible,
@@ -1048,17 +1081,18 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         sprite26Visible, sprite27Visible, sprite28Visible, sprite29Visible, sprite30Visible,
         sprite31Visible, sprite32Visible, sprite33Visible, sprite34Visible, sprite35Visible,
         sprite36Visible, sprite37Visible, sprite38Visible, sprite39Visible, sprite40Visible,
-        sprite41Visible, sprite42Visible, sprite43Visible, sprite44Visible, sprite45Visible
+        sprite41Visible, sprite42Visible, sprite43Visible, sprite44Visible, sprite45Visible,
+        sprite58Visible, sprite59Visible, sprite60Visible
       )
       when(lvlReg === 0.U) {
-        for (i <- 0 until 30) {
+        for (i <- 0 until 33) {
           spriteVisibleRegsArr(i) := false.B
         }
       }.elsewhen(lvlReg === 1.U) {
         for (i <- 0 until 10) {
           spriteVisibleRegsArr(i) := true.B
         }
-        for (i <- 11 until 30) {
+        for (i <- 11 until 33) {
           spriteVisibleRegsArr(i) := false.B
         }
       }.elsewhen(lvlReg === 2.U) {
@@ -1068,16 +1102,70 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         for (i <- 0 until 10) {
           spriteVisibleRegsArr(i) := false.B
         }
-        for (i <- 21 until 30) {
+        for (i <- 21 until 33) {
           spriteVisibleRegsArr(i) := false.B
         }
       }.otherwise {
         for (i <- 0 until 20) {
           spriteVisibleRegsArr(i) := false.B
         }
-        for (i <- 21 until 30) {
+        for (i <- 21 until 33) {
           spriteVisibleRegsArr(i) := true.B
         }
+      }
+
+      when(starCnt === 60.U) {
+        sprite58XReg := RegNext(sprite59XReg)
+        sprite58YReg := RegNext(sprite59YReg)
+        sprite59XReg := RegNext(sprite60XReg)
+        sprite59YReg := RegNext(sprite60YReg)
+        sprite60XReg := RegNext(sprite58XReg)
+        sprite60YReg := RegNext(sprite58YReg)
+        io.spriteScaleUpHorizontal(58) := true.B
+        io.spriteScaleUpHorizontal(59) := true.B
+        io.spriteScaleUpHorizontal(60) := true.B
+        starCnt := starCnt + 1.U
+      }.elsewhen(starCnt === 150.U) {
+        io.spriteScaleUpHorizontal(58) := false.B
+        io.spriteScaleUpHorizontal(59) := false.B
+        io.spriteScaleUpHorizontal(60) := false.B
+        starCnt := starCnt + 1.U
+      }.elsewhen(starCnt === 210.U) {
+        sprite58XReg := RegNext(sprite59XReg)
+        sprite58YReg := RegNext(sprite59YReg)
+        sprite59XReg := RegNext(sprite60XReg)
+        sprite59YReg := RegNext(sprite60YReg)
+        sprite60XReg := RegNext(sprite58XReg)
+        sprite60YReg := RegNext(sprite58YReg)
+        io.spriteScaleUpHorizontal(58) := true.B
+        io.spriteScaleUpHorizontal(59) := true.B
+        io.spriteScaleUpHorizontal(60) := true.B
+        starCnt := starCnt + 1.U
+      }.elsewhen(starCnt === 300.U) {
+        io.spriteScaleUpHorizontal(58) := false.B
+        io.spriteScaleUpHorizontal(59) := false.B
+        io.spriteScaleUpHorizontal(60) := false.B
+        starCnt := starCnt + 1.U
+      }.elsewhen(starCnt === 360.U) {
+        sprite58XReg := RegNext(sprite59XReg)
+        sprite58YReg := RegNext(sprite59YReg)
+        sprite59XReg := RegNext(sprite60XReg)
+        sprite59YReg := RegNext(sprite60YReg)
+        sprite60XReg := RegNext(sprite58XReg)
+        sprite60YReg := RegNext(sprite58YReg)
+        io.spriteScaleUpHorizontal(58) := true.B
+        io.spriteScaleUpHorizontal(59) := true.B
+        io.spriteScaleUpHorizontal(60) := true.B
+        starCnt := starCnt + 1.U
+      }.elsewhen(starCnt === 450.U) {
+        io.spriteScaleUpHorizontal(58) := false.B
+        io.spriteScaleUpHorizontal(59) := false.B
+        io.spriteScaleUpHorizontal(60) := false.B
+        starCnt := starCnt + 1.U
+      }.elsewhen(starCnt === 510.U) {
+        starCnt := 0.U
+      }.otherwise {
+        starCnt := starCnt + 1.U
       }
 
       stateReg := menu
