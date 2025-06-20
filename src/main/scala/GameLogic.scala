@@ -1131,54 +1131,90 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       }
 
       when(starCnt === 60.U) {
-        sprite58XReg := RegNext(sprite59XReg)
-        sprite58YReg := RegNext(sprite59YReg)
-        sprite59XReg := RegNext(sprite60XReg)
-        sprite59YReg := RegNext(sprite60YReg)
-        sprite60XReg := RegNext(sprite58XReg)
-        sprite60YReg := RegNext(sprite58YReg)
+        sprite58XReg := RegNext(sprite59XReg - 16.S)
+        sprite58YReg := RegNext(sprite59YReg - 16.S)
+        sprite59XReg := RegNext(sprite60XReg - 16.S)
+        sprite59YReg := RegNext(sprite60YReg - 16.S)
+        sprite60XReg := RegNext(sprite58XReg - 16.S)
+        sprite60YReg := RegNext(sprite58YReg - 16.S)
         sprite58ScaleUpHorizontal := true.B
         sprite59ScaleUpHorizontal := true.B
         sprite60ScaleUpHorizontal := true.B
+        sprite58ScaleUpVertical := true.B
+        sprite59ScaleUpVertical := true.B
+        sprite60ScaleUpVertical := true.B
         starCnt := starCnt + 1.U
-      }.elsewhen(starCnt === 150.U) {
+      }.elsewhen(starCnt === 120.U) {
         sprite58ScaleUpHorizontal := false.B
         sprite59ScaleUpHorizontal := false.B
         sprite60ScaleUpHorizontal := false.B
+        sprite58ScaleUpVertical := false.B
+        sprite59ScaleUpVertical := false.B
+        sprite60ScaleUpVertical := false.B
+        sprite58XReg := sprite58XReg + 16.S
+        sprite59XReg := sprite59XReg + 16.S
+        sprite60XReg := sprite60XReg + 16.S
+        sprite58YReg := sprite58YReg + 16.S
+        sprite59YReg := sprite59YReg + 16.S
+        sprite60YReg := sprite60YReg + 16.S
         starCnt := starCnt + 1.U
-      }.elsewhen(starCnt === 210.U) {
-        sprite58XReg := RegNext(sprite59XReg)
-        sprite58YReg := RegNext(sprite59YReg)
-        sprite59XReg := RegNext(sprite60XReg)
-        sprite59YReg := RegNext(sprite60YReg)
-        sprite60XReg := RegNext(sprite58XReg)
-        sprite60YReg := RegNext(sprite58YReg)
+      }.elsewhen(starCnt === 180.U) {
+        sprite58XReg := RegNext(sprite59XReg - 16.S)
+        sprite58YReg := RegNext(sprite59YReg - 16.S)
+        sprite59XReg := RegNext(sprite60XReg - 16.S)
+        sprite59YReg := RegNext(sprite60YReg - 16.S)
+        sprite60XReg := RegNext(sprite58XReg - 16.S)
+        sprite60YReg := RegNext(sprite58YReg - 16.S)
         sprite58ScaleUpHorizontal := true.B
         sprite59ScaleUpHorizontal := true.B
         sprite60ScaleUpHorizontal := true.B
+        sprite58ScaleUpVertical := true.B
+        sprite59ScaleUpVertical := true.B
+        sprite60ScaleUpVertical := true.B
+        starCnt := starCnt + 1.U
+      }.elsewhen(starCnt === 240.U) {
+        sprite58ScaleUpHorizontal := false.B
+        sprite59ScaleUpHorizontal := false.B
+        sprite60ScaleUpHorizontal := false.B
+        sprite58ScaleUpVertical := false.B
+        sprite59ScaleUpVertical := false.B
+        sprite60ScaleUpVertical := false.B
+        sprite58XReg := sprite58XReg + 16.S
+        sprite59XReg := sprite59XReg + 16.S
+        sprite60XReg := sprite60XReg + 16.S
+        sprite58YReg := sprite58YReg + 16.S
+        sprite59YReg := sprite59YReg + 16.S
+        sprite60YReg := sprite60YReg + 16.S
         starCnt := starCnt + 1.U
       }.elsewhen(starCnt === 300.U) {
-        sprite58ScaleUpHorizontal := false.B
-        sprite59ScaleUpHorizontal := false.B
-        sprite60ScaleUpHorizontal := false.B
-        starCnt := starCnt + 1.U
-      }.elsewhen(starCnt === 360.U) {
-        sprite58XReg := RegNext(sprite59XReg)
-        sprite58YReg := RegNext(sprite59YReg)
-        sprite59XReg := RegNext(sprite60XReg)
-        sprite59YReg := RegNext(sprite60YReg)
-        sprite60XReg := RegNext(sprite58XReg)
-        sprite60YReg := RegNext(sprite58YReg)
+        sprite58XReg := RegNext(sprite59XReg - 16.S)
+        sprite58YReg := RegNext(sprite59YReg - 16.S)
+        sprite59XReg := RegNext(sprite60XReg - 16.S)
+        sprite59YReg := RegNext(sprite60YReg - 16.S)
+        sprite60XReg := RegNext(sprite58XReg - 16.S)
+        sprite60YReg := RegNext(sprite58YReg - 16.S)
         sprite58ScaleUpHorizontal := true.B
         sprite59ScaleUpHorizontal := true.B
         sprite60ScaleUpHorizontal := true.B
+        sprite58ScaleUpVertical := true.B
+        sprite59ScaleUpVertical := true.B
+        sprite60ScaleUpVertical := true.B
         starCnt := starCnt + 1.U
-      }.elsewhen(starCnt === 450.U) {
+      }.elsewhen(starCnt === 360.U) {
         sprite58ScaleUpHorizontal := false.B
         sprite59ScaleUpHorizontal := false.B
         sprite60ScaleUpHorizontal := false.B
+        sprite58ScaleUpVertical := false.B
+        sprite59ScaleUpVertical := false.B
+        sprite60ScaleUpVertical := false.B
+        sprite58XReg := sprite58XReg + 16.S
+        sprite59XReg := sprite59XReg + 16.S
+        sprite60XReg := sprite60XReg + 16.S
+        sprite58YReg := sprite58YReg + 16.S
+        sprite59YReg := sprite59YReg + 16.S
+        sprite60YReg := sprite60YReg + 16.S
         starCnt := starCnt + 1.U
-      }.elsewhen(starCnt === 510.U) {
+      }.elsewhen(starCnt === 420.U) {
         starCnt := 0.U
       }.otherwise {
         starCnt := starCnt + 1.U
