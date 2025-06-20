@@ -271,11 +271,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   //Connecting registers to the graphic engine
   io.viewBoxX := viewBoxXReg
   io.viewBoxY := viewBoxYReg
-  
-  //Level active signals
-  //val lvl1Reg = RegInit(false.B)
-  //val lvl2Reg = RegInit(false.B)
-  //val lvl3Reg = RegInit(false.B)
 
   //Dificulty control variables
   val difficulty = Module(new Difficulty)
@@ -311,36 +306,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
       when(spawnConditions) {
         scoreReg := scoreReg + lvlReg
-        /*when(spawnSprite(0)) {
-          sprite16Visible := true.B
-          sprite16XReg := 32.S
-          sprite16YReg := (lfsr.io.out * 2.U).asSInt
-          spawnSprite(0) := false.B
-          spawnSprite(1) := true.B
-        }.elsewhen(spawnSprite(1)) {
-          sprite17Visible := true.B
-          sprite17XReg := 32.S
-          sprite17YReg := (lfsr.io.out * 2.U).asSInt
-          spawnSprite(1) := false.B
-          spawnSprite(2) := true.B
-        }.elsewhen(spawnSprite(2)) {
-          sprite18Visible := true.B
-          sprite18XReg := 32.S
-          sprite18YReg := (lfsr.io.out * 2.U).asSInt
-          spawnSprite(2) := false.B
-          spawnSprite(3) := true.B
-        }.elsewhen(spawnSprite(3)) {
-          sprite19Visible := true.B
-          sprite19XReg := 32.S
-          sprite19YReg := (lfsr.io.out * 2.U).asSInt
-          spawnSprite(3) := false.B
-          spawnSprite(4) := true.B
-        }.elsewhen(spawnSprite(4)) {
-          sprite20Visible := true.B
-          sprite20XReg := 32.S
-          sprite20YReg := (lfsr.io.out * 2.U).asSInt
-          spawnSprite(4) := false.B
-        }*/
         switch(spriteCnt) {
           is(16.U) {
             sprite16Visible := true.B
