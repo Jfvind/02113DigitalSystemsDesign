@@ -141,6 +141,80 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite19YReg = RegInit(110.S(10.W))
   val sprite20XReg = RegInit(20.S(11.W))
   val sprite20YReg = RegInit(140.S(10.W))
+  val sprite21XReg = RegInit(20.S(11.W))
+  val sprite21YReg = RegInit(170.S(10.W))
+  val sprite22XReg = RegInit(20.S(11.W))
+  val sprite22YReg = RegInit(200.S(10.W))
+  val sprite23XReg = RegInit(20.S(11.W))
+  val sprite23YReg = RegInit(230.S(10.W))
+  val sprite24XReg = RegInit(20.S(11.W))
+  val sprite24YReg = RegInit(260.S(10.W))
+  val sprite25XReg = RegInit(20.S(11.W))
+  val sprite25YReg = RegInit(290.S(10.W))
+  val sprite26XReg = RegInit(20.S(11.W))
+  val sprite26YReg = RegInit(290.S(10.W))
+  val sprite27XReg = RegInit(20.S(11.W))
+  val sprite27YReg = RegInit(290.S(10.W))
+  val sprite28XReg = RegInit(20.S(11.W))
+  val sprite28YReg = RegInit(290.S(10.W))
+  val sprite29XReg = RegInit(20.S(11.W))
+  val sprite29YReg = RegInit(290.S(10.W))
+  val sprite30XReg = RegInit(20.S(11.W))
+  val sprite30YReg = RegInit(290.S(10.W))
+  val sprite31XReg = RegInit(20.S(11.W))
+  val sprite31YReg = RegInit(290.S(10.W))
+  val sprite32XReg = RegInit(20.S(11.W))
+  val sprite32YReg = RegInit(290.S(10.W))
+  val sprite33XReg = RegInit(20.S(11.W))
+  val sprite33YReg = RegInit(290.S(10.W))
+  val sprite34XReg = RegInit(20.S(11.W))
+  val sprite34YReg = RegInit(290.S(10.W))
+  val sprite35XReg = RegInit(20.S(11.W))
+  val sprite35YReg = RegInit(290.S(10.W))
+  val sprite36XReg = RegInit(20.S(11.W))
+  val sprite36YReg = RegInit(290.S(10.W))
+  val sprite37XReg = RegInit(20.S(11.W))
+  val sprite37YReg = RegInit(290.S(10.W))
+  val sprite38XReg = RegInit(20.S(11.W))
+  val sprite38YReg = RegInit(290.S(10.W))
+  val sprite39XReg = RegInit(20.S(11.W))
+  val sprite39YReg = RegInit(290.S(10.W))
+  val sprite40XReg = RegInit(20.S(11.W))
+  val sprite40YReg = RegInit(290.S(10.W))
+  val sprite41XReg = RegInit(20.S(11.W))
+  val sprite41YReg = RegInit(290.S(10.W))
+  val sprite42XReg = RegInit(20.S(11.W))
+  val sprite42YReg = RegInit(290.S(10.W))
+  val sprite43XReg = RegInit(20.S(11.W))
+  val sprite43YReg = RegInit(290.S(10.W))
+  val sprite44XReg = RegInit(20.S(11.W))
+  val sprite44YReg = RegInit(290.S(10.W))
+  val sprite45XReg = RegInit(20.S(11.W))
+  val sprite45YReg = RegInit(290.S(10.W))
+  val sprite46XReg = RegInit(20.S(11.W))
+  val sprite46YReg = RegInit(290.S(10.W))
+  val sprite47XReg = RegInit(20.S(11.W))
+  val sprite47YReg = RegInit(290.S(10.W))
+  val sprite48XReg = RegInit(20.S(11.W))
+  val sprite48YReg = RegInit(290.S(10.W))
+  val sprite49XReg = RegInit(20.S(11.W))
+  val sprite49YReg = RegInit(290.S(10.W))
+  val sprite50XReg = RegInit(20.S(11.W))
+  val sprite50YReg = RegInit(290.S(10.W))
+  val sprite51XReg = RegInit(20.S(11.W))
+  val sprite51YReg = RegInit(290.S(10.W))
+  val sprite52XReg = RegInit(20.S(11.W))
+  val sprite52YReg = RegInit(290.S(10.W))
+  val sprite53XReg = RegInit(20.S(11.W))
+  val sprite53YReg = RegInit(290.S(10.W))
+  val sprite54XReg = RegInit(20.S(11.W))
+  val sprite54YReg = RegInit(290.S(10.W))
+  val sprite55XReg = RegInit(20.S(11.W))
+  val sprite55YReg = RegInit(290.S(10.W))
+  val sprite56XReg = RegInit(20.S(11.W))
+  val sprite56YReg = RegInit(290.S(10.W))
+  val sprite57XReg = RegInit(20.S(11.W))
+  val sprite57YReg = RegInit(290.S(10.W))
 
   //A registers holding the sprite horizontal flip
   val sprite3FlipHorizontalReg = RegInit(false.B)
@@ -157,6 +231,43 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite18FlipHorizontalReg = RegInit(false.B)
   val sprite19FlipHorizontalReg = RegInit(false.B)
   val sprite20FlipHorizontalReg = RegInit(false.B)
+  val sprite21FlipHorizontalReg = RegInit(false.B)
+  val sprite22FlipHorizontalReg = RegInit(false.B)
+  val sprite23FlipHorizontalReg = RegInit(false.B)
+  val sprite24FlipHorizontalReg = RegInit(false.B)
+  val sprite25FlipHorizontalReg = RegInit(false.B)
+  val sprite26FlipHorizontalReg = RegInit(false.B)
+  val sprite27FlipHorizontalReg = RegInit(false.B)
+  val sprite28FlipHorizontalReg = RegInit(false.B)
+  val sprite29FlipHorizontalReg = RegInit(false.B)
+  val sprite30FlipHorizontalReg = RegInit(false.B)
+  val sprite31FlipHorizontalReg = RegInit(false.B)
+  val sprite32FlipHorizontalReg = RegInit(false.B)
+  val sprite33FlipHorizontalReg = RegInit(false.B)
+  val sprite34FlipHorizontalReg = RegInit(false.B)
+  val sprite35FlipHorizontalReg = RegInit(false.B)
+  val sprite36FlipHorizontalReg = RegInit(false.B)
+  val sprite37FlipHorizontalReg = RegInit(false.B)
+  val sprite38FlipHorizontalReg = RegInit(false.B)
+  val sprite39FlipHorizontalReg = RegInit(false.B)
+  val sprite40FlipHorizontalReg = RegInit(false.B)
+  val sprite41FlipHorizontalReg = RegInit(false.B)
+  val sprite42FlipHorizontalReg = RegInit(false.B)
+  val sprite43FlipHorizontalReg = RegInit(false.B)
+  val sprite44FlipHorizontalReg = RegInit(false.B)
+  val sprite45FlipHorizontalReg = RegInit(false.B)
+  val sprite46FlipHorizontalReg = RegInit(false.B)
+  val sprite47FlipHorizontalReg = RegInit(false.B)
+  val sprite48FlipHorizontalReg = RegInit(false.B)
+  val sprite49FlipHorizontalReg = RegInit(false.B)
+  val sprite50FlipHorizontalReg = RegInit(false.B)
+  val sprite51FlipHorizontalReg = RegInit(false.B)
+  val sprite52FlipHorizontalReg = RegInit(false.B)
+  val sprite53FlipHorizontalReg = RegInit(false.B)
+  val sprite54FlipHorizontalReg = RegInit(false.B)
+  val sprite55FlipHorizontalReg = RegInit(false.B)
+  val sprite56FlipHorizontalReg = RegInit(false.B)
+  val sprite57FlipHorizontalReg = RegInit(false.B)
 
   //Registers controlling vertical flip
   val sprite3FlipVerticalReg = RegInit(false.B)
@@ -173,6 +284,43 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite18FlipVerticalReg = RegInit(false.B)
   val sprite19FlipVerticalReg = RegInit(false.B)
   val sprite20FlipVerticalReg = RegInit(false.B)
+  val sprite21FlipVerticalReg = RegInit(false.B)
+  val sprite22FlipVerticalReg = RegInit(false.B)
+  val sprite23FlipVerticalReg = RegInit(false.B)
+  val sprite24FlipVerticalReg = RegInit(false.B)
+  val sprite25FlipVerticalReg = RegInit(false.B)
+  val sprite26FlipVerticalReg = RegInit(false.B)
+  val sprite27FlipVerticalReg = RegInit(false.B)
+  val sprite28FlipVerticalReg = RegInit(false.B)
+  val sprite29FlipVerticalReg = RegInit(false.B)
+  val sprite30FlipVerticalReg = RegInit(false.B)
+  val sprite31FlipVerticalReg = RegInit(false.B)
+  val sprite32FlipVerticalReg = RegInit(false.B)
+  val sprite33FlipVerticalReg = RegInit(false.B)
+  val sprite34FlipVerticalReg = RegInit(false.B)
+  val sprite35FlipVerticalReg = RegInit(false.B)
+  val sprite36FlipVerticalReg = RegInit(false.B)
+  val sprite37FlipVerticalReg = RegInit(false.B)
+  val sprite38FlipVerticalReg = RegInit(false.B)
+  val sprite39FlipVerticalReg = RegInit(false.B)
+  val sprite40FlipVerticalReg = RegInit(false.B)
+  val sprite41FlipVerticalReg = RegInit(false.B)
+  val sprite42FlipVerticalReg = RegInit(false.B)
+  val sprite43FlipVerticalReg = RegInit(false.B)
+  val sprite44FlipVerticalReg = RegInit(false.B)
+  val sprite45FlipVerticalReg = RegInit(false.B)
+  val sprite46FlipVerticalReg = RegInit(false.B)
+  val sprite47FlipVerticalReg = RegInit(false.B)
+  val sprite48FlipVerticalReg = RegInit(false.B)
+  val sprite49FlipVerticalReg = RegInit(false.B)
+  val sprite50FlipVerticalReg = RegInit(false.B)
+  val sprite51FlipVerticalReg = RegInit(false.B)
+  val sprite52FlipVerticalReg = RegInit(false.B)
+  val sprite53FlipVerticalReg = RegInit(false.B)
+  val sprite54FlipVerticalReg = RegInit(false.B)
+  val sprite55FlipVerticalReg = RegInit(false.B)
+  val sprite56FlipVerticalReg = RegInit(false.B)
+  val sprite57FlipVerticalReg = RegInit(false.B)
 
   //Visibility registers
   val sprite3Visible = RegInit(true.B)
@@ -189,6 +337,43 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite18Visible = RegInit(false.B)
   val sprite19Visible = RegInit(false.B)
   val sprite20Visible = RegInit(false.B)
+  val sprite21Visible = RegInit(false.B)
+  val sprite22Visible = RegInit(false.B)
+  val sprite23Visible = RegInit(false.B)
+  val sprite24Visible = RegInit(false.B)
+  val sprite25Visible = RegInit(false.B)
+  val sprite26Visible = RegInit(false.B)
+  val sprite27Visible = RegInit(false.B)
+  val sprite28Visible = RegInit(false.B)
+  val sprite29Visible = RegInit(false.B)
+  val sprite30Visible = RegInit(false.B)
+  val sprite31Visible = RegInit(false.B)
+  val sprite32Visible = RegInit(false.B)
+  val sprite33Visible = RegInit(false.B)
+  val sprite34Visible = RegInit(false.B)
+  val sprite35Visible = RegInit(false.B)
+  val sprite36Visible = RegInit(false.B)
+  val sprite37Visible = RegInit(false.B)
+  val sprite38Visible = RegInit(false.B)
+  val sprite39Visible = RegInit(false.B)
+  val sprite40Visible = RegInit(false.B)
+  val sprite41Visible = RegInit(false.B)
+  val sprite42Visible = RegInit(false.B)
+  val sprite43Visible = RegInit(false.B)
+  val sprite44Visible = RegInit(false.B)
+  val sprite45Visible = RegInit(false.B)
+  val sprite46Visible = RegInit(false.B)
+  val sprite47Visible = RegInit(false.B)
+  val sprite48Visible = RegInit(false.B)
+  val sprite49Visible = RegInit(false.B)
+  val sprite50Visible = RegInit(false.B)
+  val sprite51Visible = RegInit(false.B)
+  val sprite52Visible = RegInit(false.B)
+  val sprite53Visible = RegInit(false.B)
+  val sprite54Visible = RegInit(false.B)
+  val sprite55Visible = RegInit(false.B)
+  val sprite56Visible = RegInit(false.B)
+  val sprite57Visible = RegInit(false.B)
 
   // Connecting visibility registers to the graphic engine
   io.spriteVisible(3) := sprite3Visible
@@ -205,6 +390,43 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   io.spriteVisible(18) := sprite18Visible
   io.spriteVisible(19) := sprite19Visible
   io.spriteVisible(20) := sprite20Visible
+  io.spriteVisible(21) := sprite21Visible
+  io.spriteVisible(22) := sprite22Visible
+  io.spriteVisible(23) := sprite23Visible
+  io.spriteVisible(24) := sprite24Visible
+  io.spriteVisible(25) := sprite25Visible
+  io.spriteVisible(26) := sprite26Visible
+  io.spriteVisible(27) := sprite27Visible
+  io.spriteVisible(28) := sprite28Visible
+  io.spriteVisible(29) := sprite29Visible
+  io.spriteVisible(30) := sprite30Visible
+  io.spriteVisible(31) := sprite31Visible
+  io.spriteVisible(32) := sprite32Visible
+  io.spriteVisible(33) := sprite33Visible
+  io.spriteVisible(34) := sprite34Visible
+  io.spriteVisible(35) := sprite35Visible
+  io.spriteVisible(36) := sprite36Visible
+  io.spriteVisible(37) := sprite37Visible
+  io.spriteVisible(38) := sprite38Visible
+  io.spriteVisible(39) := sprite39Visible
+  io.spriteVisible(40) := sprite40Visible
+  io.spriteVisible(41) := sprite41Visible
+  io.spriteVisible(42) := sprite42Visible
+  io.spriteVisible(43) := sprite43Visible
+  io.spriteVisible(44) := sprite44Visible
+  io.spriteVisible(45) := sprite45Visible
+  io.spriteVisible(46) := sprite46Visible
+  io.spriteVisible(47) := sprite47Visible
+  io.spriteVisible(48) := sprite48Visible
+  io.spriteVisible(49) := sprite49Visible
+  io.spriteVisible(50) := sprite50Visible
+  io.spriteVisible(51) := sprite51Visible
+  io.spriteVisible(52) := sprite52Visible
+  io.spriteVisible(53) := sprite53Visible
+  io.spriteVisible(54) := sprite54Visible
+  io.spriteVisible(55) := sprite55Visible
+  io.spriteVisible(56) := sprite56Visible
+  io.spriteVisible(57) := sprite57Visible
 
   //Connecting resiters to the graphic engine
   io.spriteXPosition(3) := sprite3XReg
@@ -263,6 +485,154 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   io.spriteYPosition(20) := sprite20YReg
   io.spriteFlipHorizontal(20) := sprite20FlipHorizontalReg
   io.spriteFlipVertical(20) := sprite20FlipVerticalReg
+  io.spriteXPosition(21) := sprite21XReg
+  io.spriteYPosition(21) := sprite21YReg
+  io.spriteFlipHorizontal(21) := sprite21FlipHorizontalReg
+  io.spriteFlipVertical(21) := sprite21FlipVerticalReg
+  io.spriteXPosition(22) := sprite22XReg
+  io.spriteYPosition(22) := sprite22YReg
+  io.spriteFlipHorizontal(22) := sprite22FlipHorizontalReg
+  io.spriteFlipVertical(22) := sprite22FlipVerticalReg
+  io.spriteXPosition(23) := sprite23XReg
+  io.spriteYPosition(23) := sprite23YReg
+  io.spriteFlipHorizontal(23) := sprite23FlipHorizontalReg
+  io.spriteFlipVertical(23) := sprite23FlipVerticalReg
+  io.spriteXPosition(24) := sprite24XReg
+  io.spriteYPosition(24) := sprite24YReg
+  io.spriteFlipHorizontal(24) := sprite24FlipHorizontalReg
+  io.spriteFlipVertical(24) := sprite24FlipVerticalReg
+  io.spriteXPosition(25) := sprite25XReg
+  io.spriteYPosition(25) := sprite25YReg
+  io.spriteFlipHorizontal(25) := sprite25FlipHorizontalReg
+  io.spriteFlipVertical(25) := sprite25FlipVerticalReg
+  io.spriteXPosition(26) := sprite26XReg
+  io.spriteYPosition(26) := sprite26YReg
+  io.spriteFlipHorizontal(26) := sprite26FlipHorizontalReg
+  io.spriteFlipVertical(26) := sprite26FlipVerticalReg
+  io.spriteXPosition(27) := sprite27XReg
+  io.spriteYPosition(27) := sprite27YReg
+  io.spriteFlipHorizontal(27) := sprite27FlipHorizontalReg
+  io.spriteFlipVertical(27) := sprite27FlipVerticalReg
+  io.spriteXPosition(28) := sprite28XReg
+  io.spriteYPosition(28) := sprite28YReg
+  io.spriteFlipHorizontal(28) := sprite28FlipHorizontalReg
+  io.spriteFlipVertical(28) := sprite28FlipVerticalReg
+  io.spriteXPosition(29) := sprite29XReg
+  io.spriteYPosition(29) := sprite29YReg
+  io.spriteFlipHorizontal(29) := sprite29FlipHorizontalReg
+  io.spriteFlipVertical(29) := sprite29FlipVerticalReg
+  io.spriteXPosition(30) := sprite30XReg
+  io.spriteYPosition(30) := sprite30YReg
+  io.spriteFlipHorizontal(30) := sprite30FlipHorizontalReg
+  io.spriteFlipVertical(30) := sprite30FlipVerticalReg
+  io.spriteXPosition(31) := sprite31XReg
+  io.spriteYPosition(31) := sprite31YReg
+  io.spriteFlipHorizontal(31) := sprite31FlipHorizontalReg
+  io.spriteFlipVertical(31) := sprite31FlipVerticalReg
+  io.spriteXPosition(32) := sprite32XReg
+  io.spriteYPosition(32) := sprite32YReg
+  io.spriteFlipHorizontal(32) := sprite32FlipHorizontalReg
+  io.spriteFlipVertical(32) := sprite32FlipVerticalReg
+  io.spriteXPosition(33) := sprite33XReg
+  io.spriteYPosition(33) := sprite33YReg
+  io.spriteFlipHorizontal(33) := sprite33FlipHorizontalReg
+  io.spriteFlipVertical(33) := sprite33FlipVerticalReg
+  io.spriteXPosition(34) := sprite34XReg
+  io.spriteYPosition(34) := sprite34YReg
+  io.spriteFlipHorizontal(34) := sprite34FlipHorizontalReg
+  io.spriteFlipVertical(34) := sprite34FlipVerticalReg
+  io.spriteXPosition(35) := sprite35XReg
+  io.spriteYPosition(35) := sprite35YReg
+  io.spriteFlipHorizontal(35) := sprite35FlipHorizontalReg
+  io.spriteFlipVertical(35) := sprite35FlipVerticalReg
+  io.spriteXPosition(36) := sprite36XReg
+  io.spriteYPosition(36) := sprite36YReg
+  io.spriteFlipHorizontal(36) := sprite36FlipHorizontalReg
+  io.spriteFlipVertical(36) := sprite36FlipVerticalReg
+  io.spriteXPosition(37) := sprite37XReg
+  io.spriteYPosition(37) := sprite37YReg
+  io.spriteFlipHorizontal(37) := sprite37FlipHorizontalReg
+  io.spriteFlipVertical(37) := sprite37FlipVerticalReg
+  io.spriteXPosition(38) := sprite38XReg
+  io.spriteYPosition(38) := sprite38YReg
+  io.spriteFlipHorizontal(38) := sprite38FlipHorizontalReg
+  io.spriteFlipVertical(38) := sprite38FlipVerticalReg
+  io.spriteXPosition(39) := sprite39XReg
+  io.spriteYPosition(39) := sprite39YReg
+  io.spriteFlipHorizontal(39) := sprite39FlipHorizontalReg
+  io.spriteFlipVertical(39) := sprite39FlipVerticalReg
+  io.spriteXPosition(40) := sprite40XReg
+  io.spriteYPosition(40) := sprite40YReg
+  io.spriteFlipHorizontal(40) := sprite40FlipHorizontalReg
+  io.spriteFlipVertical(40) := sprite40FlipVerticalReg
+  io.spriteXPosition(41) := sprite41XReg
+  io.spriteYPosition(41) := sprite41YReg
+  io.spriteFlipHorizontal(41) := sprite41FlipHorizontalReg
+  io.spriteFlipVertical(41) := sprite41FlipVerticalReg
+  io.spriteXPosition(42) := sprite42XReg
+  io.spriteYPosition(42) := sprite42YReg
+  io.spriteFlipHorizontal(42) := sprite42FlipHorizontalReg
+  io.spriteFlipVertical(42) := sprite42FlipVerticalReg
+  io.spriteXPosition(43) := sprite43XReg
+  io.spriteYPosition(43) := sprite43YReg
+  io.spriteFlipHorizontal(43) := sprite43FlipHorizontalReg
+  io.spriteFlipVertical(43) := sprite43FlipVerticalReg
+  io.spriteXPosition(44) := sprite44XReg
+  io.spriteYPosition(44) := sprite44YReg
+  io.spriteFlipHorizontal(44) := sprite44FlipHorizontalReg
+  io.spriteFlipVertical(44) := sprite44FlipVerticalReg
+  io.spriteXPosition(45) := sprite45XReg
+  io.spriteYPosition(45) := sprite45YReg
+  io.spriteFlipHorizontal(45) := sprite45FlipHorizontalReg
+  io.spriteFlipVertical(45) := sprite45FlipVerticalReg
+  io.spriteXPosition(46) := sprite46XReg
+  io.spriteYPosition(46) := sprite46YReg
+  io.spriteFlipHorizontal(46) := sprite46FlipHorizontalReg
+  io.spriteFlipVertical(46) := sprite46FlipVerticalReg
+  io.spriteXPosition(47) := sprite47XReg
+  io.spriteYPosition(47) := sprite47YReg
+  io.spriteFlipHorizontal(47) := sprite47FlipHorizontalReg
+  io.spriteFlipVertical(47) := sprite47FlipVerticalReg
+  io.spriteXPosition(48) := sprite48XReg
+  io.spriteYPosition(48) := sprite48YReg
+  io.spriteFlipHorizontal(48) := sprite48FlipHorizontalReg
+  io.spriteFlipVertical(48) := sprite48FlipVerticalReg
+  io.spriteXPosition(49) := sprite49XReg
+  io.spriteYPosition(49) := sprite49YReg
+  io.spriteFlipHorizontal(49) := sprite49FlipHorizontalReg
+  io.spriteFlipVertical(49) := sprite49FlipVerticalReg
+  io.spriteXPosition(50) := sprite50XReg
+  io.spriteYPosition(50) := sprite50YReg
+  io.spriteFlipHorizontal(50) := sprite50FlipHorizontalReg
+  io.spriteFlipVertical(50) := sprite50FlipVerticalReg
+  io.spriteXPosition(51) := sprite51XReg
+  io.spriteYPosition(51) := sprite51YReg
+  io.spriteFlipHorizontal(51) := sprite51FlipHorizontalReg
+  io.spriteFlipVertical(51) := sprite51FlipVerticalReg
+  io.spriteXPosition(52) := sprite52XReg
+  io.spriteYPosition(52) := sprite52YReg
+  io.spriteFlipHorizontal(52) := sprite52FlipHorizontalReg
+  io.spriteFlipVertical(52) := sprite52FlipVerticalReg
+  io.spriteXPosition(53) := sprite53XReg
+  io.spriteYPosition(53) := sprite53YReg
+  io.spriteFlipHorizontal(53) := sprite53FlipHorizontalReg
+  io.spriteFlipVertical(53) := sprite53FlipVerticalReg
+  io.spriteXPosition(54) := sprite54XReg
+  io.spriteYPosition(54) := sprite54YReg
+  io.spriteFlipHorizontal(54) := sprite54FlipHorizontalReg
+  io.spriteFlipVertical(54) := sprite54FlipVerticalReg
+  io.spriteXPosition(55) := sprite55XReg
+  io.spriteYPosition(55) := sprite55YReg
+  io.spriteFlipHorizontal(55) := sprite55FlipHorizontalReg
+  io.spriteFlipVertical(55) := sprite55FlipVerticalReg
+  io.spriteXPosition(56) := sprite56XReg
+  io.spriteYPosition(56) := sprite56YReg
+  io.spriteFlipHorizontal(56) := sprite56FlipHorizontalReg
+  io.spriteFlipVertical(56) := sprite56FlipVerticalReg
+  io.spriteXPosition(57) := sprite57XReg
+  io.spriteYPosition(57) := sprite57YReg
+  io.spriteFlipHorizontal(57) := sprite57FlipHorizontalReg
+  io.spriteFlipVertical(57) := sprite57FlipVerticalReg
 
   //Two registers holding the view box X and Y
   val viewBoxXReg = RegInit(0.U(10.W))
@@ -274,7 +644,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
   //Dificulty control variables
   val difficulty = Module(new Difficulty)
-  val spawnSprite = RegInit(VecInit(Seq.fill(5)(false.B)))
   val speed = difficulty.io.speed
   val damage = difficulty.io.damage
   val lvlReg = RegInit(0.U(2.W))
@@ -288,7 +657,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
   //Controls which sprite to throw
   val spriteCnt = RegInit(16.U(6.W))
-  val spriteCntMax = RegInit(20.U(6.W))
+  val spriteCntMax = RegInit(25.U(6.W))
 
   val lfsr = Module(new LFSR)
 
@@ -309,52 +678,230 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         switch(spriteCnt) {
           is(16.U) {
             sprite16Visible := true.B
-            sprite16XReg := 32.S
+            sprite16XReg := -32.S
             sprite16YReg := (lfsr.io.out * 2.U).asSInt
             spriteCnt := 17.U
           }
           is(17.U) {
             sprite17Visible := true.B
-            sprite17XReg := 32.S
+            sprite17XReg := -32.S
             sprite17YReg := (lfsr.io.out * 2.U).asSInt
             spriteCnt := 18.U
           }
           is(18.U) {
             sprite18Visible := true.B
-            sprite18XReg := 32.S
+            sprite18XReg := -32.S
             sprite18YReg := (lfsr.io.out * 2.U).asSInt
             spriteCnt := 19.U
           }
           is(19.U) {
             sprite19Visible := true.B
-            sprite19XReg := 32.S
+            sprite19XReg := -32.S
             sprite19YReg := (lfsr.io.out * 2.U).asSInt
             spriteCnt := 20.U
           }
           is(20.U) {
             sprite20Visible := true.B
-            sprite20XReg := 32.S
+            sprite20XReg := -32.S
             sprite20YReg := (lfsr.io.out * 2.U).asSInt
+            spriteCnt := 21.U
+          }
+          is(21.U) {
+            sprite21Visible := true.B
+            sprite21XReg := -32.S
+            sprite21YReg := (lfsr.io.out * 2.U).asSInt
+            spriteCnt := 22.U
+          }
+          is(22.U) {
+            sprite22Visible := true.B
+            sprite22XReg := -32.S
+            sprite22YReg := (lfsr.io.out * 2.U).asSInt
+            spriteCnt := 23.U
+          }
+          is(23.U) {
+            sprite23Visible := true.B
+            sprite23XReg := -32.S
+            sprite23YReg := (lfsr.io.out * 2.U).asSInt
+            spriteCnt := 24.U
+          }
+          is(24.U) {
+            sprite24Visible := true.B
+            sprite24XReg := -32.S
+            sprite24YReg := (lfsr.io.out * 2.U).asSInt
+            spriteCnt := 25.U
+          }
+          is(25.U) {
+            sprite25Visible := true.B
+            sprite25XReg := -32.S
+            sprite25YReg := (lfsr.io.out * 2.U).asSInt
             spriteCnt := 16.U
+          }
+          is(26.U) {
+          sprite26Visible := true.B
+          sprite26XReg := -32.S
+          sprite26YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 27.U
+          }
+          is(27.U) {
+          sprite27Visible := true.B
+          sprite27XReg := -32.S
+          sprite27YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 28.U
+          }
+          is(28.U) {
+          sprite28Visible := true.B
+          sprite28XReg := -32.S
+          sprite28YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 29.U
+          }
+          is(29.U) {
+          sprite29Visible := true.B
+          sprite29XReg := -32.S
+          sprite29YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 30.U
+          }
+          is(30.U) {
+          sprite30Visible := true.B
+          sprite30XReg := -32.S
+          sprite30YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 31.U
+          }
+          is(31.U) {
+          sprite31Visible := true.B
+          sprite31XReg := -32.S
+          sprite31YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 32.U
+          }
+          is(32.U) {
+          sprite32Visible := true.B
+          sprite32XReg := -32.S
+          sprite32YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 33.U
+          }
+          is(33.U) {
+          sprite33Visible := true.B
+          sprite33XReg := -32.S
+          sprite33YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 34.U
+          }
+          is(34.U) {
+          sprite34Visible := true.B
+          sprite34XReg := -32.S
+          sprite34YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 35.U
+          }
+          is(35.U) {
+          sprite35Visible := true.B
+          sprite35XReg := -32.S
+          sprite35YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 26.U
+          }
+          is(36.U) {
+          sprite36Visible := true.B
+          sprite36XReg := -32.S
+          sprite36YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 37.U
+          }
+          is(37.U) {
+          sprite37Visible := true.B
+          sprite37XReg := -32.S
+          sprite37YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 38.U
+          }
+          is(38.U) {
+          sprite38Visible := true.B
+          sprite38XReg := -32.S
+          sprite38YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 39.U
+          }
+          is(39.U) {
+          sprite39Visible := true.B
+          sprite39XReg := -32.S
+          sprite39YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 40.U
+          }
+          is(40.U) {
+          sprite40Visible := true.B
+          sprite40XReg := -32.S
+          sprite40YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 41.U
+          }
+          is(41.U) {
+          sprite41Visible := true.B
+          sprite41XReg := -32.S
+          sprite41YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 42.U
+          }
+          is(42.U) {
+          sprite42Visible := true.B
+          sprite42XReg := -32.S
+          sprite42YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 43.U
+          }
+          is(43.U) {
+          sprite43Visible := true.B
+          sprite43XReg := -32.S
+          sprite43YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 44.U
+          }
+          is(44.U) {
+          sprite44Visible := true.B
+          sprite44XReg := -32.S
+          sprite44YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 45.U
+          }
+          is(45.U) {
+          sprite45Visible := true.B
+          sprite45XReg := -32.S
+          sprite45YReg := (lfsr.io.out * 2.U).asSInt
+          spriteCnt := 36.U
           }
         }
       }
 
       // Move logic
       val moveAmount = difficulty.io.speed
-      val spriteXRegs = Seq(sprite16XReg, sprite17XReg, sprite18XReg, sprite19XReg, sprite20XReg)
-      val spriteVisibleRegs = Seq(sprite16Visible, sprite17Visible, sprite18Visible, sprite19Visible, sprite20Visible)
-      for (i <- 0 until 5) {
+      val spriteXRegs = Seq(
+        sprite16XReg, sprite17XReg, sprite18XReg, sprite19XReg, sprite20XReg,
+        sprite21XReg, sprite22XReg, sprite23XReg, sprite24XReg, sprite25XReg,
+        sprite26XReg, sprite27XReg, sprite28XReg, sprite29XReg, sprite30XReg,
+        sprite31XReg, sprite32XReg, sprite33XReg, sprite34XReg, sprite35XReg,
+        sprite36XReg, sprite37XReg, sprite38XReg, sprite39XReg, sprite40XReg,
+        sprite41XReg, sprite42XReg, sprite43XReg, sprite44XReg, sprite45XReg
+      )
+      val spriteVisibleRegs = Seq(
+        sprite16Visible, sprite17Visible, sprite18Visible, sprite19Visible, sprite20Visible,
+        sprite21Visible, sprite22Visible, sprite23Visible, sprite24Visible, sprite25Visible,
+        sprite26Visible, sprite27Visible, sprite28Visible, sprite29Visible, sprite30Visible,
+        sprite31Visible, sprite32Visible, sprite33Visible, sprite34Visible, sprite35Visible,
+        sprite36Visible, sprite37Visible, sprite38Visible, sprite39Visible, sprite40Visible,
+        sprite41Visible, sprite42Visible, sprite43Visible, sprite44Visible, sprite45Visible
+      )
+      for (i <- 0 until 30) {
         when(spriteVisibleRegs(i)) {
           spriteXRegs(i) := spriteXRegs(i) + moveAmount
         }
       }
 
       // Collision/visibility and spawn logic
-      val spriteXRegsArr = Array(sprite16XReg, sprite17XReg, sprite18XReg, sprite19XReg, sprite20XReg)
-      val spriteVisibleRegsArr = Array(sprite16Visible, sprite17Visible, sprite18Visible, sprite19Visible, sprite20Visible)
-      for (i <- 0 until 5) {
-        when(spriteXRegsArr(i) >= 340.S) {
+      val spriteXRegsArr = Array(
+        sprite16XReg, sprite17XReg, sprite18XReg, sprite19XReg, sprite20XReg,
+        sprite21XReg, sprite22XReg, sprite23XReg, sprite24XReg, sprite25XReg,
+        sprite26XReg, sprite27XReg, sprite28XReg, sprite29XReg, sprite30XReg,
+        sprite31XReg, sprite32XReg, sprite33XReg, sprite34XReg, sprite35XReg,
+        sprite36XReg, sprite37XReg, sprite38XReg, sprite39XReg, sprite40XReg,
+        sprite41XReg, sprite42XReg, sprite43XReg, sprite44XReg, sprite45XReg
+      )
+      val spriteVisibleRegsArr = Array(
+        sprite16Visible, sprite17Visible, sprite18Visible, sprite19Visible, sprite20Visible,
+        sprite21Visible, sprite22Visible, sprite23Visible, sprite24Visible, sprite25Visible,
+        sprite26Visible, sprite27Visible, sprite28Visible, sprite29Visible, sprite30Visible,
+        sprite31Visible, sprite32Visible, sprite33Visible, sprite34Visible, sprite35Visible,
+        sprite36Visible, sprite37Visible, sprite38Visible, sprite39Visible, sprite40Visible,
+        sprite41Visible, sprite42Visible, sprite43Visible, sprite44Visible, sprite45Visible
+      )
+      for (i <- 0 until 30) {
+        when(spriteXRegsArr(i) >= 640.S) {
           spriteVisibleRegsArr(i) := false.B
         }
       }
@@ -418,6 +965,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       sprite14Visible := true.B
       viewBoxXReg := 640.U
       viewBoxYReg := 0.U
+      spriteCnt := 16.U
+      spriteCntMax := 25.U
 
       stateReg := move
     }
