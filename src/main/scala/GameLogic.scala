@@ -907,8 +907,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }*/
 
         //Sprites respawning on the left side, when exiting viewbox on the right side and move logic
-
-        // Sprite 16
         when(sprite16XReg >= 640.S) {
           sprite16XReg := -32.S
           sprite16YReg := (lfsr.io.out(0) * 2.U).asSInt
@@ -916,8 +914,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(sprite16Visible) {
           sprite16XReg := sprite16XReg + speed
         }
-
-        // Sprite 17
         when(sprite17XReg >= 640.S) {
           sprite17XReg := -32.S
           sprite17YReg := (lfsr.io.out(1) * 2.U).asSInt
@@ -925,8 +921,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(sprite17Visible) {
           sprite17XReg := sprite17XReg + speed
         }
-
-        // Sprite 18
         when(sprite18XReg >= 640.S) {
           sprite18XReg := -32.S
           sprite18YReg := (lfsr.io.out(2) * 2.U).asSInt
@@ -934,8 +928,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(sprite18Visible) {
           sprite18XReg := sprite18XReg + speed
         }
-
-        // Sprite 19
         when(sprite19XReg >= 640.S) {
           sprite19XReg := -32.S
           sprite19YReg := (lfsr.io.out(3) * 2.U).asSInt
@@ -943,8 +935,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(sprite19Visible) {
           sprite19XReg := sprite19XReg + speed
         }
-
-        // Sprite 20
         when(sprite20XReg >= 640.S) {
           sprite20XReg := -32.S
           sprite20YReg := (lfsr.io.out(4) * 2.U).asSInt
@@ -952,8 +942,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(sprite20Visible) {
           sprite20XReg := sprite20XReg + speed
         }
-
-        // Sprite 21
         when(sprite21XReg >= 640.S) {
           sprite21XReg := -32.S
           sprite21YReg := (lfsr.io.out(5) * 2.U).asSInt
@@ -961,8 +949,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(sprite21Visible) {
           sprite21XReg := sprite21XReg + speed
         }
-
-        // Sprite 22
         when(sprite22XReg >= 640.S) {
           sprite22XReg := -32.S
           sprite22YReg := (lfsr.io.out(6) * 2.U).asSInt
@@ -970,8 +956,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(sprite22Visible) {
           sprite22XReg := sprite22XReg + speed
         }
-
-        // Sprite 23
         when(sprite23XReg >= 640.S) {
           sprite23XReg := -32.S
           sprite23YReg := (lfsr.io.out(7) * 2.U).asSInt
@@ -979,8 +963,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(sprite23Visible) {
           sprite23XReg := sprite23XReg + speed
         }
-
-        // Sprite 24
         when(sprite24XReg >= 640.S) {
           sprite24XReg := -32.S
           sprite24YReg := (lfsr.io.out(8) * 2.U).asSInt
@@ -988,8 +970,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(sprite24Visible) {
           sprite24XReg := sprite24XReg + speed
         }
-
-        // Sprite 25
         when(sprite25XReg >= 640.S) {
           sprite25XReg := -32.S
           sprite25YReg := (lfsr.io.out(9) * 2.U).asSInt
@@ -997,98 +977,76 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(sprite25Visible) {
           sprite25XReg := sprite25XReg + speed
         }
-
-        // Sprite 26
         when(sprite26XReg >= 640.S) {
           sprite26XReg := -32.S
-          sprite26YReg := (lfsr.io.out(10) * 2.U).asSInt
+          sprite26YReg := (lfsr.io.out(0) * 2.U).asSInt
           scoreReg := scoreReg + lvlReg
         }.elsewhen(sprite26Visible) {
           sprite26XReg := sprite26XReg + speed
         }
-
-        // Sprite 27
         when(sprite27XReg >= 640.S) {
           sprite27XReg := -32.S
-          sprite27YReg := (lfsr.io.out(11) * 2.U).asSInt
+          sprite27YReg := (lfsr.io.out(1) * 2.U).asSInt
           scoreReg := scoreReg + lvlReg
         }.elsewhen(sprite27Visible) {
           sprite27XReg := sprite27XReg + speed
         }
-
-        // Sprite 28
         when(sprite28XReg >= 640.S) {
           sprite28XReg := -32.S
-          sprite28YReg := (lfsr.io.out(12) * 2.U).asSInt
+          sprite28YReg := (lfsr.io.out(2) * 2.U).asSInt
           scoreReg := scoreReg + lvlReg
         }.elsewhen(sprite28Visible) {
           sprite28XReg := sprite28XReg + speed
         }
-
-        // Sprite 29
         when(sprite29XReg >= 640.S) {
           sprite29XReg := -32.S
-          sprite29YReg := (lfsr.io.out(13) * 2.U).asSInt
+          sprite29YReg := (lfsr.io.out(3) * 2.U).asSInt
           scoreReg := scoreReg + lvlReg
         }.elsewhen(sprite29Visible) {
           sprite29XReg := sprite29XReg + speed
         }
-
-        // Sprite 30
         when(sprite30XReg >= 640.S) {
           sprite30XReg := -32.S
-          sprite30YReg := (lfsr.io.out(14) * 2.U).asSInt
+          sprite30YReg := (lfsr.io.out(4) * 2.U).asSInt
           scoreReg := scoreReg + lvlReg
         }.elsewhen(sprite30Visible) {
           sprite30XReg := sprite30XReg + speed
         }
-
-        // Sprite 31
         when(sprite31XReg >= 640.S) {
           sprite31XReg := -32.S
-          sprite31YReg := (lfsr.io.out(15) * 2.U).asSInt
+          sprite31YReg := (lfsr.io.out(5) * 2.U).asSInt
           scoreReg := scoreReg + lvlReg
         }.elsewhen(sprite31Visible) {
           sprite31XReg := sprite31XReg + speed
         }
-
-        // Sprite 32
         when(sprite32XReg >= 640.S) {
           sprite32XReg := -32.S
-          sprite32YReg := (lfsr.io.out(16) * 2.U).asSInt
+          sprite32YReg := (lfsr.io.out(6) * 2.U).asSInt
           scoreReg := scoreReg + lvlReg
         }.elsewhen(sprite32Visible) {
           sprite32XReg := sprite32XReg + speed
         }
-
-        // Sprite 33
         when(sprite33XReg >= 640.S) {
           sprite33XReg := -32.S
-          sprite33YReg := (lfsr.io.out(17) * 2.U).asSInt
+          sprite33YReg := (lfsr.io.out(7) * 2.U).asSInt
           scoreReg := scoreReg + lvlReg
         }.elsewhen(sprite33Visible) {
           sprite33XReg := sprite33XReg + speed
         }
-
-        // Sprite 34
         when(sprite34XReg >= 640.S) {
           sprite34XReg := -32.S
-          sprite34YReg := (lfsr.io.out(18) * 2.U).asSInt
+          sprite34YReg := (lfsr.io.out(8) * 2.U).asSInt
           scoreReg := scoreReg + lvlReg
         }.elsewhen(sprite34Visible) {
           sprite34XReg := sprite34XReg + speed
         }
-
-        // Sprite 35
         when(sprite35XReg >= 640.S) {
           sprite35XReg := -32.S
-          sprite35YReg := (lfsr.io.out(19) * 2.U).asSInt
+          sprite35YReg := (lfsr.io.out(9) * 2.U).asSInt
           scoreReg := scoreReg + lvlReg
         }.elsewhen(sprite35Visible) {
           sprite35XReg := sprite35XReg + speed
         }
-
-        // Sprite 36
         when(sprite36XReg >= 640.S) {
           sprite36XReg := -32.S
           sprite36YReg := (lfsr.io.out(20) * 2.U).asSInt
@@ -1096,8 +1054,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(sprite36Visible) {
           sprite36XReg := sprite36XReg + speed
         }
-
-        // Sprite 37
         when(sprite37XReg >= 640.S) {
           sprite37XReg := -32.S
           sprite37YReg := (lfsr.io.out(21) * 2.U).asSInt
@@ -1105,8 +1061,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(sprite37Visible) {
           sprite37XReg := sprite37XReg + speed
         }
-
-        // Sprite 38
         when(sprite38XReg >= 640.S) {
           sprite38XReg := -32.S
           sprite38YReg := (lfsr.io.out(22) * 2.U).asSInt
@@ -1114,8 +1068,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(sprite38Visible) {
           sprite38XReg := sprite38XReg + speed
         }
-
-        // Sprite 39
         when(sprite39XReg >= 640.S) {
           sprite39XReg := -32.S
           sprite39YReg := (lfsr.io.out(23) * 2.U).asSInt
@@ -1123,8 +1075,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(sprite39Visible) {
           sprite39XReg := sprite39XReg + speed
         }
-
-        // Sprite 40
         when(sprite40XReg >= 640.S) {
           sprite40XReg := -32.S
           sprite40YReg := (lfsr.io.out(24) * 2.U).asSInt
@@ -1132,8 +1082,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(sprite40Visible) {
           sprite40XReg := sprite40XReg + speed
         }
-
-        // Sprite 41
         when(sprite41XReg >= 640.S) {
           sprite41XReg := -32.S
           sprite41YReg := (lfsr.io.out(25) * 2.U).asSInt
@@ -1141,8 +1089,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(sprite41Visible) {
           sprite41XReg := sprite41XReg + speed
         }
-
-        // Sprite 42
         when(sprite42XReg >= 640.S) {
           sprite42XReg := -32.S
           sprite42YReg := (lfsr.io.out(26) * 2.U).asSInt
@@ -1150,8 +1096,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(sprite42Visible) {
           sprite42XReg := sprite42XReg + speed
         }
-
-        // Sprite 43
         when(sprite43XReg >= 640.S) {
           sprite43XReg := -32.S
           sprite43YReg := (lfsr.io.out(27) * 2.U).asSInt
@@ -1159,8 +1103,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(sprite43Visible) {
           sprite43XReg := sprite43XReg + speed
         }
-
-        // Sprite 44
         when(sprite44XReg >= 640.S) {
           sprite44XReg := -32.S
           sprite44YReg := (lfsr.io.out(28) * 2.U).asSInt
@@ -1168,8 +1110,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(sprite44Visible) {
           sprite44XReg := sprite44XReg + speed
         }
-
-        // Sprite 45
         when(sprite45XReg >= 640.S) {
           sprite45XReg := -32.S
           sprite45YReg := (lfsr.io.out(29) * 2.U).asSInt
@@ -1204,14 +1144,14 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }
       }.elsewhen(lvlReg === 1.U) {
         for (i <- 0 until 10) {
-          spriteVisibleRegsArr(i) := RegNext(RegNext(true.B))
+          spriteVisibleRegsArr(i) := true.B
         }
         for (i <- 11 until 33) {
           spriteVisibleRegsArr(i) := false.B
         }
       }.elsewhen(lvlReg === 2.U) {
         for (i <- 11 until 20) {
-          spriteVisibleRegsArr(i) := RegNext(RegNext(true.B))
+          spriteVisibleRegsArr(i) := true.B
         }
         for (i <- 0 until 10) {
           spriteVisibleRegsArr(i) := false.B
@@ -1224,12 +1164,12 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           spriteVisibleRegsArr(i) := false.B
         }
         for (i <- 21 until 33) {
-          spriteVisibleRegsArr(i) := RegNext(RegNext(true.B))
+          spriteVisibleRegsArr(i) := true.B
         }
       }
 
       //Mux to make stars blink and switch postions(switch colours) in lvl3
-      when(starCnt === 60.U) {
+      when(starCnt === 0.U) {
         sprite58XReg := RegNext(sprite59XReg - 16.S)
         sprite58YReg := RegNext(sprite59YReg - 16.S)
         sprite59XReg := RegNext(sprite60XReg - 16.S)
@@ -1242,50 +1182,50 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         sprite58ScaleUpVertical := true.B
         sprite59ScaleUpVertical := true.B
         sprite60ScaleUpVertical := true.B
+        starCnt := starCnt + 1.U
+      }.elsewhen(starCnt === 60.U) {
+        sprite58ScaleUpHorizontal := false.B
+        sprite59ScaleUpHorizontal := false.B
+        sprite60ScaleUpHorizontal := false.B
+        sprite58ScaleUpVertical := false.B
+        sprite59ScaleUpVertical := false.B
+        sprite60ScaleUpVertical := false.B
+        sprite58XReg := sprite58XReg + 16.S
+        sprite59XReg := sprite59XReg + 16.S
+        sprite60XReg := sprite60XReg + 16.S
+        sprite58YReg := sprite58YReg + 16.S
+        sprite59YReg := sprite59YReg + 16.S
+        sprite60YReg := sprite60YReg + 16.S
         starCnt := starCnt + 1.U
       }.elsewhen(starCnt === 120.U) {
-        sprite58ScaleUpHorizontal := false.B
-        sprite59ScaleUpHorizontal := false.B
-        sprite60ScaleUpHorizontal := false.B
-        sprite58ScaleUpVertical := false.B
-        sprite59ScaleUpVertical := false.B
-        sprite60ScaleUpVertical := false.B
-        sprite58XReg := sprite58XReg + 16.S
-        sprite59XReg := sprite59XReg + 16.S
-        sprite60XReg := sprite60XReg + 16.S
-        sprite58YReg := sprite58YReg + 16.S
-        sprite59YReg := sprite59YReg + 16.S
-        sprite60YReg := sprite60YReg + 16.S
+        sprite58XReg := RegNext(sprite59XReg - 16.S)
+        sprite58YReg := RegNext(sprite59YReg - 16.S)
+        sprite59XReg := RegNext(sprite60XReg - 16.S)
+        sprite59YReg := RegNext(sprite60YReg - 16.S)
+        sprite60XReg := RegNext(sprite58XReg - 16.S)
+        sprite60YReg := RegNext(sprite58YReg - 16.S)
+        sprite58ScaleUpHorizontal := true.B
+        sprite59ScaleUpHorizontal := true.B
+        sprite60ScaleUpHorizontal := true.B
+        sprite58ScaleUpVertical := true.B
+        sprite59ScaleUpVertical := true.B
+        sprite60ScaleUpVertical := true.B
         starCnt := starCnt + 1.U
       }.elsewhen(starCnt === 180.U) {
-        sprite58XReg := RegNext(sprite59XReg - 16.S)
-        sprite58YReg := RegNext(sprite59YReg - 16.S)
-        sprite59XReg := RegNext(sprite60XReg - 16.S)
-        sprite59YReg := RegNext(sprite60YReg - 16.S)
-        sprite60XReg := RegNext(sprite58XReg - 16.S)
-        sprite60YReg := RegNext(sprite58YReg - 16.S)
-        sprite58ScaleUpHorizontal := true.B
-        sprite59ScaleUpHorizontal := true.B
-        sprite60ScaleUpHorizontal := true.B
-        sprite58ScaleUpVertical := true.B
-        sprite59ScaleUpVertical := true.B
-        sprite60ScaleUpVertical := true.B
+        sprite58ScaleUpHorizontal := false.B
+        sprite59ScaleUpHorizontal := false.B
+        sprite60ScaleUpHorizontal := false.B
+        sprite58ScaleUpVertical := false.B
+        sprite59ScaleUpVertical := false.B
+        sprite60ScaleUpVertical := false.B
+        sprite58XReg := sprite58XReg + 16.S
+        sprite59XReg := sprite59XReg + 16.S
+        sprite60XReg := sprite60XReg + 16.S
+        sprite58YReg := sprite58YReg + 16.S
+        sprite59YReg := sprite59YReg + 16.S
+        sprite60YReg := sprite60YReg + 16.S
         starCnt := starCnt + 1.U
       }.elsewhen(starCnt === 240.U) {
-        sprite58ScaleUpHorizontal := false.B
-        sprite59ScaleUpHorizontal := false.B
-        sprite60ScaleUpHorizontal := false.B
-        sprite58ScaleUpVertical := false.B
-        sprite59ScaleUpVertical := false.B
-        sprite60ScaleUpVertical := false.B
-        sprite58XReg := sprite58XReg + 16.S
-        sprite59XReg := sprite59XReg + 16.S
-        sprite60XReg := sprite60XReg + 16.S
-        sprite58YReg := sprite58YReg + 16.S
-        sprite59YReg := sprite59YReg + 16.S
-        sprite60YReg := sprite60YReg + 16.S
-        starCnt := starCnt + 1.U
-      }.elsewhen(starCnt === 300.U) {
         sprite58XReg := RegNext(sprite59XReg - 16.S)
         sprite58YReg := RegNext(sprite59YReg - 16.S)
         sprite59XReg := RegNext(sprite60XReg - 16.S)
@@ -1299,7 +1239,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         sprite59ScaleUpVertical := true.B
         sprite60ScaleUpVertical := true.B
         starCnt := starCnt + 1.U
-      }.elsewhen(starCnt === 360.U) {
+      }.elsewhen(starCnt === 300.U) {
         sprite58ScaleUpHorizontal := false.B
         sprite59ScaleUpHorizontal := false.B
         sprite60ScaleUpHorizontal := false.B
@@ -1313,7 +1253,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         sprite59YReg := sprite59YReg + 16.S
         sprite60YReg := sprite60YReg + 16.S
         starCnt := starCnt + 1.U
-      }.elsewhen(starCnt === 420.U) {
+      }.elsewhen(starCnt === 360.U) {
         starCnt := 0.U
       }.otherwise {
         starCnt := starCnt + 1.U
