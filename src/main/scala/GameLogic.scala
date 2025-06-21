@@ -704,6 +704,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   //Controls which sprite to throw
   val spriteCnt = RegInit(16.U(6.W))
 
+  //Controls stars sparkling
   val starCnt = RegInit(0.U(10.W))
 
   val lfsr = Module(new LFSR)
@@ -905,53 +906,276 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           }
         }*/
 
-        //Sprites respawning on the left side, when exiting viewbox on the right side.
-        val spriteXRegsArr2 = Array(
-          sprite16XReg, sprite17XReg, sprite18XReg, sprite19XReg, sprite20XReg,
-          sprite21XReg, sprite22XReg, sprite23XReg, sprite24XReg, sprite25XReg,
-          sprite26XReg, sprite27XReg, sprite28XReg, sprite29XReg, sprite30XReg,
-          sprite31XReg, sprite32XReg, sprite33XReg, sprite34XReg, sprite35XReg,
-          sprite36XReg, sprite37XReg, sprite38XReg, sprite39XReg, sprite40XReg,
-          sprite41XReg, sprite42XReg, sprite43XReg, sprite44XReg, sprite45XReg
-        )
-        val spriteYRegsArr2 = Array(
-          sprite16YReg, sprite17YReg, sprite18YReg, sprite19YReg, sprite20YReg,
-          sprite21YReg, sprite22YReg, sprite23YReg, sprite24YReg, sprite25YReg,
-          sprite26YReg, sprite27YReg, sprite28YReg, sprite29YReg, sprite30YReg,
-          sprite31YReg, sprite32YReg, sprite33YReg, sprite34YReg, sprite35YReg,
-          sprite36YReg, sprite37YReg, sprite38YReg, sprite39YReg, sprite40YReg,
-          sprite41YReg, sprite42YReg, sprite43YReg, sprite44YReg, sprite45YReg
-        )
-        for (i <- 0 until 30) {
-          when(spriteXRegsArr2(i) >= 640.S) {
-            spriteXRegsArr2(i) := -32.S
-            spriteYRegsArr2(i) := (lfsr.io.out(i) * 2.U).asSInt
-            scoreReg := scoreReg + lvlReg
-          }
-        }
-      }
+        //Sprites respawning on the left side, when exiting viewbox on the right side and move logic
 
-      // Move logic. Moves any obstacle-sprite that is visible
-      val moveAmount = difficulty.io.speed
-      val spriteXRegs = Seq(
-        sprite16XReg, sprite17XReg, sprite18XReg, sprite19XReg, sprite20XReg,
-        sprite21XReg, sprite22XReg, sprite23XReg, sprite24XReg, sprite25XReg,
-        sprite26XReg, sprite27XReg, sprite28XReg, sprite29XReg, sprite30XReg,
-        sprite31XReg, sprite32XReg, sprite33XReg, sprite34XReg, sprite35XReg,
-        sprite36XReg, sprite37XReg, sprite38XReg, sprite39XReg, sprite40XReg,
-        sprite41XReg, sprite42XReg, sprite43XReg, sprite44XReg, sprite45XReg
-      )
-      val spriteVisibleRegs = Seq(
-        sprite16Visible, sprite17Visible, sprite18Visible, sprite19Visible, sprite20Visible,
-        sprite21Visible, sprite22Visible, sprite23Visible, sprite24Visible, sprite25Visible,
-        sprite26Visible, sprite27Visible, sprite28Visible, sprite29Visible, sprite30Visible,
-        sprite31Visible, sprite32Visible, sprite33Visible, sprite34Visible, sprite35Visible,
-        sprite36Visible, sprite37Visible, sprite38Visible, sprite39Visible, sprite40Visible,
-        sprite41Visible, sprite42Visible, sprite43Visible, sprite44Visible, sprite45Visible
-      )
-      for (i <- 0 until 30) {
-        when(spriteVisibleRegs(i)) {
-          spriteXRegs(i) := spriteXRegs(i) + moveAmount
+        // Sprite 16
+        when(sprite16XReg >= 640.S) {
+          sprite16XReg := -32.S
+          sprite16YReg := (lfsr.io.out(0) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite16Visible) {
+          sprite16XReg := sprite16XReg + speed
+        }
+
+        // Sprite 17
+        when(sprite17XReg >= 640.S) {
+          sprite17XReg := -32.S
+          sprite17YReg := (lfsr.io.out(1) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite17Visible) {
+          sprite17XReg := sprite17XReg + speed
+        }
+
+        // Sprite 18
+        when(sprite18XReg >= 640.S) {
+          sprite18XReg := -32.S
+          sprite18YReg := (lfsr.io.out(2) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite18Visible) {
+          sprite18XReg := sprite18XReg + speed
+        }
+
+        // Sprite 19
+        when(sprite19XReg >= 640.S) {
+          sprite19XReg := -32.S
+          sprite19YReg := (lfsr.io.out(3) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite19Visible) {
+          sprite19XReg := sprite19XReg + speed
+        }
+
+        // Sprite 20
+        when(sprite20XReg >= 640.S) {
+          sprite20XReg := -32.S
+          sprite20YReg := (lfsr.io.out(4) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite20Visible) {
+          sprite20XReg := sprite20XReg + speed
+        }
+
+        // Sprite 21
+        when(sprite21XReg >= 640.S) {
+          sprite21XReg := -32.S
+          sprite21YReg := (lfsr.io.out(5) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite21Visible) {
+          sprite21XReg := sprite21XReg + speed
+        }
+
+        // Sprite 22
+        when(sprite22XReg >= 640.S) {
+          sprite22XReg := -32.S
+          sprite22YReg := (lfsr.io.out(6) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite22Visible) {
+          sprite22XReg := sprite22XReg + speed
+        }
+
+        // Sprite 23
+        when(sprite23XReg >= 640.S) {
+          sprite23XReg := -32.S
+          sprite23YReg := (lfsr.io.out(7) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite23Visible) {
+          sprite23XReg := sprite23XReg + speed
+        }
+
+        // Sprite 24
+        when(sprite24XReg >= 640.S) {
+          sprite24XReg := -32.S
+          sprite24YReg := (lfsr.io.out(8) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite24Visible) {
+          sprite24XReg := sprite24XReg + speed
+        }
+
+        // Sprite 25
+        when(sprite25XReg >= 640.S) {
+          sprite25XReg := -32.S
+          sprite25YReg := (lfsr.io.out(9) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite25Visible) {
+          sprite25XReg := sprite25XReg + speed
+        }
+
+        // Sprite 26
+        when(sprite26XReg >= 640.S) {
+          sprite26XReg := -32.S
+          sprite26YReg := (lfsr.io.out(10) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite26Visible) {
+          sprite26XReg := sprite26XReg + speed
+        }
+
+        // Sprite 27
+        when(sprite27XReg >= 640.S) {
+          sprite27XReg := -32.S
+          sprite27YReg := (lfsr.io.out(11) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite27Visible) {
+          sprite27XReg := sprite27XReg + speed
+        }
+
+        // Sprite 28
+        when(sprite28XReg >= 640.S) {
+          sprite28XReg := -32.S
+          sprite28YReg := (lfsr.io.out(12) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite28Visible) {
+          sprite28XReg := sprite28XReg + speed
+        }
+
+        // Sprite 29
+        when(sprite29XReg >= 640.S) {
+          sprite29XReg := -32.S
+          sprite29YReg := (lfsr.io.out(13) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite29Visible) {
+          sprite29XReg := sprite29XReg + speed
+        }
+
+        // Sprite 30
+        when(sprite30XReg >= 640.S) {
+          sprite30XReg := -32.S
+          sprite30YReg := (lfsr.io.out(14) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite30Visible) {
+          sprite30XReg := sprite30XReg + speed
+        }
+
+        // Sprite 31
+        when(sprite31XReg >= 640.S) {
+          sprite31XReg := -32.S
+          sprite31YReg := (lfsr.io.out(15) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite31Visible) {
+          sprite31XReg := sprite31XReg + speed
+        }
+
+        // Sprite 32
+        when(sprite32XReg >= 640.S) {
+          sprite32XReg := -32.S
+          sprite32YReg := (lfsr.io.out(16) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite32Visible) {
+          sprite32XReg := sprite32XReg + speed
+        }
+
+        // Sprite 33
+        when(sprite33XReg >= 640.S) {
+          sprite33XReg := -32.S
+          sprite33YReg := (lfsr.io.out(17) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite33Visible) {
+          sprite33XReg := sprite33XReg + speed
+        }
+
+        // Sprite 34
+        when(sprite34XReg >= 640.S) {
+          sprite34XReg := -32.S
+          sprite34YReg := (lfsr.io.out(18) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite34Visible) {
+          sprite34XReg := sprite34XReg + speed
+        }
+
+        // Sprite 35
+        when(sprite35XReg >= 640.S) {
+          sprite35XReg := -32.S
+          sprite35YReg := (lfsr.io.out(19) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite35Visible) {
+          sprite35XReg := sprite35XReg + speed
+        }
+
+        // Sprite 36
+        when(sprite36XReg >= 640.S) {
+          sprite36XReg := -32.S
+          sprite36YReg := (lfsr.io.out(20) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite36Visible) {
+          sprite36XReg := sprite36XReg + speed
+        }
+
+        // Sprite 37
+        when(sprite37XReg >= 640.S) {
+          sprite37XReg := -32.S
+          sprite37YReg := (lfsr.io.out(21) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite37Visible) {
+          sprite37XReg := sprite37XReg + speed
+        }
+
+        // Sprite 38
+        when(sprite38XReg >= 640.S) {
+          sprite38XReg := -32.S
+          sprite38YReg := (lfsr.io.out(22) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite38Visible) {
+          sprite38XReg := sprite38XReg + speed
+        }
+
+        // Sprite 39
+        when(sprite39XReg >= 640.S) {
+          sprite39XReg := -32.S
+          sprite39YReg := (lfsr.io.out(23) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite39Visible) {
+          sprite39XReg := sprite39XReg + speed
+        }
+
+        // Sprite 40
+        when(sprite40XReg >= 640.S) {
+          sprite40XReg := -32.S
+          sprite40YReg := (lfsr.io.out(24) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite40Visible) {
+          sprite40XReg := sprite40XReg + speed
+        }
+
+        // Sprite 41
+        when(sprite41XReg >= 640.S) {
+          sprite41XReg := -32.S
+          sprite41YReg := (lfsr.io.out(25) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite41Visible) {
+          sprite41XReg := sprite41XReg + speed
+        }
+
+        // Sprite 42
+        when(sprite42XReg >= 640.S) {
+          sprite42XReg := -32.S
+          sprite42YReg := (lfsr.io.out(26) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite42Visible) {
+          sprite42XReg := sprite42XReg + speed
+        }
+
+        // Sprite 43
+        when(sprite43XReg >= 640.S) {
+          sprite43XReg := -32.S
+          sprite43YReg := (lfsr.io.out(27) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite43Visible) {
+          sprite43XReg := sprite43XReg + speed
+        }
+
+        // Sprite 44
+        when(sprite44XReg >= 640.S) {
+          sprite44XReg := -32.S
+          sprite44YReg := (lfsr.io.out(28) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite44Visible) {
+          sprite44XReg := sprite44XReg + speed
+        }
+
+        // Sprite 45
+        when(sprite45XReg >= 640.S) {
+          sprite45XReg := -32.S
+          sprite45YReg := (lfsr.io.out(29) * 2.U).asSInt
+          scoreReg := scoreReg + lvlReg
+        }.elsewhen(sprite45Visible) {
+          sprite45XReg := sprite45XReg + speed
         }
       }
 
