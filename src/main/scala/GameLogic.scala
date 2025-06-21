@@ -704,6 +704,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   //Controls which sprite to throw
   val spriteCnt = RegInit(16.U(6.W))
 
+  //Spawning sprites registers
+  val spawnDelayCounter = RegInit(0.U(8.W))
+  val nextSpriteToSpawn = RegInit(0.U(6.W)) // Tracks which sprite to spawn next
+
   //Controls stars sparkling
   val starCnt = RegInit(0.U(10.W))
 
@@ -722,190 +726,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       val spawnConditions = (lvlReg =/= 0.U) //&& spawnReady
 
       when(spawnConditions) {
-        /*scoreReg := scoreReg + lvlReg
-        switch(spriteCnt) {
-          is(16.U) {
-            sprite16Visible := true.B
-            sprite16XReg := -32.S
-            sprite16YReg := (lfsr.io.out * 2.U).asSInt
-            spriteCnt := 17.U
-          }
-          is(17.U) {
-            sprite17Visible := true.B
-            sprite17XReg := -32.S
-            sprite17YReg := (lfsr.io.out * 2.U).asSInt
-            spriteCnt := 18.U
-          }
-          is(18.U) {
-            sprite18Visible := true.B
-            sprite18XReg := -32.S
-            sprite18YReg := (lfsr.io.out * 2.U).asSInt
-            spriteCnt := 19.U
-          }
-          is(19.U) {
-            sprite19Visible := true.B
-            sprite19XReg := -32.S
-            sprite19YReg := (lfsr.io.out * 2.U).asSInt
-            spriteCnt := 20.U
-          }
-          is(20.U) {
-            sprite20Visible := true.B
-            sprite20XReg := -32.S
-            sprite20YReg := (lfsr.io.out * 2.U).asSInt
-            spriteCnt := 21.U
-          }
-          is(21.U) {
-            sprite21Visible := true.B
-            sprite21XReg := -32.S
-            sprite21YReg := (lfsr.io.out * 2.U).asSInt
-            spriteCnt := 22.U
-          }
-          is(22.U) {
-            sprite22Visible := true.B
-            sprite22XReg := -32.S
-            sprite22YReg := (lfsr.io.out * 2.U).asSInt
-            spriteCnt := 23.U
-          }
-          is(23.U) {
-            sprite23Visible := true.B
-            sprite23XReg := -32.S
-            sprite23YReg := (lfsr.io.out * 2.U).asSInt
-            spriteCnt := 24.U
-          }
-          is(24.U) {
-            sprite24Visible := true.B
-            sprite24XReg := -32.S
-            sprite24YReg := (lfsr.io.out * 2.U).asSInt
-            spriteCnt := 25.U
-          }
-          is(25.U) {
-            sprite25Visible := true.B
-            sprite25XReg := -32.S
-            sprite25YReg := (lfsr.io.out * 2.U).asSInt
-            spriteCnt := 16.U
-          }
-          is(26.U) {
-            sprite26Visible := true.B
-            sprite26XReg := -32.S
-            sprite26YReg := (lfsr.io.out * 2.U).asSInt
-            spriteCnt := 27.U
-          }
-          is(27.U) {
-            sprite27Visible := true.B
-            sprite27XReg := -32.S
-            sprite27YReg := (lfsr.io.out * 2.U).asSInt
-            spriteCnt := 28.U
-          }
-          is(28.U) {
-            sprite28Visible := true.B
-            sprite28XReg := -32.S
-            sprite28YReg := (lfsr.io.out * 2.U).asSInt
-            spriteCnt := 29.U
-          }
-          is(29.U) {
-          sprite29Visible := true.B
-          sprite29XReg := -32.S
-          sprite29YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 30.U
-          }
-          is(30.U) {
-          sprite30Visible := true.B
-          sprite30XReg := -32.S
-          sprite30YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 31.U
-          }
-          is(31.U) {
-          sprite31Visible := true.B
-          sprite31XReg := -32.S
-          sprite31YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 32.U
-          }
-          is(32.U) {
-          sprite32Visible := true.B
-          sprite32XReg := -32.S
-          sprite32YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 33.U
-          }
-          is(33.U) {
-          sprite33Visible := true.B
-          sprite33XReg := -32.S
-          sprite33YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 34.U
-          }
-          is(34.U) {
-          sprite34Visible := true.B
-          sprite34XReg := -32.S
-          sprite34YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 35.U
-          }
-          is(35.U) {
-          sprite35Visible := true.B
-          sprite35XReg := -32.S
-          sprite35YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 26.U
-          }
-          is(36.U) {
-          sprite36Visible := true.B
-          sprite36XReg := -32.S
-          sprite36YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 37.U
-          }
-          is(37.U) {
-          sprite37Visible := true.B
-          sprite37XReg := -32.S
-          sprite37YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 38.U
-          }
-          is(38.U) {
-          sprite38Visible := true.B
-          sprite38XReg := -32.S
-          sprite38YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 39.U
-          }
-          is(39.U) {
-          sprite39Visible := true.B
-          sprite39XReg := -32.S
-          sprite39YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 40.U
-          }
-          is(40.U) {
-          sprite40Visible := true.B
-          sprite40XReg := -32.S
-          sprite40YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 41.U
-          }
-          is(41.U) {
-          sprite41Visible := true.B
-          sprite41XReg := -32.S
-          sprite41YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 42.U
-          }
-          is(42.U) {
-          sprite42Visible := true.B
-          sprite42XReg := -32.S
-          sprite42YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 43.U
-          }
-          is(43.U) {
-          sprite43Visible := true.B
-          sprite43XReg := -32.S
-          sprite43YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 44.U
-          }
-          is(44.U) {
-          sprite44Visible := true.B
-          sprite44XReg := -32.S
-          sprite44YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 45.U
-          }
-          is(45.U) {
-          sprite45Visible := true.B
-          sprite45XReg := -32.S
-          sprite45YReg := (lfsr.io.out * 2.U).asSInt
-          spriteCnt := 36.U
-          }
-        }*/
-
         //Sprites respawning on the left side, when exiting viewbox on the right side and move logic
         when(sprite16XReg >= 640.S) {
           sprite16XReg := -32.S
@@ -1120,51 +940,65 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       }
 
       // Collision/visibility and spawn logic
-      val spriteXRegsArr = Array(
-        sprite16XReg, sprite17XReg, sprite18XReg, sprite19XReg, sprite20XReg,
-        sprite21XReg, sprite22XReg, sprite23XReg, sprite24XReg, sprite25XReg,
-        sprite26XReg, sprite27XReg, sprite28XReg, sprite29XReg, sprite30XReg,
-        sprite31XReg, sprite32XReg, sprite33XReg, sprite34XReg, sprite35XReg,
-        sprite36XReg, sprite37XReg, sprite38XReg, sprite39XReg, sprite40XReg,
-        sprite41XReg, sprite42XReg, sprite43XReg, sprite44XReg, sprite45XReg,
-        sprite58XReg, sprite59XReg, sprite60XReg
-      )
-      val spriteVisibleRegsArr = Array(
-        sprite16Visible, sprite17Visible, sprite18Visible, sprite19Visible, sprite20Visible,
-        sprite21Visible, sprite22Visible, sprite23Visible, sprite24Visible, sprite25Visible,
-        sprite26Visible, sprite27Visible, sprite28Visible, sprite29Visible, sprite30Visible,
-        sprite31Visible, sprite32Visible, sprite33Visible, sprite34Visible, sprite35Visible,
-        sprite36Visible, sprite37Visible, sprite38Visible, sprite39Visible, sprite40Visible,
-        sprite41Visible, sprite42Visible, sprite43Visible, sprite44Visible, sprite45Visible,
-        sprite58Visible, sprite59Visible, sprite60Visible
-      )
-      when(lvlReg === 0.U) {
-        for (i <- 0 until 33) {
-          spriteVisibleRegsArr(i) := false.B
-        }
-      }.elsewhen(lvlReg === 1.U) {
-        for (i <- 0 until 10) {
-          spriteVisibleRegsArr(i) := true.B
-        }
-        for (i <- 11 until 33) {
-          spriteVisibleRegsArr(i) := false.B
+      when(lvlReg === 1.U) {
+        // Spawn sprites 16-25 with delay
+        when(spawnDelayCounter === 0.U && nextSpriteToSpawn < 10.U) {
+          switch(nextSpriteToSpawn) {
+            is(0.U) { sprite16Visible := true.B }
+            is(1.U) { sprite17Visible := true.B }
+            is(2.U) { sprite18Visible := true.B }
+            is(3.U) { sprite19Visible := true.B }
+            is(4.U) { sprite20Visible := true.B }
+            is(5.U) { sprite21Visible := true.B }
+            is(6.U) { sprite22Visible := true.B }
+            is(7.U) { sprite23Visible := true.B }
+            is(8.U) { sprite24Visible := true.B }
+            is(9.U) { sprite25Visible := true.B }
+          }
+          nextSpriteToSpawn := nextSpriteToSpawn + 1.U
+          spawnDelayCounter := 30.U // 30 frame delay between spawns
+        }.elsewhen(spawnDelayCounter > 0.U) {
+          spawnDelayCounter := spawnDelayCounter - 1.U
         }
       }.elsewhen(lvlReg === 2.U) {
-        for (i <- 11 until 20) {
-          spriteVisibleRegsArr(i) := true.B
+        // Similar logic for level 2 sprites (26-35)
+        when(spawnDelayCounter === 0.U && nextSpriteToSpawn < 10.U) {
+          switch(nextSpriteToSpawn) {
+            is(0.U) { sprite26Visible := true.B }
+            is(1.U) { sprite27Visible := true.B }
+            is(2.U) { sprite28Visible := true.B }
+            is(3.U) { sprite29Visible := true.B }
+            is(4.U) { sprite30Visible := true.B }
+            is(5.U) { sprite31Visible := true.B }
+            is(6.U) { sprite32Visible := true.B }
+            is(7.U) { sprite33Visible := true.B }
+            is(8.U) { sprite34Visible := true.B }
+            is(9.U) { sprite35Visible := true.B }
+          }
+          nextSpriteToSpawn := nextSpriteToSpawn + 1.U
+          spawnDelayCounter := 25.U // Faster spawning for level 2
+        }.elsewhen(spawnDelayCounter > 0.U) {
+          spawnDelayCounter := spawnDelayCounter - 1.U
         }
-        for (i <- 0 until 10) {
-          spriteVisibleRegsArr(i) := false.B
-        }
-        for (i <- 21 until 33) {
-          spriteVisibleRegsArr(i) := false.B
-        }
-      }.otherwise {
-        for (i <- 0 until 20) {
-          spriteVisibleRegsArr(i) := false.B
-        }
-        for (i <- 21 until 33) {
-          spriteVisibleRegsArr(i) := true.B
+      }.elsewhen(lvlReg === 3.U) {
+        // Logic for level 3 sprites (36-45)
+        when(spawnDelayCounter === 0.U && nextSpriteToSpawn < 10.U) {
+          switch(nextSpriteToSpawn) {
+            is(0.U) { sprite36Visible := true.B }
+            is(1.U) { sprite37Visible := true.B }
+            is(2.U) { sprite38Visible := true.B }
+            is(3.U) { sprite39Visible := true.B }
+            is(4.U) { sprite40Visible := true.B }
+            is(5.U) { sprite41Visible := true.B }
+            is(6.U) { sprite42Visible := true.B }
+            is(7.U) { sprite43Visible := true.B }
+            is(8.U) { sprite44Visible := true.B }
+            is(9.U) { sprite45Visible := true.B }
+          }
+          nextSpriteToSpawn := nextSpriteToSpawn + 1.U
+          spawnDelayCounter := 20.U // Even faster spawning for level 3
+        }.elsewhen(spawnDelayCounter > 0.U) {
+          spawnDelayCounter := spawnDelayCounter - 1.U
         }
       }
 
