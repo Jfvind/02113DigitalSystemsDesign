@@ -905,159 +905,33 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           }
         }*/
 
-        when(sprite16Visible && sprite16XReg >= 640.S) {
-          sprite16XReg := -32.S
-          sprite16YReg := (lfsr.io.out(0) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite17Visible && sprite17XReg >= 640.S) {
-          sprite17XReg := -32.S
-          sprite17YReg := (lfsr.io.out(1) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite18Visible && sprite18XReg >= 640.S) {
-          sprite18XReg := -32.S
-          sprite18YReg := (lfsr.io.out(2) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite19Visible && sprite19XReg >= 640.S) {
-          sprite19XReg := -32.S
-          sprite19YReg := (lfsr.io.out(3) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite20Visible && sprite20XReg >= 640.S) {
-          sprite20XReg := -32.S
-          sprite20YReg := (lfsr.io.out(4) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite21Visible && sprite21XReg >= 640.S) {
-          sprite21XReg := -32.S
-          sprite21YReg := (lfsr.io.out(5) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite22Visible && sprite22XReg >= 640.S) {
-          sprite22XReg := -32.S
-          sprite22YReg := (lfsr.io.out(6) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite23Visible && sprite23XReg >= 640.S) {
-          sprite23XReg := -32.S
-          sprite23YReg := (lfsr.io.out(7) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite24Visible && sprite24XReg >= 640.S) {
-          sprite24XReg := -32.S
-          sprite24YReg := (lfsr.io.out(8) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite25Visible && sprite25XReg >= 640.S) {
-          sprite25XReg := -32.S
-          sprite25YReg := (lfsr.io.out(9) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite26Visible && sprite26XReg >= 640.S) {
-          sprite26XReg := -32.S
-          sprite26YReg := (lfsr.io.out(10) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite27Visible && sprite27XReg >= 640.S) {
-          sprite27XReg := -32.S
-          sprite27YReg := (lfsr.io.out(11) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite28Visible && sprite28XReg >= 640.S) {
-          sprite28XReg := -32.S
-          sprite28YReg := (lfsr.io.out(12) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite29Visible && sprite29XReg >= 640.S) {
-          sprite29XReg := -32.S
-          sprite29YReg := (lfsr.io.out(13) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite30Visible && sprite30XReg >= 640.S) {
-          sprite30XReg := -32.S
-          sprite30YReg := (lfsr.io.out(14) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite31Visible && sprite31XReg >= 640.S) {
-          sprite31XReg := -32.S
-          sprite31YReg := (lfsr.io.out(15) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite32Visible && sprite32XReg >= 640.S) {
-          sprite32XReg := -32.S
-          sprite32YReg := (lfsr.io.out(16) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite33Visible && sprite33XReg >= 640.S) {
-          sprite33XReg := -32.S
-          sprite33YReg := (lfsr.io.out(17) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite34Visible && sprite34XReg >= 640.S) {
-          sprite34XReg := -32.S
-          sprite34YReg := (lfsr.io.out(18) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite35Visible && sprite35XReg >= 640.S) {
-          sprite35XReg := -32.S
-          sprite35YReg := (lfsr.io.out(19) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite36Visible && sprite36XReg >= 640.S) {
-          sprite36XReg := -32.S
-          sprite36YReg := (lfsr.io.out(20) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite37Visible && sprite37XReg >= 640.S) {
-          sprite37XReg := -32.S
-          sprite37YReg := (lfsr.io.out(21) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite38Visible && sprite38XReg >= 640.S) {
-          sprite38XReg := -32.S
-          sprite38YReg := (lfsr.io.out(22) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite39Visible && sprite39XReg >= 640.S) {
-          sprite39XReg := -32.S
-          sprite39YReg := (lfsr.io.out(23) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite40Visible && sprite40XReg >= 640.S) {
-          sprite40XReg := -32.S
-          sprite40YReg := (lfsr.io.out(24) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite41Visible && sprite41XReg >= 640.S) {
-          sprite41XReg := -32.S
-          sprite41YReg := (lfsr.io.out(25) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite42Visible && sprite42XReg >= 640.S) {
-          sprite42XReg := -32.S
-          sprite42YReg := (lfsr.io.out(26) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite43Visible && sprite43XReg >= 640.S) {
-          sprite43XReg := -32.S
-          sprite43YReg := (lfsr.io.out(27) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite44Visible && sprite44XReg >= 640.S) {
-          sprite44XReg := -32.S
-          sprite44YReg := (lfsr.io.out(28) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
-        }
-        when(sprite45Visible && sprite45XReg >= 640.S) {
-          sprite45XReg := -32.S
-          sprite45YReg := (lfsr.io.out(29) * 2.U).asSInt
-          scoreReg := scoreReg + lvlReg
+        //Sprites respawning on the left side, when exiting viewbox on the right side.
+        val spriteXRegsArr2 = Array(
+          sprite16XReg, sprite17XReg, sprite18XReg, sprite19XReg, sprite20XReg,
+          sprite21XReg, sprite22XReg, sprite23XReg, sprite24XReg, sprite25XReg,
+          sprite26XReg, sprite27XReg, sprite28XReg, sprite29XReg, sprite30XReg,
+          sprite31XReg, sprite32XReg, sprite33XReg, sprite34XReg, sprite35XReg,
+          sprite36XReg, sprite37XReg, sprite38XReg, sprite39XReg, sprite40XReg,
+          sprite41XReg, sprite42XReg, sprite43XReg, sprite44XReg, sprite45XReg
+        )
+        val spriteYRegsArr2 = Array(
+          sprite16YReg, sprite17YReg, sprite18YReg, sprite19YReg, sprite20YReg,
+          sprite21YReg, sprite22YReg, sprite23YReg, sprite24YReg, sprite25YReg,
+          sprite26YReg, sprite27YReg, sprite28YReg, sprite29YReg, sprite30YReg,
+          sprite31YReg, sprite32YReg, sprite33YReg, sprite34YReg, sprite35YReg,
+          sprite36YReg, sprite37YReg, sprite38YReg, sprite39YReg, sprite40YReg,
+          sprite41YReg, sprite42YReg, sprite43YReg, sprite44YReg, sprite45YReg
+        )
+        for (i <- 0 until 30) {
+          when(spriteXRegsArr2(i) >= 640.S) {
+            spriteXRegsArr2(i) := -32.S
+            spriteYRegsArr2(i) := (lfsr.io.out(i) * 2.U).asSInt
+            scoreReg := scoreReg + lvlReg
+          }
         }
       }
 
-      // Move logic
+      // Move logic. Moves any obstacle-sprite that is visible
       val moveAmount = difficulty.io.speed
       val spriteXRegs = Seq(
         sprite16XReg, sprite17XReg, sprite18XReg, sprite19XReg, sprite20XReg,
@@ -1106,14 +980,14 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }
       }.elsewhen(lvlReg === 1.U) {
         for (i <- 0 until 10) {
-          spriteVisibleRegsArr(i) := true.B
+          spriteVisibleRegsArr(i) := RegNext(RegNext(true.B))
         }
         for (i <- 11 until 33) {
           spriteVisibleRegsArr(i) := false.B
         }
       }.elsewhen(lvlReg === 2.U) {
         for (i <- 11 until 20) {
-          spriteVisibleRegsArr(i) := true.B
+          spriteVisibleRegsArr(i) := RegNext(RegNext(true.B))
         }
         for (i <- 0 until 10) {
           spriteVisibleRegsArr(i) := false.B
@@ -1126,10 +1000,11 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           spriteVisibleRegsArr(i) := false.B
         }
         for (i <- 21 until 33) {
-          spriteVisibleRegsArr(i) := true.B
+          spriteVisibleRegsArr(i) := RegNext(RegNext(true.B))
         }
       }
 
+      //Mux to make stars blink and switch postions(switch colours) in lvl3
       when(starCnt === 60.U) {
         sprite58XReg := RegNext(sprite59XReg - 16.S)
         sprite58YReg := RegNext(sprite59YReg - 16.S)
