@@ -1009,17 +1009,215 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       }
 
       //Collision between obstacles (16-45) and spaceship (14)
-      for (i <- 16 to 45) {
-        val obsX = io.spriteXPosition(i)
-        val obsY = io.spriteYPosition(i)
-        val obsVisible = io.spriteVisible(i)
-        when(
-          obsVisible &&
-          (sprite14XReg < obsX + 32.S) && (obsX < sprite14XReg + 32.S) &&
-          (sprite14YReg < obsY + 32.S) && (obsY < sprite14YReg + 32.S)
-        ) {
-          collisionDetected := true.B
-        }
+      when(
+        sprite16Visible &&
+        (sprite14XReg < sprite16XReg + 32.S) && (sprite16XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite16YReg + 32.S) && (sprite16YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite17Visible &&
+        (sprite14XReg < sprite17XReg + 32.S) && (sprite17XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite17YReg + 32.S) && (sprite17YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite18Visible &&
+        (sprite14XReg < sprite18XReg + 32.S) && (sprite18XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite18YReg + 32.S) && (sprite18YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite19Visible &&
+        (sprite14XReg < sprite19XReg + 32.S) && (sprite19XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite19YReg + 32.S) && (sprite19YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite20Visible &&
+        (sprite14XReg < sprite20XReg + 32.S) && (sprite20XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite20YReg + 32.S) && (sprite20YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite21Visible &&
+        (sprite14XReg < sprite21XReg + 32.S) && (sprite21XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite21YReg + 32.S) && (sprite21YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite22Visible &&
+        (sprite14XReg < sprite22XReg + 32.S) && (sprite22XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite22YReg + 32.S) && (sprite22YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite23Visible &&
+        (sprite14XReg < sprite23XReg + 32.S) && (sprite23XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite23YReg + 32.S) && (sprite23YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite24Visible &&
+        (sprite14XReg < sprite24XReg + 32.S) && (sprite24XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite24YReg + 32.S) && (sprite24YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite25Visible &&
+        (sprite14XReg < sprite25XReg + 32.S) && (sprite25XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite25YReg + 32.S) && (sprite25YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite26Visible &&
+        (sprite14XReg < sprite26XReg + 32.S) && (sprite26XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite26YReg + 32.S) && (sprite26YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite27Visible &&
+        (sprite14XReg < sprite27XReg + 32.S) && (sprite27XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite27YReg + 32.S) && (sprite27YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite28Visible &&
+        (sprite14XReg < sprite28XReg + 32.S) && (sprite28XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite28YReg + 32.S) && (sprite28YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite29Visible &&
+        (sprite14XReg < sprite29XReg + 32.S) && (sprite29XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite29YReg + 32.S) && (sprite29YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite30Visible &&
+        (sprite14XReg < sprite30XReg + 32.S) && (sprite30XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite30YReg + 32.S) && (sprite30YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite31Visible &&
+        (sprite14XReg < sprite31XReg + 32.S) && (sprite31XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite31YReg + 32.S) && (sprite31YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite32Visible &&
+        (sprite14XReg < sprite32XReg + 32.S) && (sprite32XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite32YReg + 32.S) && (sprite32YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite33Visible &&
+        (sprite14XReg < sprite33XReg + 32.S) && (sprite33XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite33YReg + 32.S) && (sprite33YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite34Visible &&
+        (sprite14XReg < sprite34XReg + 32.S) && (sprite34XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite34YReg + 32.S) && (sprite34YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite35Visible &&
+        (sprite14XReg < sprite35XReg + 32.S) && (sprite35XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite35YReg + 32.S) && (sprite35YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite36Visible &&
+        (sprite14XReg < sprite36XReg + 32.S) && (sprite36XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite36YReg + 32.S) && (sprite36YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite37Visible &&
+        (sprite14XReg < sprite37XReg + 32.S) && (sprite37XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite37YReg + 32.S) && (sprite37YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite38Visible &&
+        (sprite14XReg < sprite38XReg + 32.S) && (sprite38XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite38YReg + 32.S) && (sprite38YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite39Visible &&
+        (sprite14XReg < sprite39XReg + 32.S) && (sprite39XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite39YReg + 32.S) && (sprite39YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite40Visible &&
+        (sprite14XReg < sprite40XReg + 32.S) && (sprite40XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite40YReg + 32.S) && (sprite40YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite41Visible &&
+        (sprite14XReg < sprite41XReg + 32.S) && (sprite41XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite41YReg + 32.S) && (sprite41YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite42Visible &&
+        (sprite14XReg < sprite42XReg + 32.S) && (sprite42XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite42YReg + 32.S) && (sprite42YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite43Visible &&
+        (sprite14XReg < sprite43XReg + 32.S) && (sprite43XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite43YReg + 32.S) && (sprite43YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite44Visible &&
+        (sprite14XReg < sprite44XReg + 32.S) && (sprite44XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite44YReg + 32.S) && (sprite44YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
+      }
+      when(
+        sprite45Visible &&
+        (sprite14XReg < sprite45XReg + 32.S) && (sprite45XReg < sprite14XReg + 32.S) &&
+        (sprite14YReg < sprite45YReg + 32.S) && (sprite45YReg < sprite14YReg + 32.S)
+      ) {
+        collisionDetected := true.B
       }
 
       // Start blinking if collision detected and not already blinking
@@ -1045,6 +1243,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         when(blinkTimes === 3.U) {
           isBlinking := false.B
           sprite14Visible := true.B
+          collisionDetected := false.B
         }
       }
 
