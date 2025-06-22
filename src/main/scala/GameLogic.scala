@@ -1002,6 +1002,17 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }
       }
 
+      //Multiplexer controlling visibility of the stars (only visible in lvl3)
+      when(lvlReg === 3.U) {
+        sprite58Visible := true.B
+        sprite59Visible := true.B
+        sprite60Visible := true.B
+      }.otherwise {
+        sprite58Visible := false.B
+        sprite59Visible := false.B
+        sprite60Visible := false.B
+      }
+
       //Mux to make stars blink and switch postions(switch colours) in lvl3
       when(starCnt === 0.U) {
         sprite58XReg := RegNext(sprite59XReg - 16.S)
