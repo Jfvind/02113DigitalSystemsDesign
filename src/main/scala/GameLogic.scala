@@ -112,6 +112,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val idle :: autonomousMove :: menu :: lvl1 :: lvl2 :: lvl3 :: move :: slut :: Nil = Enum(8)
   val stateReg = RegInit(idle)
 
+  //===========================================
+  //===========INITALIZATIONS==================
+  //===========================================
+
   //Two registers holding the sprite sprite X and Y with the sprite initial position
   val sprite3XReg = RegInit(320.S(11.W)) //Cursor
   val sprite3YReg = RegInit(240.S(10.W))
@@ -701,10 +705,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   //Score Register
   val scoreReg = RegInit(0.U(16.W))
 
-  //Controls which sprite to throw
-  val spriteCnt = RegInit(16.U(6.W))
-
-  //Spawning sprites registers
+  //First time spawning sprites registers
   val spawnDelayCounter = RegInit(0.U(8.W))
   val nextSpriteToSpawn = RegInit(0.U(6.W)) // Tracks which sprite to spawn next
 
@@ -717,7 +718,12 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val blinkTimes = RegInit(0.U(2.W))   // Counts up to 3 blinks
   val isBlinking = RegInit(false.B)
 
+  //LFSR for pseudo random numberselection
   val lfsr = Module(new LFSR)
+
+  //===========================================
+  //===========STATE MACHINE===================
+  //===========================================
 
   switch(stateReg) {
     is(idle) {
@@ -727,6 +733,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     }
 
     is(autonomousMove) {
+
+      //=================OBSTACLES RANDOM RESPAWNING===================
       // Spawn logic
       spawnCounter := Mux(spawnReady, 0.U, spawnCounter + 1.U)
       val spawnConditions = (lvlReg =/= 0.U) //&& spawnReady
@@ -945,7 +953,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }
       }
 
-      // Visibility and spawn logic for obstacles
+      //==============OBSTACLES FIRST SPAWN===============
       when(lvlReg === 1.U) {
         // Spawn sprites 16-25 with delay
         when(spawnDelayCounter === 0.U && nextSpriteToSpawn < 10.U) {
@@ -1008,7 +1016,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }
       }
 
-      //Collision between obstacles (16-45) and spaceship (14)
+      //==================SPACESHIP COLLISION==================
       when(
         sprite16Visible && (sprite16XReg <= 640.S) && 
         (sprite14XReg < sprite16XReg + 26.S) && (sprite16XReg < sprite14XReg + 8.S) &&
@@ -1247,6 +1255,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }
       }
 
+      //==================STAR SPRITES(lvl3)==================
       //Multiplexer controlling visibility of the stars (only visible in lvl3)
       when(lvlReg === 3.U) {
         sprite58Visible := true.B
@@ -1356,6 +1365,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       when(lvlReg =/= 0.U) {
         stateReg := move
       }.otherwise {
+        //Collision detection for level selection buttons, and lvl select
         sprite7Visible := true.B
         sprite8Visible := false.B
         sprite9Visible := true.B
@@ -1408,7 +1418,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       sprite14Visible := true.B
       viewBoxXReg := 640.U
       viewBoxYReg := 0.U
-      spriteCnt := 16.U
 
       stateReg := move
     }
@@ -1426,7 +1435,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       sprite14Visible := true.B
       viewBoxXReg := 0.U
       viewBoxYReg := 480.U
-      spriteCnt := 26.U
 
       stateReg := move
     }
@@ -1444,12 +1452,12 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       sprite14Visible := true.B
       viewBoxXReg := 640.U
       viewBoxYReg := 480.U
-      spriteCnt := 36.U
 
       stateReg := move
     }
 
     is(move) {
+      //Moving up and down for spaceship
       when(lvlReg =/= 0.U) {
         when(io.btnD){
           when(sprite3YReg < (480 - 32).S) {
@@ -1461,6 +1469,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           }
         }
       }.otherwise {
+        //Moving all four directions for foot-cursor
         when(io.btnD){
           when(sprite3YReg < (480 - 32).S) {
             sprite3YReg := sprite3YReg + 2.S
