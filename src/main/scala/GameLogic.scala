@@ -1010,7 +1010,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
       //Collision between obstacles (16-45) and spaceship (14)
       when(
-        sprite16Visible &&
+        sprite16Visible && (sprite16XReg <= 640.S) && 
         (sprite14XReg < sprite16XReg + 26.S) && (sprite16XReg < sprite14XReg) &&
         (sprite14YReg < sprite16YReg + 15.S) && (sprite16YReg < sprite14YReg + 8.S)
       ) {
