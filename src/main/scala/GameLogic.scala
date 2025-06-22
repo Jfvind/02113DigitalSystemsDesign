@@ -711,6 +711,12 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   //Controls stars sparkling
   val starCnt = RegInit(0.U(10.W))
 
+  //Collision and blinking af collision registers
+  val collisionDetected = RegInit(false.B)
+  val blinkCounter = RegInit(0.U(8.W)) // Enough for 1 second at 60Hz (0-59)
+  val blinkTimes = RegInit(0.U(2.W))   // Counts up to 3 blinks
+  val isBlinking = RegInit(false.B)
+
   val lfsr = Module(new LFSR)
 
   switch(stateReg) {
@@ -939,7 +945,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }
       }
 
-      // Collision/visibility and spawn logic
+      // Visibility and spawn logic for obstacles
       when(lvlReg === 1.U) {
         // Spawn sprites 16-25 with delay
         when(spawnDelayCounter === 0.U && nextSpriteToSpawn < 10.U) {
@@ -999,6 +1005,46 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           spawnDelayCounter := 20.U // Even faster spawning for level 3
         }.elsewhen(spawnDelayCounter > 0.U) {
           spawnDelayCounter := spawnDelayCounter - 1.U
+        }
+      }
+
+      //Collision between obstacles (16-45) and spaceship (14)
+      for (i <- 16 to 45) {
+        val obsX = io.spriteXPosition(i)
+        val obsY = io.spriteYPosition(i)
+        val obsVisible = io.spriteVisible(i)
+        when(
+          obsVisible &&
+          (sprite14XReg < obsX + 32.S) && (obsX < sprite14XReg + 32.S) &&
+          (sprite14YReg < obsY + 32.S) && (obsY < sprite14YReg + 32.S)
+        ) {
+          collisionDetected := true.B
+        }
+      }
+
+      // Start blinking if collision detected and not already blinking
+      when(collisionDetected && !isBlinking) {
+        isBlinking := true.B
+        blinkCounter := 0.U
+        blinkTimes := 0.U
+      }
+
+      // Blinking logic: 3 times within a second (assuming 60Hz frame rate)
+      when(isBlinking) {
+        // Toggle visibility every 10 frames (~6 times per second)
+        when(blinkCounter < 10.U) {
+          sprite14Visible := false.B
+        }.elsewhen(blinkCounter < 20.U) {
+          sprite14Visible := true.B
+        }
+        blinkCounter := blinkCounter + 1.U
+        when(blinkCounter === 20.U) {
+          blinkCounter := 0.U
+          blinkTimes := blinkTimes + 1.U
+        }
+        when(blinkTimes === 3.U) {
+          isBlinking := false.B
+          sprite14Visible := true.B
         }
       }
 
