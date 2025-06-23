@@ -305,8 +305,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
             io.spriteScaleUpHorizontal(i) := false.B // Ingen skalering i x-retning
             io.spriteScaleUpVertical(i) := false.B // Ingen skalering i y-retning
           } .otherwise {
-            io.spriteScaleUpHorizontal := true.B // 2x skalering i x-retning
-            io.spriteScaleUpVertical := true.B // 2x skalering i y-retning
+            io.spriteScaleUpHorizontal(i) := true.B // 2x skalering i x-retning
+            io.spriteScaleUpVertical(i) := true.B // 2x skalering i y-retning
           }
         }
         //lvl2 obstacles
