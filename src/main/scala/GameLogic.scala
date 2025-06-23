@@ -746,12 +746,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }
       }
 
-      when(lvlReg === 0.U) {
-        stateReg := menu
-      }.elsewhen(livesReg === 0.U) {
+      when(livesReg === 0) {
         stateReg := gameOver
-      }.otherwise {
-        stateReg := autonomousMove
+      }.otherwise() {
+        stateReg := slut
       }
     }
     is(gameOver) {
