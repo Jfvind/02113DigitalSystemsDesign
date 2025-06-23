@@ -38,12 +38,6 @@ class Difficulty extends Module {
 
   io.speed := Mux(rawSpeed > 20.S, 20.S, rawSpeed)
 
-  io.speed := MuxLookup(io.level, 5.S)(Seq(
-    1.U -> (3.S + timeInSeconds.asSInt * 1.S),  // ezz start, langsom vækst
-    2.U -> (5.S + timeInSeconds.asSInt * 2.S),  // mid start, mellem vækst
-    3.U -> (7.S + timeInSeconds.asSInt * 3.S)   // hurtig start, hurtig vækst
-  ))
-
   io.spawnInterval := MuxLookup(io.level, 30.U) (Seq(
     1.U -> 60.U,
     2.U -> 40.U,
