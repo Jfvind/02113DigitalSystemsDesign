@@ -174,10 +174,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite60ScaleUpVertical = RegInit(false.B)
 
   //Connecting registers to outputs
-  for (i <- 3 to 60) {
+  for (i <- 3 to 63) {
     io.spriteVisible(i) := spriteVisibleRegs(i)
   }
-  for (i <- 3 to 60) {
+  for (i <- 3 to 63) {
     io.spriteXPosition(i) := spriteXRegs(i)
     io.spriteYPosition(i) := spriteYRegs(i)
     io.spriteFlipHorizontal(i) := spriteFlipHorizontalRegs(i)
