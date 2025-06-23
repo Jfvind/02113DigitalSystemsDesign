@@ -419,33 +419,39 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       //==================SPACESHIP COLLISION==================
       // Collision detection for sprites 16 to 45
       //lvl1 obstacles
-      for (i <- 16 to 25) {
-        when(
-          spriteVisibleRegs(i) && (spriteXRegs(i) <= 640.S) &&
-          (spriteXRegs(14) < spriteXRegs(i) + 26.S) && (spriteXRegs(i) < spriteXRegs(14) + 8.S) &&
-          (spriteYRegs(14) < spriteYRegs(i) + 15.S) && (spriteYRegs(i) < spriteYRegs(14) + 11.S)
-        ) {
-          collisionDetected := true.B
+      when(!isBlinking) {
+        for (i <- 16 to 25) {
+          when(
+            spriteVisibleRegs(i) && (spriteXRegs(i) <= 640.S) &&
+              (spriteXRegs(14) < spriteXRegs(i) + 26.S) && (spriteXRegs(i) < spriteXRegs(14) + 8.S) &&
+              (spriteYRegs(14) < spriteYRegs(i) + 15.S) && (spriteYRegs(i) < spriteYRegs(14) + 11.S)
+          ) {
+            collisionDetected := true.B
+          }
         }
       }
       //lvl2 obstacles
-      for (i <- 26 to 35) {
-        when(
-          spriteVisibleRegs(i) &&
-          (spriteXRegs(14) < spriteXRegs(i) + 29.S) && (spriteXRegs(i) < spriteXRegs(14) + 8.S) &&
-          (spriteYRegs(14) < spriteYRegs(i) + 15.S) && (spriteYRegs(i) < spriteYRegs(14) + 11.S)
-        ) {
-          collisionDetected := true.B
+      when(!isBlinking) {
+        for (i <- 26 to 35) {
+          when(
+            spriteVisibleRegs(i) &&
+              (spriteXRegs(14) < spriteXRegs(i) + 29.S) && (spriteXRegs(i) < spriteXRegs(14) + 8.S) &&
+              (spriteYRegs(14) < spriteYRegs(i) + 15.S) && (spriteYRegs(i) < spriteYRegs(14) + 11.S)
+          ) {
+            collisionDetected := true.B
+          }
         }
       }
       //lvl3 obstacles
-      for (i <- 36 to 45) {
-        when(
-          spriteVisibleRegs(i) &&
-          (spriteXRegs(14) < spriteXRegs(i) + 32.S) && (spriteXRegs(i) < spriteXRegs(14) + 8.S) &&
-          (spriteYRegs(14) < spriteYRegs(i) + 15.S) && (spriteYRegs(i) < spriteYRegs(14) + 11.S)
-        ) {
-          collisionDetected := true.B
+      when(!isBlinking) {
+        for (i <- 36 to 45) {
+          when(
+            spriteVisibleRegs(i) &&
+              (spriteXRegs(14) < spriteXRegs(i) + 32.S) && (spriteXRegs(i) < spriteXRegs(14) + 8.S) &&
+              (spriteYRegs(14) < spriteYRegs(i) + 15.S) && (spriteYRegs(i) < spriteYRegs(14) + 11.S)
+          ) {
+            collisionDetected := true.B
+          }
         }
       }
 
