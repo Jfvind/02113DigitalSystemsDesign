@@ -12,9 +12,25 @@ class Difficulty extends Module {
 
   val speedCnt = RegInit(0.U(27.W))
 
+  // Real-time divider for 100 MHz clock to 60 Hz
+  val frameDivider = RegInit(0.U(27.W)) // Increased width to 27 bits
+  val tick = Wire(Bool())
+
+  val framesPerSecond = 60.U
+  val dividerMax = (100000000 / 60).U  // 100 MHz / 60 ≈ 1666666
+
+  tick := false.B
+  when(frameDivider === dividerMax) {
+    frameDivider := 0.U
+    tick := true.B
+  }.otherwise {
+    frameDivider := frameDivider + 1.U
+  }
+
+  // Increment speedCnt only on tick
   when(io.resetSpeed) {
     speedCnt := 0.U
-  }.otherwise {
+  }.elsewhen(tick) {
     speedCnt := speedCnt + 1.U
   }
 
