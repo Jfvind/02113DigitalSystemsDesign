@@ -126,35 +126,34 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val spriteScaleTypeRegs = RegInit(VecInit(Seq.fill(30)(0.U(1.W)))) // 30 registers, type 0/1 --> scale 1x/2x
 
 
-
   // Define initial positions as a lookup table
   val initializePositions = RegInit(true.B)
   when(initializePositions) {
     val initialPositions = Seq(
-    (3, 320, 240),   // Cursor
-    (7, 256, 300),   // Lvl 1 button
-    (8, 256, 300),   // Lvl 1 button #2
-    (9, 304, 300),   // Lvl 2 button
-    (10, 304, 300),  // Lvl 2 button #2
-    (11, 352, 300),  // Lvl 3 button
-    (12, 352, 300),  // Lvl 3 button #2
-    (13, 320, 240),  // not used
-    (14, 608, 240),  // Spaceship
-    (16, 360, 20),   // Seagull x10
-    (17, 20, 50), (18, 20, 80), (19, 20, 110), (20, 20, 140), (21, 20, 170),
-    (22, 20, 200), (23, 20, 230), (24, 20, 260), (25, 20, 290),
-    (26, 20, 290), //Satelite x10
-    (27, 20, 290), (28, 20, 290), (29, 20, 290), (30, 20, 290), (31, 20, 290),
-    (32, 20, 290), (33, 20, 290), (34, 20, 290), (35, 20, 290),
-    (36, 20, 290), //Meteor x10
-    (37, 20, 290), (38, 20, 290), (39, 20, 290), (40, 20, 290), (41, 20, 290),
-    (42, 20, 290), (43, 20, 290), (44, 20, 290), (45, 20, 290),
-    (46, 20, 290), //Gameover x6
-    (47, 20, 290), (48, 20, 290), (49, 20, 290), (50, 20, 290), (51, 20, 290),
-    (52, 20, 290), //Return x6
-    (53, 20, 290), (54, 20, 290), (55, 20, 290), (56, 20, 290), (57, 20, 290),
-    (58, 320, 20), (59, 500, 70), (60, 150, 100), //star x3
-    (61, 20, 20), (62, 60, 20), (63, 100, 20) //heart 3x
+      (3, 320, 240), // Cursor
+      (7, 256, 300), // Lvl 1 button
+      (8, 256, 300), // Lvl 1 button #2
+      (9, 304, 300), // Lvl 2 button
+      (10, 304, 300), // Lvl 2 button #2
+      (11, 352, 300), // Lvl 3 button
+      (12, 352, 300), // Lvl 3 button #2
+      (13, 320, 240), // not used
+      (14, 608, 240), // Spaceship
+      (16, 360, 20), // Seagull x10
+      (17, 20, 50), (18, 20, 80), (19, 20, 110), (20, 20, 140), (21, 20, 170),
+      (22, 20, 200), (23, 20, 230), (24, 20, 260), (25, 20, 290),
+      (26, 20, 290), //Satelite x10
+      (27, 20, 290), (28, 20, 290), (29, 20, 290), (30, 20, 290), (31, 20, 290),
+      (32, 20, 290), (33, 20, 290), (34, 20, 290), (35, 20, 290),
+      (36, 20, 290), //Meteor x10
+      (37, 20, 290), (38, 20, 290), (39, 20, 290), (40, 20, 290), (41, 20, 290),
+      (42, 20, 290), (43, 20, 290), (44, 20, 290), (45, 20, 290),
+      (46, 256, 200), //Gameover x6
+      (47, 288, 200), (48, 320, 200), (49, 352, 200), (50, 384, 200), (51, 416, 200),
+      (52, 288, 260), //Return x6
+      (53, 320, 260), (54, 352, 260), (55, 288, 260), (56, 320, 260), (57, 352, 260),
+      (58, 320, 20), (59, 500, 70), (60, 150, 100), //star x3
+      (61, 20, 20), (62, 60, 20), (63, 100, 20) //heart 3x
     ).map { case (id, x, y) => (id.U, x.S, y.S) }
 
     // Initialize in a loop
@@ -184,10 +183,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     io.spriteFlipVertical(i) := spriteFlipVerticalRegs(i)
   }
   for (i <- 16 to 45) {
-  val index = if (i < 26) i - 16 else if (i < 36) i - 26 else i - 36
-  io.spriteScaleUpHorizontal(i) := (spriteScaleTypeRegs(index) === 1.U)
-  io.spriteScaleUpVertical(i) := (spriteScaleTypeRegs(index) === 1.U)
-}
+    val index = if (i < 26) i - 16 else if (i < 36) i - 26 else i - 36
+    io.spriteScaleUpHorizontal(i) := (spriteScaleTypeRegs(index) === 1.U)
+    io.spriteScaleUpVertical(i) := (spriteScaleTypeRegs(index) === 1.U)
+  }
 
 
   //Connecting scaling
@@ -238,7 +237,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   //Collision and blinking af collision registers
   val collisionDetected = RegInit(false.B)
   val blinkCounter = RegInit(0.U(8.W)) // Enough for 1 second at 60Hz (0-59)
-  val blinkTimes = RegInit(0.U(2.W))   // Counts up to 3 blinks
+  val blinkTimes = RegInit(0.U(2.W)) // Counts up to 3 blinks
   val isBlinking = RegInit(false.B)
 
   //Counts how many cycles are spent in move state
@@ -272,6 +271,39 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     spriteVisibleRegs(63) := false.B
   }
 
+  //?==========================================
+  // -----------Helperfunktioner -------
+  //===========================================
+
+  def resetGame(): Unit = {
+    lvlReg := 0.U
+    livesReg := 3.U
+    scoreReg := 0.U
+    spawnDelayCounter := 0.U
+    nextSpriteToSpawn := 0.U
+    extraLifeCnt := 0.U
+    starCnt := 0.U
+    collisionDetected := false.B
+    isBlinking := false.B
+    blinkCounter := 0.U
+    blinkTimes := 0.U
+    initializePositions := true.B
+
+    // Reset spaceship og cursor position (valgfrit, hvis ikke initPositions klarer det)
+    spriteVisibleRegs(3) := true.B // cursor
+    spriteVisibleRegs(14) := true.B // spaceship
+
+    // Skjul alle forhindringer
+    for (i <- 16 to 45) {
+      spriteVisibleRegs(i) := false.B
+    }
+
+    // Skjul game over og return sprites
+    for (i <- 46 to 57) {
+      spriteVisibleRegs(i) := false.B
+    }
+  }
+
   //===========================================
   //===========STATE MACHINE===================
   //===========================================
@@ -302,7 +334,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
             spriteYRegs(i) := (100.U + (lfsr.io.out(i - 16))).asSInt
 
             spriteScaleTypeRegs(index) := lfsr.io.out(index)(8)
-           
+
           }.elsewhen(spriteVisibleRegs(i)) {
             spriteXRegs(i) := spriteXRegs(i) + speed
           }
@@ -311,7 +343,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           when(spriteScaleTypeRegs(index) === 0.U) {
             io.spriteScaleUpHorizontal(i) := false.B // Ingen skalering i x-retning
             io.spriteScaleUpVertical(i) := false.B // Ingen skalering i y-retning
-          } .otherwise {
+          }.otherwise {
             io.spriteScaleUpHorizontal(i) := true.B // 2x skalering i x-retning
             io.spriteScaleUpVertical(i) := true.B // 2x skalering i y-retning
           }
@@ -334,7 +366,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           when(spriteScaleTypeRegs(index) === 0.U) {
             io.spriteScaleUpHorizontal(i) := false.B // ingen skalering i x-retning
             io.spriteScaleUpVertical(i) := false.B // ingen skalering i y-retning
-          } .otherwise {
+          }.otherwise {
             io.spriteScaleUpHorizontal(i) := true.B // 2x skalering i x-retning
             io.spriteScaleUpVertical(i) := true.B // 2x skalering i y-retning
           }
@@ -355,12 +387,12 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           }
 
           // Logik for selveste skaleringen
-          when (spriteScaleTypeRegs(index) === 0.U) {
+          when(spriteScaleTypeRegs(index) === 0.U) {
             io.spriteScaleUpHorizontal(i) := false.B // ingen skalering i x-retning
             io.spriteScaleUpVertical(i) := false.B // ingen skalering i y-retning
-          } .otherwise {
+          }.otherwise {
             io.spriteScaleUpHorizontal(i) := true.B // 2x skalering i x-retning
-            io. spriteScaleUpVertical(i) := true.B // 2x skalering i y-retning
+            io.spriteScaleUpVertical(i) := true.B // 2x skalering i y-retning
           }
         }
 
@@ -453,8 +485,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       //extra life collision
       when(
         spriteVisibleRegs(13) &&
-        (spriteXRegs(14) < spriteXRegs(13) + 22.S) && (spriteXRegs(13) < spriteXRegs(14) + 8.S) &&
-        (spriteYRegs(14) < spriteYRegs(13) + 22.S) && (spriteYRegs(13) < spriteYRegs(14) + 11.S)
+          (spriteXRegs(14) < spriteXRegs(13) + 22.S) && (spriteXRegs(13) < spriteXRegs(14) + 8.S) &&
+          (spriteYRegs(14) < spriteYRegs(13) + 22.S) && (spriteYRegs(13) < spriteYRegs(14) + 11.S)
       ) {
         spriteVisibleRegs(13) := false.B
         when(livesReg < 3.U) {
@@ -654,7 +686,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       nextSpriteToSpawn := 0.U
       spawnDelayCounter := 0.U
 
-      spriteXRegs(14) := (640-32).S
+      spriteXRegs(14) := (640 - 32).S
       spriteYRegs(14) := 320.S
       spriteVisibleRegs(3) := false.B
       spriteVisibleRegs(7) := false.B
@@ -683,22 +715,22 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     is(move) {
       //Moving up and down for spaceship
       when(lvlReg =/= 0.U) {
-        when(io.btnD){
+        when(io.btnD) {
           when(spriteYRegs(14) < (480 - 32).S) {
             spriteYRegs(14) := spriteYRegs(14) + 2.S
           }
-        } .elsewhen(io.btnU){
+        }.elsewhen(io.btnU) {
           when(spriteYRegs(14) > 32.S) {
             spriteYRegs(14) := spriteYRegs(14) - 2.S
           }
         }
       }.otherwise {
         //Moving all four directions for foot-cursor
-        when(io.btnD){
+        when(io.btnD) {
           when(spriteYRegs(3) < (480 - 32).S) {
             spriteYRegs(3) := spriteYRegs(3) + 2.S
           }
-        } .elsewhen(io.btnU){
+        }.elsewhen(io.btnU) {
           when(spriteYRegs(3) > 32.S) {
             spriteYRegs(3) := spriteYRegs(3) - 2.S
           }
@@ -707,13 +739,20 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           when(spriteXRegs(3) < (640 - 32).S) {
             spriteXRegs(3) := spriteXRegs(3) + 2.S
           }
-        } .elsewhen(io.btnL){
+        }.elsewhen(io.btnL) {
           when(spriteXRegs(3) > 32.S) {
             spriteXRegs(3) := spriteXRegs(3) - 2.S
           }
         }
       }
-      stateReg := slut
+
+      when(lvlReg === 0.U) {
+        stateReg := menu
+      }.elsewhen(livesReg === 0.U) {
+        stateReg := gameOver
+      }.otherwise {
+        stateReg := autonomousMove
+      }
     }
     is(gameOver) {
       // Deaktiver spilaktiviteter og vis game over-sprites
@@ -727,22 +766,23 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       spriteVisibleRegs(50) := true.B
       spriteVisibleRegs(51) := true.B
       // Return-knap
-      spriteVisibleRegs(52) := true.B
-      spriteVisibleRegs(53) := true.B
-      spriteVisibleRegs(54) := true.B
-      spriteVisibleRegs(55) := true.B
-      spriteVisibleRegs(56) := true.B
-      spriteVisibleRegs(57) := true.B
+      val cursorOnReturn = spriteXRegs(3) >= 288.S && spriteXRegs(3) <= 352.S &&
+        spriteYRegs(3) >= 260.S && spriteYRegs(3) <= 292.S
+
+      spriteVisibleRegs(52) := !cursorOnReturn
+      spriteVisibleRegs(53) := !cursorOnReturn
+      spriteVisibleRegs(54) := !cursorOnReturn
+      spriteVisibleRegs(55) := cursorOnReturn
+      spriteVisibleRegs(56) := cursorOnReturn
+      spriteVisibleRegs(57) := cursorOnReturn
 
       // Cursor tilbage til aktiv
-      spriteVisibleRegs(3)  := true.B
+      spriteVisibleRegs(3) := true.B
 
-      // Hvis spilleren trykker knap, og cursor peger på return
-      when(spriteXRegs(3) > 260.S && spriteXRegs(3) < 380.S && spriteYRegs(3) > 290.S && spriteYRegs(3) < 340.S && io.btnC) {
+      when(cursorOnReturn && io.btnC) {
+        // Reset alt
+        resetGame()
         stateReg := menu
-        lvlReg := 0.U
-        livesReg := 3.U
-        scoreReg := 0.U
       }.otherwise {
         stateReg := move
       }
