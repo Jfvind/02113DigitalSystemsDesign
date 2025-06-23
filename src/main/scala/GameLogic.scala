@@ -184,6 +184,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     io.spriteFlipVertical(i) := spriteFlipVerticalRegs(i)
   }
 
+
   //Connecting scaling
   io.spriteScaleUpHorizontal(58) := sprite58ScaleUpHorizontal
   io.spriteScaleUpVertical(58) := sprite58ScaleUpVertical
