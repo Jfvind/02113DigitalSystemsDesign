@@ -366,6 +366,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
         //spawning extra life
         when(extraLifeCnt === 600.U) {
+          spriteXRegs(13) := -32.S
           spriteVisibleRegs(13) := true.B
           spriteYRegs(13) := (lfsr.io.out(0)).asSInt
           extraLifeCnt := 0.U
