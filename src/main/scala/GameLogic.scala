@@ -604,7 +604,9 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         starCnt := starCnt + 1.U
       }
 
-      stateReg := menu
+      when(livesReg > 0.U) {
+        stateReg := menu
+      }
     }
 
     is(menu) {
