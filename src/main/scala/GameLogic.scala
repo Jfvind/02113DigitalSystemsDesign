@@ -411,50 +411,20 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     (13, 320, 240),  // not used
     (14, 608, 240),  // Spaceship
     (16, 360, 20),   // Seagull x10
-    (17, 20, 50),
-    (18, 20, 80),
-    (19, 20, 110),
-    (20, 20, 140),
-    (21, 20, 170),
-    (22, 20, 200),
-    (23, 20, 230),
-    (24, 20, 260),
-    (25, 20, 290),
+    (17, 20, 50), (18, 20, 80), (19, 20, 110), (20, 20, 140), (21, 20, 170),
+    (22, 20, 200), (23, 20, 230), (24, 20, 260), (25, 20, 290),
     (26, 20, 290), //Satelite x10
-    (27, 20, 290),
-    (28, 20, 290),
-    (29, 20, 290),
-    (30, 20, 290),
-    (31, 20, 290),
-    (32, 20, 290),
-    (33, 20, 290),
-    (34, 20, 290),
-    (35, 20, 290),
+    (27, 20, 290), (28, 20, 290), (29, 20, 290), (30, 20, 290), (31, 20, 290),
+    (32, 20, 290), (33, 20, 290), (34, 20, 290), (35, 20, 290),
     (36, 20, 290), //Meteor x10
-    (37, 20, 290),
-    (38, 20, 290),
-    (39, 20, 290),
-    (40, 20, 290),
-    (41, 20, 290),
-    (42, 20, 290),
-    (43, 20, 290),
-    (44, 20, 290),
-    (45, 20, 290),
+    (37, 20, 290), (38, 20, 290), (39, 20, 290), (40, 20, 290), (41, 20, 290),
+    (42, 20, 290), (43, 20, 290), (44, 20, 290), (45, 20, 290),
     (46, 20, 290), //Gameover x6
-    (47, 20, 290),
-    (48, 20, 290),
-    (49, 20, 290),
-    (50, 20, 290),
-    (51, 20, 290),
+    (47, 20, 290), (48, 20, 290), (49, 20, 290), (50, 20, 290), (51, 20, 290),
     (52, 20, 290), //Return x6
-    (53, 20, 290),
-    (54, 20, 290),
-    (55, 20, 290),
-    (56, 20, 290),
-    (57, 20, 290),
+    (53, 20, 290), (54, 20, 290), (55, 20, 290), (56, 20, 290), (57, 20, 290),
     (58, 320, 20), //Star x3
-    (59, 500, 70),
-    (60, 150, 100)
+    (59, 500, 70), (60, 150, 100)
   ).map { case (id, x, y) => (id.U, x.S, y.S) }
 
   // Initialize in a loop
@@ -1651,46 +1621,38 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
     is(move) {
       //Moving up and down for spaceship
-      when(moveCnt === 0.U) {
-        moveCnt := moveCnt + 1.U
-      }.elsewhen(moveCnt < 30.U) {
-        //Moving up and down for spaceship
-        when(lvlReg =/= 0.U) {
-          when(io.btnD){
-            when(spriteYRegs(14) < (480 - 32).S) {
-              spriteYRegs(14) := spriteYRegs(14) + 2.S
-            }
-          } .elsewhen(io.btnU){
-            when(spriteYRegs(14) > 32.S) {
-              spriteYRegs(14) := spriteYRegs(14) - 2.S
-            }
+      when(lvlReg =/= 0.U) {
+        when(io.btnD){
+          when(spriteYRegs(14) < (480 - 32).S) {
+            spriteYRegs(14) := spriteYRegs(14) + 2.S
           }
-        }.otherwise {
-          //Moving all four directions for foot-cursor
-          when(io.btnD){
-            when(spriteYRegs(3) < (480 - 32).S) {
-              spriteYRegs(3) := spriteYRegs(3) + 2.S
-            }
-          } .elsewhen(io.btnU){
-            when(spriteYRegs(3) > 32.S) {
-              spriteYRegs(3) := spriteYRegs(3) - 2.S
-            }
-          }
-          when(io.btnR) {
-            when(spriteXRegs(3) < (640 - 32).S) {
-              spriteXRegs(3) := spriteXRegs(3) + 2.S
-            }
-          } .elsewhen(io.btnL){
-            when(spriteXRegs(3) > 32.S) {
-              spriteXRegs(3) := spriteXRegs(3) - 2.S
-            }
+        } .elsewhen(io.btnU){
+          when(spriteYRegs(14) > 32.S) {
+            spriteYRegs(14) := spriteYRegs(14) - 2.S
           }
         }
-        moveCnt := moveCnt + 1.U
-      }.otherwise { // moveCnt === 30.U
-        moveCnt := 0.U  // Reset counter
-        stateReg := slut
+      }.otherwise {
+        //Moving all four directions for foot-cursor
+        when(io.btnD){
+          when(spriteYRegs(3) < (480 - 32).S) {
+            spriteYRegs(3) := spriteYRegs(3) + 2.S
+          }
+        } .elsewhen(io.btnU){
+          when(spriteYRegs(3) > 32.S) {
+            spriteYRegs(3) := spriteYRegs(3) - 2.S
+          }
+        }
+        when(io.btnR) {
+          when(spriteXRegs(3) < (640 - 32).S) {
+            spriteXRegs(3) := spriteXRegs(3) + 2.S
+          }
+        } .elsewhen(io.btnL){
+          when(spriteXRegs(3) > 32.S) {
+            spriteXRegs(3) := spriteXRegs(3) - 2.S
+          }
+        }
       }
+      stateReg := slut
     }
 
     is(slut) {
