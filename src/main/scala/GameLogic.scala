@@ -269,7 +269,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
             spriteYRegs(i) := (lfsr.io.out(i - 16)).asSInt
 
             // Logik for skaleringsType
-            when(lsfr.io.out(index)(8) === 0.U) {
+            when(lfsr.io.out(index)(8) === 0.U) {
               spriteScaleTypeRegs(index) := 0.U // Sæt type 0 
             } .otherwise {
               spriteScaleTypeRegs(index) := 1.U // Sæt type 1
@@ -296,7 +296,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
             spriteYRegs(i) := (lfsr.io.out(i - 26)).asSInt
 
             // Logik for skaleringstype
-            when (lsfr.io.out(index)(8) === 0.U) {
+            when (lfsr.io.out(index)(8) === 0.U) {
               spriteScaleTypeRegs(index) := 0.U
             } .otherwise {
               spriteScaleTypeRegs(index) := 1.U
@@ -308,7 +308,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           // Logik for selveste skaleringen
           when(spriteScaleTypeRegs(index) === 0.U) {
             io.spriteScaleUpHorizontal(i) := false.B // ingen skalering i x-retning
-            io.spriteScaleUpVertical(i) := false.b // ingen skalering i y-retning
+            io.spriteScaleUpVertical(i) := false.B // ingen skalering i y-retning
           } .otherwise {
             io.spriteScaleUpHorizontal(i) := true.B // 2x skalering i x-retning
             io.spriteScaleUpVertical(i) := true.B // 2x skalering i y-retning
@@ -323,7 +323,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
             spriteYRegs(i) := (lfsr.io.out(i - 16)).asSInt
 
             // Logik for sklaringstype
-            when (lsfr.io.out(index)(8) === 0.U) {
+            when (lfsr.io.out(index)(8) === 0.U) {
               spriteScaleTypeRegs(index) := 0.U
             } .otherwise {
               spriteScaleTypeRegs(index) := 1.U 
@@ -334,11 +334,11 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
           // Logik for selveste skaleringen
           when (spriteScaleTypeRegs(index) === 0.U) {
-            io.spriteScaleUpHorizontal(i) := false.b // ingen skalering i x-retning
-            io.spriteScaleUpVertical(i) := false.b // ingen skalering i y-retning
+            io.spriteScaleUpHorizontal(i) := false.B // ingen skalering i x-retning
+            io.spriteScaleUpVertical(i) := false.B // ingen skalering i y-retning
           } .otherwise {
-            io.spriteScaleUpHorizontal(i) := true.b // 2x skalering i x-retning
-            io. spriteScaleUpVertical(i) := true.b // 2x skalering i y-retning
+            io.spriteScaleUpHorizontal(i) := true.B // 2x skalering i x-retning
+            io. spriteScaleUpVertical(i) := true.B // 2x skalering i y-retning
           }
         }
       }
