@@ -3,7 +3,7 @@ import chisel3.util._
 
 class LFSR extends Module {
   val io = IO(new Bundle {
-    val out = Output(Vec(30, UInt(9.W)))
+    val out = Output(Vec(30, UInt(10.W)))
   })
 
   // 64-bit LFSR register
@@ -17,11 +17,9 @@ class LFSR extends Module {
 
   // Extract 9-bit value from bits [17:9] of the 64-bit register
   val current_output = reg(17, 9)
-  //val current_output_2 = reg(32, 24)
-  //val current_output_3 = reg(12, 4)
 
   // History buffer for last 30 values
-  val history = RegInit(VecInit(Seq.fill(30)(0.U(9.W))))
+  val history = RegInit(VecInit(Seq.fill(30)(0.U(10.W))))
   
   // Shift history buffer
   for (i <- 0 until 29) {
