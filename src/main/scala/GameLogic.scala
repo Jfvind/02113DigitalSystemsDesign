@@ -266,7 +266,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
           when(spriteXRegs(i) >= 640.S) {
             spriteXRegs(i) := -32.S
-            spriteYRegs(i) := (lfsr.io.out(i - 16) * 2.U).asSInt
+            spriteYRegs(i) := (lfsr.io.out(i - 16)).asSInt
 
             // Logik for skaleringsType
             when(lsfr.io.out(index)(8) === 0.U) {
@@ -293,7 +293,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
           when(spriteXRegs(i) >= 640.S) {
             spriteXRegs(i) := -32.S
-            spriteYRegs(i) := (lfsr.io.out(i - 26) * 2.U).asSInt
+            spriteYRegs(i) := (lfsr.io.out(i - 26)).asSInt
 
             // Logik for skaleringstype
             when (lsfr.io.out(index)(8) === 0.U) {
@@ -320,7 +320,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
           when(spriteXRegs(i) >= 640.S) {
             spriteXRegs(i) := -32.S
-            spriteYRegs(i) := (lfsr.io.out(i - 16) * 2.U).asSInt
+            spriteYRegs(i) := (lfsr.io.out(i - 16)).asSInt
 
             // Logik for sklaringstype
             when (lsfr.io.out(index)(8) === 0.U) {

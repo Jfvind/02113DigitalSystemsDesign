@@ -10,8 +10,6 @@ class Difficulty extends Module {
     val score = Output(UInt(16.W))
   })
 
-  val x = RegInit(1.S(7.W))
-  val xDone = RegInit(false.B)
   val speedCnt = RegInit(0.U(27.W))
 
   when(io.resetSpeed) {
@@ -20,29 +18,34 @@ class Difficulty extends Module {
     speedCnt := speedCnt + 1.U
   }
 
-  val timeInSeconds = speedCnt >> 6 // ≈ /64, giver os ca 1 inkremering i sek
+  def saturatingSub(a: UInt, b: UInt): UInt = Mux(a > b, a - b, 0.U) //Vigtig for underflow
 
-  val scoreBase = MuxLookup(io.level, 1.U)(Seq(
+  val timeInSeconds = speedCnt >> 6 // ca. 1/s
+  val scaledTime = timeInSeconds >> 3
+
+  val rawSpeed = MuxLookup(io.level, 2.S)(Seq(
+    1.U -> (1.S + scaledTime.asSInt),
+    2.U -> (2.S + scaledTime.asSInt * 1.S),
+    3.U -> (3.S + scaledTime.asSInt * 2.S)
+  ))
+  val speedCap = MuxLookup(io.level, 10.S)(Seq(
+    1.U -> 3.S,
+    2.U -> 5.S,
+    3.U -> 8.S
+  ))
+  io.speed := Mux(rawSpeed > speedCap, speedCap, rawSpeed)
+
+  val rawSpawn = MuxLookup(io.level, 80.U)(Seq(
+    1.U -> saturatingSub(100.U, timeInSeconds),
+    2.U -> saturatingSub(80.U, timeInSeconds * 2.U),
+    3.U -> saturatingSub(60.U, timeInSeconds * 3.U)
+  ))
+  io.spawnInterval := Mux(rawSpawn < 20.U, 20.U, rawSpawn)
+
+  val scoreMultiplier = MuxLookup(io.level, 1.U)(Seq(
     1.U -> 1.U,
-    2.U -> 2.U,
-    3.U -> 3.U
+    2.U -> 3.U,
+    3.U -> 5.U
   ))
-
-  io.score := timeInSeconds * scoreBase
-
-  val rawSpeed = MuxLookup(io.level, 5.S)(Seq(
-    1.U -> (3.S + timeInSeconds.asSInt * 1.S),
-    2.U -> (5.S + timeInSeconds.asSInt * 2.S),
-    3.U -> (7.S + timeInSeconds.asSInt * 3.S)
-  ))
-
-  io.speed := Mux(rawSpeed > 20.S, 20.S, rawSpeed)
-
-  io.spawnInterval := MuxLookup(io.level, 30.U) (Seq(
-    1.U -> 60.U,
-    2.U -> 40.U,
-    3.U -> 15.U
-  ))
-
-  //Husk Liv
+  io.score := timeInSeconds * scoreMultiplier
 }
