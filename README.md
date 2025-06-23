@@ -56,7 +56,10 @@ Project following the DTU course 02113 Digital Systems Design Project, to make a
 - Sprite 57 = Return_2_3
 - Sprite 58 = Star_1
 - Sprite 59 = Star_2
-- Sprite 60 = Star_2
+- Sprite 60 = Star_3
+- Sprite 61 = Heart
+- Sprite 62 = Heart_2
+- Sprite 63 = Heart_3
 
 **Backtiles:**
 - Backtile 10 = lvl1_1
