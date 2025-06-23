@@ -16636,7 +16636,7 @@ circuit Top :
             node _spriteYRegs_16_T_1 = tail(_spriteYRegs_16_T, 1) @[\\src\\main\\scala\\GameLogic.scala 334:38]
             node _spriteYRegs_16_T_2 = asSInt(_spriteYRegs_16_T_1) @[\\src\\main\\scala\\GameLogic.scala 334:63]
             spriteYRegs[16] <= _spriteYRegs_16_T_2 @[\\src\\main\\scala\\GameLogic.scala 334:28]
-            node _spriteScaleTypeRegs_0_T = bits(lfsr.io.out[0], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 336:61]
+            node _spriteScaleTypeRegs_0_T = bits(lfsr.io.out[10], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 336:66]
             spriteScaleTypeRegs[0] <= _spriteScaleTypeRegs_0_T @[\\src\\main\\scala\\GameLogic.scala 336:40]
           else :
             when spriteVisibleRegs[16] : @[\\src\\main\\scala\\GameLogic.scala 338:44]
@@ -16658,7 +16658,7 @@ circuit Top :
             node _spriteYRegs_17_T_1 = tail(_spriteYRegs_17_T, 1) @[\\src\\main\\scala\\GameLogic.scala 334:38]
             node _spriteYRegs_17_T_2 = asSInt(_spriteYRegs_17_T_1) @[\\src\\main\\scala\\GameLogic.scala 334:63]
             spriteYRegs[17] <= _spriteYRegs_17_T_2 @[\\src\\main\\scala\\GameLogic.scala 334:28]
-            node _spriteScaleTypeRegs_1_T = bits(lfsr.io.out[1], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 336:61]
+            node _spriteScaleTypeRegs_1_T = bits(lfsr.io.out[11], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 336:66]
             spriteScaleTypeRegs[1] <= _spriteScaleTypeRegs_1_T @[\\src\\main\\scala\\GameLogic.scala 336:40]
           else :
             when spriteVisibleRegs[17] : @[\\src\\main\\scala\\GameLogic.scala 338:44]
@@ -16680,7 +16680,7 @@ circuit Top :
             node _spriteYRegs_18_T_1 = tail(_spriteYRegs_18_T, 1) @[\\src\\main\\scala\\GameLogic.scala 334:38]
             node _spriteYRegs_18_T_2 = asSInt(_spriteYRegs_18_T_1) @[\\src\\main\\scala\\GameLogic.scala 334:63]
             spriteYRegs[18] <= _spriteYRegs_18_T_2 @[\\src\\main\\scala\\GameLogic.scala 334:28]
-            node _spriteScaleTypeRegs_2_T = bits(lfsr.io.out[2], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 336:61]
+            node _spriteScaleTypeRegs_2_T = bits(lfsr.io.out[12], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 336:66]
             spriteScaleTypeRegs[2] <= _spriteScaleTypeRegs_2_T @[\\src\\main\\scala\\GameLogic.scala 336:40]
           else :
             when spriteVisibleRegs[18] : @[\\src\\main\\scala\\GameLogic.scala 338:44]
@@ -16702,7 +16702,7 @@ circuit Top :
             node _spriteYRegs_19_T_1 = tail(_spriteYRegs_19_T, 1) @[\\src\\main\\scala\\GameLogic.scala 334:38]
             node _spriteYRegs_19_T_2 = asSInt(_spriteYRegs_19_T_1) @[\\src\\main\\scala\\GameLogic.scala 334:63]
             spriteYRegs[19] <= _spriteYRegs_19_T_2 @[\\src\\main\\scala\\GameLogic.scala 334:28]
-            node _spriteScaleTypeRegs_3_T = bits(lfsr.io.out[3], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 336:61]
+            node _spriteScaleTypeRegs_3_T = bits(lfsr.io.out[13], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 336:66]
             spriteScaleTypeRegs[3] <= _spriteScaleTypeRegs_3_T @[\\src\\main\\scala\\GameLogic.scala 336:40]
           else :
             when spriteVisibleRegs[19] : @[\\src\\main\\scala\\GameLogic.scala 338:44]
@@ -16724,7 +16724,7 @@ circuit Top :
             node _spriteYRegs_20_T_1 = tail(_spriteYRegs_20_T, 1) @[\\src\\main\\scala\\GameLogic.scala 334:38]
             node _spriteYRegs_20_T_2 = asSInt(_spriteYRegs_20_T_1) @[\\src\\main\\scala\\GameLogic.scala 334:63]
             spriteYRegs[20] <= _spriteYRegs_20_T_2 @[\\src\\main\\scala\\GameLogic.scala 334:28]
-            node _spriteScaleTypeRegs_4_T = bits(lfsr.io.out[4], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 336:61]
+            node _spriteScaleTypeRegs_4_T = bits(lfsr.io.out[14], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 336:66]
             spriteScaleTypeRegs[4] <= _spriteScaleTypeRegs_4_T @[\\src\\main\\scala\\GameLogic.scala 336:40]
           else :
             when spriteVisibleRegs[20] : @[\\src\\main\\scala\\GameLogic.scala 338:44]
@@ -16746,7 +16746,7 @@ circuit Top :
             node _spriteYRegs_21_T_1 = tail(_spriteYRegs_21_T, 1) @[\\src\\main\\scala\\GameLogic.scala 334:38]
             node _spriteYRegs_21_T_2 = asSInt(_spriteYRegs_21_T_1) @[\\src\\main\\scala\\GameLogic.scala 334:63]
             spriteYRegs[21] <= _spriteYRegs_21_T_2 @[\\src\\main\\scala\\GameLogic.scala 334:28]
-            node _spriteScaleTypeRegs_5_T = bits(lfsr.io.out[5], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 336:61]
+            node _spriteScaleTypeRegs_5_T = bits(lfsr.io.out[15], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 336:66]
             spriteScaleTypeRegs[5] <= _spriteScaleTypeRegs_5_T @[\\src\\main\\scala\\GameLogic.scala 336:40]
           else :
             when spriteVisibleRegs[21] : @[\\src\\main\\scala\\GameLogic.scala 338:44]
@@ -16768,7 +16768,7 @@ circuit Top :
             node _spriteYRegs_22_T_1 = tail(_spriteYRegs_22_T, 1) @[\\src\\main\\scala\\GameLogic.scala 334:38]
             node _spriteYRegs_22_T_2 = asSInt(_spriteYRegs_22_T_1) @[\\src\\main\\scala\\GameLogic.scala 334:63]
             spriteYRegs[22] <= _spriteYRegs_22_T_2 @[\\src\\main\\scala\\GameLogic.scala 334:28]
-            node _spriteScaleTypeRegs_6_T = bits(lfsr.io.out[6], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 336:61]
+            node _spriteScaleTypeRegs_6_T = bits(lfsr.io.out[16], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 336:66]
             spriteScaleTypeRegs[6] <= _spriteScaleTypeRegs_6_T @[\\src\\main\\scala\\GameLogic.scala 336:40]
           else :
             when spriteVisibleRegs[22] : @[\\src\\main\\scala\\GameLogic.scala 338:44]
@@ -16790,7 +16790,7 @@ circuit Top :
             node _spriteYRegs_23_T_1 = tail(_spriteYRegs_23_T, 1) @[\\src\\main\\scala\\GameLogic.scala 334:38]
             node _spriteYRegs_23_T_2 = asSInt(_spriteYRegs_23_T_1) @[\\src\\main\\scala\\GameLogic.scala 334:63]
             spriteYRegs[23] <= _spriteYRegs_23_T_2 @[\\src\\main\\scala\\GameLogic.scala 334:28]
-            node _spriteScaleTypeRegs_7_T = bits(lfsr.io.out[7], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 336:61]
+            node _spriteScaleTypeRegs_7_T = bits(lfsr.io.out[17], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 336:66]
             spriteScaleTypeRegs[7] <= _spriteScaleTypeRegs_7_T @[\\src\\main\\scala\\GameLogic.scala 336:40]
           else :
             when spriteVisibleRegs[23] : @[\\src\\main\\scala\\GameLogic.scala 338:44]
@@ -16812,7 +16812,7 @@ circuit Top :
             node _spriteYRegs_24_T_1 = tail(_spriteYRegs_24_T, 1) @[\\src\\main\\scala\\GameLogic.scala 334:38]
             node _spriteYRegs_24_T_2 = asSInt(_spriteYRegs_24_T_1) @[\\src\\main\\scala\\GameLogic.scala 334:63]
             spriteYRegs[24] <= _spriteYRegs_24_T_2 @[\\src\\main\\scala\\GameLogic.scala 334:28]
-            node _spriteScaleTypeRegs_8_T = bits(lfsr.io.out[8], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 336:61]
+            node _spriteScaleTypeRegs_8_T = bits(lfsr.io.out[18], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 336:66]
             spriteScaleTypeRegs[8] <= _spriteScaleTypeRegs_8_T @[\\src\\main\\scala\\GameLogic.scala 336:40]
           else :
             when spriteVisibleRegs[24] : @[\\src\\main\\scala\\GameLogic.scala 338:44]
@@ -16834,7 +16834,7 @@ circuit Top :
             node _spriteYRegs_25_T_1 = tail(_spriteYRegs_25_T, 1) @[\\src\\main\\scala\\GameLogic.scala 334:38]
             node _spriteYRegs_25_T_2 = asSInt(_spriteYRegs_25_T_1) @[\\src\\main\\scala\\GameLogic.scala 334:63]
             spriteYRegs[25] <= _spriteYRegs_25_T_2 @[\\src\\main\\scala\\GameLogic.scala 334:28]
-            node _spriteScaleTypeRegs_9_T = bits(lfsr.io.out[9], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 336:61]
+            node _spriteScaleTypeRegs_9_T = bits(lfsr.io.out[19], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 336:66]
             spriteScaleTypeRegs[9] <= _spriteScaleTypeRegs_9_T @[\\src\\main\\scala\\GameLogic.scala 336:40]
           else :
             when spriteVisibleRegs[25] : @[\\src\\main\\scala\\GameLogic.scala 338:44]
@@ -16856,7 +16856,7 @@ circuit Top :
             node _spriteYRegs_26_T_1 = tail(_spriteYRegs_26_T, 1) @[\\src\\main\\scala\\GameLogic.scala 357:38]
             node _spriteYRegs_26_T_2 = asSInt(_spriteYRegs_26_T_1) @[\\src\\main\\scala\\GameLogic.scala 357:63]
             spriteYRegs[26] <= _spriteYRegs_26_T_2 @[\\src\\main\\scala\\GameLogic.scala 357:28]
-            node _spriteScaleTypeRegs_0_T_1 = bits(lfsr.io.out[0], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 359:61]
+            node _spriteScaleTypeRegs_0_T_1 = bits(lfsr.io.out[10], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 359:66]
             spriteScaleTypeRegs[0] <= _spriteScaleTypeRegs_0_T_1 @[\\src\\main\\scala\\GameLogic.scala 359:40]
           else :
             when spriteVisibleRegs[26] : @[\\src\\main\\scala\\GameLogic.scala 361:44]
@@ -16878,7 +16878,7 @@ circuit Top :
             node _spriteYRegs_27_T_1 = tail(_spriteYRegs_27_T, 1) @[\\src\\main\\scala\\GameLogic.scala 357:38]
             node _spriteYRegs_27_T_2 = asSInt(_spriteYRegs_27_T_1) @[\\src\\main\\scala\\GameLogic.scala 357:63]
             spriteYRegs[27] <= _spriteYRegs_27_T_2 @[\\src\\main\\scala\\GameLogic.scala 357:28]
-            node _spriteScaleTypeRegs_1_T_1 = bits(lfsr.io.out[1], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 359:61]
+            node _spriteScaleTypeRegs_1_T_1 = bits(lfsr.io.out[11], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 359:66]
             spriteScaleTypeRegs[1] <= _spriteScaleTypeRegs_1_T_1 @[\\src\\main\\scala\\GameLogic.scala 359:40]
           else :
             when spriteVisibleRegs[27] : @[\\src\\main\\scala\\GameLogic.scala 361:44]
@@ -16900,7 +16900,7 @@ circuit Top :
             node _spriteYRegs_28_T_1 = tail(_spriteYRegs_28_T, 1) @[\\src\\main\\scala\\GameLogic.scala 357:38]
             node _spriteYRegs_28_T_2 = asSInt(_spriteYRegs_28_T_1) @[\\src\\main\\scala\\GameLogic.scala 357:63]
             spriteYRegs[28] <= _spriteYRegs_28_T_2 @[\\src\\main\\scala\\GameLogic.scala 357:28]
-            node _spriteScaleTypeRegs_2_T_1 = bits(lfsr.io.out[2], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 359:61]
+            node _spriteScaleTypeRegs_2_T_1 = bits(lfsr.io.out[12], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 359:66]
             spriteScaleTypeRegs[2] <= _spriteScaleTypeRegs_2_T_1 @[\\src\\main\\scala\\GameLogic.scala 359:40]
           else :
             when spriteVisibleRegs[28] : @[\\src\\main\\scala\\GameLogic.scala 361:44]
@@ -16922,7 +16922,7 @@ circuit Top :
             node _spriteYRegs_29_T_1 = tail(_spriteYRegs_29_T, 1) @[\\src\\main\\scala\\GameLogic.scala 357:38]
             node _spriteYRegs_29_T_2 = asSInt(_spriteYRegs_29_T_1) @[\\src\\main\\scala\\GameLogic.scala 357:63]
             spriteYRegs[29] <= _spriteYRegs_29_T_2 @[\\src\\main\\scala\\GameLogic.scala 357:28]
-            node _spriteScaleTypeRegs_3_T_1 = bits(lfsr.io.out[3], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 359:61]
+            node _spriteScaleTypeRegs_3_T_1 = bits(lfsr.io.out[13], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 359:66]
             spriteScaleTypeRegs[3] <= _spriteScaleTypeRegs_3_T_1 @[\\src\\main\\scala\\GameLogic.scala 359:40]
           else :
             when spriteVisibleRegs[29] : @[\\src\\main\\scala\\GameLogic.scala 361:44]
@@ -16944,7 +16944,7 @@ circuit Top :
             node _spriteYRegs_30_T_1 = tail(_spriteYRegs_30_T, 1) @[\\src\\main\\scala\\GameLogic.scala 357:38]
             node _spriteYRegs_30_T_2 = asSInt(_spriteYRegs_30_T_1) @[\\src\\main\\scala\\GameLogic.scala 357:63]
             spriteYRegs[30] <= _spriteYRegs_30_T_2 @[\\src\\main\\scala\\GameLogic.scala 357:28]
-            node _spriteScaleTypeRegs_4_T_1 = bits(lfsr.io.out[4], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 359:61]
+            node _spriteScaleTypeRegs_4_T_1 = bits(lfsr.io.out[14], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 359:66]
             spriteScaleTypeRegs[4] <= _spriteScaleTypeRegs_4_T_1 @[\\src\\main\\scala\\GameLogic.scala 359:40]
           else :
             when spriteVisibleRegs[30] : @[\\src\\main\\scala\\GameLogic.scala 361:44]
@@ -16966,7 +16966,7 @@ circuit Top :
             node _spriteYRegs_31_T_1 = tail(_spriteYRegs_31_T, 1) @[\\src\\main\\scala\\GameLogic.scala 357:38]
             node _spriteYRegs_31_T_2 = asSInt(_spriteYRegs_31_T_1) @[\\src\\main\\scala\\GameLogic.scala 357:63]
             spriteYRegs[31] <= _spriteYRegs_31_T_2 @[\\src\\main\\scala\\GameLogic.scala 357:28]
-            node _spriteScaleTypeRegs_5_T_1 = bits(lfsr.io.out[5], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 359:61]
+            node _spriteScaleTypeRegs_5_T_1 = bits(lfsr.io.out[15], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 359:66]
             spriteScaleTypeRegs[5] <= _spriteScaleTypeRegs_5_T_1 @[\\src\\main\\scala\\GameLogic.scala 359:40]
           else :
             when spriteVisibleRegs[31] : @[\\src\\main\\scala\\GameLogic.scala 361:44]
@@ -16988,7 +16988,7 @@ circuit Top :
             node _spriteYRegs_32_T_1 = tail(_spriteYRegs_32_T, 1) @[\\src\\main\\scala\\GameLogic.scala 357:38]
             node _spriteYRegs_32_T_2 = asSInt(_spriteYRegs_32_T_1) @[\\src\\main\\scala\\GameLogic.scala 357:63]
             spriteYRegs[32] <= _spriteYRegs_32_T_2 @[\\src\\main\\scala\\GameLogic.scala 357:28]
-            node _spriteScaleTypeRegs_6_T_1 = bits(lfsr.io.out[6], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 359:61]
+            node _spriteScaleTypeRegs_6_T_1 = bits(lfsr.io.out[16], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 359:66]
             spriteScaleTypeRegs[6] <= _spriteScaleTypeRegs_6_T_1 @[\\src\\main\\scala\\GameLogic.scala 359:40]
           else :
             when spriteVisibleRegs[32] : @[\\src\\main\\scala\\GameLogic.scala 361:44]
@@ -17010,7 +17010,7 @@ circuit Top :
             node _spriteYRegs_33_T_1 = tail(_spriteYRegs_33_T, 1) @[\\src\\main\\scala\\GameLogic.scala 357:38]
             node _spriteYRegs_33_T_2 = asSInt(_spriteYRegs_33_T_1) @[\\src\\main\\scala\\GameLogic.scala 357:63]
             spriteYRegs[33] <= _spriteYRegs_33_T_2 @[\\src\\main\\scala\\GameLogic.scala 357:28]
-            node _spriteScaleTypeRegs_7_T_1 = bits(lfsr.io.out[7], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 359:61]
+            node _spriteScaleTypeRegs_7_T_1 = bits(lfsr.io.out[17], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 359:66]
             spriteScaleTypeRegs[7] <= _spriteScaleTypeRegs_7_T_1 @[\\src\\main\\scala\\GameLogic.scala 359:40]
           else :
             when spriteVisibleRegs[33] : @[\\src\\main\\scala\\GameLogic.scala 361:44]
@@ -17032,7 +17032,7 @@ circuit Top :
             node _spriteYRegs_34_T_1 = tail(_spriteYRegs_34_T, 1) @[\\src\\main\\scala\\GameLogic.scala 357:38]
             node _spriteYRegs_34_T_2 = asSInt(_spriteYRegs_34_T_1) @[\\src\\main\\scala\\GameLogic.scala 357:63]
             spriteYRegs[34] <= _spriteYRegs_34_T_2 @[\\src\\main\\scala\\GameLogic.scala 357:28]
-            node _spriteScaleTypeRegs_8_T_1 = bits(lfsr.io.out[8], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 359:61]
+            node _spriteScaleTypeRegs_8_T_1 = bits(lfsr.io.out[18], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 359:66]
             spriteScaleTypeRegs[8] <= _spriteScaleTypeRegs_8_T_1 @[\\src\\main\\scala\\GameLogic.scala 359:40]
           else :
             when spriteVisibleRegs[34] : @[\\src\\main\\scala\\GameLogic.scala 361:44]
@@ -17054,7 +17054,7 @@ circuit Top :
             node _spriteYRegs_35_T_1 = tail(_spriteYRegs_35_T, 1) @[\\src\\main\\scala\\GameLogic.scala 357:38]
             node _spriteYRegs_35_T_2 = asSInt(_spriteYRegs_35_T_1) @[\\src\\main\\scala\\GameLogic.scala 357:63]
             spriteYRegs[35] <= _spriteYRegs_35_T_2 @[\\src\\main\\scala\\GameLogic.scala 357:28]
-            node _spriteScaleTypeRegs_9_T_1 = bits(lfsr.io.out[9], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 359:61]
+            node _spriteScaleTypeRegs_9_T_1 = bits(lfsr.io.out[19], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 359:66]
             spriteScaleTypeRegs[9] <= _spriteScaleTypeRegs_9_T_1 @[\\src\\main\\scala\\GameLogic.scala 359:40]
           else :
             when spriteVisibleRegs[35] : @[\\src\\main\\scala\\GameLogic.scala 361:44]
@@ -17076,7 +17076,7 @@ circuit Top :
             node _spriteYRegs_36_T_1 = tail(_spriteYRegs_36_T, 1) @[\\src\\main\\scala\\GameLogic.scala 380:38]
             node _spriteYRegs_36_T_2 = asSInt(_spriteYRegs_36_T_1) @[\\src\\main\\scala\\GameLogic.scala 380:63]
             spriteYRegs[36] <= _spriteYRegs_36_T_2 @[\\src\\main\\scala\\GameLogic.scala 380:28]
-            node _spriteScaleTypeRegs_0_T_2 = bits(lfsr.io.out[0], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 383:61]
+            node _spriteScaleTypeRegs_0_T_2 = bits(lfsr.io.out[10], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 383:66]
             spriteScaleTypeRegs[0] <= _spriteScaleTypeRegs_0_T_2 @[\\src\\main\\scala\\GameLogic.scala 383:40]
           else :
             when spriteVisibleRegs[36] : @[\\src\\main\\scala\\GameLogic.scala 385:44]
@@ -17098,7 +17098,7 @@ circuit Top :
             node _spriteYRegs_37_T_1 = tail(_spriteYRegs_37_T, 1) @[\\src\\main\\scala\\GameLogic.scala 380:38]
             node _spriteYRegs_37_T_2 = asSInt(_spriteYRegs_37_T_1) @[\\src\\main\\scala\\GameLogic.scala 380:63]
             spriteYRegs[37] <= _spriteYRegs_37_T_2 @[\\src\\main\\scala\\GameLogic.scala 380:28]
-            node _spriteScaleTypeRegs_1_T_2 = bits(lfsr.io.out[1], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 383:61]
+            node _spriteScaleTypeRegs_1_T_2 = bits(lfsr.io.out[11], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 383:66]
             spriteScaleTypeRegs[1] <= _spriteScaleTypeRegs_1_T_2 @[\\src\\main\\scala\\GameLogic.scala 383:40]
           else :
             when spriteVisibleRegs[37] : @[\\src\\main\\scala\\GameLogic.scala 385:44]
@@ -17120,7 +17120,7 @@ circuit Top :
             node _spriteYRegs_38_T_1 = tail(_spriteYRegs_38_T, 1) @[\\src\\main\\scala\\GameLogic.scala 380:38]
             node _spriteYRegs_38_T_2 = asSInt(_spriteYRegs_38_T_1) @[\\src\\main\\scala\\GameLogic.scala 380:63]
             spriteYRegs[38] <= _spriteYRegs_38_T_2 @[\\src\\main\\scala\\GameLogic.scala 380:28]
-            node _spriteScaleTypeRegs_2_T_2 = bits(lfsr.io.out[2], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 383:61]
+            node _spriteScaleTypeRegs_2_T_2 = bits(lfsr.io.out[12], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 383:66]
             spriteScaleTypeRegs[2] <= _spriteScaleTypeRegs_2_T_2 @[\\src\\main\\scala\\GameLogic.scala 383:40]
           else :
             when spriteVisibleRegs[38] : @[\\src\\main\\scala\\GameLogic.scala 385:44]
@@ -17142,7 +17142,7 @@ circuit Top :
             node _spriteYRegs_39_T_1 = tail(_spriteYRegs_39_T, 1) @[\\src\\main\\scala\\GameLogic.scala 380:38]
             node _spriteYRegs_39_T_2 = asSInt(_spriteYRegs_39_T_1) @[\\src\\main\\scala\\GameLogic.scala 380:63]
             spriteYRegs[39] <= _spriteYRegs_39_T_2 @[\\src\\main\\scala\\GameLogic.scala 380:28]
-            node _spriteScaleTypeRegs_3_T_2 = bits(lfsr.io.out[3], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 383:61]
+            node _spriteScaleTypeRegs_3_T_2 = bits(lfsr.io.out[13], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 383:66]
             spriteScaleTypeRegs[3] <= _spriteScaleTypeRegs_3_T_2 @[\\src\\main\\scala\\GameLogic.scala 383:40]
           else :
             when spriteVisibleRegs[39] : @[\\src\\main\\scala\\GameLogic.scala 385:44]
@@ -17164,7 +17164,7 @@ circuit Top :
             node _spriteYRegs_40_T_1 = tail(_spriteYRegs_40_T, 1) @[\\src\\main\\scala\\GameLogic.scala 380:38]
             node _spriteYRegs_40_T_2 = asSInt(_spriteYRegs_40_T_1) @[\\src\\main\\scala\\GameLogic.scala 380:63]
             spriteYRegs[40] <= _spriteYRegs_40_T_2 @[\\src\\main\\scala\\GameLogic.scala 380:28]
-            node _spriteScaleTypeRegs_4_T_2 = bits(lfsr.io.out[4], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 383:61]
+            node _spriteScaleTypeRegs_4_T_2 = bits(lfsr.io.out[14], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 383:66]
             spriteScaleTypeRegs[4] <= _spriteScaleTypeRegs_4_T_2 @[\\src\\main\\scala\\GameLogic.scala 383:40]
           else :
             when spriteVisibleRegs[40] : @[\\src\\main\\scala\\GameLogic.scala 385:44]
@@ -17186,7 +17186,7 @@ circuit Top :
             node _spriteYRegs_41_T_1 = tail(_spriteYRegs_41_T, 1) @[\\src\\main\\scala\\GameLogic.scala 380:38]
             node _spriteYRegs_41_T_2 = asSInt(_spriteYRegs_41_T_1) @[\\src\\main\\scala\\GameLogic.scala 380:63]
             spriteYRegs[41] <= _spriteYRegs_41_T_2 @[\\src\\main\\scala\\GameLogic.scala 380:28]
-            node _spriteScaleTypeRegs_5_T_2 = bits(lfsr.io.out[5], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 383:61]
+            node _spriteScaleTypeRegs_5_T_2 = bits(lfsr.io.out[15], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 383:66]
             spriteScaleTypeRegs[5] <= _spriteScaleTypeRegs_5_T_2 @[\\src\\main\\scala\\GameLogic.scala 383:40]
           else :
             when spriteVisibleRegs[41] : @[\\src\\main\\scala\\GameLogic.scala 385:44]
@@ -17208,7 +17208,7 @@ circuit Top :
             node _spriteYRegs_42_T_1 = tail(_spriteYRegs_42_T, 1) @[\\src\\main\\scala\\GameLogic.scala 380:38]
             node _spriteYRegs_42_T_2 = asSInt(_spriteYRegs_42_T_1) @[\\src\\main\\scala\\GameLogic.scala 380:63]
             spriteYRegs[42] <= _spriteYRegs_42_T_2 @[\\src\\main\\scala\\GameLogic.scala 380:28]
-            node _spriteScaleTypeRegs_6_T_2 = bits(lfsr.io.out[6], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 383:61]
+            node _spriteScaleTypeRegs_6_T_2 = bits(lfsr.io.out[16], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 383:66]
             spriteScaleTypeRegs[6] <= _spriteScaleTypeRegs_6_T_2 @[\\src\\main\\scala\\GameLogic.scala 383:40]
           else :
             when spriteVisibleRegs[42] : @[\\src\\main\\scala\\GameLogic.scala 385:44]
@@ -17230,7 +17230,7 @@ circuit Top :
             node _spriteYRegs_43_T_1 = tail(_spriteYRegs_43_T, 1) @[\\src\\main\\scala\\GameLogic.scala 380:38]
             node _spriteYRegs_43_T_2 = asSInt(_spriteYRegs_43_T_1) @[\\src\\main\\scala\\GameLogic.scala 380:63]
             spriteYRegs[43] <= _spriteYRegs_43_T_2 @[\\src\\main\\scala\\GameLogic.scala 380:28]
-            node _spriteScaleTypeRegs_7_T_2 = bits(lfsr.io.out[7], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 383:61]
+            node _spriteScaleTypeRegs_7_T_2 = bits(lfsr.io.out[17], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 383:66]
             spriteScaleTypeRegs[7] <= _spriteScaleTypeRegs_7_T_2 @[\\src\\main\\scala\\GameLogic.scala 383:40]
           else :
             when spriteVisibleRegs[43] : @[\\src\\main\\scala\\GameLogic.scala 385:44]
@@ -17252,7 +17252,7 @@ circuit Top :
             node _spriteYRegs_44_T_1 = tail(_spriteYRegs_44_T, 1) @[\\src\\main\\scala\\GameLogic.scala 380:38]
             node _spriteYRegs_44_T_2 = asSInt(_spriteYRegs_44_T_1) @[\\src\\main\\scala\\GameLogic.scala 380:63]
             spriteYRegs[44] <= _spriteYRegs_44_T_2 @[\\src\\main\\scala\\GameLogic.scala 380:28]
-            node _spriteScaleTypeRegs_8_T_2 = bits(lfsr.io.out[8], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 383:61]
+            node _spriteScaleTypeRegs_8_T_2 = bits(lfsr.io.out[18], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 383:66]
             spriteScaleTypeRegs[8] <= _spriteScaleTypeRegs_8_T_2 @[\\src\\main\\scala\\GameLogic.scala 383:40]
           else :
             when spriteVisibleRegs[44] : @[\\src\\main\\scala\\GameLogic.scala 385:44]
@@ -17274,7 +17274,7 @@ circuit Top :
             node _spriteYRegs_45_T_1 = tail(_spriteYRegs_45_T, 1) @[\\src\\main\\scala\\GameLogic.scala 380:38]
             node _spriteYRegs_45_T_2 = asSInt(_spriteYRegs_45_T_1) @[\\src\\main\\scala\\GameLogic.scala 380:63]
             spriteYRegs[45] <= _spriteYRegs_45_T_2 @[\\src\\main\\scala\\GameLogic.scala 380:28]
-            node _spriteScaleTypeRegs_9_T_2 = bits(lfsr.io.out[9], 8, 8) @[\\src\\main\\scala\\GameLogic.scala 383:61]
+            node _spriteScaleTypeRegs_9_T_2 = bits(lfsr.io.out[19], 0, 0) @[\\src\\main\\scala\\GameLogic.scala 383:66]
             spriteScaleTypeRegs[9] <= _spriteScaleTypeRegs_9_T_2 @[\\src\\main\\scala\\GameLogic.scala 383:40]
           else :
             when spriteVisibleRegs[45] : @[\\src\\main\\scala\\GameLogic.scala 385:44]
