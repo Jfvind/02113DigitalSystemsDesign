@@ -183,6 +183,11 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     io.spriteFlipHorizontal(i) := spriteFlipHorizontalRegs(i)
     io.spriteFlipVertical(i) := spriteFlipVerticalRegs(i)
   }
+  for (i <- 16 to 45) {
+  val index = if (i < 26) i - 16 else if (i < 36) i - 26 else i - 36
+  io.spriteScaleUpHorizontal(i) := (spriteScaleTypeRegs(index) === 1.U)
+  io.spriteScaleUpVertical(i) := (spriteScaleTypeRegs(index) === 1.U)
+}
 
 
   //Connecting scaling
