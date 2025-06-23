@@ -737,7 +737,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         lvlReg := 0.U
         livesReg := 3.U
         scoreReg := 0.U
-      }
+      }.otherwise(slut)
+
     }
 
     is(slut) {
