@@ -400,7 +400,9 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val spriteVisibleRegs = RegInit(VecInit(Seq.fill(61)(false.B)))
 
   // Define initial positions as a lookup table
-  val initialPositions = Seq(
+  val initializePositions = RegInit(true.B)
+  when(initializePositions) {
+    val initialPositions = Seq(
     (3, 320, 240),   // Cursor
     (7, 256, 300),   // Lvl 1 button
     (8, 256, 300),   // Lvl 1 button #2
@@ -425,12 +427,14 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     (53, 20, 290), (54, 20, 290), (55, 20, 290), (56, 20, 290), (57, 20, 290),
     (58, 320, 20), //Star x3
     (59, 500, 70), (60, 150, 100)
-  ).map { case (id, x, y) => (id.U, x.S, y.S) }
+    ).map { case (id, x, y) => (id.U, x.S, y.S) }
 
-  // Initialize in a loop
-  for ((id, x, y) <- initialPositions) {
-    spriteXRegs(id) := x
-    spriteYRegs(id) := y
+    // Initialize in a loop
+    for ((id, x, y) <- initialPositions) {
+      spriteXRegs(id) := x
+      spriteYRegs(id) := y
+    }
+    initializePositions := false.B
   }
 
   //Scalint registers
