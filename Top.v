@@ -14695,7 +14695,7 @@ module GameLogic(
   wire [10:0] _GEN_1313 = _T ? $signed(_GEN_0) : $signed(_GEN_1310); // @[\\src\\main\\scala\\GameLogic.scala 767:28]
   wire [2:0] _GEN_1314 = _T_5 ? 3'h6 : 3'h5; // @[\\src\\main\\scala\\GameLogic.scala 782:30 783:18 785:18]
   wire  _cursorOnReturn_T_3 = $signed(spriteYRegs_3) >= 10'sh104; // @[\\src\\main\\scala\\GameLogic.scala 801:24]
-  wire  _cursorOnReturn_T_4 = $signed(spriteXRegs_3) >= 11'sh120 & $signed(spriteXRegs_3) <= 11'sh160 &
+  wire  _cursorOnReturn_T_4 = $signed(spriteXRegs_3) >= 11'sh110 & $signed(spriteXRegs_3) <= 11'sh170 &
     _cursorOnReturn_T_3; // @[\\src\\main\\scala\\GameLogic.scala 800:79]
   wire  cursorOnReturn = _cursorOnReturn_T_4 & $signed(spriteYRegs_3) <= 10'sh124; // @[\\src\\main\\scala\\GameLogic.scala 801:33]
   wire  _spriteVisibleRegs_52_T = ~cursorOnReturn; // @[\\src\\main\\scala\\GameLogic.scala 803:32]
@@ -15288,62 +15288,62 @@ module GameLogic(
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 121:28]
       spriteXRegs_46 <= 11'sh0; // @[\\src\\main\\scala\\GameLogic.scala 121:28]
     end else if (initializePositions) begin // @[\\src\\main\\scala\\GameLogic.scala 131:29]
-      spriteXRegs_46 <= 11'sh100; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
+      spriteXRegs_46 <= 11'she0; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 121:28]
       spriteXRegs_47 <= 11'sh0; // @[\\src\\main\\scala\\GameLogic.scala 121:28]
     end else if (initializePositions) begin // @[\\src\\main\\scala\\GameLogic.scala 131:29]
-      spriteXRegs_47 <= 11'sh120; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
+      spriteXRegs_47 <= 11'sh100; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 121:28]
       spriteXRegs_48 <= 11'sh0; // @[\\src\\main\\scala\\GameLogic.scala 121:28]
     end else if (initializePositions) begin // @[\\src\\main\\scala\\GameLogic.scala 131:29]
-      spriteXRegs_48 <= 11'sh140; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
+      spriteXRegs_48 <= 11'sh120; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 121:28]
       spriteXRegs_49 <= 11'sh0; // @[\\src\\main\\scala\\GameLogic.scala 121:28]
     end else if (initializePositions) begin // @[\\src\\main\\scala\\GameLogic.scala 131:29]
-      spriteXRegs_49 <= 11'sh160; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
+      spriteXRegs_49 <= 11'sh140; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 121:28]
       spriteXRegs_50 <= 11'sh0; // @[\\src\\main\\scala\\GameLogic.scala 121:28]
     end else if (initializePositions) begin // @[\\src\\main\\scala\\GameLogic.scala 131:29]
-      spriteXRegs_50 <= 11'sh180; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
+      spriteXRegs_50 <= 11'sh160; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 121:28]
       spriteXRegs_51 <= 11'sh0; // @[\\src\\main\\scala\\GameLogic.scala 121:28]
     end else if (initializePositions) begin // @[\\src\\main\\scala\\GameLogic.scala 131:29]
-      spriteXRegs_51 <= 11'sh1a0; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
+      spriteXRegs_51 <= 11'sh180; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 121:28]
       spriteXRegs_52 <= 11'sh0; // @[\\src\\main\\scala\\GameLogic.scala 121:28]
     end else if (initializePositions) begin // @[\\src\\main\\scala\\GameLogic.scala 131:29]
-      spriteXRegs_52 <= 11'sh120; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
+      spriteXRegs_52 <= 11'sh110; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 121:28]
       spriteXRegs_53 <= 11'sh0; // @[\\src\\main\\scala\\GameLogic.scala 121:28]
     end else if (initializePositions) begin // @[\\src\\main\\scala\\GameLogic.scala 131:29]
-      spriteXRegs_53 <= 11'sh140; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
+      spriteXRegs_53 <= 11'sh110; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 121:28]
       spriteXRegs_54 <= 11'sh0; // @[\\src\\main\\scala\\GameLogic.scala 121:28]
     end else if (initializePositions) begin // @[\\src\\main\\scala\\GameLogic.scala 131:29]
-      spriteXRegs_54 <= 11'sh160; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
+      spriteXRegs_54 <= 11'sh130; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 121:28]
       spriteXRegs_55 <= 11'sh0; // @[\\src\\main\\scala\\GameLogic.scala 121:28]
     end else if (initializePositions) begin // @[\\src\\main\\scala\\GameLogic.scala 131:29]
-      spriteXRegs_55 <= 11'sh120; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
+      spriteXRegs_55 <= 11'sh130; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 121:28]
       spriteXRegs_56 <= 11'sh0; // @[\\src\\main\\scala\\GameLogic.scala 121:28]
     end else if (initializePositions) begin // @[\\src\\main\\scala\\GameLogic.scala 131:29]
-      spriteXRegs_56 <= 11'sh140; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
+      spriteXRegs_56 <= 11'sh150; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 121:28]
       spriteXRegs_57 <= 11'sh0; // @[\\src\\main\\scala\\GameLogic.scala 121:28]
     end else if (initializePositions) begin // @[\\src\\main\\scala\\GameLogic.scala 131:29]
-      spriteXRegs_57 <= 11'sh160; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
+      spriteXRegs_57 <= 11'sh150; // @[\\src\\main\\scala\\GameLogic.scala 161:23]
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 121:28]
       spriteXRegs_58 <= 11'sh0; // @[\\src\\main\\scala\\GameLogic.scala 121:28]

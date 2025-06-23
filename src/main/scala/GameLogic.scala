@@ -798,7 +798,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       spriteVisibleRegs(51) := true.B
       // Return-knap
       val cursorOnReturn = spriteXRegs(3) >= 272.S && spriteXRegs(3) <= 368.S &&
-        spriteYRegs(3) >= 200.S && spriteYRegs(3) <= 292.S
+        spriteYRegs(3) >= 260.S && spriteYRegs(3) <= 292.S
 
       spriteVisibleRegs(52) := !cursorOnReturn
       spriteVisibleRegs(53) := !cursorOnReturn
