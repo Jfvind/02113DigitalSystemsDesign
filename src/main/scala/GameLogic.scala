@@ -291,7 +291,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
     // Reset spaceship og cursor position (valgfrit, hvis ikke initPositions klarer det)
     spriteVisibleRegs(3) := true.B // cursor
-    spriteVisibleRegs(14) := true.B // spaceship
+    spriteVisibleRegs(14) := false.B // spaceship
 
     // Skjul alle forhindringer
     for (i <- 16 to 45) {
@@ -301,6 +301,28 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     // Skjul game over og return sprites
     for (i <- 46 to 57) {
       spriteVisibleRegs(i) := false.B
+    }
+  }
+
+  // Moves the sprite with the given index in all four directions based on button inputs
+  def moveAllround(spriteIdx: Int): Unit = {
+    when(io.btnD) {
+      when(spriteYRegs(spriteIdx) < (480 - 32).S) {
+        spriteYRegs(spriteIdx) := spriteYRegs(spriteIdx) + 2.S
+      }
+    }.elsewhen(io.btnU) {
+      when(spriteYRegs(spriteIdx) > 32.S) {
+        spriteYRegs(spriteIdx) := spriteYRegs(spriteIdx) - 2.S
+      }
+    }
+    when(io.btnR) {
+      when(spriteXRegs(spriteIdx) < (640 - 32).S) {
+        spriteXRegs(spriteIdx) := spriteXRegs(spriteIdx) + 2.S
+      }
+    }.elsewhen(io.btnL) {
+      when(spriteXRegs(spriteIdx) > 32.S) {
+        spriteXRegs(spriteIdx) := spriteXRegs(spriteIdx) - 2.S
+      }
     }
   }
 
@@ -726,29 +748,12 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }
       }.otherwise {
         //Moving all four directions for foot-cursor
-        when(io.btnD) {
-          when(spriteYRegs(3) < (480 - 32).S) {
-            spriteYRegs(3) := spriteYRegs(3) + 2.S
-          }
-        }.elsewhen(io.btnU) {
-          when(spriteYRegs(3) > 32.S) {
-            spriteYRegs(3) := spriteYRegs(3) - 2.S
-          }
-        }
-        when(io.btnR) {
-          when(spriteXRegs(3) < (640 - 32).S) {
-            spriteXRegs(3) := spriteXRegs(3) + 2.S
-          }
-        }.elsewhen(io.btnL) {
-          when(spriteXRegs(3) > 32.S) {
-            spriteXRegs(3) := spriteXRegs(3) - 2.S
-          }
-        }
+        moveAllround(3)
       }
 
-      when(livesReg === 0) {
+      when(livesReg === 0.U) {
         stateReg := gameOver
-      }.otherwise() {
+      }.otherwise {
         stateReg := slut
       }
     }
@@ -777,12 +782,14 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       // Cursor tilbage til aktiv
       spriteVisibleRegs(3) := true.B
 
+      moveAllround(3)
+
       when(cursorOnReturn && io.btnC) {
         // Reset alt
         resetGame()
         stateReg := menu
       }.otherwise {
-        stateReg := move
+        stateReg := slut
       }
     }
     is(slut) {
