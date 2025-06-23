@@ -148,10 +148,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       (36, 20, 290), //Meteor x10
       (37, 20, 290), (38, 20, 290), (39, 20, 290), (40, 20, 290), (41, 20, 290),
       (42, 20, 290), (43, 20, 290), (44, 20, 290), (45, 20, 290),
-      (46, 256, 200), //Gameover x6
-      (47, 288, 200), (48, 320, 200), (49, 352, 200), (50, 384, 200), (51, 416, 200),
-      (52, 288, 260), //Return x6
-      (53, 320, 260), (54, 352, 260), (55, 288, 260), (56, 320, 260), (57, 352, 260),
+      (46, 224, 200), //Gameover x6
+      (47, 256, 200), (48, 288, 200), (49, 320, 200), (50, 352, 200), (51, 384, 200),
+      (52, 272, 260), //Return x6
+      (53, 272, 260), (54, 304, 260), (55, 304, 260), (56, 336, 260), (57, 336, 260),
       (58, 320, 20), (59, 500, 70), (60, 150, 100), //star x3
       (61, 20, 20), (62, 60, 20), (63, 100, 20) //heart 3x
     ).map { case (id, x, y) => (id.U, x.S, y.S) }
@@ -343,7 +343,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.elsewhen(livesReg === 0.U) {
           stateReg := gameOver
         }.otherwise {
-          stateReg := autonomousMove // <-- go to autonomousMove here
+          stateReg := autonomousMove
         }
       }
     }
@@ -797,8 +797,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       spriteVisibleRegs(50) := true.B
       spriteVisibleRegs(51) := true.B
       // Return-knap
-      val cursorOnReturn = spriteXRegs(3) >= 288.S && spriteXRegs(3) <= 352.S &&
-        spriteYRegs(3) >= 260.S && spriteYRegs(3) <= 292.S
+      val cursorOnReturn = spriteXRegs(3) >= 272.S && spriteXRegs(3) <= 368.S &&
+        spriteYRegs(3) >= 200.S && spriteYRegs(3) <= 292.S
 
       spriteVisibleRegs(52) := !cursorOnReturn
       spriteVisibleRegs(53) := !cursorOnReturn

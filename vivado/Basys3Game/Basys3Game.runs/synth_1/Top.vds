@@ -3,8 +3,8 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Mon Jun 23 19:03:22 2025
-# Process ID: 46000
+# Start of session at: Mon Jun 23 19:27:17 2025
+# Process ID: 44936
 # Current directory: C:/DTU-local/Repos/02113DigitalSystemsDesign/vivado/Basys3Game/Basys3Game.runs/synth_1
 # Command line: vivado.exe -log Top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top.tcl
 # Log file: C:/DTU-local/Repos/02113DigitalSystemsDesign/vivado/Basys3Game/Basys3Game.runs/synth_1/Top.vds
@@ -19,10 +19,10 @@
 # Host memory       :34014 MB
 # Swap memory       :2147 MB
 # Total Virtual     :36162 MB
-# Available Virtual :5796 MB
+# Available Virtual :5547 MB
 #-----------------------------------------------------------
 source Top.tcl -notrace
-create_project: Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 539.793 ; gain = 237.945
+create_project: Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 538.848 ; gain = 238.418
 Command: synth_design -top Top -part xc7a35tcpg236-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
@@ -31,12 +31,12 @@ INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Device 21-9227] Part: xc7a35tcpg236-1 does not have CEAM library.
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 46352
+INFO: [Synth 8-7075] Helper process launched with PID 24532
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1387.117 ; gain = 447.570
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1385.012 ; gain = 445.844
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'Top' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:19243]
-INFO: [Synth 8-6157] synthesizing module 'GameTop' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:17691]
+INFO: [Synth 8-6157] synthesizing module 'Top' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:19247]
+INFO: [Synth 8-6157] synthesizing module 'GameTop' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:17695]
 INFO: [Synth 8-6157] synthesizing module 'GraphicEngineVGA' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:3642]
 INFO: [Synth 8-6157] synthesizing module 'Memory' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:1]
 INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf' [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:11]
@@ -727,7 +727,7 @@ INFO: [Common 17-14] Message 'Synth 8-3876' appears 100 times and further instan
 	Parameter ADDR_WIDTH bound to: 10 - type: integer 
 	Parameter DATA_WIDTH bound to: 7 - type: integer 
 	Parameter LOAD_FILE bound to: memory_init/sprite_init_63.mem - type: string 
-WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:18520]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:18524]
 	Parameter ADDR_WIDTH bound to: 8 - type: integer 
 	Parameter DATA_WIDTH bound to: 28 - type: integer 
 	Parameter LOAD_FILE bound to: memory_init/tune_init_0.mem - type: string 
@@ -746,18 +746,18 @@ WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_i
 WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:9893]
 WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:8618]
 WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:9965]
-WARNING: [Synth 8-6014] Unused sequential element spriteXRegs_58_REG_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14585]
-WARNING: [Synth 8-6014] Unused sequential element spriteYRegs_58_REG_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14586]
-WARNING: [Synth 8-6014] Unused sequential element spriteXRegs_59_REG_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14587]
-WARNING: [Synth 8-6014] Unused sequential element spriteYRegs_59_REG_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14588]
-WARNING: [Synth 8-6014] Unused sequential element spriteXRegs_60_REG_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14589]
-WARNING: [Synth 8-6014] Unused sequential element spriteYRegs_60_REG_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14590]
-WARNING: [Synth 8-6014] Unused sequential element spriteXRegs_58_REG_2_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14559]
-WARNING: [Synth 8-6014] Unused sequential element spriteYRegs_58_REG_2_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14560]
-WARNING: [Synth 8-6014] Unused sequential element spriteXRegs_59_REG_2_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14561]
-WARNING: [Synth 8-6014] Unused sequential element spriteYRegs_59_REG_2_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14562]
-WARNING: [Synth 8-6014] Unused sequential element spriteXRegs_60_REG_2_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14563]
-WARNING: [Synth 8-6014] Unused sequential element spriteYRegs_60_REG_2_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14564]
+WARNING: [Synth 8-6014] Unused sequential element spriteXRegs_58_REG_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14589]
+WARNING: [Synth 8-6014] Unused sequential element spriteYRegs_58_REG_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14590]
+WARNING: [Synth 8-6014] Unused sequential element spriteXRegs_59_REG_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14591]
+WARNING: [Synth 8-6014] Unused sequential element spriteYRegs_59_REG_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14592]
+WARNING: [Synth 8-6014] Unused sequential element spriteXRegs_60_REG_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14593]
+WARNING: [Synth 8-6014] Unused sequential element spriteYRegs_60_REG_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14594]
+WARNING: [Synth 8-6014] Unused sequential element spriteXRegs_58_REG_2_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14563]
+WARNING: [Synth 8-6014] Unused sequential element spriteYRegs_58_REG_2_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14564]
+WARNING: [Synth 8-6014] Unused sequential element spriteXRegs_59_REG_2_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14565]
+WARNING: [Synth 8-6014] Unused sequential element spriteYRegs_59_REG_2_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14566]
+WARNING: [Synth 8-6014] Unused sequential element spriteXRegs_60_REG_2_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14567]
+WARNING: [Synth 8-6014] Unused sequential element spriteYRegs_60_REG_2_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14568]
 WARNING: [Synth 8-3917] design Top has port io_led_0 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_1 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_2 driven by constant 0
@@ -777,18 +777,18 @@ WARNING: [Synth 8-7129] Port io_sw_5 in module Top is either unconnected or has 
 WARNING: [Synth 8-7129] Port io_sw_6 in module Top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_sw_7 in module Top is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1689.250 ; gain = 749.703
+Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1687.676 ; gain = 748.508
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1689.250 ; gain = 749.703
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1687.676 ; gain = 748.508
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1689.250 ; gain = 749.703
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1687.676 ; gain = 748.508
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.352 . Memory (MB): peak = 1689.250 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.190 . Memory (MB): peak = 1687.676 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -799,32 +799,33 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/Top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1786.500 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1775.852 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.091 . Memory (MB): peak = 1786.500 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.048 . Memory (MB): peak = 1775.852 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:40 ; elapsed = 00:00:43 . Memory (MB): peak = 1786.500 ; gain = 846.953
+Finished Constraint Validation : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1775.852 ; gain = 836.684
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:40 ; elapsed = 00:00:43 . Memory (MB): peak = 1786.500 ; gain = 846.953
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1775.852 ; gain = 836.684
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:40 ; elapsed = 00:00:43 . Memory (MB): peak = 1786.500 ; gain = 846.953
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1775.852 ; gain = 836.684
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'stateReg_reg' in module 'GameLogic'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
                   iSTATE |                              000 |                              000
+                 iSTATE0 |                              110 |                              001
                  iSTATE1 |                              101 |                              010
                  iSTATE3 |                              100 |                              011
                  iSTATE2 |                              011 |                              100
@@ -834,7 +835,7 @@ INFO: [Synth 8-802] inferred FSM for state register 'stateReg_reg' in module 'Ga
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'stateReg_reg' using encoding 'sequential' in module 'GameLogic'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:46 ; elapsed = 00:00:50 . Memory (MB): peak = 1786.500 ; gain = 846.953
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:27 ; elapsed = 00:00:30 . Memory (MB): peak = 1775.852 ; gain = 836.684
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -855,7 +856,7 @@ Detailed RTL Component Info :
 +---Registers : 
 	               64 Bit    Registers := 1     
 	               28 Bit    Registers := 2     
-	               18 Bit    Registers := 1     
+	               20 Bit    Registers := 1     
 	               12 Bit    Registers := 4     
 	               11 Bit    Registers := 107   
 	               10 Bit    Registers := 137   
@@ -872,34 +873,37 @@ Detailed RTL Component Info :
 	               7K Bit	(1024 X 7 bit)          RAMs := 128   
 	               7K Bit	(256 X 28 bit)          RAMs := 2     
 +---Muxes : 
-	   2 Input   21 Bit        Muxes := 1     
+	   2 Input   23 Bit        Muxes := 1     
 	   2 Input   11 Bit        Muxes := 134   
-	   3 Input   11 Bit        Muxes := 40    
-	   6 Input   11 Bit        Muxes := 1     
+	   3 Input   11 Bit        Muxes := 104   
+	   7 Input   11 Bit        Muxes := 1     
 	   2 Input   10 Bit        Muxes := 84    
 	   4 Input   10 Bit        Muxes := 1     
-	   5 Input   10 Bit        Muxes := 2     
-	   3 Input   10 Bit        Muxes := 5     
+	   6 Input   10 Bit        Muxes := 2     
+	   3 Input   10 Bit        Muxes := 39    
 	   2 Input    9 Bit        Muxes := 14    
 	   3 Input    9 Bit        Muxes := 1     
 	   4 Input    9 Bit        Muxes := 2     
-	   2 Input    8 Bit        Muxes := 33    
+	   2 Input    8 Bit        Muxes := 32    
 	   4 Input    8 Bit        Muxes := 2     
-	   3 Input    8 Bit        Muxes := 1     
+	   3 Input    8 Bit        Muxes := 2     
 	   2 Input    7 Bit        Muxes := 20    
 	   2 Input    6 Bit        Muxes := 78    
-	   3 Input    5 Bit        Muxes := 66    
+	   3 Input    6 Bit        Muxes := 1     
+	   3 Input    5 Bit        Muxes := 96    
 	   2 Input    5 Bit        Muxes := 61    
-	   2 Input    3 Bit        Muxes := 5     
+	   2 Input    3 Bit        Muxes := 4     
 	   4 Input    3 Bit        Muxes := 1     
-	  15 Input    3 Bit        Muxes := 1     
+	   3 Input    3 Bit        Muxes := 1     
+	  18 Input    3 Bit        Muxes := 1     
 	   2 Input    2 Bit        Muxes := 15    
-	   3 Input    2 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 269   
-	   3 Input    1 Bit        Muxes := 127   
-	   4 Input    1 Bit        Muxes := 10    
-	   5 Input    1 Bit        Muxes := 1     
-	   6 Input    1 Bit        Muxes := 4     
+	   3 Input    2 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 288   
+	   3 Input    1 Bit        Muxes := 180   
+	   4 Input    1 Bit        Muxes := 9     
+	   5 Input    1 Bit        Muxes := 2     
+	   6 Input    1 Bit        Muxes := 2     
+	   7 Input    1 Bit        Muxes := 3     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -945,7 +949,7 @@ WARNING: [Synth 8-6014] Unused sequential element backTileMemories_57/ramsSpWf/R
 WARNING: [Synth 8-7257] Removed RAM (backTileMemories_58/ramsSpWf/RAM_reg) due to inactive write enable.
 WARNING: [Synth 8-6014] Unused sequential element backTileMemories_58/ramsSpWf/RAM_reg was removed. 
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:59 ; elapsed = 00:01:04 . Memory (MB): peak = 1786.500 ; gain = 846.953
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:51 ; elapsed = 00:00:53 . Memory (MB): peak = 1775.852 ; gain = 836.684
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-5835] Resources of type BRAM have been overutilized. Used = 126, Available = 100. Will try to implement using LUT-RAM. 
 ---------------------------------------------------------------------------------
@@ -1100,13 +1104,13 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:06 ; elapsed = 00:01:11 . Memory (MB): peak = 1786.500 ; gain = 846.953
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:57 ; elapsed = 00:01:00 . Memory (MB): peak = 1775.852 ; gain = 836.684
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:09 ; elapsed = 00:01:14 . Memory (MB): peak = 1786.500 ; gain = 846.953
+Finished Timing Optimization : Time (s): cpu = 00:01:06 ; elapsed = 00:01:09 . Memory (MB): peak = 1775.852 ; gain = 836.684
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1264,7 +1268,7 @@ INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemorie
 INFO: [Synth 8-7052] The timing for the instance gameTop/graphicEngineVGA/backBufferShadowMemory/ramsSpWf/RAM_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance gameTop/graphicEngineVGA/backBufferRestoreMemory/ramsSpWf/RAM_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:10 ; elapsed = 00:01:16 . Memory (MB): peak = 1786.500 ; gain = 846.953
+Finished Technology Mapping : Time (s): cpu = 00:01:10 ; elapsed = 00:01:13 . Memory (MB): peak = 1775.852 ; gain = 836.684
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -1282,37 +1286,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:15 ; elapsed = 00:01:20 . Memory (MB): peak = 1786.500 ; gain = 846.953
+Finished IO Insertion : Time (s): cpu = 00:01:14 ; elapsed = 00:01:18 . Memory (MB): peak = 1775.852 ; gain = 836.684
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:15 ; elapsed = 00:01:20 . Memory (MB): peak = 1786.500 ; gain = 846.953
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:14 ; elapsed = 00:01:18 . Memory (MB): peak = 1775.852 ; gain = 836.684
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:16 ; elapsed = 00:01:21 . Memory (MB): peak = 1786.500 ; gain = 846.953
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:16 ; elapsed = 00:01:20 . Memory (MB): peak = 1775.852 ; gain = 836.684
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:16 ; elapsed = 00:01:21 . Memory (MB): peak = 1786.500 ; gain = 846.953
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:16 ; elapsed = 00:01:20 . Memory (MB): peak = 1775.852 ; gain = 836.684
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:16 ; elapsed = 00:01:21 . Memory (MB): peak = 1786.500 ; gain = 846.953
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:16 ; elapsed = 00:01:20 . Memory (MB): peak = 1775.852 ; gain = 836.684
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:16 ; elapsed = 00:01:21 . Memory (MB): peak = 1786.500 ; gain = 846.953
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:16 ; elapsed = 00:01:20 . Memory (MB): peak = 1775.852 ; gain = 836.684
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1325,6 +1329,9 @@ Static Shift Register Report:
 |Top         | gameTop/graphicEngineVGA/pixelColourVGA_pipeReg_0_reg | 3      | 1     | NO           | NO                 | YES               | 1      | 0       | 
 |Top         | gameTop/graphicEngineVGA/io_Hsync_pipeReg_0_reg       | 4      | 1     | NO           | NO                 | YES               | 1      | 0       | 
 |Top         | gameTop/graphicEngineVGA/io_Vsync_pipeReg_0_reg       | 4      | 1     | NO           | NO                 | YES               | 1      | 0       | 
+|Top         | gameTop/gameLogic/lfsr/history_9_reg[8]               | 11     | 5     | YES          | NO                 | YES               | 5      | 0       | 
+|Top         | gameTop/gameLogic/lfsr/history_9_reg[2]               | 9      | 1     | YES          | NO                 | YES               | 1      | 0       | 
+|Top         | gameTop/gameLogic/lfsr/reg__reg[34]                   | 4      | 3     | YES          | NO                 | YES               | 3      | 0       | 
 +------------+-------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 
 ---------------------------------------------------------------------------------
@@ -1345,46 +1352,46 @@ Report Cell Usage:
 |      |Cell      |Count |
 +------+----------+------+
 |1     |BUFG      |     1|
-|2     |CARRY4    |   430|
-|3     |LUT1      |   969|
-|4     |LUT2      |   635|
-|5     |LUT3      |    90|
-|6     |LUT4      |   163|
-|7     |LUT5      |   382|
-|8     |LUT6      |   446|
-|9     |MUXF7     |   122|
-|10    |MUXF8     |    24|
+|2     |CARRY4    |  1068|
+|3     |LUT1      |  1076|
+|4     |LUT2      |  1846|
+|5     |LUT3      |   968|
+|6     |LUT4      |   516|
+|7     |LUT5      |   838|
+|8     |LUT6      |  1113|
+|9     |MUXF7     |   158|
+|10    |MUXF8     |    36|
 |11    |RAM256X1S |   728|
 |12    |RAMB18E1  |    73|
-|67    |SRL16E    |     3|
-|68    |FDRE      |  1197|
-|69    |FDSE      |    42|
+|67    |SRL16E    |    12|
+|68    |FDRE      |  2962|
+|69    |FDSE      |    43|
 |70    |IBUF      |     7|
 |71    |OBUF      |    26|
 +------+----------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:16 ; elapsed = 00:01:21 . Memory (MB): peak = 1786.500 ; gain = 846.953
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:16 ; elapsed = 00:01:20 . Memory (MB): peak = 1775.852 ; gain = 836.684
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 30 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:49 ; elapsed = 00:01:12 . Memory (MB): peak = 1786.500 ; gain = 749.703
-Synthesis Optimization Complete : Time (s): cpu = 00:01:16 ; elapsed = 00:01:21 . Memory (MB): peak = 1786.500 ; gain = 846.953
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:01 ; elapsed = 00:01:16 . Memory (MB): peak = 1775.852 ; gain = 748.508
+Synthesis Optimization Complete : Time (s): cpu = 00:01:16 ; elapsed = 00:01:20 . Memory (MB): peak = 1775.852 ; gain = 836.684
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.087 . Memory (MB): peak = 1786.500 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 1377 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.133 . Memory (MB): peak = 1775.852 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 2063 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1786.500 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1775.852 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 728 instances were transformed.
   RAM256X1S => RAM256X1S (MUXF7(x2), MUXF8, RAMS64E(x4)): 728 instances
 
-Synth Design complete | Checksum: 48f8892c
+Synth Design complete | Checksum: 2d69927d
 INFO: [Common 17-83] Releasing license: Synthesis
 327 Infos, 73 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:24 ; elapsed = 00:01:30 . Memory (MB): peak = 1786.500 ; gain = 1246.707
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.031 . Memory (MB): peak = 1786.500 ; gain = 0.000
+synth_design: Time (s): cpu = 00:01:25 ; elapsed = 00:01:30 . Memory (MB): peak = 1775.852 ; gain = 1237.004
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.032 . Memory (MB): peak = 1775.852 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/DTU-local/Repos/02113DigitalSystemsDesign/vivado/Basys3Game/Basys3Game.runs/synth_1/Top.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file Top_utilization_synth.rpt -pb Top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Jun 23 19:05:12 2025...
+INFO: [Common 17-206] Exiting Vivado at Mon Jun 23 19:29:05 2025...
