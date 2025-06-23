@@ -12156,21 +12156,23 @@ module Difficulty(
   wire  tick = frameDivider == 27'h196e6a; // @[\\src\\main\\scala\\Difficulty.scala 23:21]
   wire [26:0] _frameDivider_T_1 = frameDivider + 27'h1; // @[\\src\\main\\scala\\Difficulty.scala 27:34]
   wire [26:0] _speedCnt_T_1 = speedCnt + 27'h1; // @[\\src\\main\\scala\\Difficulty.scala 34:26]
-  wire [21:0] timeInSeconds = speedCnt[26:5]; // @[\\src\\main\\scala\\Difficulty.scala 39:32]
+  wire [22:0] timeInSeconds = speedCnt[26:4]; // @[\\src\\main\\scala\\Difficulty.scala 39:32]
+  wire  _speedFactor_T = 2'h1 == io_level; // @[\\src\\main\\scala\\Difficulty.scala 42:45]
   wire [1:0] _speedFactor_T_1 = 2'h1 == io_level ? $signed(2'sh1) : $signed(2'sh0); // @[\\src\\main\\scala\\Difficulty.scala 42:45]
   wire  _speedFactor_T_2 = 2'h2 == io_level; // @[\\src\\main\\scala\\Difficulty.scala 42:45]
   wire [1:0] _speedFactor_T_3 = 2'h2 == io_level ? $signed(2'sh1) : $signed(_speedFactor_T_1); // @[\\src\\main\\scala\\Difficulty.scala 42:45]
   wire  _speedFactor_T_4 = 2'h3 == io_level; // @[\\src\\main\\scala\\Difficulty.scala 42:45]
   wire [2:0] speedFactor = 2'h3 == io_level ? $signed(3'sh2) : $signed({{1{_speedFactor_T_3[1]}},_speedFactor_T_3}); // @[\\src\\main\\scala\\Difficulty.scala 42:45]
-  wire [17:0] _rawSpeed_T = timeInSeconds[21:4]; // @[\\src\\main\\scala\\Difficulty.scala 47:36]
-  wire [20:0] _rawSpeed_T_1 = $signed(_rawSpeed_T) * $signed(speedFactor); // @[\\src\\main\\scala\\Difficulty.scala 47:43]
-  wire [20:0] rawSpeed = 21'sh1 + $signed(_rawSpeed_T_1); // @[\\src\\main\\scala\\Difficulty.scala 47:22]
-  wire [4:0] _speedCap_T_3 = _speedFactor_T_2 ? $signed(5'shf) : $signed(5'sha); // @[\\src\\main\\scala\\Difficulty.scala 49:43]
-  wire [5:0] speedCap = _speedFactor_T_4 ? $signed(6'sh14) : $signed({{1{_speedCap_T_3[4]}},_speedCap_T_3}); // @[\\src\\main\\scala\\Difficulty.scala 49:43]
-  wire [20:0] _GEN_4 = {{15{speedCap[5]}},speedCap}; // @[\\src\\main\\scala\\Difficulty.scala 54:28]
-  wire [20:0] _io_speed_T_1 = $signed(rawSpeed) > $signed(_GEN_4) ? $signed({{15{speedCap[5]}},speedCap}) : $signed(
+  wire [19:0] _rawSpeed_T = timeInSeconds[22:3]; // @[\\src\\main\\scala\\Difficulty.scala 47:36]
+  wire [22:0] _rawSpeed_T_1 = $signed(_rawSpeed_T) * $signed(speedFactor); // @[\\src\\main\\scala\\Difficulty.scala 47:43]
+  wire [22:0] rawSpeed = 23'sh1 + $signed(_rawSpeed_T_1); // @[\\src\\main\\scala\\Difficulty.scala 47:22]
+  wire [4:0] _speedCap_T_1 = _speedFactor_T ? $signed(5'shc) : $signed(5'sha); // @[\\src\\main\\scala\\Difficulty.scala 49:43]
+  wire [5:0] _speedCap_T_3 = _speedFactor_T_2 ? $signed(6'sh10) : $signed({{1{_speedCap_T_1[4]}},_speedCap_T_1}); // @[\\src\\main\\scala\\Difficulty.scala 49:43]
+  wire [5:0] speedCap = _speedFactor_T_4 ? $signed(6'sh16) : $signed(_speedCap_T_3); // @[\\src\\main\\scala\\Difficulty.scala 49:43]
+  wire [22:0] _GEN_4 = {{17{speedCap[5]}},speedCap}; // @[\\src\\main\\scala\\Difficulty.scala 54:28]
+  wire [22:0] _io_speed_T_1 = $signed(rawSpeed) > $signed(_GEN_4) ? $signed({{17{speedCap[5]}},speedCap}) : $signed(
     rawSpeed); // @[\\src\\main\\scala\\Difficulty.scala 54:18]
-  assign io_speed = {{6{_io_speed_T_1[20]}},_io_speed_T_1}; // @[\\src\\main\\scala\\Difficulty.scala 54:12]
+  assign io_speed = {{4{_io_speed_T_1[22]}},_io_speed_T_1}; // @[\\src\\main\\scala\\Difficulty.scala 54:12]
   always @(posedge clock) begin
     if (reset) begin // @[\\src\\main\\scala\\Difficulty.scala 13:25]
       speedCnt <= 27'h0; // @[\\src\\main\\scala\\Difficulty.scala 13:25]
@@ -13435,1444 +13437,1446 @@ module GameLogic(
   wire  _GEN_123 = lvlReg != 2'h0 & _GEN_120; // @[\\src\\main\\scala\\GameLogic.scala 253:24 272:27]
   wire  _GEN_124 = lvlReg != 2'h0 & _GEN_121; // @[\\src\\main\\scala\\GameLogic.scala 253:24 273:27]
   wire  _GEN_125 = lvlReg != 2'h0 & _difficulty_io_resetSpeed_T_1; // @[\\src\\main\\scala\\GameLogic.scala 253:24 274:27]
-  wire  _GEN_137 = gameOverReturnPressed | _GEN_114; // @[\\src\\main\\scala\\GameLogic.scala 293:25 339:37]
-  wire  _GEN_138 = gameOverReturnPressed | spriteVisibleRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 296:26 125:34 339:37]
-  wire  _GEN_195 = io_newFrame ? _GEN_137 : _GEN_114; // @[\\src\\main\\scala\\GameLogic.scala 338:25]
-  wire [9:0] _spriteYRegs_16_T_2 = 10'h64 + lfsr_io_out_0; // @[\\src\\main\\scala\\GameLogic.scala 365:63]
-  wire [26:0] _GEN_128 = {{16{spriteXRegs_16[10]}},spriteXRegs_16}; // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _spriteXRegs_16_T_2 = $signed(_GEN_128) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _GEN_242 = spriteVisibleRegs_16 ? $signed(_spriteXRegs_16_T_2) : $signed({{16{_GEN_18[10]}},_GEN_18}); // @[\\src\\main\\scala\\GameLogic.scala 369:44 370:28]
-  wire [26:0] _GEN_243 = $signed(spriteXRegs_16) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_242); // @[\\src\\main\\scala\\GameLogic.scala 363:41 364:28]
-  wire [9:0] _GEN_244 = $signed(spriteXRegs_16) >= 11'sh280 ? $signed(_spriteYRegs_16_T_2) : $signed(_GEN_19); // @[\\src\\main\\scala\\GameLogic.scala 363:41 365:28]
-  wire  _GEN_245 = $signed(spriteXRegs_16) >= 11'sh280 ? lfsr_io_out_10[0] : spriteScaleTypeRegs_0; // @[\\src\\main\\scala\\GameLogic.scala 126:36 363:41 367:40]
-  wire  _GEN_246 = ~spriteScaleTypeRegs_0 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 374:52 375:43 378:43]
-  wire [9:0] _spriteYRegs_17_T_2 = 10'h64 + lfsr_io_out_1; // @[\\src\\main\\scala\\GameLogic.scala 365:63]
-  wire [26:0] _GEN_186 = {{16{spriteXRegs_17[10]}},spriteXRegs_17}; // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _spriteXRegs_17_T_2 = $signed(_GEN_186) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _GEN_247 = spriteVisibleRegs_17 ? $signed(_spriteXRegs_17_T_2) : $signed({{16{_GEN_20[10]}},_GEN_20}); // @[\\src\\main\\scala\\GameLogic.scala 369:44 370:28]
-  wire [26:0] _GEN_248 = $signed(spriteXRegs_17) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_247); // @[\\src\\main\\scala\\GameLogic.scala 363:41 364:28]
-  wire [9:0] _GEN_249 = $signed(spriteXRegs_17) >= 11'sh280 ? $signed(_spriteYRegs_17_T_2) : $signed(_GEN_21); // @[\\src\\main\\scala\\GameLogic.scala 363:41 365:28]
-  wire  _GEN_250 = $signed(spriteXRegs_17) >= 11'sh280 ? lfsr_io_out_11[0] : spriteScaleTypeRegs_1; // @[\\src\\main\\scala\\GameLogic.scala 126:36 363:41 367:40]
-  wire  _GEN_251 = ~spriteScaleTypeRegs_1 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 374:52 375:43 378:43]
-  wire [9:0] _spriteYRegs_18_T_2 = 10'h64 + lfsr_io_out_2; // @[\\src\\main\\scala\\GameLogic.scala 365:63]
-  wire [26:0] _GEN_532 = {{16{spriteXRegs_18[10]}},spriteXRegs_18}; // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _spriteXRegs_18_T_2 = $signed(_GEN_532) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _GEN_252 = spriteVisibleRegs_18 ? $signed(_spriteXRegs_18_T_2) : $signed({{16{_GEN_22[10]}},_GEN_22}); // @[\\src\\main\\scala\\GameLogic.scala 369:44 370:28]
-  wire [26:0] _GEN_253 = $signed(spriteXRegs_18) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_252); // @[\\src\\main\\scala\\GameLogic.scala 363:41 364:28]
-  wire [9:0] _GEN_254 = $signed(spriteXRegs_18) >= 11'sh280 ? $signed(_spriteYRegs_18_T_2) : $signed(_GEN_23); // @[\\src\\main\\scala\\GameLogic.scala 363:41 365:28]
-  wire  _GEN_255 = $signed(spriteXRegs_18) >= 11'sh280 ? lfsr_io_out_12[0] : spriteScaleTypeRegs_2; // @[\\src\\main\\scala\\GameLogic.scala 126:36 363:41 367:40]
-  wire  _GEN_256 = ~spriteScaleTypeRegs_2 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 374:52 375:43 378:43]
-  wire [9:0] _spriteYRegs_19_T_2 = 10'h64 + lfsr_io_out_3; // @[\\src\\main\\scala\\GameLogic.scala 365:63]
-  wire [26:0] _GEN_533 = {{16{spriteXRegs_19[10]}},spriteXRegs_19}; // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _spriteXRegs_19_T_2 = $signed(_GEN_533) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _GEN_257 = spriteVisibleRegs_19 ? $signed(_spriteXRegs_19_T_2) : $signed({{16{_GEN_24[10]}},_GEN_24}); // @[\\src\\main\\scala\\GameLogic.scala 369:44 370:28]
-  wire [26:0] _GEN_258 = $signed(spriteXRegs_19) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_257); // @[\\src\\main\\scala\\GameLogic.scala 363:41 364:28]
-  wire [9:0] _GEN_259 = $signed(spriteXRegs_19) >= 11'sh280 ? $signed(_spriteYRegs_19_T_2) : $signed(_GEN_25); // @[\\src\\main\\scala\\GameLogic.scala 363:41 365:28]
-  wire  _GEN_260 = $signed(spriteXRegs_19) >= 11'sh280 ? lfsr_io_out_13[0] : spriteScaleTypeRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 126:36 363:41 367:40]
-  wire  _GEN_261 = ~spriteScaleTypeRegs_3 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 374:52 375:43 378:43]
-  wire [9:0] _spriteYRegs_20_T_2 = 10'h64 + lfsr_io_out_4; // @[\\src\\main\\scala\\GameLogic.scala 365:63]
-  wire [26:0] _GEN_534 = {{16{spriteXRegs_20[10]}},spriteXRegs_20}; // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _spriteXRegs_20_T_2 = $signed(_GEN_534) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _GEN_262 = spriteVisibleRegs_20 ? $signed(_spriteXRegs_20_T_2) : $signed({{16{_GEN_26[10]}},_GEN_26}); // @[\\src\\main\\scala\\GameLogic.scala 369:44 370:28]
-  wire [26:0] _GEN_263 = $signed(spriteXRegs_20) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_262); // @[\\src\\main\\scala\\GameLogic.scala 363:41 364:28]
-  wire [9:0] _GEN_264 = $signed(spriteXRegs_20) >= 11'sh280 ? $signed(_spriteYRegs_20_T_2) : $signed(_GEN_27); // @[\\src\\main\\scala\\GameLogic.scala 363:41 365:28]
-  wire  _GEN_265 = $signed(spriteXRegs_20) >= 11'sh280 ? lfsr_io_out_14[0] : spriteScaleTypeRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 126:36 363:41 367:40]
-  wire  _GEN_266 = ~spriteScaleTypeRegs_4 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 374:52 375:43 378:43]
-  wire [9:0] _spriteYRegs_21_T_2 = 10'h64 + lfsr_io_out_5; // @[\\src\\main\\scala\\GameLogic.scala 365:63]
-  wire [26:0] _GEN_590 = {{16{spriteXRegs_21[10]}},spriteXRegs_21}; // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _spriteXRegs_21_T_2 = $signed(_GEN_590) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _GEN_267 = spriteVisibleRegs_21 ? $signed(_spriteXRegs_21_T_2) : $signed({{16{_GEN_28[10]}},_GEN_28}); // @[\\src\\main\\scala\\GameLogic.scala 369:44 370:28]
-  wire [26:0] _GEN_268 = $signed(spriteXRegs_21) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_267); // @[\\src\\main\\scala\\GameLogic.scala 363:41 364:28]
-  wire [9:0] _GEN_269 = $signed(spriteXRegs_21) >= 11'sh280 ? $signed(_spriteYRegs_21_T_2) : $signed(_GEN_29); // @[\\src\\main\\scala\\GameLogic.scala 363:41 365:28]
-  wire  _GEN_270 = $signed(spriteXRegs_21) >= 11'sh280 ? lfsr_io_out_15[0] : spriteScaleTypeRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 126:36 363:41 367:40]
-  wire  _GEN_271 = ~spriteScaleTypeRegs_5 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 374:52 375:43 378:43]
-  wire [9:0] _spriteYRegs_22_T_2 = 10'h64 + lfsr_io_out_6; // @[\\src\\main\\scala\\GameLogic.scala 365:63]
-  wire [26:0] _GEN_591 = {{16{spriteXRegs_22[10]}},spriteXRegs_22}; // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _spriteXRegs_22_T_2 = $signed(_GEN_591) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _GEN_272 = spriteVisibleRegs_22 ? $signed(_spriteXRegs_22_T_2) : $signed({{16{_GEN_30[10]}},_GEN_30}); // @[\\src\\main\\scala\\GameLogic.scala 369:44 370:28]
-  wire [26:0] _GEN_273 = $signed(spriteXRegs_22) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_272); // @[\\src\\main\\scala\\GameLogic.scala 363:41 364:28]
-  wire [9:0] _GEN_274 = $signed(spriteXRegs_22) >= 11'sh280 ? $signed(_spriteYRegs_22_T_2) : $signed(_GEN_31); // @[\\src\\main\\scala\\GameLogic.scala 363:41 365:28]
-  wire  _GEN_275 = $signed(spriteXRegs_22) >= 11'sh280 ? lfsr_io_out_16[0] : spriteScaleTypeRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 126:36 363:41 367:40]
-  wire  _GEN_276 = ~spriteScaleTypeRegs_6 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 374:52 375:43 378:43]
-  wire [9:0] _spriteYRegs_23_T_2 = 10'h64 + lfsr_io_out_7; // @[\\src\\main\\scala\\GameLogic.scala 365:63]
-  wire [26:0] _GEN_592 = {{16{spriteXRegs_23[10]}},spriteXRegs_23}; // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _spriteXRegs_23_T_2 = $signed(_GEN_592) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _GEN_277 = spriteVisibleRegs_23 ? $signed(_spriteXRegs_23_T_2) : $signed({{16{_GEN_32[10]}},_GEN_32}); // @[\\src\\main\\scala\\GameLogic.scala 369:44 370:28]
-  wire [26:0] _GEN_278 = $signed(spriteXRegs_23) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_277); // @[\\src\\main\\scala\\GameLogic.scala 363:41 364:28]
-  wire [9:0] _GEN_279 = $signed(spriteXRegs_23) >= 11'sh280 ? $signed(_spriteYRegs_23_T_2) : $signed(_GEN_33); // @[\\src\\main\\scala\\GameLogic.scala 363:41 365:28]
-  wire  _GEN_280 = $signed(spriteXRegs_23) >= 11'sh280 ? lfsr_io_out_17[0] : spriteScaleTypeRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 126:36 363:41 367:40]
-  wire  _GEN_281 = ~spriteScaleTypeRegs_7 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 374:52 375:43 378:43]
-  wire [9:0] _spriteYRegs_24_T_2 = 10'h64 + lfsr_io_out_8; // @[\\src\\main\\scala\\GameLogic.scala 365:63]
-  wire [26:0] _GEN_597 = {{16{spriteXRegs_24[10]}},spriteXRegs_24}; // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _spriteXRegs_24_T_2 = $signed(_GEN_597) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _GEN_282 = spriteVisibleRegs_24 ? $signed(_spriteXRegs_24_T_2) : $signed({{16{_GEN_34[10]}},_GEN_34}); // @[\\src\\main\\scala\\GameLogic.scala 369:44 370:28]
-  wire [26:0] _GEN_283 = $signed(spriteXRegs_24) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_282); // @[\\src\\main\\scala\\GameLogic.scala 363:41 364:28]
-  wire [9:0] _GEN_284 = $signed(spriteXRegs_24) >= 11'sh280 ? $signed(_spriteYRegs_24_T_2) : $signed(_GEN_35); // @[\\src\\main\\scala\\GameLogic.scala 363:41 365:28]
-  wire  _GEN_285 = $signed(spriteXRegs_24) >= 11'sh280 ? lfsr_io_out_18[0] : spriteScaleTypeRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 126:36 363:41 367:40]
-  wire  _GEN_286 = ~spriteScaleTypeRegs_8 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 374:52 375:43 378:43]
-  wire [9:0] _spriteYRegs_25_T_2 = 10'h64 + lfsr_io_out_9; // @[\\src\\main\\scala\\GameLogic.scala 365:63]
-  wire [26:0] _GEN_598 = {{16{spriteXRegs_25[10]}},spriteXRegs_25}; // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _spriteXRegs_25_T_2 = $signed(_GEN_598) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 370:46]
-  wire [26:0] _GEN_287 = spriteVisibleRegs_25 ? $signed(_spriteXRegs_25_T_2) : $signed({{16{_GEN_36[10]}},_GEN_36}); // @[\\src\\main\\scala\\GameLogic.scala 369:44 370:28]
-  wire [26:0] _GEN_288 = $signed(spriteXRegs_25) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_287); // @[\\src\\main\\scala\\GameLogic.scala 363:41 364:28]
-  wire [9:0] _GEN_289 = $signed(spriteXRegs_25) >= 11'sh280 ? $signed(_spriteYRegs_25_T_2) : $signed(_GEN_37); // @[\\src\\main\\scala\\GameLogic.scala 363:41 365:28]
-  wire  _GEN_290 = $signed(spriteXRegs_25) >= 11'sh280 ? lfsr_io_out_19[0] : spriteScaleTypeRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 126:36 363:41 367:40]
-  wire  _GEN_291 = ~spriteScaleTypeRegs_9 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 374:52 375:43 378:43]
-  wire [26:0] _GEN_599 = {{16{spriteXRegs_26[10]}},spriteXRegs_26}; // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _spriteXRegs_26_T_2 = $signed(_GEN_599) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _GEN_292 = spriteVisibleRegs_26 ? $signed(_spriteXRegs_26_T_2) : $signed({{16{_GEN_38[10]}},_GEN_38}); // @[\\src\\main\\scala\\GameLogic.scala 392:44 393:28]
-  wire [26:0] _GEN_293 = $signed(spriteXRegs_26) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_292); // @[\\src\\main\\scala\\GameLogic.scala 386:41 387:28]
-  wire [9:0] _GEN_294 = $signed(spriteXRegs_26) >= 11'sh280 ? $signed(_spriteYRegs_16_T_2) : $signed(_GEN_39); // @[\\src\\main\\scala\\GameLogic.scala 386:41 388:28]
-  wire  _GEN_295 = $signed(spriteXRegs_26) >= 11'sh280 ? lfsr_io_out_10[0] : _GEN_245; // @[\\src\\main\\scala\\GameLogic.scala 386:41 390:40]
-  wire [26:0] _GEN_655 = {{16{spriteXRegs_27[10]}},spriteXRegs_27}; // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _spriteXRegs_27_T_2 = $signed(_GEN_655) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _GEN_297 = spriteVisibleRegs_27 ? $signed(_spriteXRegs_27_T_2) : $signed({{16{_GEN_40[10]}},_GEN_40}); // @[\\src\\main\\scala\\GameLogic.scala 392:44 393:28]
-  wire [26:0] _GEN_298 = $signed(spriteXRegs_27) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_297); // @[\\src\\main\\scala\\GameLogic.scala 386:41 387:28]
-  wire [9:0] _GEN_299 = $signed(spriteXRegs_27) >= 11'sh280 ? $signed(_spriteYRegs_17_T_2) : $signed(_GEN_41); // @[\\src\\main\\scala\\GameLogic.scala 386:41 388:28]
-  wire  _GEN_300 = $signed(spriteXRegs_27) >= 11'sh280 ? lfsr_io_out_11[0] : _GEN_250; // @[\\src\\main\\scala\\GameLogic.scala 386:41 390:40]
-  wire [26:0] _GEN_656 = {{16{spriteXRegs_28[10]}},spriteXRegs_28}; // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _spriteXRegs_28_T_2 = $signed(_GEN_656) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _GEN_302 = spriteVisibleRegs_28 ? $signed(_spriteXRegs_28_T_2) : $signed({{16{_GEN_42[10]}},_GEN_42}); // @[\\src\\main\\scala\\GameLogic.scala 392:44 393:28]
-  wire [26:0] _GEN_303 = $signed(spriteXRegs_28) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_302); // @[\\src\\main\\scala\\GameLogic.scala 386:41 387:28]
-  wire [9:0] _GEN_304 = $signed(spriteXRegs_28) >= 11'sh280 ? $signed(_spriteYRegs_18_T_2) : $signed(_GEN_43); // @[\\src\\main\\scala\\GameLogic.scala 386:41 388:28]
-  wire  _GEN_305 = $signed(spriteXRegs_28) >= 11'sh280 ? lfsr_io_out_12[0] : _GEN_255; // @[\\src\\main\\scala\\GameLogic.scala 386:41 390:40]
-  wire [26:0] _GEN_657 = {{16{spriteXRegs_29[10]}},spriteXRegs_29}; // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _spriteXRegs_29_T_2 = $signed(_GEN_657) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _GEN_307 = spriteVisibleRegs_29 ? $signed(_spriteXRegs_29_T_2) : $signed({{16{_GEN_44[10]}},_GEN_44}); // @[\\src\\main\\scala\\GameLogic.scala 392:44 393:28]
-  wire [26:0] _GEN_308 = $signed(spriteXRegs_29) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_307); // @[\\src\\main\\scala\\GameLogic.scala 386:41 387:28]
-  wire [9:0] _GEN_309 = $signed(spriteXRegs_29) >= 11'sh280 ? $signed(_spriteYRegs_19_T_2) : $signed(_GEN_45); // @[\\src\\main\\scala\\GameLogic.scala 386:41 388:28]
-  wire  _GEN_310 = $signed(spriteXRegs_29) >= 11'sh280 ? lfsr_io_out_13[0] : _GEN_260; // @[\\src\\main\\scala\\GameLogic.scala 386:41 390:40]
-  wire [26:0] _GEN_663 = {{16{spriteXRegs_30[10]}},spriteXRegs_30}; // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _spriteXRegs_30_T_2 = $signed(_GEN_663) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _GEN_312 = spriteVisibleRegs_30 ? $signed(_spriteXRegs_30_T_2) : $signed({{16{_GEN_46[10]}},_GEN_46}); // @[\\src\\main\\scala\\GameLogic.scala 392:44 393:28]
-  wire [26:0] _GEN_313 = $signed(spriteXRegs_30) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_312); // @[\\src\\main\\scala\\GameLogic.scala 386:41 387:28]
-  wire [9:0] _GEN_314 = $signed(spriteXRegs_30) >= 11'sh280 ? $signed(_spriteYRegs_20_T_2) : $signed(_GEN_47); // @[\\src\\main\\scala\\GameLogic.scala 386:41 388:28]
-  wire  _GEN_315 = $signed(spriteXRegs_30) >= 11'sh280 ? lfsr_io_out_14[0] : _GEN_265; // @[\\src\\main\\scala\\GameLogic.scala 386:41 390:40]
-  wire [26:0] _GEN_664 = {{16{spriteXRegs_31[10]}},spriteXRegs_31}; // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _spriteXRegs_31_T_2 = $signed(_GEN_664) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _GEN_317 = spriteVisibleRegs_31 ? $signed(_spriteXRegs_31_T_2) : $signed({{16{_GEN_48[10]}},_GEN_48}); // @[\\src\\main\\scala\\GameLogic.scala 392:44 393:28]
-  wire [26:0] _GEN_318 = $signed(spriteXRegs_31) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_317); // @[\\src\\main\\scala\\GameLogic.scala 386:41 387:28]
-  wire [9:0] _GEN_319 = $signed(spriteXRegs_31) >= 11'sh280 ? $signed(_spriteYRegs_21_T_2) : $signed(_GEN_49); // @[\\src\\main\\scala\\GameLogic.scala 386:41 388:28]
-  wire  _GEN_320 = $signed(spriteXRegs_31) >= 11'sh280 ? lfsr_io_out_15[0] : _GEN_270; // @[\\src\\main\\scala\\GameLogic.scala 386:41 390:40]
-  wire [26:0] _GEN_665 = {{16{spriteXRegs_32[10]}},spriteXRegs_32}; // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _spriteXRegs_32_T_2 = $signed(_GEN_665) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _GEN_322 = spriteVisibleRegs_32 ? $signed(_spriteXRegs_32_T_2) : $signed({{16{_GEN_50[10]}},_GEN_50}); // @[\\src\\main\\scala\\GameLogic.scala 392:44 393:28]
-  wire [26:0] _GEN_323 = $signed(spriteXRegs_32) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_322); // @[\\src\\main\\scala\\GameLogic.scala 386:41 387:28]
-  wire [9:0] _GEN_324 = $signed(spriteXRegs_32) >= 11'sh280 ? $signed(_spriteYRegs_22_T_2) : $signed(_GEN_51); // @[\\src\\main\\scala\\GameLogic.scala 386:41 388:28]
-  wire  _GEN_325 = $signed(spriteXRegs_32) >= 11'sh280 ? lfsr_io_out_16[0] : _GEN_275; // @[\\src\\main\\scala\\GameLogic.scala 386:41 390:40]
-  wire [26:0] _GEN_721 = {{16{spriteXRegs_33[10]}},spriteXRegs_33}; // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _spriteXRegs_33_T_2 = $signed(_GEN_721) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _GEN_327 = spriteVisibleRegs_33 ? $signed(_spriteXRegs_33_T_2) : $signed({{16{_GEN_52[10]}},_GEN_52}); // @[\\src\\main\\scala\\GameLogic.scala 392:44 393:28]
-  wire [26:0] _GEN_328 = $signed(spriteXRegs_33) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_327); // @[\\src\\main\\scala\\GameLogic.scala 386:41 387:28]
-  wire [9:0] _GEN_329 = $signed(spriteXRegs_33) >= 11'sh280 ? $signed(_spriteYRegs_23_T_2) : $signed(_GEN_53); // @[\\src\\main\\scala\\GameLogic.scala 386:41 388:28]
-  wire  _GEN_330 = $signed(spriteXRegs_33) >= 11'sh280 ? lfsr_io_out_17[0] : _GEN_280; // @[\\src\\main\\scala\\GameLogic.scala 386:41 390:40]
-  wire [26:0] _GEN_722 = {{16{spriteXRegs_34[10]}},spriteXRegs_34}; // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _spriteXRegs_34_T_2 = $signed(_GEN_722) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _GEN_332 = spriteVisibleRegs_34 ? $signed(_spriteXRegs_34_T_2) : $signed({{16{_GEN_54[10]}},_GEN_54}); // @[\\src\\main\\scala\\GameLogic.scala 392:44 393:28]
-  wire [26:0] _GEN_333 = $signed(spriteXRegs_34) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_332); // @[\\src\\main\\scala\\GameLogic.scala 386:41 387:28]
-  wire [9:0] _GEN_334 = $signed(spriteXRegs_34) >= 11'sh280 ? $signed(_spriteYRegs_24_T_2) : $signed(_GEN_55); // @[\\src\\main\\scala\\GameLogic.scala 386:41 388:28]
-  wire  _GEN_335 = $signed(spriteXRegs_34) >= 11'sh280 ? lfsr_io_out_18[0] : _GEN_285; // @[\\src\\main\\scala\\GameLogic.scala 386:41 390:40]
-  wire [26:0] _GEN_723 = {{16{spriteXRegs_35[10]}},spriteXRegs_35}; // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _spriteXRegs_35_T_2 = $signed(_GEN_723) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 393:46]
-  wire [26:0] _GEN_337 = spriteVisibleRegs_35 ? $signed(_spriteXRegs_35_T_2) : $signed({{16{_GEN_56[10]}},_GEN_56}); // @[\\src\\main\\scala\\GameLogic.scala 392:44 393:28]
-  wire [26:0] _GEN_338 = $signed(spriteXRegs_35) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_337); // @[\\src\\main\\scala\\GameLogic.scala 386:41 387:28]
-  wire [9:0] _GEN_339 = $signed(spriteXRegs_35) >= 11'sh280 ? $signed(_spriteYRegs_25_T_2) : $signed(_GEN_57); // @[\\src\\main\\scala\\GameLogic.scala 386:41 388:28]
-  wire  _GEN_340 = $signed(spriteXRegs_35) >= 11'sh280 ? lfsr_io_out_19[0] : _GEN_290; // @[\\src\\main\\scala\\GameLogic.scala 386:41 390:40]
-  wire [9:0] _spriteYRegs_36_T_2 = 10'h64 + lfsr_io_out_20; // @[\\src\\main\\scala\\GameLogic.scala 411:63]
-  wire [26:0] _GEN_728 = {{16{spriteXRegs_36[10]}},spriteXRegs_36}; // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _spriteXRegs_36_T_2 = $signed(_GEN_728) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _GEN_342 = spriteVisibleRegs_36 ? $signed(_spriteXRegs_36_T_2) : $signed({{16{_GEN_58[10]}},_GEN_58}); // @[\\src\\main\\scala\\GameLogic.scala 416:44 417:28]
-  wire [26:0] _GEN_343 = $signed(spriteXRegs_36) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_342); // @[\\src\\main\\scala\\GameLogic.scala 409:41 410:28]
-  wire [9:0] _GEN_344 = $signed(spriteXRegs_36) >= 11'sh280 ? $signed(_spriteYRegs_36_T_2) : $signed(_GEN_59); // @[\\src\\main\\scala\\GameLogic.scala 409:41 411:28]
-  wire  _GEN_345 = $signed(spriteXRegs_36) >= 11'sh280 ? lfsr_io_out_10[0] : _GEN_295; // @[\\src\\main\\scala\\GameLogic.scala 409:41 414:40]
-  wire [9:0] _spriteYRegs_37_T_2 = 10'h64 + lfsr_io_out_21; // @[\\src\\main\\scala\\GameLogic.scala 411:63]
-  wire [26:0] _GEN_729 = {{16{spriteXRegs_37[10]}},spriteXRegs_37}; // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _spriteXRegs_37_T_2 = $signed(_GEN_729) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _GEN_347 = spriteVisibleRegs_37 ? $signed(_spriteXRegs_37_T_2) : $signed({{16{_GEN_60[10]}},_GEN_60}); // @[\\src\\main\\scala\\GameLogic.scala 416:44 417:28]
-  wire [26:0] _GEN_348 = $signed(spriteXRegs_37) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_347); // @[\\src\\main\\scala\\GameLogic.scala 409:41 410:28]
-  wire [9:0] _GEN_349 = $signed(spriteXRegs_37) >= 11'sh280 ? $signed(_spriteYRegs_37_T_2) : $signed(_GEN_61); // @[\\src\\main\\scala\\GameLogic.scala 409:41 411:28]
-  wire  _GEN_350 = $signed(spriteXRegs_37) >= 11'sh280 ? lfsr_io_out_11[0] : _GEN_300; // @[\\src\\main\\scala\\GameLogic.scala 409:41 414:40]
-  wire [9:0] _spriteYRegs_38_T_2 = 10'h64 + lfsr_io_out_22; // @[\\src\\main\\scala\\GameLogic.scala 411:63]
-  wire [26:0] _GEN_730 = {{16{spriteXRegs_38[10]}},spriteXRegs_38}; // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _spriteXRegs_38_T_2 = $signed(_GEN_730) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _GEN_352 = spriteVisibleRegs_38 ? $signed(_spriteXRegs_38_T_2) : $signed({{16{_GEN_62[10]}},_GEN_62}); // @[\\src\\main\\scala\\GameLogic.scala 416:44 417:28]
-  wire [26:0] _GEN_353 = $signed(spriteXRegs_38) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_352); // @[\\src\\main\\scala\\GameLogic.scala 409:41 410:28]
-  wire [9:0] _GEN_354 = $signed(spriteXRegs_38) >= 11'sh280 ? $signed(_spriteYRegs_38_T_2) : $signed(_GEN_63); // @[\\src\\main\\scala\\GameLogic.scala 409:41 411:28]
-  wire  _GEN_355 = $signed(spriteXRegs_38) >= 11'sh280 ? lfsr_io_out_12[0] : _GEN_305; // @[\\src\\main\\scala\\GameLogic.scala 409:41 414:40]
-  wire [9:0] _spriteYRegs_39_T_2 = 10'h64 + lfsr_io_out_23; // @[\\src\\main\\scala\\GameLogic.scala 411:63]
-  wire [26:0] _GEN_786 = {{16{spriteXRegs_39[10]}},spriteXRegs_39}; // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _spriteXRegs_39_T_2 = $signed(_GEN_786) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _GEN_357 = spriteVisibleRegs_39 ? $signed(_spriteXRegs_39_T_2) : $signed({{16{_GEN_64[10]}},_GEN_64}); // @[\\src\\main\\scala\\GameLogic.scala 416:44 417:28]
-  wire [26:0] _GEN_358 = $signed(spriteXRegs_39) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_357); // @[\\src\\main\\scala\\GameLogic.scala 409:41 410:28]
-  wire [9:0] _GEN_359 = $signed(spriteXRegs_39) >= 11'sh280 ? $signed(_spriteYRegs_39_T_2) : $signed(_GEN_65); // @[\\src\\main\\scala\\GameLogic.scala 409:41 411:28]
-  wire  _GEN_360 = $signed(spriteXRegs_39) >= 11'sh280 ? lfsr_io_out_13[0] : _GEN_310; // @[\\src\\main\\scala\\GameLogic.scala 409:41 414:40]
-  wire [9:0] _spriteYRegs_40_T_2 = 10'h64 + lfsr_io_out_24; // @[\\src\\main\\scala\\GameLogic.scala 411:63]
-  wire [26:0] _GEN_787 = {{16{spriteXRegs_40[10]}},spriteXRegs_40}; // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _spriteXRegs_40_T_2 = $signed(_GEN_787) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _GEN_362 = spriteVisibleRegs_40 ? $signed(_spriteXRegs_40_T_2) : $signed({{16{_GEN_66[10]}},_GEN_66}); // @[\\src\\main\\scala\\GameLogic.scala 416:44 417:28]
-  wire [26:0] _GEN_363 = $signed(spriteXRegs_40) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_362); // @[\\src\\main\\scala\\GameLogic.scala 409:41 410:28]
-  wire [9:0] _GEN_364 = $signed(spriteXRegs_40) >= 11'sh280 ? $signed(_spriteYRegs_40_T_2) : $signed(_GEN_67); // @[\\src\\main\\scala\\GameLogic.scala 409:41 411:28]
-  wire  _GEN_365 = $signed(spriteXRegs_40) >= 11'sh280 ? lfsr_io_out_14[0] : _GEN_315; // @[\\src\\main\\scala\\GameLogic.scala 409:41 414:40]
-  wire [9:0] _spriteYRegs_41_T_2 = 10'h64 + lfsr_io_out_25; // @[\\src\\main\\scala\\GameLogic.scala 411:63]
-  wire [26:0] _GEN_788 = {{16{spriteXRegs_41[10]}},spriteXRegs_41}; // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _spriteXRegs_41_T_2 = $signed(_GEN_788) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _GEN_367 = spriteVisibleRegs_41 ? $signed(_spriteXRegs_41_T_2) : $signed({{16{_GEN_68[10]}},_GEN_68}); // @[\\src\\main\\scala\\GameLogic.scala 416:44 417:28]
-  wire [26:0] _GEN_368 = $signed(spriteXRegs_41) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_367); // @[\\src\\main\\scala\\GameLogic.scala 409:41 410:28]
-  wire [9:0] _GEN_369 = $signed(spriteXRegs_41) >= 11'sh280 ? $signed(_spriteYRegs_41_T_2) : $signed(_GEN_69); // @[\\src\\main\\scala\\GameLogic.scala 409:41 411:28]
-  wire  _GEN_370 = $signed(spriteXRegs_41) >= 11'sh280 ? lfsr_io_out_15[0] : _GEN_320; // @[\\src\\main\\scala\\GameLogic.scala 409:41 414:40]
-  wire [9:0] _spriteYRegs_42_T_2 = 10'h64 + lfsr_io_out_26; // @[\\src\\main\\scala\\GameLogic.scala 411:63]
-  wire [26:0] _GEN_794 = {{16{spriteXRegs_42[10]}},spriteXRegs_42}; // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _spriteXRegs_42_T_2 = $signed(_GEN_794) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _GEN_372 = spriteVisibleRegs_42 ? $signed(_spriteXRegs_42_T_2) : $signed({{16{_GEN_70[10]}},_GEN_70}); // @[\\src\\main\\scala\\GameLogic.scala 416:44 417:28]
-  wire [26:0] _GEN_373 = $signed(spriteXRegs_42) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_372); // @[\\src\\main\\scala\\GameLogic.scala 409:41 410:28]
-  wire [9:0] _GEN_374 = $signed(spriteXRegs_42) >= 11'sh280 ? $signed(_spriteYRegs_42_T_2) : $signed(_GEN_71); // @[\\src\\main\\scala\\GameLogic.scala 409:41 411:28]
-  wire  _GEN_375 = $signed(spriteXRegs_42) >= 11'sh280 ? lfsr_io_out_16[0] : _GEN_325; // @[\\src\\main\\scala\\GameLogic.scala 409:41 414:40]
-  wire [9:0] _spriteYRegs_43_T_2 = 10'h64 + lfsr_io_out_27; // @[\\src\\main\\scala\\GameLogic.scala 411:63]
-  wire [26:0] _GEN_795 = {{16{spriteXRegs_43[10]}},spriteXRegs_43}; // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _spriteXRegs_43_T_2 = $signed(_GEN_795) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _GEN_377 = spriteVisibleRegs_43 ? $signed(_spriteXRegs_43_T_2) : $signed({{16{_GEN_72[10]}},_GEN_72}); // @[\\src\\main\\scala\\GameLogic.scala 416:44 417:28]
-  wire [26:0] _GEN_378 = $signed(spriteXRegs_43) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_377); // @[\\src\\main\\scala\\GameLogic.scala 409:41 410:28]
-  wire [9:0] _GEN_379 = $signed(spriteXRegs_43) >= 11'sh280 ? $signed(_spriteYRegs_43_T_2) : $signed(_GEN_73); // @[\\src\\main\\scala\\GameLogic.scala 409:41 411:28]
-  wire  _GEN_380 = $signed(spriteXRegs_43) >= 11'sh280 ? lfsr_io_out_17[0] : _GEN_330; // @[\\src\\main\\scala\\GameLogic.scala 409:41 414:40]
-  wire [9:0] _spriteYRegs_44_T_2 = 10'h64 + lfsr_io_out_28; // @[\\src\\main\\scala\\GameLogic.scala 411:63]
-  wire [26:0] _GEN_796 = {{16{spriteXRegs_44[10]}},spriteXRegs_44}; // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _spriteXRegs_44_T_2 = $signed(_GEN_796) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _GEN_382 = spriteVisibleRegs_44 ? $signed(_spriteXRegs_44_T_2) : $signed({{16{_GEN_74[10]}},_GEN_74}); // @[\\src\\main\\scala\\GameLogic.scala 416:44 417:28]
-  wire [26:0] _GEN_383 = $signed(spriteXRegs_44) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_382); // @[\\src\\main\\scala\\GameLogic.scala 409:41 410:28]
-  wire [9:0] _GEN_384 = $signed(spriteXRegs_44) >= 11'sh280 ? $signed(_spriteYRegs_44_T_2) : $signed(_GEN_75); // @[\\src\\main\\scala\\GameLogic.scala 409:41 411:28]
-  wire  _GEN_385 = $signed(spriteXRegs_44) >= 11'sh280 ? lfsr_io_out_18[0] : _GEN_335; // @[\\src\\main\\scala\\GameLogic.scala 409:41 414:40]
-  wire [9:0] _spriteYRegs_45_T_2 = 10'h64 + lfsr_io_out_29; // @[\\src\\main\\scala\\GameLogic.scala 411:63]
-  wire [26:0] _GEN_852 = {{16{spriteXRegs_45[10]}},spriteXRegs_45}; // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _spriteXRegs_45_T_2 = $signed(_GEN_852) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 417:46]
-  wire [26:0] _GEN_387 = spriteVisibleRegs_45 ? $signed(_spriteXRegs_45_T_2) : $signed({{16{_GEN_76[10]}},_GEN_76}); // @[\\src\\main\\scala\\GameLogic.scala 416:44 417:28]
-  wire [26:0] _GEN_388 = $signed(spriteXRegs_45) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_387); // @[\\src\\main\\scala\\GameLogic.scala 409:41 410:28]
-  wire [9:0] _GEN_389 = $signed(spriteXRegs_45) >= 11'sh280 ? $signed(_spriteYRegs_45_T_2) : $signed(_GEN_77); // @[\\src\\main\\scala\\GameLogic.scala 409:41 411:28]
-  wire  _GEN_390 = $signed(spriteXRegs_45) >= 11'sh280 ? lfsr_io_out_19[0] : _GEN_340; // @[\\src\\main\\scala\\GameLogic.scala 409:41 414:40]
-  wire [9:0] _extraLifeCnt_T_1 = extraLifeCnt + 10'h1; // @[\\src\\main\\scala\\GameLogic.scala 437:40]
-  wire [10:0] _GEN_392 = extraLifeCnt == 10'h258 ? $signed(-11'sh20) : $signed(_GEN_14); // @[\\src\\main\\scala\\GameLogic.scala 431:38 432:27]
-  wire  _GEN_393 = extraLifeCnt == 10'h258 | spriteVisibleRegs_13; // @[\\src\\main\\scala\\GameLogic.scala 431:38 433:33 125:34]
-  wire [9:0] _GEN_394 = extraLifeCnt == 10'h258 ? $signed(lfsr_io_out_0) : $signed(_GEN_15); // @[\\src\\main\\scala\\GameLogic.scala 431:38 434:27]
-  wire [9:0] _GEN_395 = extraLifeCnt == 10'h258 ? 10'h0 : _extraLifeCnt_T_1; // @[\\src\\main\\scala\\GameLogic.scala 431:38 435:24 437:24]
-  wire [10:0] _spriteXRegs_13_T_2 = $signed(spriteXRegs_13) + 11'sh2; // @[\\src\\main\\scala\\GameLogic.scala 440:46]
-  wire [10:0] _GEN_396 = spriteVisibleRegs_13 ? $signed(_spriteXRegs_13_T_2) : $signed(_GEN_392); // @[\\src\\main\\scala\\GameLogic.scala 439:37 440:27]
-  wire  _GEN_397 = $signed(spriteXRegs_13) >= 11'sh280 ? 1'h0 : _GEN_393; // @[\\src\\main\\scala\\GameLogic.scala 442:40 443:33]
-  wire [26:0] _GEN_398 = _T ? $signed(_GEN_243) : $signed({{16{_GEN_18[10]}},_GEN_18}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire  _GEN_401 = _T ? _GEN_246 : spriteScaleTypeRegs_0; // @[\\src\\main\\scala\\GameLogic.scala 357:29 187:35]
-  wire [26:0] _GEN_403 = _T ? $signed(_GEN_248) : $signed({{16{_GEN_20[10]}},_GEN_20}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire  _GEN_406 = _T ? _GEN_251 : spriteScaleTypeRegs_1; // @[\\src\\main\\scala\\GameLogic.scala 357:29 187:35]
-  wire [26:0] _GEN_408 = _T ? $signed(_GEN_253) : $signed({{16{_GEN_22[10]}},_GEN_22}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire  _GEN_411 = _T ? _GEN_256 : spriteScaleTypeRegs_2; // @[\\src\\main\\scala\\GameLogic.scala 357:29 187:35]
-  wire [26:0] _GEN_413 = _T ? $signed(_GEN_258) : $signed({{16{_GEN_24[10]}},_GEN_24}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire  _GEN_416 = _T ? _GEN_261 : spriteScaleTypeRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 357:29 187:35]
-  wire [26:0] _GEN_418 = _T ? $signed(_GEN_263) : $signed({{16{_GEN_26[10]}},_GEN_26}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire  _GEN_421 = _T ? _GEN_266 : spriteScaleTypeRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 357:29 187:35]
-  wire [26:0] _GEN_423 = _T ? $signed(_GEN_268) : $signed({{16{_GEN_28[10]}},_GEN_28}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire  _GEN_426 = _T ? _GEN_271 : spriteScaleTypeRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 357:29 187:35]
-  wire [26:0] _GEN_428 = _T ? $signed(_GEN_273) : $signed({{16{_GEN_30[10]}},_GEN_30}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire  _GEN_431 = _T ? _GEN_276 : spriteScaleTypeRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 357:29 187:35]
-  wire [26:0] _GEN_433 = _T ? $signed(_GEN_278) : $signed({{16{_GEN_32[10]}},_GEN_32}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire  _GEN_436 = _T ? _GEN_281 : spriteScaleTypeRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 357:29 187:35]
-  wire [26:0] _GEN_438 = _T ? $signed(_GEN_283) : $signed({{16{_GEN_34[10]}},_GEN_34}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire  _GEN_441 = _T ? _GEN_286 : spriteScaleTypeRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 357:29 187:35]
-  wire [26:0] _GEN_443 = _T ? $signed(_GEN_288) : $signed({{16{_GEN_36[10]}},_GEN_36}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire  _GEN_446 = _T ? _GEN_291 : spriteScaleTypeRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 357:29 187:35]
-  wire [26:0] _GEN_448 = _T ? $signed(_GEN_293) : $signed({{16{_GEN_38[10]}},_GEN_38}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire [26:0] _GEN_452 = _T ? $signed(_GEN_298) : $signed({{16{_GEN_40[10]}},_GEN_40}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire [26:0] _GEN_456 = _T ? $signed(_GEN_303) : $signed({{16{_GEN_42[10]}},_GEN_42}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire [26:0] _GEN_460 = _T ? $signed(_GEN_308) : $signed({{16{_GEN_44[10]}},_GEN_44}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire [26:0] _GEN_464 = _T ? $signed(_GEN_313) : $signed({{16{_GEN_46[10]}},_GEN_46}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire [26:0] _GEN_468 = _T ? $signed(_GEN_318) : $signed({{16{_GEN_48[10]}},_GEN_48}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire [26:0] _GEN_472 = _T ? $signed(_GEN_323) : $signed({{16{_GEN_50[10]}},_GEN_50}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire [26:0] _GEN_476 = _T ? $signed(_GEN_328) : $signed({{16{_GEN_52[10]}},_GEN_52}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire [26:0] _GEN_480 = _T ? $signed(_GEN_333) : $signed({{16{_GEN_54[10]}},_GEN_54}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire [26:0] _GEN_484 = _T ? $signed(_GEN_338) : $signed({{16{_GEN_56[10]}},_GEN_56}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire [26:0] _GEN_488 = _T ? $signed(_GEN_343) : $signed({{16{_GEN_58[10]}},_GEN_58}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire [26:0] _GEN_492 = _T ? $signed(_GEN_348) : $signed({{16{_GEN_60[10]}},_GEN_60}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire [26:0] _GEN_496 = _T ? $signed(_GEN_353) : $signed({{16{_GEN_62[10]}},_GEN_62}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire [26:0] _GEN_500 = _T ? $signed(_GEN_358) : $signed({{16{_GEN_64[10]}},_GEN_64}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire [26:0] _GEN_504 = _T ? $signed(_GEN_363) : $signed({{16{_GEN_66[10]}},_GEN_66}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire [26:0] _GEN_508 = _T ? $signed(_GEN_368) : $signed({{16{_GEN_68[10]}},_GEN_68}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire [26:0] _GEN_512 = _T ? $signed(_GEN_373) : $signed({{16{_GEN_70[10]}},_GEN_70}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire [26:0] _GEN_516 = _T ? $signed(_GEN_378) : $signed({{16{_GEN_72[10]}},_GEN_72}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire [26:0] _GEN_520 = _T ? $signed(_GEN_383) : $signed({{16{_GEN_74[10]}},_GEN_74}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire [26:0] _GEN_524 = _T ? $signed(_GEN_388) : $signed({{16{_GEN_76[10]}},_GEN_76}); // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-  wire  _GEN_529 = _T ? _GEN_397 : spriteVisibleRegs_13; // @[\\src\\main\\scala\\GameLogic.scala 357:29 125:34]
-  wire  _T_68 = lvlReg == 2'h1; // @[\\src\\main\\scala\\GameLogic.scala 448:19]
-  wire  _T_71 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha; // @[\\src\\main\\scala\\GameLogic.scala 450:40]
-  wire [5:0] _T_73 = 6'h10 + nextSpriteToSpawn; // @[\\src\\main\\scala\\GameLogic.scala 451:34]
-  wire  _GEN_535 = 6'h3 == _T_73 | spriteVisibleRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_536 = 6'h4 == _T_73 | spriteVisibleRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_537 = 6'h5 == _T_73 | spriteVisibleRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_538 = 6'h6 == _T_73 | spriteVisibleRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_539 = 6'h7 == _T_73 | spriteVisibleRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_540 = 6'h8 == _T_73 | spriteVisibleRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_541 = 6'h9 == _T_73 | spriteVisibleRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_542 = 6'ha == _T_73 | spriteVisibleRegs_10; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_543 = 6'hb == _T_73 | spriteVisibleRegs_11; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_544 = 6'hc == _T_73 | spriteVisibleRegs_12; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_545 = 6'hd == _T_73 | _GEN_529; // @[\\src\\main\\scala\\GameLogic.scala 451:{55,55}]
-  wire  _GEN_546 = 6'he == _T_73 | spriteVisibleRegs_14; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_547 = 6'hf == _T_73 | spriteVisibleRegs_15; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_548 = 6'h10 == _T_73 | spriteVisibleRegs_16; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_549 = 6'h11 == _T_73 | spriteVisibleRegs_17; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_550 = 6'h12 == _T_73 | spriteVisibleRegs_18; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_551 = 6'h13 == _T_73 | spriteVisibleRegs_19; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_552 = 6'h14 == _T_73 | spriteVisibleRegs_20; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_553 = 6'h15 == _T_73 | spriteVisibleRegs_21; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_554 = 6'h16 == _T_73 | spriteVisibleRegs_22; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_555 = 6'h17 == _T_73 | spriteVisibleRegs_23; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_556 = 6'h18 == _T_73 | spriteVisibleRegs_24; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_557 = 6'h19 == _T_73 | spriteVisibleRegs_25; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_558 = 6'h1a == _T_73 | spriteVisibleRegs_26; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_559 = 6'h1b == _T_73 | spriteVisibleRegs_27; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_560 = 6'h1c == _T_73 | spriteVisibleRegs_28; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_561 = 6'h1d == _T_73 | spriteVisibleRegs_29; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_562 = 6'h1e == _T_73 | spriteVisibleRegs_30; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_563 = 6'h1f == _T_73 | spriteVisibleRegs_31; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_564 = 6'h20 == _T_73 | spriteVisibleRegs_32; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_565 = 6'h21 == _T_73 | spriteVisibleRegs_33; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_566 = 6'h22 == _T_73 | spriteVisibleRegs_34; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_567 = 6'h23 == _T_73 | spriteVisibleRegs_35; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_568 = 6'h24 == _T_73 | spriteVisibleRegs_36; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_569 = 6'h25 == _T_73 | spriteVisibleRegs_37; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_570 = 6'h26 == _T_73 | spriteVisibleRegs_38; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_571 = 6'h27 == _T_73 | spriteVisibleRegs_39; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_572 = 6'h28 == _T_73 | spriteVisibleRegs_40; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_573 = 6'h29 == _T_73 | spriteVisibleRegs_41; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_574 = 6'h2a == _T_73 | spriteVisibleRegs_42; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_575 = 6'h2b == _T_73 | spriteVisibleRegs_43; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_576 = 6'h2c == _T_73 | spriteVisibleRegs_44; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_577 = 6'h2d == _T_73 | spriteVisibleRegs_45; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_578 = 6'h2e == _T_73 | spriteVisibleRegs_46; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_579 = 6'h2f == _T_73 | spriteVisibleRegs_47; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_580 = 6'h30 == _T_73 | spriteVisibleRegs_48; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_581 = 6'h31 == _T_73 | spriteVisibleRegs_49; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_582 = 6'h32 == _T_73 | spriteVisibleRegs_50; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_583 = 6'h33 == _T_73 | spriteVisibleRegs_51; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_584 = 6'h34 == _T_73 | spriteVisibleRegs_52; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_585 = 6'h35 == _T_73 | spriteVisibleRegs_53; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_586 = 6'h36 == _T_73 | spriteVisibleRegs_54; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_587 = 6'h37 == _T_73 | spriteVisibleRegs_55; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_588 = 6'h38 == _T_73 | spriteVisibleRegs_56; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_589 = 6'h39 == _T_73 | spriteVisibleRegs_57; // @[\\src\\main\\scala\\GameLogic.scala 125:34 451:{55,55}]
-  wire  _GEN_593 = 6'h3d == _T_73 | _GEN_123; // @[\\src\\main\\scala\\GameLogic.scala 451:{55,55}]
-  wire  _GEN_594 = 6'h3e == _T_73 | _GEN_124; // @[\\src\\main\\scala\\GameLogic.scala 451:{55,55}]
-  wire  _GEN_595 = 6'h3f == _T_73 | _GEN_125; // @[\\src\\main\\scala\\GameLogic.scala 451:{55,55}]
-  wire [5:0] _nextSpriteToSpawn_T_1 = nextSpriteToSpawn + 6'h1; // @[\\src\\main\\scala\\GameLogic.scala 452:50]
-  wire [7:0] _spawnDelayCounter_T_1 = spawnDelayCounter - 8'h1; // @[\\src\\main\\scala\\GameLogic.scala 455:50]
-  wire [7:0] _GEN_596 = spawnDelayCounter > 8'h0 ? _spawnDelayCounter_T_1 : spawnDelayCounter; // @[\\src\\main\\scala\\GameLogic.scala 454:45 455:29 231:34]
-  wire  _GEN_600 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_535 : spriteVisibleRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_601 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_536 : spriteVisibleRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_602 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_537 : spriteVisibleRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_603 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_538 : spriteVisibleRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_604 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_539 : spriteVisibleRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_605 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_540 : spriteVisibleRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_606 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_541 : spriteVisibleRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_607 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_542 : spriteVisibleRegs_10; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_608 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_543 : spriteVisibleRegs_11; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_609 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_544 : spriteVisibleRegs_12; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_610 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_545 : _GEN_529; // @[\\src\\main\\scala\\GameLogic.scala 450:69]
-  wire  _GEN_611 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_546 : spriteVisibleRegs_14; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_612 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_547 : spriteVisibleRegs_15; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_613 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_548 : spriteVisibleRegs_16; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_614 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_549 : spriteVisibleRegs_17; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_615 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_550 : spriteVisibleRegs_18; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_616 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_551 : spriteVisibleRegs_19; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_617 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_552 : spriteVisibleRegs_20; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_618 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_553 : spriteVisibleRegs_21; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_619 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_554 : spriteVisibleRegs_22; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_620 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_555 : spriteVisibleRegs_23; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_621 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_556 : spriteVisibleRegs_24; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_622 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_557 : spriteVisibleRegs_25; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_623 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_558 : spriteVisibleRegs_26; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_624 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_559 : spriteVisibleRegs_27; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_625 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_560 : spriteVisibleRegs_28; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_626 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_561 : spriteVisibleRegs_29; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_627 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_562 : spriteVisibleRegs_30; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_628 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_563 : spriteVisibleRegs_31; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_629 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_564 : spriteVisibleRegs_32; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_630 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_565 : spriteVisibleRegs_33; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_631 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_566 : spriteVisibleRegs_34; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_632 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_567 : spriteVisibleRegs_35; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_633 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_568 : spriteVisibleRegs_36; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_634 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_569 : spriteVisibleRegs_37; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_635 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_570 : spriteVisibleRegs_38; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_636 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_571 : spriteVisibleRegs_39; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_637 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_572 : spriteVisibleRegs_40; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_638 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_573 : spriteVisibleRegs_41; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_639 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_574 : spriteVisibleRegs_42; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_640 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_575 : spriteVisibleRegs_43; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_641 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_576 : spriteVisibleRegs_44; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_642 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_577 : spriteVisibleRegs_45; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_643 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_578 : spriteVisibleRegs_46; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_644 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_579 : spriteVisibleRegs_47; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_645 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_580 : spriteVisibleRegs_48; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_646 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_581 : spriteVisibleRegs_49; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_647 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_582 : spriteVisibleRegs_50; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_648 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_583 : spriteVisibleRegs_51; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_649 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_584 : spriteVisibleRegs_52; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_650 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_585 : spriteVisibleRegs_53; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_651 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_586 : spriteVisibleRegs_54; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_652 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_587 : spriteVisibleRegs_55; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_653 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_588 : spriteVisibleRegs_56; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_654 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_589 : spriteVisibleRegs_57; // @[\\src\\main\\scala\\GameLogic.scala 125:34 450:69]
-  wire  _GEN_658 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_593 : _GEN_123; // @[\\src\\main\\scala\\GameLogic.scala 450:69]
-  wire  _GEN_659 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_594 : _GEN_124; // @[\\src\\main\\scala\\GameLogic.scala 450:69]
-  wire  _GEN_660 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_595 : _GEN_125; // @[\\src\\main\\scala\\GameLogic.scala 450:69]
-  wire [5:0] _GEN_661 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _nextSpriteToSpawn_T_1 :
-    nextSpriteToSpawn; // @[\\src\\main\\scala\\GameLogic.scala 450:69 452:29 232:34]
-  wire [7:0] _GEN_662 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? 8'h1e : _GEN_596; // @[\\src\\main\\scala\\GameLogic.scala 450:69 453:29]
-  wire  _T_75 = lvlReg == 2'h2; // @[\\src\\main\\scala\\GameLogic.scala 457:25]
-  wire [5:0] _T_80 = 6'h1a + nextSpriteToSpawn; // @[\\src\\main\\scala\\GameLogic.scala 460:34]
-  wire  _GEN_666 = 6'h3 == _T_80 | spriteVisibleRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_667 = 6'h4 == _T_80 | spriteVisibleRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_668 = 6'h5 == _T_80 | spriteVisibleRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_669 = 6'h6 == _T_80 | spriteVisibleRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_670 = 6'h7 == _T_80 | spriteVisibleRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_671 = 6'h8 == _T_80 | spriteVisibleRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_672 = 6'h9 == _T_80 | spriteVisibleRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_673 = 6'ha == _T_80 | spriteVisibleRegs_10; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_674 = 6'hb == _T_80 | spriteVisibleRegs_11; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_675 = 6'hc == _T_80 | spriteVisibleRegs_12; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_676 = 6'hd == _T_80 | _GEN_529; // @[\\src\\main\\scala\\GameLogic.scala 460:{55,55}]
-  wire  _GEN_677 = 6'he == _T_80 | spriteVisibleRegs_14; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_678 = 6'hf == _T_80 | spriteVisibleRegs_15; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_679 = 6'h10 == _T_80 | spriteVisibleRegs_16; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_680 = 6'h11 == _T_80 | spriteVisibleRegs_17; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_681 = 6'h12 == _T_80 | spriteVisibleRegs_18; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_682 = 6'h13 == _T_80 | spriteVisibleRegs_19; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_683 = 6'h14 == _T_80 | spriteVisibleRegs_20; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_684 = 6'h15 == _T_80 | spriteVisibleRegs_21; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_685 = 6'h16 == _T_80 | spriteVisibleRegs_22; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_686 = 6'h17 == _T_80 | spriteVisibleRegs_23; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_687 = 6'h18 == _T_80 | spriteVisibleRegs_24; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_688 = 6'h19 == _T_80 | spriteVisibleRegs_25; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_689 = 6'h1a == _T_80 | spriteVisibleRegs_26; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_690 = 6'h1b == _T_80 | spriteVisibleRegs_27; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_691 = 6'h1c == _T_80 | spriteVisibleRegs_28; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_692 = 6'h1d == _T_80 | spriteVisibleRegs_29; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_693 = 6'h1e == _T_80 | spriteVisibleRegs_30; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_694 = 6'h1f == _T_80 | spriteVisibleRegs_31; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_695 = 6'h20 == _T_80 | spriteVisibleRegs_32; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_696 = 6'h21 == _T_80 | spriteVisibleRegs_33; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_697 = 6'h22 == _T_80 | spriteVisibleRegs_34; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_698 = 6'h23 == _T_80 | spriteVisibleRegs_35; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_699 = 6'h24 == _T_80 | spriteVisibleRegs_36; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_700 = 6'h25 == _T_80 | spriteVisibleRegs_37; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_701 = 6'h26 == _T_80 | spriteVisibleRegs_38; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_702 = 6'h27 == _T_80 | spriteVisibleRegs_39; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_703 = 6'h28 == _T_80 | spriteVisibleRegs_40; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_704 = 6'h29 == _T_80 | spriteVisibleRegs_41; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_705 = 6'h2a == _T_80 | spriteVisibleRegs_42; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_706 = 6'h2b == _T_80 | spriteVisibleRegs_43; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_707 = 6'h2c == _T_80 | spriteVisibleRegs_44; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_708 = 6'h2d == _T_80 | spriteVisibleRegs_45; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_709 = 6'h2e == _T_80 | spriteVisibleRegs_46; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_710 = 6'h2f == _T_80 | spriteVisibleRegs_47; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_711 = 6'h30 == _T_80 | spriteVisibleRegs_48; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_712 = 6'h31 == _T_80 | spriteVisibleRegs_49; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_713 = 6'h32 == _T_80 | spriteVisibleRegs_50; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_714 = 6'h33 == _T_80 | spriteVisibleRegs_51; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_715 = 6'h34 == _T_80 | spriteVisibleRegs_52; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_716 = 6'h35 == _T_80 | spriteVisibleRegs_53; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_717 = 6'h36 == _T_80 | spriteVisibleRegs_54; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_718 = 6'h37 == _T_80 | spriteVisibleRegs_55; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_719 = 6'h38 == _T_80 | spriteVisibleRegs_56; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_720 = 6'h39 == _T_80 | spriteVisibleRegs_57; // @[\\src\\main\\scala\\GameLogic.scala 125:34 460:{55,55}]
-  wire  _GEN_724 = 6'h3d == _T_80 | _GEN_123; // @[\\src\\main\\scala\\GameLogic.scala 460:{55,55}]
-  wire  _GEN_725 = 6'h3e == _T_80 | _GEN_124; // @[\\src\\main\\scala\\GameLogic.scala 460:{55,55}]
-  wire  _GEN_726 = 6'h3f == _T_80 | _GEN_125; // @[\\src\\main\\scala\\GameLogic.scala 460:{55,55}]
-  wire  _GEN_731 = _T_71 ? _GEN_666 : spriteVisibleRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_732 = _T_71 ? _GEN_667 : spriteVisibleRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_733 = _T_71 ? _GEN_668 : spriteVisibleRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_734 = _T_71 ? _GEN_669 : spriteVisibleRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_735 = _T_71 ? _GEN_670 : spriteVisibleRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_736 = _T_71 ? _GEN_671 : spriteVisibleRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_737 = _T_71 ? _GEN_672 : spriteVisibleRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_738 = _T_71 ? _GEN_673 : spriteVisibleRegs_10; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_739 = _T_71 ? _GEN_674 : spriteVisibleRegs_11; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_740 = _T_71 ? _GEN_675 : spriteVisibleRegs_12; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_741 = _T_71 ? _GEN_676 : _GEN_529; // @[\\src\\main\\scala\\GameLogic.scala 459:69]
-  wire  _GEN_742 = _T_71 ? _GEN_677 : spriteVisibleRegs_14; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_743 = _T_71 ? _GEN_678 : spriteVisibleRegs_15; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_744 = _T_71 ? _GEN_679 : spriteVisibleRegs_16; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_745 = _T_71 ? _GEN_680 : spriteVisibleRegs_17; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_746 = _T_71 ? _GEN_681 : spriteVisibleRegs_18; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_747 = _T_71 ? _GEN_682 : spriteVisibleRegs_19; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_748 = _T_71 ? _GEN_683 : spriteVisibleRegs_20; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_749 = _T_71 ? _GEN_684 : spriteVisibleRegs_21; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_750 = _T_71 ? _GEN_685 : spriteVisibleRegs_22; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_751 = _T_71 ? _GEN_686 : spriteVisibleRegs_23; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_752 = _T_71 ? _GEN_687 : spriteVisibleRegs_24; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_753 = _T_71 ? _GEN_688 : spriteVisibleRegs_25; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_754 = _T_71 ? _GEN_689 : spriteVisibleRegs_26; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_755 = _T_71 ? _GEN_690 : spriteVisibleRegs_27; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_756 = _T_71 ? _GEN_691 : spriteVisibleRegs_28; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_757 = _T_71 ? _GEN_692 : spriteVisibleRegs_29; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_758 = _T_71 ? _GEN_693 : spriteVisibleRegs_30; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_759 = _T_71 ? _GEN_694 : spriteVisibleRegs_31; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_760 = _T_71 ? _GEN_695 : spriteVisibleRegs_32; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_761 = _T_71 ? _GEN_696 : spriteVisibleRegs_33; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_762 = _T_71 ? _GEN_697 : spriteVisibleRegs_34; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_763 = _T_71 ? _GEN_698 : spriteVisibleRegs_35; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_764 = _T_71 ? _GEN_699 : spriteVisibleRegs_36; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_765 = _T_71 ? _GEN_700 : spriteVisibleRegs_37; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_766 = _T_71 ? _GEN_701 : spriteVisibleRegs_38; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_767 = _T_71 ? _GEN_702 : spriteVisibleRegs_39; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_768 = _T_71 ? _GEN_703 : spriteVisibleRegs_40; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_769 = _T_71 ? _GEN_704 : spriteVisibleRegs_41; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_770 = _T_71 ? _GEN_705 : spriteVisibleRegs_42; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_771 = _T_71 ? _GEN_706 : spriteVisibleRegs_43; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_772 = _T_71 ? _GEN_707 : spriteVisibleRegs_44; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_773 = _T_71 ? _GEN_708 : spriteVisibleRegs_45; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_774 = _T_71 ? _GEN_709 : spriteVisibleRegs_46; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_775 = _T_71 ? _GEN_710 : spriteVisibleRegs_47; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_776 = _T_71 ? _GEN_711 : spriteVisibleRegs_48; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_777 = _T_71 ? _GEN_712 : spriteVisibleRegs_49; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_778 = _T_71 ? _GEN_713 : spriteVisibleRegs_50; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_779 = _T_71 ? _GEN_714 : spriteVisibleRegs_51; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_780 = _T_71 ? _GEN_715 : spriteVisibleRegs_52; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_781 = _T_71 ? _GEN_716 : spriteVisibleRegs_53; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_782 = _T_71 ? _GEN_717 : spriteVisibleRegs_54; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_783 = _T_71 ? _GEN_718 : spriteVisibleRegs_55; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_784 = _T_71 ? _GEN_719 : spriteVisibleRegs_56; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_785 = _T_71 ? _GEN_720 : spriteVisibleRegs_57; // @[\\src\\main\\scala\\GameLogic.scala 125:34 459:69]
-  wire  _GEN_789 = _T_71 ? _GEN_724 : _GEN_123; // @[\\src\\main\\scala\\GameLogic.scala 459:69]
-  wire  _GEN_790 = _T_71 ? _GEN_725 : _GEN_124; // @[\\src\\main\\scala\\GameLogic.scala 459:69]
-  wire  _GEN_791 = _T_71 ? _GEN_726 : _GEN_125; // @[\\src\\main\\scala\\GameLogic.scala 459:69]
-  wire [7:0] _GEN_793 = _T_71 ? 8'h19 : _GEN_596; // @[\\src\\main\\scala\\GameLogic.scala 459:69 462:29]
-  wire  _T_82 = lvlReg == 2'h3; // @[\\src\\main\\scala\\GameLogic.scala 466:25]
-  wire [5:0] _T_87 = 6'h24 + nextSpriteToSpawn; // @[\\src\\main\\scala\\GameLogic.scala 469:34]
-  wire  _GEN_797 = 6'h3 == _T_87 | spriteVisibleRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_798 = 6'h4 == _T_87 | spriteVisibleRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_799 = 6'h5 == _T_87 | spriteVisibleRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_800 = 6'h6 == _T_87 | spriteVisibleRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_801 = 6'h7 == _T_87 | spriteVisibleRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_802 = 6'h8 == _T_87 | spriteVisibleRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_803 = 6'h9 == _T_87 | spriteVisibleRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_804 = 6'ha == _T_87 | spriteVisibleRegs_10; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_805 = 6'hb == _T_87 | spriteVisibleRegs_11; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_806 = 6'hc == _T_87 | spriteVisibleRegs_12; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_807 = 6'hd == _T_87 | _GEN_529; // @[\\src\\main\\scala\\GameLogic.scala 469:{55,55}]
-  wire  _GEN_808 = 6'he == _T_87 | spriteVisibleRegs_14; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_809 = 6'hf == _T_87 | spriteVisibleRegs_15; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_810 = 6'h10 == _T_87 | spriteVisibleRegs_16; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_811 = 6'h11 == _T_87 | spriteVisibleRegs_17; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_812 = 6'h12 == _T_87 | spriteVisibleRegs_18; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_813 = 6'h13 == _T_87 | spriteVisibleRegs_19; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_814 = 6'h14 == _T_87 | spriteVisibleRegs_20; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_815 = 6'h15 == _T_87 | spriteVisibleRegs_21; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_816 = 6'h16 == _T_87 | spriteVisibleRegs_22; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_817 = 6'h17 == _T_87 | spriteVisibleRegs_23; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_818 = 6'h18 == _T_87 | spriteVisibleRegs_24; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_819 = 6'h19 == _T_87 | spriteVisibleRegs_25; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_820 = 6'h1a == _T_87 | spriteVisibleRegs_26; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_821 = 6'h1b == _T_87 | spriteVisibleRegs_27; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_822 = 6'h1c == _T_87 | spriteVisibleRegs_28; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_823 = 6'h1d == _T_87 | spriteVisibleRegs_29; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_824 = 6'h1e == _T_87 | spriteVisibleRegs_30; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_825 = 6'h1f == _T_87 | spriteVisibleRegs_31; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_826 = 6'h20 == _T_87 | spriteVisibleRegs_32; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_827 = 6'h21 == _T_87 | spriteVisibleRegs_33; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_828 = 6'h22 == _T_87 | spriteVisibleRegs_34; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_829 = 6'h23 == _T_87 | spriteVisibleRegs_35; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_830 = 6'h24 == _T_87 | spriteVisibleRegs_36; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_831 = 6'h25 == _T_87 | spriteVisibleRegs_37; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_832 = 6'h26 == _T_87 | spriteVisibleRegs_38; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_833 = 6'h27 == _T_87 | spriteVisibleRegs_39; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_834 = 6'h28 == _T_87 | spriteVisibleRegs_40; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_835 = 6'h29 == _T_87 | spriteVisibleRegs_41; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_836 = 6'h2a == _T_87 | spriteVisibleRegs_42; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_837 = 6'h2b == _T_87 | spriteVisibleRegs_43; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_838 = 6'h2c == _T_87 | spriteVisibleRegs_44; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_839 = 6'h2d == _T_87 | spriteVisibleRegs_45; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_840 = 6'h2e == _T_87 | spriteVisibleRegs_46; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_841 = 6'h2f == _T_87 | spriteVisibleRegs_47; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_842 = 6'h30 == _T_87 | spriteVisibleRegs_48; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_843 = 6'h31 == _T_87 | spriteVisibleRegs_49; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_844 = 6'h32 == _T_87 | spriteVisibleRegs_50; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_845 = 6'h33 == _T_87 | spriteVisibleRegs_51; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_846 = 6'h34 == _T_87 | spriteVisibleRegs_52; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_847 = 6'h35 == _T_87 | spriteVisibleRegs_53; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_848 = 6'h36 == _T_87 | spriteVisibleRegs_54; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_849 = 6'h37 == _T_87 | spriteVisibleRegs_55; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_850 = 6'h38 == _T_87 | spriteVisibleRegs_56; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_851 = 6'h39 == _T_87 | spriteVisibleRegs_57; // @[\\src\\main\\scala\\GameLogic.scala 125:34 469:{55,55}]
-  wire  _GEN_855 = 6'h3d == _T_87 | _GEN_123; // @[\\src\\main\\scala\\GameLogic.scala 469:{55,55}]
-  wire  _GEN_856 = 6'h3e == _T_87 | _GEN_124; // @[\\src\\main\\scala\\GameLogic.scala 469:{55,55}]
-  wire  _GEN_857 = 6'h3f == _T_87 | _GEN_125; // @[\\src\\main\\scala\\GameLogic.scala 469:{55,55}]
-  wire  _GEN_862 = _T_71 ? _GEN_797 : spriteVisibleRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_863 = _T_71 ? _GEN_798 : spriteVisibleRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_864 = _T_71 ? _GEN_799 : spriteVisibleRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_865 = _T_71 ? _GEN_800 : spriteVisibleRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_866 = _T_71 ? _GEN_801 : spriteVisibleRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_867 = _T_71 ? _GEN_802 : spriteVisibleRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_868 = _T_71 ? _GEN_803 : spriteVisibleRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_869 = _T_71 ? _GEN_804 : spriteVisibleRegs_10; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_870 = _T_71 ? _GEN_805 : spriteVisibleRegs_11; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_871 = _T_71 ? _GEN_806 : spriteVisibleRegs_12; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_872 = _T_71 ? _GEN_807 : _GEN_529; // @[\\src\\main\\scala\\GameLogic.scala 468:69]
-  wire  _GEN_873 = _T_71 ? _GEN_808 : spriteVisibleRegs_14; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_874 = _T_71 ? _GEN_809 : spriteVisibleRegs_15; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_875 = _T_71 ? _GEN_810 : spriteVisibleRegs_16; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_876 = _T_71 ? _GEN_811 : spriteVisibleRegs_17; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_877 = _T_71 ? _GEN_812 : spriteVisibleRegs_18; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_878 = _T_71 ? _GEN_813 : spriteVisibleRegs_19; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_879 = _T_71 ? _GEN_814 : spriteVisibleRegs_20; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_880 = _T_71 ? _GEN_815 : spriteVisibleRegs_21; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_881 = _T_71 ? _GEN_816 : spriteVisibleRegs_22; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_882 = _T_71 ? _GEN_817 : spriteVisibleRegs_23; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_883 = _T_71 ? _GEN_818 : spriteVisibleRegs_24; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_884 = _T_71 ? _GEN_819 : spriteVisibleRegs_25; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_885 = _T_71 ? _GEN_820 : spriteVisibleRegs_26; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_886 = _T_71 ? _GEN_821 : spriteVisibleRegs_27; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_887 = _T_71 ? _GEN_822 : spriteVisibleRegs_28; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_888 = _T_71 ? _GEN_823 : spriteVisibleRegs_29; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_889 = _T_71 ? _GEN_824 : spriteVisibleRegs_30; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_890 = _T_71 ? _GEN_825 : spriteVisibleRegs_31; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_891 = _T_71 ? _GEN_826 : spriteVisibleRegs_32; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_892 = _T_71 ? _GEN_827 : spriteVisibleRegs_33; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_893 = _T_71 ? _GEN_828 : spriteVisibleRegs_34; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_894 = _T_71 ? _GEN_829 : spriteVisibleRegs_35; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_895 = _T_71 ? _GEN_830 : spriteVisibleRegs_36; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_896 = _T_71 ? _GEN_831 : spriteVisibleRegs_37; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_897 = _T_71 ? _GEN_832 : spriteVisibleRegs_38; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_898 = _T_71 ? _GEN_833 : spriteVisibleRegs_39; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_899 = _T_71 ? _GEN_834 : spriteVisibleRegs_40; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_900 = _T_71 ? _GEN_835 : spriteVisibleRegs_41; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_901 = _T_71 ? _GEN_836 : spriteVisibleRegs_42; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_902 = _T_71 ? _GEN_837 : spriteVisibleRegs_43; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_903 = _T_71 ? _GEN_838 : spriteVisibleRegs_44; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_904 = _T_71 ? _GEN_839 : spriteVisibleRegs_45; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_905 = _T_71 ? _GEN_840 : spriteVisibleRegs_46; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_906 = _T_71 ? _GEN_841 : spriteVisibleRegs_47; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_907 = _T_71 ? _GEN_842 : spriteVisibleRegs_48; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_908 = _T_71 ? _GEN_843 : spriteVisibleRegs_49; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_909 = _T_71 ? _GEN_844 : spriteVisibleRegs_50; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_910 = _T_71 ? _GEN_845 : spriteVisibleRegs_51; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_911 = _T_71 ? _GEN_846 : spriteVisibleRegs_52; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_912 = _T_71 ? _GEN_847 : spriteVisibleRegs_53; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_913 = _T_71 ? _GEN_848 : spriteVisibleRegs_54; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_914 = _T_71 ? _GEN_849 : spriteVisibleRegs_55; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_915 = _T_71 ? _GEN_850 : spriteVisibleRegs_56; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_916 = _T_71 ? _GEN_851 : spriteVisibleRegs_57; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:69]
-  wire  _GEN_920 = _T_71 ? _GEN_855 : _GEN_123; // @[\\src\\main\\scala\\GameLogic.scala 468:69]
-  wire  _GEN_921 = _T_71 ? _GEN_856 : _GEN_124; // @[\\src\\main\\scala\\GameLogic.scala 468:69]
-  wire  _GEN_922 = _T_71 ? _GEN_857 : _GEN_125; // @[\\src\\main\\scala\\GameLogic.scala 468:69]
-  wire [7:0] _GEN_924 = _T_71 ? 8'h14 : _GEN_596; // @[\\src\\main\\scala\\GameLogic.scala 468:69 471:29]
-  wire  _GEN_928 = lvlReg == 2'h3 ? _GEN_862 : spriteVisibleRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_929 = lvlReg == 2'h3 ? _GEN_863 : spriteVisibleRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_930 = lvlReg == 2'h3 ? _GEN_864 : spriteVisibleRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_931 = lvlReg == 2'h3 ? _GEN_865 : spriteVisibleRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_932 = lvlReg == 2'h3 ? _GEN_866 : spriteVisibleRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_933 = lvlReg == 2'h3 ? _GEN_867 : spriteVisibleRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_934 = lvlReg == 2'h3 ? _GEN_868 : spriteVisibleRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_935 = lvlReg == 2'h3 ? _GEN_869 : spriteVisibleRegs_10; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_936 = lvlReg == 2'h3 ? _GEN_870 : spriteVisibleRegs_11; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_937 = lvlReg == 2'h3 ? _GEN_871 : spriteVisibleRegs_12; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_938 = lvlReg == 2'h3 ? _GEN_872 : _GEN_529; // @[\\src\\main\\scala\\GameLogic.scala 466:34]
-  wire  _GEN_939 = lvlReg == 2'h3 ? _GEN_873 : spriteVisibleRegs_14; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_940 = lvlReg == 2'h3 ? _GEN_874 : spriteVisibleRegs_15; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_941 = lvlReg == 2'h3 ? _GEN_875 : spriteVisibleRegs_16; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_942 = lvlReg == 2'h3 ? _GEN_876 : spriteVisibleRegs_17; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_943 = lvlReg == 2'h3 ? _GEN_877 : spriteVisibleRegs_18; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_944 = lvlReg == 2'h3 ? _GEN_878 : spriteVisibleRegs_19; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_945 = lvlReg == 2'h3 ? _GEN_879 : spriteVisibleRegs_20; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_946 = lvlReg == 2'h3 ? _GEN_880 : spriteVisibleRegs_21; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_947 = lvlReg == 2'h3 ? _GEN_881 : spriteVisibleRegs_22; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_948 = lvlReg == 2'h3 ? _GEN_882 : spriteVisibleRegs_23; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_949 = lvlReg == 2'h3 ? _GEN_883 : spriteVisibleRegs_24; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_950 = lvlReg == 2'h3 ? _GEN_884 : spriteVisibleRegs_25; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_951 = lvlReg == 2'h3 ? _GEN_885 : spriteVisibleRegs_26; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_952 = lvlReg == 2'h3 ? _GEN_886 : spriteVisibleRegs_27; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_953 = lvlReg == 2'h3 ? _GEN_887 : spriteVisibleRegs_28; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_954 = lvlReg == 2'h3 ? _GEN_888 : spriteVisibleRegs_29; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_955 = lvlReg == 2'h3 ? _GEN_889 : spriteVisibleRegs_30; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_956 = lvlReg == 2'h3 ? _GEN_890 : spriteVisibleRegs_31; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_957 = lvlReg == 2'h3 ? _GEN_891 : spriteVisibleRegs_32; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_958 = lvlReg == 2'h3 ? _GEN_892 : spriteVisibleRegs_33; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_959 = lvlReg == 2'h3 ? _GEN_893 : spriteVisibleRegs_34; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_960 = lvlReg == 2'h3 ? _GEN_894 : spriteVisibleRegs_35; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_961 = lvlReg == 2'h3 ? _GEN_895 : spriteVisibleRegs_36; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_962 = lvlReg == 2'h3 ? _GEN_896 : spriteVisibleRegs_37; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_963 = lvlReg == 2'h3 ? _GEN_897 : spriteVisibleRegs_38; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_964 = lvlReg == 2'h3 ? _GEN_898 : spriteVisibleRegs_39; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_965 = lvlReg == 2'h3 ? _GEN_899 : spriteVisibleRegs_40; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_966 = lvlReg == 2'h3 ? _GEN_900 : spriteVisibleRegs_41; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_967 = lvlReg == 2'h3 ? _GEN_901 : spriteVisibleRegs_42; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_968 = lvlReg == 2'h3 ? _GEN_902 : spriteVisibleRegs_43; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_969 = lvlReg == 2'h3 ? _GEN_903 : spriteVisibleRegs_44; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_970 = lvlReg == 2'h3 ? _GEN_904 : spriteVisibleRegs_45; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_971 = lvlReg == 2'h3 ? _GEN_905 : spriteVisibleRegs_46; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_972 = lvlReg == 2'h3 ? _GEN_906 : spriteVisibleRegs_47; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_973 = lvlReg == 2'h3 ? _GEN_907 : spriteVisibleRegs_48; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_974 = lvlReg == 2'h3 ? _GEN_908 : spriteVisibleRegs_49; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_975 = lvlReg == 2'h3 ? _GEN_909 : spriteVisibleRegs_50; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_976 = lvlReg == 2'h3 ? _GEN_910 : spriteVisibleRegs_51; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_977 = lvlReg == 2'h3 ? _GEN_911 : spriteVisibleRegs_52; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_978 = lvlReg == 2'h3 ? _GEN_912 : spriteVisibleRegs_53; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_979 = lvlReg == 2'h3 ? _GEN_913 : spriteVisibleRegs_54; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_980 = lvlReg == 2'h3 ? _GEN_914 : spriteVisibleRegs_55; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_981 = lvlReg == 2'h3 ? _GEN_915 : spriteVisibleRegs_56; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_982 = lvlReg == 2'h3 ? _GEN_916 : spriteVisibleRegs_57; // @[\\src\\main\\scala\\GameLogic.scala 125:34 466:34]
-  wire  _GEN_986 = lvlReg == 2'h3 ? _GEN_920 : _GEN_123; // @[\\src\\main\\scala\\GameLogic.scala 466:34]
-  wire  _GEN_987 = lvlReg == 2'h3 ? _GEN_921 : _GEN_124; // @[\\src\\main\\scala\\GameLogic.scala 466:34]
-  wire  _GEN_988 = lvlReg == 2'h3 ? _GEN_922 : _GEN_125; // @[\\src\\main\\scala\\GameLogic.scala 466:34]
-  wire [5:0] _GEN_989 = lvlReg == 2'h3 ? _GEN_661 : nextSpriteToSpawn; // @[\\src\\main\\scala\\GameLogic.scala 232:34 466:34]
-  wire [7:0] _GEN_990 = lvlReg == 2'h3 ? _GEN_924 : spawnDelayCounter; // @[\\src\\main\\scala\\GameLogic.scala 231:34 466:34]
-  wire  _GEN_994 = lvlReg == 2'h2 ? _GEN_731 : _GEN_928; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_995 = lvlReg == 2'h2 ? _GEN_732 : _GEN_929; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_996 = lvlReg == 2'h2 ? _GEN_733 : _GEN_930; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_997 = lvlReg == 2'h2 ? _GEN_734 : _GEN_931; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_998 = lvlReg == 2'h2 ? _GEN_735 : _GEN_932; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_999 = lvlReg == 2'h2 ? _GEN_736 : _GEN_933; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1000 = lvlReg == 2'h2 ? _GEN_737 : _GEN_934; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1001 = lvlReg == 2'h2 ? _GEN_738 : _GEN_935; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1002 = lvlReg == 2'h2 ? _GEN_739 : _GEN_936; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1003 = lvlReg == 2'h2 ? _GEN_740 : _GEN_937; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1004 = lvlReg == 2'h2 ? _GEN_741 : _GEN_938; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1005 = lvlReg == 2'h2 ? _GEN_742 : _GEN_939; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1006 = lvlReg == 2'h2 ? _GEN_743 : _GEN_940; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1007 = lvlReg == 2'h2 ? _GEN_744 : _GEN_941; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1008 = lvlReg == 2'h2 ? _GEN_745 : _GEN_942; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1009 = lvlReg == 2'h2 ? _GEN_746 : _GEN_943; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1010 = lvlReg == 2'h2 ? _GEN_747 : _GEN_944; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1011 = lvlReg == 2'h2 ? _GEN_748 : _GEN_945; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1012 = lvlReg == 2'h2 ? _GEN_749 : _GEN_946; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1013 = lvlReg == 2'h2 ? _GEN_750 : _GEN_947; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1014 = lvlReg == 2'h2 ? _GEN_751 : _GEN_948; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1015 = lvlReg == 2'h2 ? _GEN_752 : _GEN_949; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1016 = lvlReg == 2'h2 ? _GEN_753 : _GEN_950; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1017 = lvlReg == 2'h2 ? _GEN_754 : _GEN_951; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1018 = lvlReg == 2'h2 ? _GEN_755 : _GEN_952; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1019 = lvlReg == 2'h2 ? _GEN_756 : _GEN_953; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1020 = lvlReg == 2'h2 ? _GEN_757 : _GEN_954; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1021 = lvlReg == 2'h2 ? _GEN_758 : _GEN_955; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1022 = lvlReg == 2'h2 ? _GEN_759 : _GEN_956; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1023 = lvlReg == 2'h2 ? _GEN_760 : _GEN_957; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1024 = lvlReg == 2'h2 ? _GEN_761 : _GEN_958; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1025 = lvlReg == 2'h2 ? _GEN_762 : _GEN_959; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1026 = lvlReg == 2'h2 ? _GEN_763 : _GEN_960; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1027 = lvlReg == 2'h2 ? _GEN_764 : _GEN_961; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1028 = lvlReg == 2'h2 ? _GEN_765 : _GEN_962; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1029 = lvlReg == 2'h2 ? _GEN_766 : _GEN_963; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1030 = lvlReg == 2'h2 ? _GEN_767 : _GEN_964; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1031 = lvlReg == 2'h2 ? _GEN_768 : _GEN_965; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1032 = lvlReg == 2'h2 ? _GEN_769 : _GEN_966; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1033 = lvlReg == 2'h2 ? _GEN_770 : _GEN_967; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1034 = lvlReg == 2'h2 ? _GEN_771 : _GEN_968; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1035 = lvlReg == 2'h2 ? _GEN_772 : _GEN_969; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1036 = lvlReg == 2'h2 ? _GEN_773 : _GEN_970; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1037 = lvlReg == 2'h2 ? _GEN_774 : _GEN_971; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1038 = lvlReg == 2'h2 ? _GEN_775 : _GEN_972; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1039 = lvlReg == 2'h2 ? _GEN_776 : _GEN_973; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1040 = lvlReg == 2'h2 ? _GEN_777 : _GEN_974; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1041 = lvlReg == 2'h2 ? _GEN_778 : _GEN_975; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1042 = lvlReg == 2'h2 ? _GEN_779 : _GEN_976; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1043 = lvlReg == 2'h2 ? _GEN_780 : _GEN_977; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1044 = lvlReg == 2'h2 ? _GEN_781 : _GEN_978; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1045 = lvlReg == 2'h2 ? _GEN_782 : _GEN_979; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1046 = lvlReg == 2'h2 ? _GEN_783 : _GEN_980; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1047 = lvlReg == 2'h2 ? _GEN_784 : _GEN_981; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1048 = lvlReg == 2'h2 ? _GEN_785 : _GEN_982; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1052 = lvlReg == 2'h2 ? _GEN_789 : _GEN_986; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1053 = lvlReg == 2'h2 ? _GEN_790 : _GEN_987; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1054 = lvlReg == 2'h2 ? _GEN_791 : _GEN_988; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire [5:0] _GEN_1055 = lvlReg == 2'h2 ? _GEN_661 : _GEN_989; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire [7:0] _GEN_1056 = lvlReg == 2'h2 ? _GEN_793 : _GEN_990; // @[\\src\\main\\scala\\GameLogic.scala 457:34]
-  wire  _GEN_1070 = lvlReg == 2'h1 ? _GEN_610 : _GEN_1004; // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-  wire  _GEN_1071 = lvlReg == 2'h1 ? _GEN_611 : _GEN_1005; // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-  wire  _T_89 = ~isBlinking; // @[\\src\\main\\scala\\GameLogic.scala 480:12]
-  wire [6:0] _obstacleWidth_T_1 = 5'h1a * 2'h2; // @[\\src\\main\\scala\\GameLogic.scala 485:81]
-  wire [5:0] _obstacleHeight_T_1 = 4'hf * 2'h2; // @[\\src\\main\\scala\\GameLogic.scala 486:83]
-  wire [6:0] _T_92 = spriteScaleTypeRegs_0 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 490:65]
-  wire [10:0] _GEN_2030 = {{4{_T_92[6]}},_T_92}; // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire [10:0] _T_95 = $signed(spriteXRegs_16) + $signed(_GEN_2030); // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire  _T_96 = $signed(spriteXRegs_14) < $signed(_T_95); // @[\\src\\main\\scala\\GameLogic.scala 490:32]
-  wire  _T_97 = spriteVisibleRegs_16 & $signed(spriteXRegs_16) <= 11'sh280 & _T_96; // @[\\src\\main\\scala\\GameLogic.scala 489:63]
-  wire [10:0] _T_100 = $signed(spriteXRegs_14) + 11'sh8; // @[\\src\\main\\scala\\GameLogic.scala 490:110]
-  wire [5:0] _T_103 = spriteScaleTypeRegs_0 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 491:66]
-  wire [9:0] _GEN_2031 = {{4{_T_103[5]}},_T_103}; // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire [9:0] _T_106 = $signed(spriteYRegs_16) + $signed(_GEN_2031); // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire  _T_107 = $signed(spriteYRegs_14) < $signed(_T_106); // @[\\src\\main\\scala\\GameLogic.scala 491:32]
-  wire  _T_108 = _T_97 & $signed(spriteXRegs_16) < $signed(_T_100) & _T_107; // @[\\src\\main\\scala\\GameLogic.scala 490:117]
-  wire [9:0] _T_111 = $signed(spriteYRegs_14) + 10'shb; // @[\\src\\main\\scala\\GameLogic.scala 491:111]
-  wire  _T_113 = _T_108 & $signed(spriteYRegs_16) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 491:74]
-  wire  _GEN_1123 = _T_113 | collisionDetected; // @[\\src\\main\\scala\\GameLogic.scala 492:13 493:31 238:34]
-  wire [6:0] _T_116 = spriteScaleTypeRegs_1 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 490:65]
-  wire [10:0] _GEN_2032 = {{4{_T_116[6]}},_T_116}; // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire [10:0] _T_119 = $signed(spriteXRegs_17) + $signed(_GEN_2032); // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire  _T_120 = $signed(spriteXRegs_14) < $signed(_T_119); // @[\\src\\main\\scala\\GameLogic.scala 490:32]
-  wire  _T_121 = spriteVisibleRegs_17 & $signed(spriteXRegs_17) <= 11'sh280 & _T_120; // @[\\src\\main\\scala\\GameLogic.scala 489:63]
-  wire [5:0] _T_127 = spriteScaleTypeRegs_1 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 491:66]
-  wire [9:0] _GEN_2033 = {{4{_T_127[5]}},_T_127}; // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire [9:0] _T_130 = $signed(spriteYRegs_17) + $signed(_GEN_2033); // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire  _T_131 = $signed(spriteYRegs_14) < $signed(_T_130); // @[\\src\\main\\scala\\GameLogic.scala 491:32]
-  wire  _T_132 = _T_121 & $signed(spriteXRegs_17) < $signed(_T_100) & _T_131; // @[\\src\\main\\scala\\GameLogic.scala 490:117]
-  wire  _T_137 = _T_132 & $signed(spriteYRegs_17) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 491:74]
-  wire [6:0] _T_140 = spriteScaleTypeRegs_2 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 490:65]
-  wire [10:0] _GEN_2034 = {{4{_T_140[6]}},_T_140}; // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire [10:0] _T_143 = $signed(spriteXRegs_18) + $signed(_GEN_2034); // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire  _T_144 = $signed(spriteXRegs_14) < $signed(_T_143); // @[\\src\\main\\scala\\GameLogic.scala 490:32]
-  wire  _T_145 = spriteVisibleRegs_18 & $signed(spriteXRegs_18) <= 11'sh280 & _T_144; // @[\\src\\main\\scala\\GameLogic.scala 489:63]
-  wire [5:0] _T_151 = spriteScaleTypeRegs_2 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 491:66]
-  wire [9:0] _GEN_2035 = {{4{_T_151[5]}},_T_151}; // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire [9:0] _T_154 = $signed(spriteYRegs_18) + $signed(_GEN_2035); // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire  _T_155 = $signed(spriteYRegs_14) < $signed(_T_154); // @[\\src\\main\\scala\\GameLogic.scala 491:32]
-  wire  _T_156 = _T_145 & $signed(spriteXRegs_18) < $signed(_T_100) & _T_155; // @[\\src\\main\\scala\\GameLogic.scala 490:117]
-  wire  _T_161 = _T_156 & $signed(spriteYRegs_18) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 491:74]
-  wire [6:0] _T_164 = spriteScaleTypeRegs_3 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 490:65]
-  wire [10:0] _GEN_2036 = {{4{_T_164[6]}},_T_164}; // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire [10:0] _T_167 = $signed(spriteXRegs_19) + $signed(_GEN_2036); // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire  _T_168 = $signed(spriteXRegs_14) < $signed(_T_167); // @[\\src\\main\\scala\\GameLogic.scala 490:32]
-  wire  _T_169 = spriteVisibleRegs_19 & $signed(spriteXRegs_19) <= 11'sh280 & _T_168; // @[\\src\\main\\scala\\GameLogic.scala 489:63]
-  wire [5:0] _T_175 = spriteScaleTypeRegs_3 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 491:66]
-  wire [9:0] _GEN_2037 = {{4{_T_175[5]}},_T_175}; // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire [9:0] _T_178 = $signed(spriteYRegs_19) + $signed(_GEN_2037); // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire  _T_179 = $signed(spriteYRegs_14) < $signed(_T_178); // @[\\src\\main\\scala\\GameLogic.scala 491:32]
-  wire  _T_180 = _T_169 & $signed(spriteXRegs_19) < $signed(_T_100) & _T_179; // @[\\src\\main\\scala\\GameLogic.scala 490:117]
-  wire  _T_185 = _T_180 & $signed(spriteYRegs_19) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 491:74]
-  wire [6:0] _T_188 = spriteScaleTypeRegs_4 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 490:65]
-  wire [10:0] _GEN_2038 = {{4{_T_188[6]}},_T_188}; // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire [10:0] _T_191 = $signed(spriteXRegs_20) + $signed(_GEN_2038); // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire  _T_192 = $signed(spriteXRegs_14) < $signed(_T_191); // @[\\src\\main\\scala\\GameLogic.scala 490:32]
-  wire  _T_193 = spriteVisibleRegs_20 & $signed(spriteXRegs_20) <= 11'sh280 & _T_192; // @[\\src\\main\\scala\\GameLogic.scala 489:63]
-  wire [5:0] _T_199 = spriteScaleTypeRegs_4 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 491:66]
-  wire [9:0] _GEN_2039 = {{4{_T_199[5]}},_T_199}; // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire [9:0] _T_202 = $signed(spriteYRegs_20) + $signed(_GEN_2039); // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire  _T_203 = $signed(spriteYRegs_14) < $signed(_T_202); // @[\\src\\main\\scala\\GameLogic.scala 491:32]
-  wire  _T_204 = _T_193 & $signed(spriteXRegs_20) < $signed(_T_100) & _T_203; // @[\\src\\main\\scala\\GameLogic.scala 490:117]
-  wire  _T_209 = _T_204 & $signed(spriteYRegs_20) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 491:74]
-  wire [6:0] _T_212 = spriteScaleTypeRegs_5 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 490:65]
-  wire [10:0] _GEN_2040 = {{4{_T_212[6]}},_T_212}; // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire [10:0] _T_215 = $signed(spriteXRegs_21) + $signed(_GEN_2040); // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire  _T_216 = $signed(spriteXRegs_14) < $signed(_T_215); // @[\\src\\main\\scala\\GameLogic.scala 490:32]
-  wire  _T_217 = spriteVisibleRegs_21 & $signed(spriteXRegs_21) <= 11'sh280 & _T_216; // @[\\src\\main\\scala\\GameLogic.scala 489:63]
-  wire [5:0] _T_223 = spriteScaleTypeRegs_5 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 491:66]
-  wire [9:0] _GEN_2041 = {{4{_T_223[5]}},_T_223}; // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire [9:0] _T_226 = $signed(spriteYRegs_21) + $signed(_GEN_2041); // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire  _T_227 = $signed(spriteYRegs_14) < $signed(_T_226); // @[\\src\\main\\scala\\GameLogic.scala 491:32]
-  wire  _T_228 = _T_217 & $signed(spriteXRegs_21) < $signed(_T_100) & _T_227; // @[\\src\\main\\scala\\GameLogic.scala 490:117]
-  wire  _T_233 = _T_228 & $signed(spriteYRegs_21) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 491:74]
-  wire [6:0] _T_236 = spriteScaleTypeRegs_6 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 490:65]
-  wire [10:0] _GEN_2042 = {{4{_T_236[6]}},_T_236}; // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire [10:0] _T_239 = $signed(spriteXRegs_22) + $signed(_GEN_2042); // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire  _T_240 = $signed(spriteXRegs_14) < $signed(_T_239); // @[\\src\\main\\scala\\GameLogic.scala 490:32]
-  wire  _T_241 = spriteVisibleRegs_22 & $signed(spriteXRegs_22) <= 11'sh280 & _T_240; // @[\\src\\main\\scala\\GameLogic.scala 489:63]
-  wire [5:0] _T_247 = spriteScaleTypeRegs_6 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 491:66]
-  wire [9:0] _GEN_2043 = {{4{_T_247[5]}},_T_247}; // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire [9:0] _T_250 = $signed(spriteYRegs_22) + $signed(_GEN_2043); // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire  _T_251 = $signed(spriteYRegs_14) < $signed(_T_250); // @[\\src\\main\\scala\\GameLogic.scala 491:32]
-  wire  _T_252 = _T_241 & $signed(spriteXRegs_22) < $signed(_T_100) & _T_251; // @[\\src\\main\\scala\\GameLogic.scala 490:117]
-  wire  _T_257 = _T_252 & $signed(spriteYRegs_22) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 491:74]
-  wire [6:0] _T_260 = spriteScaleTypeRegs_7 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 490:65]
-  wire [10:0] _GEN_2044 = {{4{_T_260[6]}},_T_260}; // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire [10:0] _T_263 = $signed(spriteXRegs_23) + $signed(_GEN_2044); // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire  _T_264 = $signed(spriteXRegs_14) < $signed(_T_263); // @[\\src\\main\\scala\\GameLogic.scala 490:32]
-  wire  _T_265 = spriteVisibleRegs_23 & $signed(spriteXRegs_23) <= 11'sh280 & _T_264; // @[\\src\\main\\scala\\GameLogic.scala 489:63]
-  wire [5:0] _T_271 = spriteScaleTypeRegs_7 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 491:66]
-  wire [9:0] _GEN_2045 = {{4{_T_271[5]}},_T_271}; // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire [9:0] _T_274 = $signed(spriteYRegs_23) + $signed(_GEN_2045); // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire  _T_275 = $signed(spriteYRegs_14) < $signed(_T_274); // @[\\src\\main\\scala\\GameLogic.scala 491:32]
-  wire  _T_276 = _T_265 & $signed(spriteXRegs_23) < $signed(_T_100) & _T_275; // @[\\src\\main\\scala\\GameLogic.scala 490:117]
-  wire  _T_281 = _T_276 & $signed(spriteYRegs_23) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 491:74]
-  wire [6:0] _T_284 = spriteScaleTypeRegs_8 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 490:65]
-  wire [10:0] _GEN_2046 = {{4{_T_284[6]}},_T_284}; // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire [10:0] _T_287 = $signed(spriteXRegs_24) + $signed(_GEN_2046); // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire  _T_288 = $signed(spriteXRegs_14) < $signed(_T_287); // @[\\src\\main\\scala\\GameLogic.scala 490:32]
-  wire  _T_289 = spriteVisibleRegs_24 & $signed(spriteXRegs_24) <= 11'sh280 & _T_288; // @[\\src\\main\\scala\\GameLogic.scala 489:63]
-  wire [5:0] _T_295 = spriteScaleTypeRegs_8 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 491:66]
-  wire [9:0] _GEN_2047 = {{4{_T_295[5]}},_T_295}; // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire [9:0] _T_298 = $signed(spriteYRegs_24) + $signed(_GEN_2047); // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire  _T_299 = $signed(spriteYRegs_14) < $signed(_T_298); // @[\\src\\main\\scala\\GameLogic.scala 491:32]
-  wire  _T_300 = _T_289 & $signed(spriteXRegs_24) < $signed(_T_100) & _T_299; // @[\\src\\main\\scala\\GameLogic.scala 490:117]
-  wire  _T_305 = _T_300 & $signed(spriteYRegs_24) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 491:74]
-  wire [6:0] _T_308 = spriteScaleTypeRegs_9 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 490:65]
-  wire [10:0] _GEN_2048 = {{4{_T_308[6]}},_T_308}; // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire [10:0] _T_311 = $signed(spriteXRegs_25) + $signed(_GEN_2048); // @[\\src\\main\\scala\\GameLogic.scala 490:49]
-  wire  _T_312 = $signed(spriteXRegs_14) < $signed(_T_311); // @[\\src\\main\\scala\\GameLogic.scala 490:32]
-  wire  _T_313 = spriteVisibleRegs_25 & $signed(spriteXRegs_25) <= 11'sh280 & _T_312; // @[\\src\\main\\scala\\GameLogic.scala 489:63]
-  wire [5:0] _T_319 = spriteScaleTypeRegs_9 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 491:66]
-  wire [9:0] _GEN_2049 = {{4{_T_319[5]}},_T_319}; // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire [9:0] _T_322 = $signed(spriteYRegs_25) + $signed(_GEN_2049); // @[\\src\\main\\scala\\GameLogic.scala 491:49]
-  wire  _T_323 = $signed(spriteYRegs_14) < $signed(_T_322); // @[\\src\\main\\scala\\GameLogic.scala 491:32]
-  wire  _T_324 = _T_313 & $signed(spriteXRegs_25) < $signed(_T_100) & _T_323; // @[\\src\\main\\scala\\GameLogic.scala 490:117]
-  wire  _T_329 = _T_324 & $signed(spriteYRegs_25) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 491:74]
-  wire  _GEN_1132 = _T_329 | (_T_305 | (_T_281 | (_T_257 | (_T_233 | (_T_209 | (_T_185 | (_T_161 | (_T_137 | _GEN_1123))
-    )))))); // @[\\src\\main\\scala\\GameLogic.scala 492:13 493:31]
-  wire  _GEN_1133 = ~isBlinking ? _GEN_1132 : collisionDetected; // @[\\src\\main\\scala\\GameLogic.scala 480:25 238:34]
-  wire [6:0] _obstacleWidth_T_21 = 5'h1d * 2'h2; // @[\\src\\main\\scala\\GameLogic.scala 503:81]
-  wire [6:0] _T_331 = spriteScaleTypeRegs_0 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 508:65]
-  wire [10:0] _GEN_2050 = {{4{_T_331[6]}},_T_331}; // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire [10:0] _T_334 = $signed(spriteXRegs_26) + $signed(_GEN_2050); // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire  _T_335 = $signed(spriteXRegs_14) < $signed(_T_334); // @[\\src\\main\\scala\\GameLogic.scala 508:32]
-  wire  _T_336 = spriteVisibleRegs_26 & _T_335; // @[\\src\\main\\scala\\GameLogic.scala 507:34]
-  wire [9:0] _T_345 = $signed(spriteYRegs_26) + $signed(_GEN_2031); // @[\\src\\main\\scala\\GameLogic.scala 509:49]
-  wire  _T_346 = $signed(spriteYRegs_14) < $signed(_T_345); // @[\\src\\main\\scala\\GameLogic.scala 509:32]
-  wire  _T_347 = _T_336 & $signed(spriteXRegs_26) < $signed(_T_100) & _T_346; // @[\\src\\main\\scala\\GameLogic.scala 508:117]
-  wire  _T_352 = _T_347 & $signed(spriteYRegs_26) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 509:74]
-  wire [6:0] _T_353 = spriteScaleTypeRegs_1 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 508:65]
-  wire [10:0] _GEN_2052 = {{4{_T_353[6]}},_T_353}; // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire [10:0] _T_356 = $signed(spriteXRegs_27) + $signed(_GEN_2052); // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire  _T_357 = $signed(spriteXRegs_14) < $signed(_T_356); // @[\\src\\main\\scala\\GameLogic.scala 508:32]
-  wire  _T_358 = spriteVisibleRegs_27 & _T_357; // @[\\src\\main\\scala\\GameLogic.scala 507:34]
-  wire [9:0] _T_367 = $signed(spriteYRegs_27) + $signed(_GEN_2033); // @[\\src\\main\\scala\\GameLogic.scala 509:49]
-  wire  _T_368 = $signed(spriteYRegs_14) < $signed(_T_367); // @[\\src\\main\\scala\\GameLogic.scala 509:32]
-  wire  _T_369 = _T_358 & $signed(spriteXRegs_27) < $signed(_T_100) & _T_368; // @[\\src\\main\\scala\\GameLogic.scala 508:117]
-  wire  _T_374 = _T_369 & $signed(spriteYRegs_27) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 509:74]
-  wire [6:0] _T_375 = spriteScaleTypeRegs_2 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 508:65]
-  wire [10:0] _GEN_2054 = {{4{_T_375[6]}},_T_375}; // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire [10:0] _T_378 = $signed(spriteXRegs_28) + $signed(_GEN_2054); // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire  _T_379 = $signed(spriteXRegs_14) < $signed(_T_378); // @[\\src\\main\\scala\\GameLogic.scala 508:32]
-  wire  _T_380 = spriteVisibleRegs_28 & _T_379; // @[\\src\\main\\scala\\GameLogic.scala 507:34]
-  wire [9:0] _T_389 = $signed(spriteYRegs_28) + $signed(_GEN_2035); // @[\\src\\main\\scala\\GameLogic.scala 509:49]
-  wire  _T_390 = $signed(spriteYRegs_14) < $signed(_T_389); // @[\\src\\main\\scala\\GameLogic.scala 509:32]
-  wire  _T_391 = _T_380 & $signed(spriteXRegs_28) < $signed(_T_100) & _T_390; // @[\\src\\main\\scala\\GameLogic.scala 508:117]
-  wire  _T_396 = _T_391 & $signed(spriteYRegs_28) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 509:74]
-  wire [6:0] _T_397 = spriteScaleTypeRegs_3 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 508:65]
-  wire [10:0] _GEN_2056 = {{4{_T_397[6]}},_T_397}; // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire [10:0] _T_400 = $signed(spriteXRegs_29) + $signed(_GEN_2056); // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire  _T_401 = $signed(spriteXRegs_14) < $signed(_T_400); // @[\\src\\main\\scala\\GameLogic.scala 508:32]
-  wire  _T_402 = spriteVisibleRegs_29 & _T_401; // @[\\src\\main\\scala\\GameLogic.scala 507:34]
-  wire [9:0] _T_411 = $signed(spriteYRegs_29) + $signed(_GEN_2037); // @[\\src\\main\\scala\\GameLogic.scala 509:49]
-  wire  _T_412 = $signed(spriteYRegs_14) < $signed(_T_411); // @[\\src\\main\\scala\\GameLogic.scala 509:32]
-  wire  _T_413 = _T_402 & $signed(spriteXRegs_29) < $signed(_T_100) & _T_412; // @[\\src\\main\\scala\\GameLogic.scala 508:117]
-  wire  _T_418 = _T_413 & $signed(spriteYRegs_29) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 509:74]
-  wire [6:0] _T_419 = spriteScaleTypeRegs_4 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 508:65]
-  wire [10:0] _GEN_2058 = {{4{_T_419[6]}},_T_419}; // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire [10:0] _T_422 = $signed(spriteXRegs_30) + $signed(_GEN_2058); // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire  _T_423 = $signed(spriteXRegs_14) < $signed(_T_422); // @[\\src\\main\\scala\\GameLogic.scala 508:32]
-  wire  _T_424 = spriteVisibleRegs_30 & _T_423; // @[\\src\\main\\scala\\GameLogic.scala 507:34]
-  wire [9:0] _T_433 = $signed(spriteYRegs_30) + $signed(_GEN_2039); // @[\\src\\main\\scala\\GameLogic.scala 509:49]
-  wire  _T_434 = $signed(spriteYRegs_14) < $signed(_T_433); // @[\\src\\main\\scala\\GameLogic.scala 509:32]
-  wire  _T_435 = _T_424 & $signed(spriteXRegs_30) < $signed(_T_100) & _T_434; // @[\\src\\main\\scala\\GameLogic.scala 508:117]
-  wire  _T_440 = _T_435 & $signed(spriteYRegs_30) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 509:74]
-  wire [6:0] _T_441 = spriteScaleTypeRegs_5 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 508:65]
-  wire [10:0] _GEN_2060 = {{4{_T_441[6]}},_T_441}; // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire [10:0] _T_444 = $signed(spriteXRegs_31) + $signed(_GEN_2060); // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire  _T_445 = $signed(spriteXRegs_14) < $signed(_T_444); // @[\\src\\main\\scala\\GameLogic.scala 508:32]
-  wire  _T_446 = spriteVisibleRegs_31 & _T_445; // @[\\src\\main\\scala\\GameLogic.scala 507:34]
-  wire [9:0] _T_455 = $signed(spriteYRegs_31) + $signed(_GEN_2041); // @[\\src\\main\\scala\\GameLogic.scala 509:49]
-  wire  _T_456 = $signed(spriteYRegs_14) < $signed(_T_455); // @[\\src\\main\\scala\\GameLogic.scala 509:32]
-  wire  _T_457 = _T_446 & $signed(spriteXRegs_31) < $signed(_T_100) & _T_456; // @[\\src\\main\\scala\\GameLogic.scala 508:117]
-  wire  _T_462 = _T_457 & $signed(spriteYRegs_31) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 509:74]
-  wire [6:0] _T_463 = spriteScaleTypeRegs_6 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 508:65]
-  wire [10:0] _GEN_2062 = {{4{_T_463[6]}},_T_463}; // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire [10:0] _T_466 = $signed(spriteXRegs_32) + $signed(_GEN_2062); // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire  _T_467 = $signed(spriteXRegs_14) < $signed(_T_466); // @[\\src\\main\\scala\\GameLogic.scala 508:32]
-  wire  _T_468 = spriteVisibleRegs_32 & _T_467; // @[\\src\\main\\scala\\GameLogic.scala 507:34]
-  wire [9:0] _T_477 = $signed(spriteYRegs_32) + $signed(_GEN_2043); // @[\\src\\main\\scala\\GameLogic.scala 509:49]
-  wire  _T_478 = $signed(spriteYRegs_14) < $signed(_T_477); // @[\\src\\main\\scala\\GameLogic.scala 509:32]
-  wire  _T_479 = _T_468 & $signed(spriteXRegs_32) < $signed(_T_100) & _T_478; // @[\\src\\main\\scala\\GameLogic.scala 508:117]
-  wire  _T_484 = _T_479 & $signed(spriteYRegs_32) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 509:74]
-  wire [6:0] _T_485 = spriteScaleTypeRegs_7 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 508:65]
-  wire [10:0] _GEN_2064 = {{4{_T_485[6]}},_T_485}; // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire [10:0] _T_488 = $signed(spriteXRegs_33) + $signed(_GEN_2064); // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire  _T_489 = $signed(spriteXRegs_14) < $signed(_T_488); // @[\\src\\main\\scala\\GameLogic.scala 508:32]
-  wire  _T_490 = spriteVisibleRegs_33 & _T_489; // @[\\src\\main\\scala\\GameLogic.scala 507:34]
-  wire [9:0] _T_499 = $signed(spriteYRegs_33) + $signed(_GEN_2045); // @[\\src\\main\\scala\\GameLogic.scala 509:49]
-  wire  _T_500 = $signed(spriteYRegs_14) < $signed(_T_499); // @[\\src\\main\\scala\\GameLogic.scala 509:32]
-  wire  _T_501 = _T_490 & $signed(spriteXRegs_33) < $signed(_T_100) & _T_500; // @[\\src\\main\\scala\\GameLogic.scala 508:117]
-  wire  _T_506 = _T_501 & $signed(spriteYRegs_33) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 509:74]
-  wire [6:0] _T_507 = spriteScaleTypeRegs_8 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 508:65]
-  wire [10:0] _GEN_2066 = {{4{_T_507[6]}},_T_507}; // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire [10:0] _T_510 = $signed(spriteXRegs_34) + $signed(_GEN_2066); // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire  _T_511 = $signed(spriteXRegs_14) < $signed(_T_510); // @[\\src\\main\\scala\\GameLogic.scala 508:32]
-  wire  _T_512 = spriteVisibleRegs_34 & _T_511; // @[\\src\\main\\scala\\GameLogic.scala 507:34]
-  wire [9:0] _T_521 = $signed(spriteYRegs_34) + $signed(_GEN_2047); // @[\\src\\main\\scala\\GameLogic.scala 509:49]
-  wire  _T_522 = $signed(spriteYRegs_14) < $signed(_T_521); // @[\\src\\main\\scala\\GameLogic.scala 509:32]
-  wire  _T_523 = _T_512 & $signed(spriteXRegs_34) < $signed(_T_100) & _T_522; // @[\\src\\main\\scala\\GameLogic.scala 508:117]
-  wire  _T_528 = _T_523 & $signed(spriteYRegs_34) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 509:74]
-  wire [6:0] _T_529 = spriteScaleTypeRegs_9 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 508:65]
-  wire [10:0] _GEN_2068 = {{4{_T_529[6]}},_T_529}; // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire [10:0] _T_532 = $signed(spriteXRegs_35) + $signed(_GEN_2068); // @[\\src\\main\\scala\\GameLogic.scala 508:49]
-  wire  _T_533 = $signed(spriteXRegs_14) < $signed(_T_532); // @[\\src\\main\\scala\\GameLogic.scala 508:32]
-  wire  _T_534 = spriteVisibleRegs_35 & _T_533; // @[\\src\\main\\scala\\GameLogic.scala 507:34]
-  wire [9:0] _T_543 = $signed(spriteYRegs_35) + $signed(_GEN_2049); // @[\\src\\main\\scala\\GameLogic.scala 509:49]
-  wire  _T_544 = $signed(spriteYRegs_14) < $signed(_T_543); // @[\\src\\main\\scala\\GameLogic.scala 509:32]
-  wire  _T_545 = _T_534 & $signed(spriteXRegs_35) < $signed(_T_100) & _T_544; // @[\\src\\main\\scala\\GameLogic.scala 508:117]
-  wire  _T_550 = _T_545 & $signed(spriteYRegs_35) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 509:74]
-  wire  _GEN_1143 = _T_550 | (_T_528 | (_T_506 | (_T_484 | (_T_462 | (_T_440 | (_T_418 | (_T_396 | (_T_374 | (_T_352 |
-    _GEN_1133))))))))); // @[\\src\\main\\scala\\GameLogic.scala 510:13 511:31]
-  wire  _GEN_1144 = _T_89 ? _GEN_1143 : _GEN_1133; // @[\\src\\main\\scala\\GameLogic.scala 498:25]
-  wire [7:0] _obstacleWidth_T_41 = 6'h20 * 2'h2; // @[\\src\\main\\scala\\GameLogic.scala 521:81]
-  wire [7:0] _T_552 = spriteScaleTypeRegs_0 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 525:65]
-  wire [10:0] _GEN_2070 = {{3{_T_552[7]}},_T_552}; // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire [10:0] _T_555 = $signed(spriteXRegs_36) + $signed(_GEN_2070); // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire  _T_556 = $signed(spriteXRegs_14) < $signed(_T_555); // @[\\src\\main\\scala\\GameLogic.scala 525:32]
-  wire  _T_557 = spriteVisibleRegs_36 & _T_556; // @[\\src\\main\\scala\\GameLogic.scala 524:34]
-  wire [9:0] _T_566 = $signed(spriteYRegs_36) + $signed(_GEN_2031); // @[\\src\\main\\scala\\GameLogic.scala 526:49]
-  wire  _T_567 = $signed(spriteYRegs_14) < $signed(_T_566); // @[\\src\\main\\scala\\GameLogic.scala 526:32]
-  wire  _T_568 = _T_557 & $signed(spriteXRegs_36) < $signed(_T_100) & _T_567; // @[\\src\\main\\scala\\GameLogic.scala 525:117]
-  wire  _T_573 = _T_568 & $signed(spriteYRegs_36) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 526:74]
-  wire [7:0] _T_574 = spriteScaleTypeRegs_1 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 525:65]
-  wire [10:0] _GEN_2072 = {{3{_T_574[7]}},_T_574}; // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire [10:0] _T_577 = $signed(spriteXRegs_37) + $signed(_GEN_2072); // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire  _T_578 = $signed(spriteXRegs_14) < $signed(_T_577); // @[\\src\\main\\scala\\GameLogic.scala 525:32]
-  wire  _T_579 = spriteVisibleRegs_37 & _T_578; // @[\\src\\main\\scala\\GameLogic.scala 524:34]
-  wire [9:0] _T_588 = $signed(spriteYRegs_37) + $signed(_GEN_2033); // @[\\src\\main\\scala\\GameLogic.scala 526:49]
-  wire  _T_589 = $signed(spriteYRegs_14) < $signed(_T_588); // @[\\src\\main\\scala\\GameLogic.scala 526:32]
-  wire  _T_590 = _T_579 & $signed(spriteXRegs_37) < $signed(_T_100) & _T_589; // @[\\src\\main\\scala\\GameLogic.scala 525:117]
-  wire  _T_595 = _T_590 & $signed(spriteYRegs_37) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 526:74]
-  wire [7:0] _T_596 = spriteScaleTypeRegs_2 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 525:65]
-  wire [10:0] _GEN_2074 = {{3{_T_596[7]}},_T_596}; // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire [10:0] _T_599 = $signed(spriteXRegs_38) + $signed(_GEN_2074); // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire  _T_600 = $signed(spriteXRegs_14) < $signed(_T_599); // @[\\src\\main\\scala\\GameLogic.scala 525:32]
-  wire  _T_601 = spriteVisibleRegs_38 & _T_600; // @[\\src\\main\\scala\\GameLogic.scala 524:34]
-  wire [9:0] _T_610 = $signed(spriteYRegs_38) + $signed(_GEN_2035); // @[\\src\\main\\scala\\GameLogic.scala 526:49]
-  wire  _T_611 = $signed(spriteYRegs_14) < $signed(_T_610); // @[\\src\\main\\scala\\GameLogic.scala 526:32]
-  wire  _T_612 = _T_601 & $signed(spriteXRegs_38) < $signed(_T_100) & _T_611; // @[\\src\\main\\scala\\GameLogic.scala 525:117]
-  wire  _T_617 = _T_612 & $signed(spriteYRegs_38) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 526:74]
-  wire [7:0] _T_618 = spriteScaleTypeRegs_3 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 525:65]
-  wire [10:0] _GEN_2076 = {{3{_T_618[7]}},_T_618}; // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire [10:0] _T_621 = $signed(spriteXRegs_39) + $signed(_GEN_2076); // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire  _T_622 = $signed(spriteXRegs_14) < $signed(_T_621); // @[\\src\\main\\scala\\GameLogic.scala 525:32]
-  wire  _T_623 = spriteVisibleRegs_39 & _T_622; // @[\\src\\main\\scala\\GameLogic.scala 524:34]
-  wire [9:0] _T_632 = $signed(spriteYRegs_39) + $signed(_GEN_2037); // @[\\src\\main\\scala\\GameLogic.scala 526:49]
-  wire  _T_633 = $signed(spriteYRegs_14) < $signed(_T_632); // @[\\src\\main\\scala\\GameLogic.scala 526:32]
-  wire  _T_634 = _T_623 & $signed(spriteXRegs_39) < $signed(_T_100) & _T_633; // @[\\src\\main\\scala\\GameLogic.scala 525:117]
-  wire  _T_639 = _T_634 & $signed(spriteYRegs_39) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 526:74]
-  wire [7:0] _T_640 = spriteScaleTypeRegs_4 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 525:65]
-  wire [10:0] _GEN_2078 = {{3{_T_640[7]}},_T_640}; // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire [10:0] _T_643 = $signed(spriteXRegs_40) + $signed(_GEN_2078); // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire  _T_644 = $signed(spriteXRegs_14) < $signed(_T_643); // @[\\src\\main\\scala\\GameLogic.scala 525:32]
-  wire  _T_645 = spriteVisibleRegs_40 & _T_644; // @[\\src\\main\\scala\\GameLogic.scala 524:34]
-  wire [9:0] _T_654 = $signed(spriteYRegs_40) + $signed(_GEN_2039); // @[\\src\\main\\scala\\GameLogic.scala 526:49]
-  wire  _T_655 = $signed(spriteYRegs_14) < $signed(_T_654); // @[\\src\\main\\scala\\GameLogic.scala 526:32]
-  wire  _T_656 = _T_645 & $signed(spriteXRegs_40) < $signed(_T_100) & _T_655; // @[\\src\\main\\scala\\GameLogic.scala 525:117]
-  wire  _T_661 = _T_656 & $signed(spriteYRegs_40) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 526:74]
-  wire [7:0] _T_662 = spriteScaleTypeRegs_5 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 525:65]
-  wire [10:0] _GEN_2080 = {{3{_T_662[7]}},_T_662}; // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire [10:0] _T_665 = $signed(spriteXRegs_41) + $signed(_GEN_2080); // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire  _T_666 = $signed(spriteXRegs_14) < $signed(_T_665); // @[\\src\\main\\scala\\GameLogic.scala 525:32]
-  wire  _T_667 = spriteVisibleRegs_41 & _T_666; // @[\\src\\main\\scala\\GameLogic.scala 524:34]
-  wire [9:0] _T_676 = $signed(spriteYRegs_41) + $signed(_GEN_2041); // @[\\src\\main\\scala\\GameLogic.scala 526:49]
-  wire  _T_677 = $signed(spriteYRegs_14) < $signed(_T_676); // @[\\src\\main\\scala\\GameLogic.scala 526:32]
-  wire  _T_678 = _T_667 & $signed(spriteXRegs_41) < $signed(_T_100) & _T_677; // @[\\src\\main\\scala\\GameLogic.scala 525:117]
-  wire  _T_683 = _T_678 & $signed(spriteYRegs_41) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 526:74]
-  wire [7:0] _T_684 = spriteScaleTypeRegs_6 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 525:65]
-  wire [10:0] _GEN_2082 = {{3{_T_684[7]}},_T_684}; // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire [10:0] _T_687 = $signed(spriteXRegs_42) + $signed(_GEN_2082); // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire  _T_688 = $signed(spriteXRegs_14) < $signed(_T_687); // @[\\src\\main\\scala\\GameLogic.scala 525:32]
-  wire  _T_689 = spriteVisibleRegs_42 & _T_688; // @[\\src\\main\\scala\\GameLogic.scala 524:34]
-  wire [9:0] _T_698 = $signed(spriteYRegs_42) + $signed(_GEN_2043); // @[\\src\\main\\scala\\GameLogic.scala 526:49]
-  wire  _T_699 = $signed(spriteYRegs_14) < $signed(_T_698); // @[\\src\\main\\scala\\GameLogic.scala 526:32]
-  wire  _T_700 = _T_689 & $signed(spriteXRegs_42) < $signed(_T_100) & _T_699; // @[\\src\\main\\scala\\GameLogic.scala 525:117]
-  wire  _T_705 = _T_700 & $signed(spriteYRegs_42) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 526:74]
-  wire [7:0] _T_706 = spriteScaleTypeRegs_7 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 525:65]
-  wire [10:0] _GEN_2084 = {{3{_T_706[7]}},_T_706}; // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire [10:0] _T_709 = $signed(spriteXRegs_43) + $signed(_GEN_2084); // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire  _T_710 = $signed(spriteXRegs_14) < $signed(_T_709); // @[\\src\\main\\scala\\GameLogic.scala 525:32]
-  wire  _T_711 = spriteVisibleRegs_43 & _T_710; // @[\\src\\main\\scala\\GameLogic.scala 524:34]
-  wire [9:0] _T_720 = $signed(spriteYRegs_43) + $signed(_GEN_2045); // @[\\src\\main\\scala\\GameLogic.scala 526:49]
-  wire  _T_721 = $signed(spriteYRegs_14) < $signed(_T_720); // @[\\src\\main\\scala\\GameLogic.scala 526:32]
-  wire  _T_722 = _T_711 & $signed(spriteXRegs_43) < $signed(_T_100) & _T_721; // @[\\src\\main\\scala\\GameLogic.scala 525:117]
-  wire  _T_727 = _T_722 & $signed(spriteYRegs_43) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 526:74]
-  wire [7:0] _T_728 = spriteScaleTypeRegs_8 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 525:65]
-  wire [10:0] _GEN_2086 = {{3{_T_728[7]}},_T_728}; // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire [10:0] _T_731 = $signed(spriteXRegs_44) + $signed(_GEN_2086); // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire  _T_732 = $signed(spriteXRegs_14) < $signed(_T_731); // @[\\src\\main\\scala\\GameLogic.scala 525:32]
-  wire  _T_733 = spriteVisibleRegs_44 & _T_732; // @[\\src\\main\\scala\\GameLogic.scala 524:34]
-  wire [9:0] _T_742 = $signed(spriteYRegs_44) + $signed(_GEN_2047); // @[\\src\\main\\scala\\GameLogic.scala 526:49]
-  wire  _T_743 = $signed(spriteYRegs_14) < $signed(_T_742); // @[\\src\\main\\scala\\GameLogic.scala 526:32]
-  wire  _T_744 = _T_733 & $signed(spriteXRegs_44) < $signed(_T_100) & _T_743; // @[\\src\\main\\scala\\GameLogic.scala 525:117]
-  wire  _T_749 = _T_744 & $signed(spriteYRegs_44) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 526:74]
-  wire [7:0] _T_750 = spriteScaleTypeRegs_9 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 525:65]
-  wire [10:0] _GEN_2088 = {{3{_T_750[7]}},_T_750}; // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire [10:0] _T_753 = $signed(spriteXRegs_45) + $signed(_GEN_2088); // @[\\src\\main\\scala\\GameLogic.scala 525:49]
-  wire  _T_754 = $signed(spriteXRegs_14) < $signed(_T_753); // @[\\src\\main\\scala\\GameLogic.scala 525:32]
-  wire  _T_755 = spriteVisibleRegs_45 & _T_754; // @[\\src\\main\\scala\\GameLogic.scala 524:34]
-  wire [9:0] _T_764 = $signed(spriteYRegs_45) + $signed(_GEN_2049); // @[\\src\\main\\scala\\GameLogic.scala 526:49]
-  wire  _T_765 = $signed(spriteYRegs_14) < $signed(_T_764); // @[\\src\\main\\scala\\GameLogic.scala 526:32]
-  wire  _T_766 = _T_755 & $signed(spriteXRegs_45) < $signed(_T_100) & _T_765; // @[\\src\\main\\scala\\GameLogic.scala 525:117]
-  wire  _T_771 = _T_766 & $signed(spriteYRegs_45) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 526:74]
-  wire  _GEN_1154 = _T_771 | (_T_749 | (_T_727 | (_T_705 | (_T_683 | (_T_661 | (_T_639 | (_T_617 | (_T_595 | (_T_573 |
-    _GEN_1144))))))))); // @[\\src\\main\\scala\\GameLogic.scala 527:13 528:31]
-  wire  _GEN_1155 = _T_89 ? _GEN_1154 : _GEN_1144; // @[\\src\\main\\scala\\GameLogic.scala 516:25]
-  wire [10:0] _T_774 = $signed(spriteXRegs_13) + 11'sh16; // @[\\src\\main\\scala\\GameLogic.scala 536:46]
-  wire  _T_775 = $signed(spriteXRegs_14) < $signed(_T_774); // @[\\src\\main\\scala\\GameLogic.scala 536:28]
-  wire  _T_776 = spriteVisibleRegs_13 & _T_775; // @[\\src\\main\\scala\\GameLogic.scala 535:31]
-  wire [9:0] _T_784 = $signed(spriteYRegs_13) + 10'sh16; // @[\\src\\main\\scala\\GameLogic.scala 537:46]
-  wire  _T_785 = $signed(spriteYRegs_14) < $signed(_T_784); // @[\\src\\main\\scala\\GameLogic.scala 537:28]
-  wire  _T_786 = _T_776 & $signed(spriteXRegs_13) < $signed(_T_100) & _T_785; // @[\\src\\main\\scala\\GameLogic.scala 536:99]
-  wire  _T_791 = _T_786 & $signed(spriteYRegs_13) < $signed(_T_111); // @[\\src\\main\\scala\\GameLogic.scala 537:54]
-  wire [2:0] _livesReg_T_1 = livesReg + 3'h1; // @[\\src\\main\\scala\\GameLogic.scala 541:32]
-  wire [2:0] _GEN_1156 = livesReg < 3'h3 ? _livesReg_T_1 : livesReg; // @[\\src\\main\\scala\\GameLogic.scala 540:30 541:20 222:25]
-  wire [2:0] _GEN_1158 = _T_791 ? _GEN_1156 : livesReg; // @[\\src\\main\\scala\\GameLogic.scala 222:25 538:9]
-  wire  _GEN_1159 = collisionDetected & _T_89 | isBlinking; // @[\\src\\main\\scala\\GameLogic.scala 546:46 547:20 241:27]
-  wire [7:0] _GEN_1160 = collisionDetected & _T_89 ? 8'h0 : blinkCounter; // @[\\src\\main\\scala\\GameLogic.scala 546:46 548:22 239:29]
-  wire [1:0] _GEN_1161 = collisionDetected & _T_89 ? 2'h0 : blinkTimes; // @[\\src\\main\\scala\\GameLogic.scala 546:46 549:20 240:27]
-  wire  _GEN_1162 = blinkCounter < 8'h14 | _GEN_1071; // @[\\src\\main\\scala\\GameLogic.scala 557:41 558:33]
-  wire  _GEN_1163 = blinkCounter < 8'ha ? 1'h0 : _GEN_1162; // @[\\src\\main\\scala\\GameLogic.scala 555:35 556:33]
-  wire [7:0] _blinkCounter_T_1 = blinkCounter + 8'h1; // @[\\src\\main\\scala\\GameLogic.scala 560:38]
-  wire [1:0] _blinkTimes_T_1 = blinkTimes + 2'h1; // @[\\src\\main\\scala\\GameLogic.scala 563:36]
-  wire [7:0] _GEN_1164 = blinkCounter == 8'h14 ? 8'h0 : _blinkCounter_T_1; // @[\\src\\main\\scala\\GameLogic.scala 560:22 561:37 562:24]
-  wire [1:0] _GEN_1165 = blinkCounter == 8'h14 ? _blinkTimes_T_1 : _GEN_1161; // @[\\src\\main\\scala\\GameLogic.scala 561:37 563:22]
-  wire [2:0] _livesReg_T_3 = livesReg - 3'h1; // @[\\src\\main\\scala\\GameLogic.scala 572:34]
-  wire [2:0] _GEN_1166 = livesReg <= 3'h1 ? 3'h0 : _livesReg_T_3; // @[\\src\\main\\scala\\GameLogic.scala 568:33 569:22 572:22]
-  wire [2:0] _GEN_1167 = livesReg <= 3'h1 ? 3'h6 : stateReg; // @[\\src\\main\\scala\\GameLogic.scala 568:33 570:22 113:25]
-  wire  _GEN_1168 = blinkTimes == 2'h3 ? 1'h0 : _GEN_1159; // @[\\src\\main\\scala\\GameLogic.scala 565:34 566:22]
-  wire  _GEN_1169 = blinkTimes == 2'h3 | _GEN_1163; // @[\\src\\main\\scala\\GameLogic.scala 565:34 567:33]
-  wire [2:0] _GEN_1170 = blinkTimes == 2'h3 ? _GEN_1166 : _GEN_1158; // @[\\src\\main\\scala\\GameLogic.scala 565:34]
-  wire [2:0] _GEN_1171 = blinkTimes == 2'h3 ? _GEN_1167 : stateReg; // @[\\src\\main\\scala\\GameLogic.scala 113:25 565:34]
-  wire  _GEN_1172 = blinkTimes == 2'h3 ? 1'h0 : _GEN_1155; // @[\\src\\main\\scala\\GameLogic.scala 565:34 574:29]
-  wire [2:0] _GEN_1178 = isBlinking ? _GEN_1171 : stateReg; // @[\\src\\main\\scala\\GameLogic.scala 553:24 113:25]
-  reg [10:0] spriteXRegs_58_REG; // @[\\src\\main\\scala\\GameLogic.scala 593:35]
-  reg [9:0] spriteYRegs_58_REG; // @[\\src\\main\\scala\\GameLogic.scala 594:35]
-  reg [10:0] spriteXRegs_59_REG; // @[\\src\\main\\scala\\GameLogic.scala 595:35]
-  reg [9:0] spriteYRegs_59_REG; // @[\\src\\main\\scala\\GameLogic.scala 596:35]
-  reg [10:0] spriteXRegs_60_REG; // @[\\src\\main\\scala\\GameLogic.scala 597:35]
-  reg [9:0] spriteYRegs_60_REG; // @[\\src\\main\\scala\\GameLogic.scala 598:35]
-  wire [9:0] _starCnt_T_1 = starCnt + 10'h1; // @[\\src\\main\\scala\\GameLogic.scala 605:28]
-  wire [10:0] _spriteXRegs_58_T_5 = $signed(spriteXRegs_58) + 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 613:44]
-  wire [10:0] _spriteXRegs_59_T_5 = $signed(spriteXRegs_59) + 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 614:44]
-  wire [10:0] _spriteXRegs_60_T_5 = $signed(spriteXRegs_60) + 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 615:44]
-  wire [9:0] _spriteYRegs_58_T_5 = $signed(spriteYRegs_58) + 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 616:44]
-  wire [9:0] _spriteYRegs_59_T_5 = $signed(spriteYRegs_59) + 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 617:44]
-  wire [9:0] _spriteYRegs_60_T_5 = $signed(spriteYRegs_60) + 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 618:44]
-  reg [10:0] spriteXRegs_58_REG_1; // @[\\src\\main\\scala\\GameLogic.scala 621:35]
-  reg [9:0] spriteYRegs_58_REG_1; // @[\\src\\main\\scala\\GameLogic.scala 622:35]
-  reg [10:0] spriteXRegs_59_REG_1; // @[\\src\\main\\scala\\GameLogic.scala 623:35]
-  reg [9:0] spriteYRegs_59_REG_1; // @[\\src\\main\\scala\\GameLogic.scala 624:35]
-  reg [10:0] spriteXRegs_60_REG_1; // @[\\src\\main\\scala\\GameLogic.scala 625:35]
-  reg [9:0] spriteYRegs_60_REG_1; // @[\\src\\main\\scala\\GameLogic.scala 626:35]
-  reg [10:0] spriteXRegs_58_REG_2; // @[\\src\\main\\scala\\GameLogic.scala 649:35]
-  reg [9:0] spriteYRegs_58_REG_2; // @[\\src\\main\\scala\\GameLogic.scala 650:35]
-  reg [10:0] spriteXRegs_59_REG_2; // @[\\src\\main\\scala\\GameLogic.scala 651:35]
-  reg [9:0] spriteYRegs_59_REG_2; // @[\\src\\main\\scala\\GameLogic.scala 652:35]
-  reg [10:0] spriteXRegs_60_REG_2; // @[\\src\\main\\scala\\GameLogic.scala 653:35]
-  reg [9:0] spriteYRegs_60_REG_2; // @[\\src\\main\\scala\\GameLogic.scala 654:35]
-  wire [9:0] _GEN_1181 = starCnt == 10'h168 ? 10'h0 : _starCnt_T_1; // @[\\src\\main\\scala\\GameLogic.scala 676:37 677:17 679:17]
-  wire  _GEN_1182 = starCnt == 10'h12c ? 1'h0 : sprite58ScaleUpHorizontal; // @[\\src\\main\\scala\\GameLogic.scala 662:37 663:35 168:42]
-  wire  _GEN_1183 = starCnt == 10'h12c ? 1'h0 : sprite59ScaleUpHorizontal; // @[\\src\\main\\scala\\GameLogic.scala 662:37 664:35 170:42]
-  wire  _GEN_1184 = starCnt == 10'h12c ? 1'h0 : sprite60ScaleUpHorizontal; // @[\\src\\main\\scala\\GameLogic.scala 662:37 665:35 172:42]
-  wire  _GEN_1185 = starCnt == 10'h12c ? 1'h0 : sprite58ScaleUpVertical; // @[\\src\\main\\scala\\GameLogic.scala 662:37 666:33 169:40]
-  wire  _GEN_1186 = starCnt == 10'h12c ? 1'h0 : sprite59ScaleUpVertical; // @[\\src\\main\\scala\\GameLogic.scala 662:37 667:33 171:40]
-  wire  _GEN_1187 = starCnt == 10'h12c ? 1'h0 : sprite60ScaleUpVertical; // @[\\src\\main\\scala\\GameLogic.scala 662:37 668:33 173:40]
-  wire [10:0] _GEN_1188 = starCnt == 10'h12c ? $signed(_spriteXRegs_58_T_5) : $signed(_GEN_102); // @[\\src\\main\\scala\\GameLogic.scala 662:37 669:25]
-  wire [10:0] _GEN_1189 = starCnt == 10'h12c ? $signed(_spriteXRegs_59_T_5) : $signed(_GEN_104); // @[\\src\\main\\scala\\GameLogic.scala 662:37 670:25]
-  wire [10:0] _GEN_1190 = starCnt == 10'h12c ? $signed(_spriteXRegs_60_T_5) : $signed(_GEN_106); // @[\\src\\main\\scala\\GameLogic.scala 662:37 671:25]
-  wire [9:0] _GEN_1191 = starCnt == 10'h12c ? $signed(_spriteYRegs_58_T_5) : $signed(_GEN_103); // @[\\src\\main\\scala\\GameLogic.scala 662:37 672:25]
-  wire [9:0] _GEN_1192 = starCnt == 10'h12c ? $signed(_spriteYRegs_59_T_5) : $signed(_GEN_105); // @[\\src\\main\\scala\\GameLogic.scala 662:37 673:25]
-  wire [9:0] _GEN_1193 = starCnt == 10'h12c ? $signed(_spriteYRegs_60_T_5) : $signed(_GEN_107); // @[\\src\\main\\scala\\GameLogic.scala 662:37 674:25]
-  wire [9:0] _GEN_1194 = starCnt == 10'h12c ? _starCnt_T_1 : _GEN_1181; // @[\\src\\main\\scala\\GameLogic.scala 662:37 675:17]
-  wire [10:0] _GEN_1195 = starCnt == 10'hf0 ? $signed(spriteXRegs_58_REG_2) : $signed(_GEN_1188); // @[\\src\\main\\scala\\GameLogic.scala 648:37 649:25]
-  wire [9:0] _GEN_1196 = starCnt == 10'hf0 ? $signed(spriteYRegs_58_REG_2) : $signed(_GEN_1191); // @[\\src\\main\\scala\\GameLogic.scala 648:37 650:25]
-  wire [10:0] _GEN_1197 = starCnt == 10'hf0 ? $signed(spriteXRegs_59_REG_2) : $signed(_GEN_1189); // @[\\src\\main\\scala\\GameLogic.scala 648:37 651:25]
-  wire [9:0] _GEN_1198 = starCnt == 10'hf0 ? $signed(spriteYRegs_59_REG_2) : $signed(_GEN_1192); // @[\\src\\main\\scala\\GameLogic.scala 648:37 652:25]
-  wire [10:0] _GEN_1199 = starCnt == 10'hf0 ? $signed(spriteXRegs_60_REG_2) : $signed(_GEN_1190); // @[\\src\\main\\scala\\GameLogic.scala 648:37 653:25]
-  wire [9:0] _GEN_1200 = starCnt == 10'hf0 ? $signed(spriteYRegs_60_REG_2) : $signed(_GEN_1193); // @[\\src\\main\\scala\\GameLogic.scala 648:37 654:25]
-  wire  _GEN_1201 = starCnt == 10'hf0 | _GEN_1182; // @[\\src\\main\\scala\\GameLogic.scala 648:37 655:35]
-  wire  _GEN_1202 = starCnt == 10'hf0 | _GEN_1183; // @[\\src\\main\\scala\\GameLogic.scala 648:37 656:35]
-  wire  _GEN_1203 = starCnt == 10'hf0 | _GEN_1184; // @[\\src\\main\\scala\\GameLogic.scala 648:37 657:35]
-  wire  _GEN_1204 = starCnt == 10'hf0 | _GEN_1185; // @[\\src\\main\\scala\\GameLogic.scala 648:37 658:33]
-  wire  _GEN_1205 = starCnt == 10'hf0 | _GEN_1186; // @[\\src\\main\\scala\\GameLogic.scala 648:37 659:33]
-  wire  _GEN_1206 = starCnt == 10'hf0 | _GEN_1187; // @[\\src\\main\\scala\\GameLogic.scala 648:37 660:33]
-  wire [9:0] _GEN_1207 = starCnt == 10'hf0 ? _starCnt_T_1 : _GEN_1194; // @[\\src\\main\\scala\\GameLogic.scala 648:37 661:17]
-  wire  _GEN_1208 = starCnt == 10'hb4 ? 1'h0 : _GEN_1201; // @[\\src\\main\\scala\\GameLogic.scala 634:37 635:35]
-  wire  _GEN_1209 = starCnt == 10'hb4 ? 1'h0 : _GEN_1202; // @[\\src\\main\\scala\\GameLogic.scala 634:37 636:35]
-  wire  _GEN_1210 = starCnt == 10'hb4 ? 1'h0 : _GEN_1203; // @[\\src\\main\\scala\\GameLogic.scala 634:37 637:35]
-  wire  _GEN_1211 = starCnt == 10'hb4 ? 1'h0 : _GEN_1204; // @[\\src\\main\\scala\\GameLogic.scala 634:37 638:33]
-  wire  _GEN_1212 = starCnt == 10'hb4 ? 1'h0 : _GEN_1205; // @[\\src\\main\\scala\\GameLogic.scala 634:37 639:33]
-  wire  _GEN_1213 = starCnt == 10'hb4 ? 1'h0 : _GEN_1206; // @[\\src\\main\\scala\\GameLogic.scala 634:37 640:33]
-  wire [10:0] _GEN_1214 = starCnt == 10'hb4 ? $signed(_spriteXRegs_58_T_5) : $signed(_GEN_1195); // @[\\src\\main\\scala\\GameLogic.scala 634:37 641:25]
-  wire [10:0] _GEN_1215 = starCnt == 10'hb4 ? $signed(_spriteXRegs_59_T_5) : $signed(_GEN_1197); // @[\\src\\main\\scala\\GameLogic.scala 634:37 642:25]
-  wire [10:0] _GEN_1216 = starCnt == 10'hb4 ? $signed(_spriteXRegs_60_T_5) : $signed(_GEN_1199); // @[\\src\\main\\scala\\GameLogic.scala 634:37 643:25]
-  wire [9:0] _GEN_1217 = starCnt == 10'hb4 ? $signed(_spriteYRegs_58_T_5) : $signed(_GEN_1196); // @[\\src\\main\\scala\\GameLogic.scala 634:37 644:25]
-  wire [9:0] _GEN_1218 = starCnt == 10'hb4 ? $signed(_spriteYRegs_59_T_5) : $signed(_GEN_1198); // @[\\src\\main\\scala\\GameLogic.scala 634:37 645:25]
-  wire [9:0] _GEN_1219 = starCnt == 10'hb4 ? $signed(_spriteYRegs_60_T_5) : $signed(_GEN_1200); // @[\\src\\main\\scala\\GameLogic.scala 634:37 646:25]
-  wire [9:0] _GEN_1220 = starCnt == 10'hb4 ? _starCnt_T_1 : _GEN_1207; // @[\\src\\main\\scala\\GameLogic.scala 634:37 647:17]
-  wire [10:0] _GEN_1221 = starCnt == 10'h78 ? $signed(spriteXRegs_58_REG_1) : $signed(_GEN_1214); // @[\\src\\main\\scala\\GameLogic.scala 620:37 621:25]
-  wire [9:0] _GEN_1222 = starCnt == 10'h78 ? $signed(spriteYRegs_58_REG_1) : $signed(_GEN_1217); // @[\\src\\main\\scala\\GameLogic.scala 620:37 622:25]
-  wire [10:0] _GEN_1223 = starCnt == 10'h78 ? $signed(spriteXRegs_59_REG_1) : $signed(_GEN_1215); // @[\\src\\main\\scala\\GameLogic.scala 620:37 623:25]
-  wire [9:0] _GEN_1224 = starCnt == 10'h78 ? $signed(spriteYRegs_59_REG_1) : $signed(_GEN_1218); // @[\\src\\main\\scala\\GameLogic.scala 620:37 624:25]
-  wire [10:0] _GEN_1225 = starCnt == 10'h78 ? $signed(spriteXRegs_60_REG_1) : $signed(_GEN_1216); // @[\\src\\main\\scala\\GameLogic.scala 620:37 625:25]
-  wire [9:0] _GEN_1226 = starCnt == 10'h78 ? $signed(spriteYRegs_60_REG_1) : $signed(_GEN_1219); // @[\\src\\main\\scala\\GameLogic.scala 620:37 626:25]
-  wire  _GEN_1227 = starCnt == 10'h78 | _GEN_1208; // @[\\src\\main\\scala\\GameLogic.scala 620:37 627:35]
-  wire  _GEN_1228 = starCnt == 10'h78 | _GEN_1209; // @[\\src\\main\\scala\\GameLogic.scala 620:37 628:35]
-  wire  _GEN_1229 = starCnt == 10'h78 | _GEN_1210; // @[\\src\\main\\scala\\GameLogic.scala 620:37 629:35]
-  wire  _GEN_1230 = starCnt == 10'h78 | _GEN_1211; // @[\\src\\main\\scala\\GameLogic.scala 620:37 630:33]
-  wire  _GEN_1231 = starCnt == 10'h78 | _GEN_1212; // @[\\src\\main\\scala\\GameLogic.scala 620:37 631:33]
-  wire  _GEN_1232 = starCnt == 10'h78 | _GEN_1213; // @[\\src\\main\\scala\\GameLogic.scala 620:37 632:33]
-  wire [9:0] _GEN_1233 = starCnt == 10'h78 ? _starCnt_T_1 : _GEN_1220; // @[\\src\\main\\scala\\GameLogic.scala 620:37 633:17]
-  wire  _GEN_1234 = starCnt == 10'h3c ? 1'h0 : _GEN_1227; // @[\\src\\main\\scala\\GameLogic.scala 606:36 607:35]
-  wire  _GEN_1235 = starCnt == 10'h3c ? 1'h0 : _GEN_1228; // @[\\src\\main\\scala\\GameLogic.scala 606:36 608:35]
-  wire  _GEN_1236 = starCnt == 10'h3c ? 1'h0 : _GEN_1229; // @[\\src\\main\\scala\\GameLogic.scala 606:36 609:35]
-  wire  _GEN_1237 = starCnt == 10'h3c ? 1'h0 : _GEN_1230; // @[\\src\\main\\scala\\GameLogic.scala 606:36 610:33]
-  wire  _GEN_1238 = starCnt == 10'h3c ? 1'h0 : _GEN_1231; // @[\\src\\main\\scala\\GameLogic.scala 606:36 611:33]
-  wire  _GEN_1239 = starCnt == 10'h3c ? 1'h0 : _GEN_1232; // @[\\src\\main\\scala\\GameLogic.scala 606:36 612:33]
-  wire [10:0] _GEN_1240 = starCnt == 10'h3c ? $signed(_spriteXRegs_58_T_5) : $signed(_GEN_1221); // @[\\src\\main\\scala\\GameLogic.scala 606:36 613:25]
-  wire [10:0] _GEN_1241 = starCnt == 10'h3c ? $signed(_spriteXRegs_59_T_5) : $signed(_GEN_1223); // @[\\src\\main\\scala\\GameLogic.scala 606:36 614:25]
-  wire [10:0] _GEN_1242 = starCnt == 10'h3c ? $signed(_spriteXRegs_60_T_5) : $signed(_GEN_1225); // @[\\src\\main\\scala\\GameLogic.scala 606:36 615:25]
-  wire [9:0] _GEN_1243 = starCnt == 10'h3c ? $signed(_spriteYRegs_58_T_5) : $signed(_GEN_1222); // @[\\src\\main\\scala\\GameLogic.scala 606:36 616:25]
-  wire [9:0] _GEN_1244 = starCnt == 10'h3c ? $signed(_spriteYRegs_59_T_5) : $signed(_GEN_1224); // @[\\src\\main\\scala\\GameLogic.scala 606:36 617:25]
-  wire [9:0] _GEN_1245 = starCnt == 10'h3c ? $signed(_spriteYRegs_60_T_5) : $signed(_GEN_1226); // @[\\src\\main\\scala\\GameLogic.scala 606:36 618:25]
-  wire [9:0] _GEN_1246 = starCnt == 10'h3c ? _starCnt_T_1 : _GEN_1233; // @[\\src\\main\\scala\\GameLogic.scala 606:36 619:17]
-  wire  _GEN_1253 = starCnt == 10'h0 | _GEN_1234; // @[\\src\\main\\scala\\GameLogic.scala 592:29 599:35]
-  wire  _GEN_1254 = starCnt == 10'h0 | _GEN_1235; // @[\\src\\main\\scala\\GameLogic.scala 592:29 600:35]
-  wire  _GEN_1255 = starCnt == 10'h0 | _GEN_1236; // @[\\src\\main\\scala\\GameLogic.scala 592:29 601:35]
-  wire  _GEN_1256 = starCnt == 10'h0 | _GEN_1237; // @[\\src\\main\\scala\\GameLogic.scala 592:29 602:33]
-  wire  _GEN_1257 = starCnt == 10'h0 | _GEN_1238; // @[\\src\\main\\scala\\GameLogic.scala 592:29 603:33]
-  wire  _GEN_1258 = starCnt == 10'h0 | _GEN_1239; // @[\\src\\main\\scala\\GameLogic.scala 592:29 604:33]
-  wire  _T_814 = $signed(spriteYRegs_3) > 10'sh12c; // @[\\src\\main\\scala\\GameLogic.scala 700:81]
-  wire  _T_816 = $signed(spriteYRegs_3) < 10'sh14c; // @[\\src\\main\\scala\\GameLogic.scala 700:107]
-  wire  _T_817 = $signed(spriteXRegs_3) > 11'she3 & $signed(spriteXRegs_3) < 11'sh103 & $signed(spriteYRegs_3) > 10'sh12c
-     & $signed(spriteYRegs_3) < 10'sh14c; // @[\\src\\main\\scala\\GameLogic.scala 700:89]
-  wire [1:0] _GEN_1261 = io_btnC ? 2'h1 : lvlReg; // @[\\src\\main\\scala\\GameLogic.scala 703:25 704:20 211:23]
-  wire [2:0] _GEN_1262 = io_btnC ? 3'h3 : 3'h4; // @[\\src\\main\\scala\\GameLogic.scala 703:25 705:22 707:22]
-  wire  _T_824 = $signed(spriteXRegs_3) > 11'sh113 & $signed(spriteXRegs_3) < 11'sh133 & _T_814 & _T_816; // @[\\src\\main\\scala\\GameLogic.scala 709:95]
-  wire [1:0] _GEN_1263 = io_btnC ? 2'h2 : lvlReg; // @[\\src\\main\\scala\\GameLogic.scala 712:25 713:20 211:23]
-  wire  _T_831 = $signed(spriteXRegs_3) > 11'sh143 & $signed(spriteXRegs_3) < 11'sh163 & _T_814 & _T_816; // @[\\src\\main\\scala\\GameLogic.scala 718:95]
-  wire [1:0] _GEN_1264 = io_btnC ? 2'h3 : lvlReg; // @[\\src\\main\\scala\\GameLogic.scala 721:25 722:20 211:23]
-  wire  _GEN_1265 = $signed(spriteXRegs_3) > 11'sh143 & $signed(spriteXRegs_3) < 11'sh163 & _T_814 & _T_816 ? 1'h0 : 1'h1
-    ; // @[\\src\\main\\scala\\GameLogic.scala 718:122 697:31 719:33]
-  wire [1:0] _GEN_1267 = $signed(spriteXRegs_3) > 11'sh143 & $signed(spriteXRegs_3) < 11'sh163 & _T_814 & _T_816 ?
-    _GEN_1264 : lvlReg; // @[\\src\\main\\scala\\GameLogic.scala 718:122 211:23]
-  wire [2:0] _GEN_1268 = $signed(spriteXRegs_3) > 11'sh143 & $signed(spriteXRegs_3) < 11'sh163 & _T_814 & _T_816 ?
-    _GEN_1262 : 3'h4; // @[\\src\\main\\scala\\GameLogic.scala 718:122 728:20]
-  wire  _GEN_1269 = $signed(spriteXRegs_3) > 11'sh113 & $signed(spriteXRegs_3) < 11'sh133 & _T_814 & _T_816 ? 1'h0 : 1'h1
-    ; // @[\\src\\main\\scala\\GameLogic.scala 709:122 695:30 710:32]
-  wire [1:0] _GEN_1271 = $signed(spriteXRegs_3) > 11'sh113 & $signed(spriteXRegs_3) < 11'sh133 & _T_814 & _T_816 ?
-    _GEN_1263 : _GEN_1267; // @[\\src\\main\\scala\\GameLogic.scala 709:122]
-  wire [2:0] _GEN_1272 = $signed(spriteXRegs_3) > 11'sh113 & $signed(spriteXRegs_3) < 11'sh133 & _T_814 & _T_816 ?
-    _GEN_1262 : _GEN_1268; // @[\\src\\main\\scala\\GameLogic.scala 709:122]
-  wire  _GEN_1273 = $signed(spriteXRegs_3) > 11'sh113 & $signed(spriteXRegs_3) < 11'sh133 & _T_814 & _T_816 | _GEN_1265; // @[\\src\\main\\scala\\GameLogic.scala 709:122 697:31]
-  wire  _GEN_1274 = $signed(spriteXRegs_3) > 11'sh113 & $signed(spriteXRegs_3) < 11'sh133 & _T_814 & _T_816 ? 1'h0 :
-    _T_831; // @[\\src\\main\\scala\\GameLogic.scala 709:122 698:31]
-  wire  _GEN_1275 = $signed(spriteXRegs_3) > 11'she3 & $signed(spriteXRegs_3) < 11'sh103 & $signed(spriteYRegs_3) > 10'sh12c
-     & $signed(spriteYRegs_3) < 10'sh14c ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 700:116 693:30 701:32]
-  wire [1:0] _GEN_1277 = $signed(spriteXRegs_3) > 11'she3 & $signed(spriteXRegs_3) < 11'sh103 & $signed(spriteYRegs_3)
-     > 10'sh12c & $signed(spriteYRegs_3) < 10'sh14c ? _GEN_1261 : _GEN_1271; // @[\\src\\main\\scala\\GameLogic.scala 700:116]
-  wire [2:0] _GEN_1278 = $signed(spriteXRegs_3) > 11'she3 & $signed(spriteXRegs_3) < 11'sh103 & $signed(spriteYRegs_3)
-     > 10'sh12c & $signed(spriteYRegs_3) < 10'sh14c ? _GEN_1262 : _GEN_1272; // @[\\src\\main\\scala\\GameLogic.scala 700:116]
-  wire  _GEN_1279 = $signed(spriteXRegs_3) > 11'she3 & $signed(spriteXRegs_3) < 11'sh103 & $signed(spriteYRegs_3) > 10'sh12c
-     & $signed(spriteYRegs_3) < 10'sh14c | _GEN_1269; // @[\\src\\main\\scala\\GameLogic.scala 700:116 695:30]
+  wire  _T_5 = livesReg == 3'h0; // @[\\src\\main\\scala\\GameLogic.scala 343:29]
+  wire [2:0] _GEN_126 = livesReg == 3'h0 ? 3'h6 : 3'h1; // @[\\src\\main\\scala\\GameLogic.scala 343:38 344:20 346:20]
+  wire  _GEN_138 = gameOverReturnPressed | _GEN_114; // @[\\src\\main\\scala\\GameLogic.scala 293:25 339:37]
+  wire  _GEN_139 = gameOverReturnPressed | spriteVisibleRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 296:26 125:34 339:37]
+  wire  _GEN_196 = io_newFrame ? _GEN_138 : _GEN_114; // @[\\src\\main\\scala\\GameLogic.scala 338:25]
+  wire [9:0] _spriteYRegs_16_T_2 = 10'h64 + lfsr_io_out_0; // @[\\src\\main\\scala\\GameLogic.scala 367:63]
+  wire [26:0] _GEN_129 = {{16{spriteXRegs_16[10]}},spriteXRegs_16}; // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _spriteXRegs_16_T_2 = $signed(_GEN_129) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _GEN_243 = spriteVisibleRegs_16 ? $signed(_spriteXRegs_16_T_2) : $signed({{16{_GEN_18[10]}},_GEN_18}); // @[\\src\\main\\scala\\GameLogic.scala 371:44 372:28]
+  wire [26:0] _GEN_244 = $signed(spriteXRegs_16) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_243); // @[\\src\\main\\scala\\GameLogic.scala 365:41 366:28]
+  wire [9:0] _GEN_245 = $signed(spriteXRegs_16) >= 11'sh280 ? $signed(_spriteYRegs_16_T_2) : $signed(_GEN_19); // @[\\src\\main\\scala\\GameLogic.scala 365:41 367:28]
+  wire  _GEN_246 = $signed(spriteXRegs_16) >= 11'sh280 ? lfsr_io_out_10[0] : spriteScaleTypeRegs_0; // @[\\src\\main\\scala\\GameLogic.scala 126:36 365:41 369:40]
+  wire  _GEN_247 = ~spriteScaleTypeRegs_0 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 376:52 377:43 380:43]
+  wire [9:0] _spriteYRegs_17_T_2 = 10'h64 + lfsr_io_out_1; // @[\\src\\main\\scala\\GameLogic.scala 367:63]
+  wire [26:0] _GEN_187 = {{16{spriteXRegs_17[10]}},spriteXRegs_17}; // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _spriteXRegs_17_T_2 = $signed(_GEN_187) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _GEN_248 = spriteVisibleRegs_17 ? $signed(_spriteXRegs_17_T_2) : $signed({{16{_GEN_20[10]}},_GEN_20}); // @[\\src\\main\\scala\\GameLogic.scala 371:44 372:28]
+  wire [26:0] _GEN_249 = $signed(spriteXRegs_17) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_248); // @[\\src\\main\\scala\\GameLogic.scala 365:41 366:28]
+  wire [9:0] _GEN_250 = $signed(spriteXRegs_17) >= 11'sh280 ? $signed(_spriteYRegs_17_T_2) : $signed(_GEN_21); // @[\\src\\main\\scala\\GameLogic.scala 365:41 367:28]
+  wire  _GEN_251 = $signed(spriteXRegs_17) >= 11'sh280 ? lfsr_io_out_11[0] : spriteScaleTypeRegs_1; // @[\\src\\main\\scala\\GameLogic.scala 126:36 365:41 369:40]
+  wire  _GEN_252 = ~spriteScaleTypeRegs_1 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 376:52 377:43 380:43]
+  wire [9:0] _spriteYRegs_18_T_2 = 10'h64 + lfsr_io_out_2; // @[\\src\\main\\scala\\GameLogic.scala 367:63]
+  wire [26:0] _GEN_533 = {{16{spriteXRegs_18[10]}},spriteXRegs_18}; // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _spriteXRegs_18_T_2 = $signed(_GEN_533) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _GEN_253 = spriteVisibleRegs_18 ? $signed(_spriteXRegs_18_T_2) : $signed({{16{_GEN_22[10]}},_GEN_22}); // @[\\src\\main\\scala\\GameLogic.scala 371:44 372:28]
+  wire [26:0] _GEN_254 = $signed(spriteXRegs_18) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_253); // @[\\src\\main\\scala\\GameLogic.scala 365:41 366:28]
+  wire [9:0] _GEN_255 = $signed(spriteXRegs_18) >= 11'sh280 ? $signed(_spriteYRegs_18_T_2) : $signed(_GEN_23); // @[\\src\\main\\scala\\GameLogic.scala 365:41 367:28]
+  wire  _GEN_256 = $signed(spriteXRegs_18) >= 11'sh280 ? lfsr_io_out_12[0] : spriteScaleTypeRegs_2; // @[\\src\\main\\scala\\GameLogic.scala 126:36 365:41 369:40]
+  wire  _GEN_257 = ~spriteScaleTypeRegs_2 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 376:52 377:43 380:43]
+  wire [9:0] _spriteYRegs_19_T_2 = 10'h64 + lfsr_io_out_3; // @[\\src\\main\\scala\\GameLogic.scala 367:63]
+  wire [26:0] _GEN_534 = {{16{spriteXRegs_19[10]}},spriteXRegs_19}; // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _spriteXRegs_19_T_2 = $signed(_GEN_534) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _GEN_258 = spriteVisibleRegs_19 ? $signed(_spriteXRegs_19_T_2) : $signed({{16{_GEN_24[10]}},_GEN_24}); // @[\\src\\main\\scala\\GameLogic.scala 371:44 372:28]
+  wire [26:0] _GEN_259 = $signed(spriteXRegs_19) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_258); // @[\\src\\main\\scala\\GameLogic.scala 365:41 366:28]
+  wire [9:0] _GEN_260 = $signed(spriteXRegs_19) >= 11'sh280 ? $signed(_spriteYRegs_19_T_2) : $signed(_GEN_25); // @[\\src\\main\\scala\\GameLogic.scala 365:41 367:28]
+  wire  _GEN_261 = $signed(spriteXRegs_19) >= 11'sh280 ? lfsr_io_out_13[0] : spriteScaleTypeRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 126:36 365:41 369:40]
+  wire  _GEN_262 = ~spriteScaleTypeRegs_3 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 376:52 377:43 380:43]
+  wire [9:0] _spriteYRegs_20_T_2 = 10'h64 + lfsr_io_out_4; // @[\\src\\main\\scala\\GameLogic.scala 367:63]
+  wire [26:0] _GEN_535 = {{16{spriteXRegs_20[10]}},spriteXRegs_20}; // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _spriteXRegs_20_T_2 = $signed(_GEN_535) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _GEN_263 = spriteVisibleRegs_20 ? $signed(_spriteXRegs_20_T_2) : $signed({{16{_GEN_26[10]}},_GEN_26}); // @[\\src\\main\\scala\\GameLogic.scala 371:44 372:28]
+  wire [26:0] _GEN_264 = $signed(spriteXRegs_20) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_263); // @[\\src\\main\\scala\\GameLogic.scala 365:41 366:28]
+  wire [9:0] _GEN_265 = $signed(spriteXRegs_20) >= 11'sh280 ? $signed(_spriteYRegs_20_T_2) : $signed(_GEN_27); // @[\\src\\main\\scala\\GameLogic.scala 365:41 367:28]
+  wire  _GEN_266 = $signed(spriteXRegs_20) >= 11'sh280 ? lfsr_io_out_14[0] : spriteScaleTypeRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 126:36 365:41 369:40]
+  wire  _GEN_267 = ~spriteScaleTypeRegs_4 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 376:52 377:43 380:43]
+  wire [9:0] _spriteYRegs_21_T_2 = 10'h64 + lfsr_io_out_5; // @[\\src\\main\\scala\\GameLogic.scala 367:63]
+  wire [26:0] _GEN_591 = {{16{spriteXRegs_21[10]}},spriteXRegs_21}; // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _spriteXRegs_21_T_2 = $signed(_GEN_591) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _GEN_268 = spriteVisibleRegs_21 ? $signed(_spriteXRegs_21_T_2) : $signed({{16{_GEN_28[10]}},_GEN_28}); // @[\\src\\main\\scala\\GameLogic.scala 371:44 372:28]
+  wire [26:0] _GEN_269 = $signed(spriteXRegs_21) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_268); // @[\\src\\main\\scala\\GameLogic.scala 365:41 366:28]
+  wire [9:0] _GEN_270 = $signed(spriteXRegs_21) >= 11'sh280 ? $signed(_spriteYRegs_21_T_2) : $signed(_GEN_29); // @[\\src\\main\\scala\\GameLogic.scala 365:41 367:28]
+  wire  _GEN_271 = $signed(spriteXRegs_21) >= 11'sh280 ? lfsr_io_out_15[0] : spriteScaleTypeRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 126:36 365:41 369:40]
+  wire  _GEN_272 = ~spriteScaleTypeRegs_5 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 376:52 377:43 380:43]
+  wire [9:0] _spriteYRegs_22_T_2 = 10'h64 + lfsr_io_out_6; // @[\\src\\main\\scala\\GameLogic.scala 367:63]
+  wire [26:0] _GEN_592 = {{16{spriteXRegs_22[10]}},spriteXRegs_22}; // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _spriteXRegs_22_T_2 = $signed(_GEN_592) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _GEN_273 = spriteVisibleRegs_22 ? $signed(_spriteXRegs_22_T_2) : $signed({{16{_GEN_30[10]}},_GEN_30}); // @[\\src\\main\\scala\\GameLogic.scala 371:44 372:28]
+  wire [26:0] _GEN_274 = $signed(spriteXRegs_22) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_273); // @[\\src\\main\\scala\\GameLogic.scala 365:41 366:28]
+  wire [9:0] _GEN_275 = $signed(spriteXRegs_22) >= 11'sh280 ? $signed(_spriteYRegs_22_T_2) : $signed(_GEN_31); // @[\\src\\main\\scala\\GameLogic.scala 365:41 367:28]
+  wire  _GEN_276 = $signed(spriteXRegs_22) >= 11'sh280 ? lfsr_io_out_16[0] : spriteScaleTypeRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 126:36 365:41 369:40]
+  wire  _GEN_277 = ~spriteScaleTypeRegs_6 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 376:52 377:43 380:43]
+  wire [9:0] _spriteYRegs_23_T_2 = 10'h64 + lfsr_io_out_7; // @[\\src\\main\\scala\\GameLogic.scala 367:63]
+  wire [26:0] _GEN_593 = {{16{spriteXRegs_23[10]}},spriteXRegs_23}; // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _spriteXRegs_23_T_2 = $signed(_GEN_593) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _GEN_278 = spriteVisibleRegs_23 ? $signed(_spriteXRegs_23_T_2) : $signed({{16{_GEN_32[10]}},_GEN_32}); // @[\\src\\main\\scala\\GameLogic.scala 371:44 372:28]
+  wire [26:0] _GEN_279 = $signed(spriteXRegs_23) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_278); // @[\\src\\main\\scala\\GameLogic.scala 365:41 366:28]
+  wire [9:0] _GEN_280 = $signed(spriteXRegs_23) >= 11'sh280 ? $signed(_spriteYRegs_23_T_2) : $signed(_GEN_33); // @[\\src\\main\\scala\\GameLogic.scala 365:41 367:28]
+  wire  _GEN_281 = $signed(spriteXRegs_23) >= 11'sh280 ? lfsr_io_out_17[0] : spriteScaleTypeRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 126:36 365:41 369:40]
+  wire  _GEN_282 = ~spriteScaleTypeRegs_7 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 376:52 377:43 380:43]
+  wire [9:0] _spriteYRegs_24_T_2 = 10'h64 + lfsr_io_out_8; // @[\\src\\main\\scala\\GameLogic.scala 367:63]
+  wire [26:0] _GEN_598 = {{16{spriteXRegs_24[10]}},spriteXRegs_24}; // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _spriteXRegs_24_T_2 = $signed(_GEN_598) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _GEN_283 = spriteVisibleRegs_24 ? $signed(_spriteXRegs_24_T_2) : $signed({{16{_GEN_34[10]}},_GEN_34}); // @[\\src\\main\\scala\\GameLogic.scala 371:44 372:28]
+  wire [26:0] _GEN_284 = $signed(spriteXRegs_24) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_283); // @[\\src\\main\\scala\\GameLogic.scala 365:41 366:28]
+  wire [9:0] _GEN_285 = $signed(spriteXRegs_24) >= 11'sh280 ? $signed(_spriteYRegs_24_T_2) : $signed(_GEN_35); // @[\\src\\main\\scala\\GameLogic.scala 365:41 367:28]
+  wire  _GEN_286 = $signed(spriteXRegs_24) >= 11'sh280 ? lfsr_io_out_18[0] : spriteScaleTypeRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 126:36 365:41 369:40]
+  wire  _GEN_287 = ~spriteScaleTypeRegs_8 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 376:52 377:43 380:43]
+  wire [9:0] _spriteYRegs_25_T_2 = 10'h64 + lfsr_io_out_9; // @[\\src\\main\\scala\\GameLogic.scala 367:63]
+  wire [26:0] _GEN_599 = {{16{spriteXRegs_25[10]}},spriteXRegs_25}; // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _spriteXRegs_25_T_2 = $signed(_GEN_599) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 372:46]
+  wire [26:0] _GEN_288 = spriteVisibleRegs_25 ? $signed(_spriteXRegs_25_T_2) : $signed({{16{_GEN_36[10]}},_GEN_36}); // @[\\src\\main\\scala\\GameLogic.scala 371:44 372:28]
+  wire [26:0] _GEN_289 = $signed(spriteXRegs_25) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_288); // @[\\src\\main\\scala\\GameLogic.scala 365:41 366:28]
+  wire [9:0] _GEN_290 = $signed(spriteXRegs_25) >= 11'sh280 ? $signed(_spriteYRegs_25_T_2) : $signed(_GEN_37); // @[\\src\\main\\scala\\GameLogic.scala 365:41 367:28]
+  wire  _GEN_291 = $signed(spriteXRegs_25) >= 11'sh280 ? lfsr_io_out_19[0] : spriteScaleTypeRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 126:36 365:41 369:40]
+  wire  _GEN_292 = ~spriteScaleTypeRegs_9 ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 376:52 377:43 380:43]
+  wire [26:0] _GEN_600 = {{16{spriteXRegs_26[10]}},spriteXRegs_26}; // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _spriteXRegs_26_T_2 = $signed(_GEN_600) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _GEN_293 = spriteVisibleRegs_26 ? $signed(_spriteXRegs_26_T_2) : $signed({{16{_GEN_38[10]}},_GEN_38}); // @[\\src\\main\\scala\\GameLogic.scala 394:44 395:28]
+  wire [26:0] _GEN_294 = $signed(spriteXRegs_26) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_293); // @[\\src\\main\\scala\\GameLogic.scala 388:41 389:28]
+  wire [9:0] _GEN_295 = $signed(spriteXRegs_26) >= 11'sh280 ? $signed(_spriteYRegs_16_T_2) : $signed(_GEN_39); // @[\\src\\main\\scala\\GameLogic.scala 388:41 390:28]
+  wire  _GEN_296 = $signed(spriteXRegs_26) >= 11'sh280 ? lfsr_io_out_10[0] : _GEN_246; // @[\\src\\main\\scala\\GameLogic.scala 388:41 392:40]
+  wire [26:0] _GEN_656 = {{16{spriteXRegs_27[10]}},spriteXRegs_27}; // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _spriteXRegs_27_T_2 = $signed(_GEN_656) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _GEN_298 = spriteVisibleRegs_27 ? $signed(_spriteXRegs_27_T_2) : $signed({{16{_GEN_40[10]}},_GEN_40}); // @[\\src\\main\\scala\\GameLogic.scala 394:44 395:28]
+  wire [26:0] _GEN_299 = $signed(spriteXRegs_27) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_298); // @[\\src\\main\\scala\\GameLogic.scala 388:41 389:28]
+  wire [9:0] _GEN_300 = $signed(spriteXRegs_27) >= 11'sh280 ? $signed(_spriteYRegs_17_T_2) : $signed(_GEN_41); // @[\\src\\main\\scala\\GameLogic.scala 388:41 390:28]
+  wire  _GEN_301 = $signed(spriteXRegs_27) >= 11'sh280 ? lfsr_io_out_11[0] : _GEN_251; // @[\\src\\main\\scala\\GameLogic.scala 388:41 392:40]
+  wire [26:0] _GEN_657 = {{16{spriteXRegs_28[10]}},spriteXRegs_28}; // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _spriteXRegs_28_T_2 = $signed(_GEN_657) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _GEN_303 = spriteVisibleRegs_28 ? $signed(_spriteXRegs_28_T_2) : $signed({{16{_GEN_42[10]}},_GEN_42}); // @[\\src\\main\\scala\\GameLogic.scala 394:44 395:28]
+  wire [26:0] _GEN_304 = $signed(spriteXRegs_28) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_303); // @[\\src\\main\\scala\\GameLogic.scala 388:41 389:28]
+  wire [9:0] _GEN_305 = $signed(spriteXRegs_28) >= 11'sh280 ? $signed(_spriteYRegs_18_T_2) : $signed(_GEN_43); // @[\\src\\main\\scala\\GameLogic.scala 388:41 390:28]
+  wire  _GEN_306 = $signed(spriteXRegs_28) >= 11'sh280 ? lfsr_io_out_12[0] : _GEN_256; // @[\\src\\main\\scala\\GameLogic.scala 388:41 392:40]
+  wire [26:0] _GEN_658 = {{16{spriteXRegs_29[10]}},spriteXRegs_29}; // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _spriteXRegs_29_T_2 = $signed(_GEN_658) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _GEN_308 = spriteVisibleRegs_29 ? $signed(_spriteXRegs_29_T_2) : $signed({{16{_GEN_44[10]}},_GEN_44}); // @[\\src\\main\\scala\\GameLogic.scala 394:44 395:28]
+  wire [26:0] _GEN_309 = $signed(spriteXRegs_29) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_308); // @[\\src\\main\\scala\\GameLogic.scala 388:41 389:28]
+  wire [9:0] _GEN_310 = $signed(spriteXRegs_29) >= 11'sh280 ? $signed(_spriteYRegs_19_T_2) : $signed(_GEN_45); // @[\\src\\main\\scala\\GameLogic.scala 388:41 390:28]
+  wire  _GEN_311 = $signed(spriteXRegs_29) >= 11'sh280 ? lfsr_io_out_13[0] : _GEN_261; // @[\\src\\main\\scala\\GameLogic.scala 388:41 392:40]
+  wire [26:0] _GEN_664 = {{16{spriteXRegs_30[10]}},spriteXRegs_30}; // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _spriteXRegs_30_T_2 = $signed(_GEN_664) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _GEN_313 = spriteVisibleRegs_30 ? $signed(_spriteXRegs_30_T_2) : $signed({{16{_GEN_46[10]}},_GEN_46}); // @[\\src\\main\\scala\\GameLogic.scala 394:44 395:28]
+  wire [26:0] _GEN_314 = $signed(spriteXRegs_30) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_313); // @[\\src\\main\\scala\\GameLogic.scala 388:41 389:28]
+  wire [9:0] _GEN_315 = $signed(spriteXRegs_30) >= 11'sh280 ? $signed(_spriteYRegs_20_T_2) : $signed(_GEN_47); // @[\\src\\main\\scala\\GameLogic.scala 388:41 390:28]
+  wire  _GEN_316 = $signed(spriteXRegs_30) >= 11'sh280 ? lfsr_io_out_14[0] : _GEN_266; // @[\\src\\main\\scala\\GameLogic.scala 388:41 392:40]
+  wire [26:0] _GEN_665 = {{16{spriteXRegs_31[10]}},spriteXRegs_31}; // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _spriteXRegs_31_T_2 = $signed(_GEN_665) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _GEN_318 = spriteVisibleRegs_31 ? $signed(_spriteXRegs_31_T_2) : $signed({{16{_GEN_48[10]}},_GEN_48}); // @[\\src\\main\\scala\\GameLogic.scala 394:44 395:28]
+  wire [26:0] _GEN_319 = $signed(spriteXRegs_31) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_318); // @[\\src\\main\\scala\\GameLogic.scala 388:41 389:28]
+  wire [9:0] _GEN_320 = $signed(spriteXRegs_31) >= 11'sh280 ? $signed(_spriteYRegs_21_T_2) : $signed(_GEN_49); // @[\\src\\main\\scala\\GameLogic.scala 388:41 390:28]
+  wire  _GEN_321 = $signed(spriteXRegs_31) >= 11'sh280 ? lfsr_io_out_15[0] : _GEN_271; // @[\\src\\main\\scala\\GameLogic.scala 388:41 392:40]
+  wire [26:0] _GEN_666 = {{16{spriteXRegs_32[10]}},spriteXRegs_32}; // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _spriteXRegs_32_T_2 = $signed(_GEN_666) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _GEN_323 = spriteVisibleRegs_32 ? $signed(_spriteXRegs_32_T_2) : $signed({{16{_GEN_50[10]}},_GEN_50}); // @[\\src\\main\\scala\\GameLogic.scala 394:44 395:28]
+  wire [26:0] _GEN_324 = $signed(spriteXRegs_32) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_323); // @[\\src\\main\\scala\\GameLogic.scala 388:41 389:28]
+  wire [9:0] _GEN_325 = $signed(spriteXRegs_32) >= 11'sh280 ? $signed(_spriteYRegs_22_T_2) : $signed(_GEN_51); // @[\\src\\main\\scala\\GameLogic.scala 388:41 390:28]
+  wire  _GEN_326 = $signed(spriteXRegs_32) >= 11'sh280 ? lfsr_io_out_16[0] : _GEN_276; // @[\\src\\main\\scala\\GameLogic.scala 388:41 392:40]
+  wire [26:0] _GEN_722 = {{16{spriteXRegs_33[10]}},spriteXRegs_33}; // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _spriteXRegs_33_T_2 = $signed(_GEN_722) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _GEN_328 = spriteVisibleRegs_33 ? $signed(_spriteXRegs_33_T_2) : $signed({{16{_GEN_52[10]}},_GEN_52}); // @[\\src\\main\\scala\\GameLogic.scala 394:44 395:28]
+  wire [26:0] _GEN_329 = $signed(spriteXRegs_33) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_328); // @[\\src\\main\\scala\\GameLogic.scala 388:41 389:28]
+  wire [9:0] _GEN_330 = $signed(spriteXRegs_33) >= 11'sh280 ? $signed(_spriteYRegs_23_T_2) : $signed(_GEN_53); // @[\\src\\main\\scala\\GameLogic.scala 388:41 390:28]
+  wire  _GEN_331 = $signed(spriteXRegs_33) >= 11'sh280 ? lfsr_io_out_17[0] : _GEN_281; // @[\\src\\main\\scala\\GameLogic.scala 388:41 392:40]
+  wire [26:0] _GEN_723 = {{16{spriteXRegs_34[10]}},spriteXRegs_34}; // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _spriteXRegs_34_T_2 = $signed(_GEN_723) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _GEN_333 = spriteVisibleRegs_34 ? $signed(_spriteXRegs_34_T_2) : $signed({{16{_GEN_54[10]}},_GEN_54}); // @[\\src\\main\\scala\\GameLogic.scala 394:44 395:28]
+  wire [26:0] _GEN_334 = $signed(spriteXRegs_34) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_333); // @[\\src\\main\\scala\\GameLogic.scala 388:41 389:28]
+  wire [9:0] _GEN_335 = $signed(spriteXRegs_34) >= 11'sh280 ? $signed(_spriteYRegs_24_T_2) : $signed(_GEN_55); // @[\\src\\main\\scala\\GameLogic.scala 388:41 390:28]
+  wire  _GEN_336 = $signed(spriteXRegs_34) >= 11'sh280 ? lfsr_io_out_18[0] : _GEN_286; // @[\\src\\main\\scala\\GameLogic.scala 388:41 392:40]
+  wire [26:0] _GEN_724 = {{16{spriteXRegs_35[10]}},spriteXRegs_35}; // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _spriteXRegs_35_T_2 = $signed(_GEN_724) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 395:46]
+  wire [26:0] _GEN_338 = spriteVisibleRegs_35 ? $signed(_spriteXRegs_35_T_2) : $signed({{16{_GEN_56[10]}},_GEN_56}); // @[\\src\\main\\scala\\GameLogic.scala 394:44 395:28]
+  wire [26:0] _GEN_339 = $signed(spriteXRegs_35) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_338); // @[\\src\\main\\scala\\GameLogic.scala 388:41 389:28]
+  wire [9:0] _GEN_340 = $signed(spriteXRegs_35) >= 11'sh280 ? $signed(_spriteYRegs_25_T_2) : $signed(_GEN_57); // @[\\src\\main\\scala\\GameLogic.scala 388:41 390:28]
+  wire  _GEN_341 = $signed(spriteXRegs_35) >= 11'sh280 ? lfsr_io_out_19[0] : _GEN_291; // @[\\src\\main\\scala\\GameLogic.scala 388:41 392:40]
+  wire [9:0] _spriteYRegs_36_T_2 = 10'h64 + lfsr_io_out_20; // @[\\src\\main\\scala\\GameLogic.scala 413:63]
+  wire [26:0] _GEN_729 = {{16{spriteXRegs_36[10]}},spriteXRegs_36}; // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _spriteXRegs_36_T_2 = $signed(_GEN_729) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _GEN_343 = spriteVisibleRegs_36 ? $signed(_spriteXRegs_36_T_2) : $signed({{16{_GEN_58[10]}},_GEN_58}); // @[\\src\\main\\scala\\GameLogic.scala 418:44 419:28]
+  wire [26:0] _GEN_344 = $signed(spriteXRegs_36) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_343); // @[\\src\\main\\scala\\GameLogic.scala 411:41 412:28]
+  wire [9:0] _GEN_345 = $signed(spriteXRegs_36) >= 11'sh280 ? $signed(_spriteYRegs_36_T_2) : $signed(_GEN_59); // @[\\src\\main\\scala\\GameLogic.scala 411:41 413:28]
+  wire  _GEN_346 = $signed(spriteXRegs_36) >= 11'sh280 ? lfsr_io_out_10[0] : _GEN_296; // @[\\src\\main\\scala\\GameLogic.scala 411:41 416:40]
+  wire [9:0] _spriteYRegs_37_T_2 = 10'h64 + lfsr_io_out_21; // @[\\src\\main\\scala\\GameLogic.scala 413:63]
+  wire [26:0] _GEN_730 = {{16{spriteXRegs_37[10]}},spriteXRegs_37}; // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _spriteXRegs_37_T_2 = $signed(_GEN_730) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _GEN_348 = spriteVisibleRegs_37 ? $signed(_spriteXRegs_37_T_2) : $signed({{16{_GEN_60[10]}},_GEN_60}); // @[\\src\\main\\scala\\GameLogic.scala 418:44 419:28]
+  wire [26:0] _GEN_349 = $signed(spriteXRegs_37) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_348); // @[\\src\\main\\scala\\GameLogic.scala 411:41 412:28]
+  wire [9:0] _GEN_350 = $signed(spriteXRegs_37) >= 11'sh280 ? $signed(_spriteYRegs_37_T_2) : $signed(_GEN_61); // @[\\src\\main\\scala\\GameLogic.scala 411:41 413:28]
+  wire  _GEN_351 = $signed(spriteXRegs_37) >= 11'sh280 ? lfsr_io_out_11[0] : _GEN_301; // @[\\src\\main\\scala\\GameLogic.scala 411:41 416:40]
+  wire [9:0] _spriteYRegs_38_T_2 = 10'h64 + lfsr_io_out_22; // @[\\src\\main\\scala\\GameLogic.scala 413:63]
+  wire [26:0] _GEN_731 = {{16{spriteXRegs_38[10]}},spriteXRegs_38}; // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _spriteXRegs_38_T_2 = $signed(_GEN_731) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _GEN_353 = spriteVisibleRegs_38 ? $signed(_spriteXRegs_38_T_2) : $signed({{16{_GEN_62[10]}},_GEN_62}); // @[\\src\\main\\scala\\GameLogic.scala 418:44 419:28]
+  wire [26:0] _GEN_354 = $signed(spriteXRegs_38) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_353); // @[\\src\\main\\scala\\GameLogic.scala 411:41 412:28]
+  wire [9:0] _GEN_355 = $signed(spriteXRegs_38) >= 11'sh280 ? $signed(_spriteYRegs_38_T_2) : $signed(_GEN_63); // @[\\src\\main\\scala\\GameLogic.scala 411:41 413:28]
+  wire  _GEN_356 = $signed(spriteXRegs_38) >= 11'sh280 ? lfsr_io_out_12[0] : _GEN_306; // @[\\src\\main\\scala\\GameLogic.scala 411:41 416:40]
+  wire [9:0] _spriteYRegs_39_T_2 = 10'h64 + lfsr_io_out_23; // @[\\src\\main\\scala\\GameLogic.scala 413:63]
+  wire [26:0] _GEN_787 = {{16{spriteXRegs_39[10]}},spriteXRegs_39}; // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _spriteXRegs_39_T_2 = $signed(_GEN_787) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _GEN_358 = spriteVisibleRegs_39 ? $signed(_spriteXRegs_39_T_2) : $signed({{16{_GEN_64[10]}},_GEN_64}); // @[\\src\\main\\scala\\GameLogic.scala 418:44 419:28]
+  wire [26:0] _GEN_359 = $signed(spriteXRegs_39) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_358); // @[\\src\\main\\scala\\GameLogic.scala 411:41 412:28]
+  wire [9:0] _GEN_360 = $signed(spriteXRegs_39) >= 11'sh280 ? $signed(_spriteYRegs_39_T_2) : $signed(_GEN_65); // @[\\src\\main\\scala\\GameLogic.scala 411:41 413:28]
+  wire  _GEN_361 = $signed(spriteXRegs_39) >= 11'sh280 ? lfsr_io_out_13[0] : _GEN_311; // @[\\src\\main\\scala\\GameLogic.scala 411:41 416:40]
+  wire [9:0] _spriteYRegs_40_T_2 = 10'h64 + lfsr_io_out_24; // @[\\src\\main\\scala\\GameLogic.scala 413:63]
+  wire [26:0] _GEN_788 = {{16{spriteXRegs_40[10]}},spriteXRegs_40}; // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _spriteXRegs_40_T_2 = $signed(_GEN_788) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _GEN_363 = spriteVisibleRegs_40 ? $signed(_spriteXRegs_40_T_2) : $signed({{16{_GEN_66[10]}},_GEN_66}); // @[\\src\\main\\scala\\GameLogic.scala 418:44 419:28]
+  wire [26:0] _GEN_364 = $signed(spriteXRegs_40) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_363); // @[\\src\\main\\scala\\GameLogic.scala 411:41 412:28]
+  wire [9:0] _GEN_365 = $signed(spriteXRegs_40) >= 11'sh280 ? $signed(_spriteYRegs_40_T_2) : $signed(_GEN_67); // @[\\src\\main\\scala\\GameLogic.scala 411:41 413:28]
+  wire  _GEN_366 = $signed(spriteXRegs_40) >= 11'sh280 ? lfsr_io_out_14[0] : _GEN_316; // @[\\src\\main\\scala\\GameLogic.scala 411:41 416:40]
+  wire [9:0] _spriteYRegs_41_T_2 = 10'h64 + lfsr_io_out_25; // @[\\src\\main\\scala\\GameLogic.scala 413:63]
+  wire [26:0] _GEN_789 = {{16{spriteXRegs_41[10]}},spriteXRegs_41}; // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _spriteXRegs_41_T_2 = $signed(_GEN_789) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _GEN_368 = spriteVisibleRegs_41 ? $signed(_spriteXRegs_41_T_2) : $signed({{16{_GEN_68[10]}},_GEN_68}); // @[\\src\\main\\scala\\GameLogic.scala 418:44 419:28]
+  wire [26:0] _GEN_369 = $signed(spriteXRegs_41) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_368); // @[\\src\\main\\scala\\GameLogic.scala 411:41 412:28]
+  wire [9:0] _GEN_370 = $signed(spriteXRegs_41) >= 11'sh280 ? $signed(_spriteYRegs_41_T_2) : $signed(_GEN_69); // @[\\src\\main\\scala\\GameLogic.scala 411:41 413:28]
+  wire  _GEN_371 = $signed(spriteXRegs_41) >= 11'sh280 ? lfsr_io_out_15[0] : _GEN_321; // @[\\src\\main\\scala\\GameLogic.scala 411:41 416:40]
+  wire [9:0] _spriteYRegs_42_T_2 = 10'h64 + lfsr_io_out_26; // @[\\src\\main\\scala\\GameLogic.scala 413:63]
+  wire [26:0] _GEN_795 = {{16{spriteXRegs_42[10]}},spriteXRegs_42}; // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _spriteXRegs_42_T_2 = $signed(_GEN_795) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _GEN_373 = spriteVisibleRegs_42 ? $signed(_spriteXRegs_42_T_2) : $signed({{16{_GEN_70[10]}},_GEN_70}); // @[\\src\\main\\scala\\GameLogic.scala 418:44 419:28]
+  wire [26:0] _GEN_374 = $signed(spriteXRegs_42) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_373); // @[\\src\\main\\scala\\GameLogic.scala 411:41 412:28]
+  wire [9:0] _GEN_375 = $signed(spriteXRegs_42) >= 11'sh280 ? $signed(_spriteYRegs_42_T_2) : $signed(_GEN_71); // @[\\src\\main\\scala\\GameLogic.scala 411:41 413:28]
+  wire  _GEN_376 = $signed(spriteXRegs_42) >= 11'sh280 ? lfsr_io_out_16[0] : _GEN_326; // @[\\src\\main\\scala\\GameLogic.scala 411:41 416:40]
+  wire [9:0] _spriteYRegs_43_T_2 = 10'h64 + lfsr_io_out_27; // @[\\src\\main\\scala\\GameLogic.scala 413:63]
+  wire [26:0] _GEN_796 = {{16{spriteXRegs_43[10]}},spriteXRegs_43}; // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _spriteXRegs_43_T_2 = $signed(_GEN_796) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _GEN_378 = spriteVisibleRegs_43 ? $signed(_spriteXRegs_43_T_2) : $signed({{16{_GEN_72[10]}},_GEN_72}); // @[\\src\\main\\scala\\GameLogic.scala 418:44 419:28]
+  wire [26:0] _GEN_379 = $signed(spriteXRegs_43) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_378); // @[\\src\\main\\scala\\GameLogic.scala 411:41 412:28]
+  wire [9:0] _GEN_380 = $signed(spriteXRegs_43) >= 11'sh280 ? $signed(_spriteYRegs_43_T_2) : $signed(_GEN_73); // @[\\src\\main\\scala\\GameLogic.scala 411:41 413:28]
+  wire  _GEN_381 = $signed(spriteXRegs_43) >= 11'sh280 ? lfsr_io_out_17[0] : _GEN_331; // @[\\src\\main\\scala\\GameLogic.scala 411:41 416:40]
+  wire [9:0] _spriteYRegs_44_T_2 = 10'h64 + lfsr_io_out_28; // @[\\src\\main\\scala\\GameLogic.scala 413:63]
+  wire [26:0] _GEN_797 = {{16{spriteXRegs_44[10]}},spriteXRegs_44}; // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _spriteXRegs_44_T_2 = $signed(_GEN_797) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _GEN_383 = spriteVisibleRegs_44 ? $signed(_spriteXRegs_44_T_2) : $signed({{16{_GEN_74[10]}},_GEN_74}); // @[\\src\\main\\scala\\GameLogic.scala 418:44 419:28]
+  wire [26:0] _GEN_384 = $signed(spriteXRegs_44) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_383); // @[\\src\\main\\scala\\GameLogic.scala 411:41 412:28]
+  wire [9:0] _GEN_385 = $signed(spriteXRegs_44) >= 11'sh280 ? $signed(_spriteYRegs_44_T_2) : $signed(_GEN_75); // @[\\src\\main\\scala\\GameLogic.scala 411:41 413:28]
+  wire  _GEN_386 = $signed(spriteXRegs_44) >= 11'sh280 ? lfsr_io_out_18[0] : _GEN_336; // @[\\src\\main\\scala\\GameLogic.scala 411:41 416:40]
+  wire [9:0] _spriteYRegs_45_T_2 = 10'h64 + lfsr_io_out_29; // @[\\src\\main\\scala\\GameLogic.scala 413:63]
+  wire [26:0] _GEN_853 = {{16{spriteXRegs_45[10]}},spriteXRegs_45}; // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _spriteXRegs_45_T_2 = $signed(_GEN_853) + $signed(difficulty_io_speed); // @[\\src\\main\\scala\\GameLogic.scala 419:46]
+  wire [26:0] _GEN_388 = spriteVisibleRegs_45 ? $signed(_spriteXRegs_45_T_2) : $signed({{16{_GEN_76[10]}},_GEN_76}); // @[\\src\\main\\scala\\GameLogic.scala 418:44 419:28]
+  wire [26:0] _GEN_389 = $signed(spriteXRegs_45) >= 11'sh280 ? $signed(-27'sh20) : $signed(_GEN_388); // @[\\src\\main\\scala\\GameLogic.scala 411:41 412:28]
+  wire [9:0] _GEN_390 = $signed(spriteXRegs_45) >= 11'sh280 ? $signed(_spriteYRegs_45_T_2) : $signed(_GEN_77); // @[\\src\\main\\scala\\GameLogic.scala 411:41 413:28]
+  wire  _GEN_391 = $signed(spriteXRegs_45) >= 11'sh280 ? lfsr_io_out_19[0] : _GEN_341; // @[\\src\\main\\scala\\GameLogic.scala 411:41 416:40]
+  wire [9:0] _extraLifeCnt_T_1 = extraLifeCnt + 10'h1; // @[\\src\\main\\scala\\GameLogic.scala 439:40]
+  wire [10:0] _GEN_393 = extraLifeCnt == 10'h258 ? $signed(-11'sh20) : $signed(_GEN_14); // @[\\src\\main\\scala\\GameLogic.scala 433:38 434:27]
+  wire  _GEN_394 = extraLifeCnt == 10'h258 | spriteVisibleRegs_13; // @[\\src\\main\\scala\\GameLogic.scala 433:38 435:33 125:34]
+  wire [9:0] _GEN_395 = extraLifeCnt == 10'h258 ? $signed(lfsr_io_out_0) : $signed(_GEN_15); // @[\\src\\main\\scala\\GameLogic.scala 433:38 436:27]
+  wire [9:0] _GEN_396 = extraLifeCnt == 10'h258 ? 10'h0 : _extraLifeCnt_T_1; // @[\\src\\main\\scala\\GameLogic.scala 433:38 437:24 439:24]
+  wire [10:0] _spriteXRegs_13_T_2 = $signed(spriteXRegs_13) + 11'sh2; // @[\\src\\main\\scala\\GameLogic.scala 442:46]
+  wire [10:0] _GEN_397 = spriteVisibleRegs_13 ? $signed(_spriteXRegs_13_T_2) : $signed(_GEN_393); // @[\\src\\main\\scala\\GameLogic.scala 441:37 442:27]
+  wire  _GEN_398 = $signed(spriteXRegs_13) >= 11'sh280 ? 1'h0 : _GEN_394; // @[\\src\\main\\scala\\GameLogic.scala 444:40 445:33]
+  wire [26:0] _GEN_399 = _T ? $signed(_GEN_244) : $signed({{16{_GEN_18[10]}},_GEN_18}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire  _GEN_402 = _T ? _GEN_247 : spriteScaleTypeRegs_0; // @[\\src\\main\\scala\\GameLogic.scala 359:29 187:35]
+  wire [26:0] _GEN_404 = _T ? $signed(_GEN_249) : $signed({{16{_GEN_20[10]}},_GEN_20}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire  _GEN_407 = _T ? _GEN_252 : spriteScaleTypeRegs_1; // @[\\src\\main\\scala\\GameLogic.scala 359:29 187:35]
+  wire [26:0] _GEN_409 = _T ? $signed(_GEN_254) : $signed({{16{_GEN_22[10]}},_GEN_22}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire  _GEN_412 = _T ? _GEN_257 : spriteScaleTypeRegs_2; // @[\\src\\main\\scala\\GameLogic.scala 359:29 187:35]
+  wire [26:0] _GEN_414 = _T ? $signed(_GEN_259) : $signed({{16{_GEN_24[10]}},_GEN_24}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire  _GEN_417 = _T ? _GEN_262 : spriteScaleTypeRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 359:29 187:35]
+  wire [26:0] _GEN_419 = _T ? $signed(_GEN_264) : $signed({{16{_GEN_26[10]}},_GEN_26}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire  _GEN_422 = _T ? _GEN_267 : spriteScaleTypeRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 359:29 187:35]
+  wire [26:0] _GEN_424 = _T ? $signed(_GEN_269) : $signed({{16{_GEN_28[10]}},_GEN_28}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire  _GEN_427 = _T ? _GEN_272 : spriteScaleTypeRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 359:29 187:35]
+  wire [26:0] _GEN_429 = _T ? $signed(_GEN_274) : $signed({{16{_GEN_30[10]}},_GEN_30}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire  _GEN_432 = _T ? _GEN_277 : spriteScaleTypeRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 359:29 187:35]
+  wire [26:0] _GEN_434 = _T ? $signed(_GEN_279) : $signed({{16{_GEN_32[10]}},_GEN_32}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire  _GEN_437 = _T ? _GEN_282 : spriteScaleTypeRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 359:29 187:35]
+  wire [26:0] _GEN_439 = _T ? $signed(_GEN_284) : $signed({{16{_GEN_34[10]}},_GEN_34}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire  _GEN_442 = _T ? _GEN_287 : spriteScaleTypeRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 359:29 187:35]
+  wire [26:0] _GEN_444 = _T ? $signed(_GEN_289) : $signed({{16{_GEN_36[10]}},_GEN_36}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire  _GEN_447 = _T ? _GEN_292 : spriteScaleTypeRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 359:29 187:35]
+  wire [26:0] _GEN_449 = _T ? $signed(_GEN_294) : $signed({{16{_GEN_38[10]}},_GEN_38}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire [26:0] _GEN_453 = _T ? $signed(_GEN_299) : $signed({{16{_GEN_40[10]}},_GEN_40}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire [26:0] _GEN_457 = _T ? $signed(_GEN_304) : $signed({{16{_GEN_42[10]}},_GEN_42}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire [26:0] _GEN_461 = _T ? $signed(_GEN_309) : $signed({{16{_GEN_44[10]}},_GEN_44}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire [26:0] _GEN_465 = _T ? $signed(_GEN_314) : $signed({{16{_GEN_46[10]}},_GEN_46}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire [26:0] _GEN_469 = _T ? $signed(_GEN_319) : $signed({{16{_GEN_48[10]}},_GEN_48}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire [26:0] _GEN_473 = _T ? $signed(_GEN_324) : $signed({{16{_GEN_50[10]}},_GEN_50}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire [26:0] _GEN_477 = _T ? $signed(_GEN_329) : $signed({{16{_GEN_52[10]}},_GEN_52}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire [26:0] _GEN_481 = _T ? $signed(_GEN_334) : $signed({{16{_GEN_54[10]}},_GEN_54}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire [26:0] _GEN_485 = _T ? $signed(_GEN_339) : $signed({{16{_GEN_56[10]}},_GEN_56}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire [26:0] _GEN_489 = _T ? $signed(_GEN_344) : $signed({{16{_GEN_58[10]}},_GEN_58}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire [26:0] _GEN_493 = _T ? $signed(_GEN_349) : $signed({{16{_GEN_60[10]}},_GEN_60}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire [26:0] _GEN_497 = _T ? $signed(_GEN_354) : $signed({{16{_GEN_62[10]}},_GEN_62}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire [26:0] _GEN_501 = _T ? $signed(_GEN_359) : $signed({{16{_GEN_64[10]}},_GEN_64}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire [26:0] _GEN_505 = _T ? $signed(_GEN_364) : $signed({{16{_GEN_66[10]}},_GEN_66}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire [26:0] _GEN_509 = _T ? $signed(_GEN_369) : $signed({{16{_GEN_68[10]}},_GEN_68}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire [26:0] _GEN_513 = _T ? $signed(_GEN_374) : $signed({{16{_GEN_70[10]}},_GEN_70}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire [26:0] _GEN_517 = _T ? $signed(_GEN_379) : $signed({{16{_GEN_72[10]}},_GEN_72}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire [26:0] _GEN_521 = _T ? $signed(_GEN_384) : $signed({{16{_GEN_74[10]}},_GEN_74}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire [26:0] _GEN_525 = _T ? $signed(_GEN_389) : $signed({{16{_GEN_76[10]}},_GEN_76}); // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+  wire  _GEN_530 = _T ? _GEN_398 : spriteVisibleRegs_13; // @[\\src\\main\\scala\\GameLogic.scala 359:29 125:34]
+  wire  _T_69 = lvlReg == 2'h1; // @[\\src\\main\\scala\\GameLogic.scala 450:19]
+  wire  _T_72 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha; // @[\\src\\main\\scala\\GameLogic.scala 452:40]
+  wire [5:0] _T_74 = 6'h10 + nextSpriteToSpawn; // @[\\src\\main\\scala\\GameLogic.scala 453:34]
+  wire  _GEN_536 = 6'h3 == _T_74 | spriteVisibleRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_537 = 6'h4 == _T_74 | spriteVisibleRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_538 = 6'h5 == _T_74 | spriteVisibleRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_539 = 6'h6 == _T_74 | spriteVisibleRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_540 = 6'h7 == _T_74 | spriteVisibleRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_541 = 6'h8 == _T_74 | spriteVisibleRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_542 = 6'h9 == _T_74 | spriteVisibleRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_543 = 6'ha == _T_74 | spriteVisibleRegs_10; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_544 = 6'hb == _T_74 | spriteVisibleRegs_11; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_545 = 6'hc == _T_74 | spriteVisibleRegs_12; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_546 = 6'hd == _T_74 | _GEN_530; // @[\\src\\main\\scala\\GameLogic.scala 453:{55,55}]
+  wire  _GEN_547 = 6'he == _T_74 | spriteVisibleRegs_14; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_548 = 6'hf == _T_74 | spriteVisibleRegs_15; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_549 = 6'h10 == _T_74 | spriteVisibleRegs_16; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_550 = 6'h11 == _T_74 | spriteVisibleRegs_17; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_551 = 6'h12 == _T_74 | spriteVisibleRegs_18; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_552 = 6'h13 == _T_74 | spriteVisibleRegs_19; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_553 = 6'h14 == _T_74 | spriteVisibleRegs_20; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_554 = 6'h15 == _T_74 | spriteVisibleRegs_21; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_555 = 6'h16 == _T_74 | spriteVisibleRegs_22; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_556 = 6'h17 == _T_74 | spriteVisibleRegs_23; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_557 = 6'h18 == _T_74 | spriteVisibleRegs_24; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_558 = 6'h19 == _T_74 | spriteVisibleRegs_25; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_559 = 6'h1a == _T_74 | spriteVisibleRegs_26; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_560 = 6'h1b == _T_74 | spriteVisibleRegs_27; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_561 = 6'h1c == _T_74 | spriteVisibleRegs_28; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_562 = 6'h1d == _T_74 | spriteVisibleRegs_29; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_563 = 6'h1e == _T_74 | spriteVisibleRegs_30; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_564 = 6'h1f == _T_74 | spriteVisibleRegs_31; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_565 = 6'h20 == _T_74 | spriteVisibleRegs_32; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_566 = 6'h21 == _T_74 | spriteVisibleRegs_33; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_567 = 6'h22 == _T_74 | spriteVisibleRegs_34; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_568 = 6'h23 == _T_74 | spriteVisibleRegs_35; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_569 = 6'h24 == _T_74 | spriteVisibleRegs_36; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_570 = 6'h25 == _T_74 | spriteVisibleRegs_37; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_571 = 6'h26 == _T_74 | spriteVisibleRegs_38; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_572 = 6'h27 == _T_74 | spriteVisibleRegs_39; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_573 = 6'h28 == _T_74 | spriteVisibleRegs_40; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_574 = 6'h29 == _T_74 | spriteVisibleRegs_41; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_575 = 6'h2a == _T_74 | spriteVisibleRegs_42; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_576 = 6'h2b == _T_74 | spriteVisibleRegs_43; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_577 = 6'h2c == _T_74 | spriteVisibleRegs_44; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_578 = 6'h2d == _T_74 | spriteVisibleRegs_45; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_579 = 6'h2e == _T_74 | spriteVisibleRegs_46; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_580 = 6'h2f == _T_74 | spriteVisibleRegs_47; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_581 = 6'h30 == _T_74 | spriteVisibleRegs_48; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_582 = 6'h31 == _T_74 | spriteVisibleRegs_49; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_583 = 6'h32 == _T_74 | spriteVisibleRegs_50; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_584 = 6'h33 == _T_74 | spriteVisibleRegs_51; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_585 = 6'h34 == _T_74 | spriteVisibleRegs_52; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_586 = 6'h35 == _T_74 | spriteVisibleRegs_53; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_587 = 6'h36 == _T_74 | spriteVisibleRegs_54; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_588 = 6'h37 == _T_74 | spriteVisibleRegs_55; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_589 = 6'h38 == _T_74 | spriteVisibleRegs_56; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_590 = 6'h39 == _T_74 | spriteVisibleRegs_57; // @[\\src\\main\\scala\\GameLogic.scala 125:34 453:{55,55}]
+  wire  _GEN_594 = 6'h3d == _T_74 | _GEN_123; // @[\\src\\main\\scala\\GameLogic.scala 453:{55,55}]
+  wire  _GEN_595 = 6'h3e == _T_74 | _GEN_124; // @[\\src\\main\\scala\\GameLogic.scala 453:{55,55}]
+  wire  _GEN_596 = 6'h3f == _T_74 | _GEN_125; // @[\\src\\main\\scala\\GameLogic.scala 453:{55,55}]
+  wire [5:0] _nextSpriteToSpawn_T_1 = nextSpriteToSpawn + 6'h1; // @[\\src\\main\\scala\\GameLogic.scala 454:50]
+  wire [7:0] _spawnDelayCounter_T_1 = spawnDelayCounter - 8'h1; // @[\\src\\main\\scala\\GameLogic.scala 457:50]
+  wire [7:0] _GEN_597 = spawnDelayCounter > 8'h0 ? _spawnDelayCounter_T_1 : spawnDelayCounter; // @[\\src\\main\\scala\\GameLogic.scala 456:45 457:29 231:34]
+  wire  _GEN_601 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_536 : spriteVisibleRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_602 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_537 : spriteVisibleRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_603 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_538 : spriteVisibleRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_604 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_539 : spriteVisibleRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_605 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_540 : spriteVisibleRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_606 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_541 : spriteVisibleRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_607 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_542 : spriteVisibleRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_608 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_543 : spriteVisibleRegs_10; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_609 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_544 : spriteVisibleRegs_11; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_610 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_545 : spriteVisibleRegs_12; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_611 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_546 : _GEN_530; // @[\\src\\main\\scala\\GameLogic.scala 452:69]
+  wire  _GEN_612 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_547 : spriteVisibleRegs_14; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_613 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_548 : spriteVisibleRegs_15; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_614 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_549 : spriteVisibleRegs_16; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_615 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_550 : spriteVisibleRegs_17; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_616 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_551 : spriteVisibleRegs_18; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_617 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_552 : spriteVisibleRegs_19; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_618 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_553 : spriteVisibleRegs_20; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_619 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_554 : spriteVisibleRegs_21; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_620 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_555 : spriteVisibleRegs_22; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_621 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_556 : spriteVisibleRegs_23; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_622 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_557 : spriteVisibleRegs_24; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_623 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_558 : spriteVisibleRegs_25; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_624 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_559 : spriteVisibleRegs_26; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_625 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_560 : spriteVisibleRegs_27; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_626 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_561 : spriteVisibleRegs_28; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_627 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_562 : spriteVisibleRegs_29; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_628 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_563 : spriteVisibleRegs_30; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_629 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_564 : spriteVisibleRegs_31; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_630 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_565 : spriteVisibleRegs_32; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_631 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_566 : spriteVisibleRegs_33; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_632 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_567 : spriteVisibleRegs_34; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_633 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_568 : spriteVisibleRegs_35; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_634 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_569 : spriteVisibleRegs_36; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_635 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_570 : spriteVisibleRegs_37; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_636 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_571 : spriteVisibleRegs_38; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_637 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_572 : spriteVisibleRegs_39; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_638 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_573 : spriteVisibleRegs_40; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_639 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_574 : spriteVisibleRegs_41; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_640 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_575 : spriteVisibleRegs_42; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_641 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_576 : spriteVisibleRegs_43; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_642 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_577 : spriteVisibleRegs_44; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_643 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_578 : spriteVisibleRegs_45; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_644 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_579 : spriteVisibleRegs_46; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_645 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_580 : spriteVisibleRegs_47; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_646 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_581 : spriteVisibleRegs_48; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_647 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_582 : spriteVisibleRegs_49; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_648 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_583 : spriteVisibleRegs_50; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_649 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_584 : spriteVisibleRegs_51; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_650 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_585 : spriteVisibleRegs_52; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_651 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_586 : spriteVisibleRegs_53; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_652 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_587 : spriteVisibleRegs_54; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_653 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_588 : spriteVisibleRegs_55; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_654 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_589 : spriteVisibleRegs_56; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_655 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_590 : spriteVisibleRegs_57; // @[\\src\\main\\scala\\GameLogic.scala 125:34 452:69]
+  wire  _GEN_659 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_594 : _GEN_123; // @[\\src\\main\\scala\\GameLogic.scala 452:69]
+  wire  _GEN_660 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_595 : _GEN_124; // @[\\src\\main\\scala\\GameLogic.scala 452:69]
+  wire  _GEN_661 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _GEN_596 : _GEN_125; // @[\\src\\main\\scala\\GameLogic.scala 452:69]
+  wire [5:0] _GEN_662 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? _nextSpriteToSpawn_T_1 :
+    nextSpriteToSpawn; // @[\\src\\main\\scala\\GameLogic.scala 452:69 454:29 232:34]
+  wire [7:0] _GEN_663 = spawnDelayCounter == 8'h0 & nextSpriteToSpawn < 6'ha ? 8'h1e : _GEN_597; // @[\\src\\main\\scala\\GameLogic.scala 452:69 455:29]
+  wire  _T_76 = lvlReg == 2'h2; // @[\\src\\main\\scala\\GameLogic.scala 459:25]
+  wire [5:0] _T_81 = 6'h1a + nextSpriteToSpawn; // @[\\src\\main\\scala\\GameLogic.scala 462:34]
+  wire  _GEN_667 = 6'h3 == _T_81 | spriteVisibleRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_668 = 6'h4 == _T_81 | spriteVisibleRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_669 = 6'h5 == _T_81 | spriteVisibleRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_670 = 6'h6 == _T_81 | spriteVisibleRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_671 = 6'h7 == _T_81 | spriteVisibleRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_672 = 6'h8 == _T_81 | spriteVisibleRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_673 = 6'h9 == _T_81 | spriteVisibleRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_674 = 6'ha == _T_81 | spriteVisibleRegs_10; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_675 = 6'hb == _T_81 | spriteVisibleRegs_11; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_676 = 6'hc == _T_81 | spriteVisibleRegs_12; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_677 = 6'hd == _T_81 | _GEN_530; // @[\\src\\main\\scala\\GameLogic.scala 462:{55,55}]
+  wire  _GEN_678 = 6'he == _T_81 | spriteVisibleRegs_14; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_679 = 6'hf == _T_81 | spriteVisibleRegs_15; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_680 = 6'h10 == _T_81 | spriteVisibleRegs_16; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_681 = 6'h11 == _T_81 | spriteVisibleRegs_17; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_682 = 6'h12 == _T_81 | spriteVisibleRegs_18; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_683 = 6'h13 == _T_81 | spriteVisibleRegs_19; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_684 = 6'h14 == _T_81 | spriteVisibleRegs_20; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_685 = 6'h15 == _T_81 | spriteVisibleRegs_21; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_686 = 6'h16 == _T_81 | spriteVisibleRegs_22; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_687 = 6'h17 == _T_81 | spriteVisibleRegs_23; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_688 = 6'h18 == _T_81 | spriteVisibleRegs_24; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_689 = 6'h19 == _T_81 | spriteVisibleRegs_25; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_690 = 6'h1a == _T_81 | spriteVisibleRegs_26; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_691 = 6'h1b == _T_81 | spriteVisibleRegs_27; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_692 = 6'h1c == _T_81 | spriteVisibleRegs_28; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_693 = 6'h1d == _T_81 | spriteVisibleRegs_29; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_694 = 6'h1e == _T_81 | spriteVisibleRegs_30; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_695 = 6'h1f == _T_81 | spriteVisibleRegs_31; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_696 = 6'h20 == _T_81 | spriteVisibleRegs_32; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_697 = 6'h21 == _T_81 | spriteVisibleRegs_33; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_698 = 6'h22 == _T_81 | spriteVisibleRegs_34; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_699 = 6'h23 == _T_81 | spriteVisibleRegs_35; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_700 = 6'h24 == _T_81 | spriteVisibleRegs_36; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_701 = 6'h25 == _T_81 | spriteVisibleRegs_37; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_702 = 6'h26 == _T_81 | spriteVisibleRegs_38; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_703 = 6'h27 == _T_81 | spriteVisibleRegs_39; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_704 = 6'h28 == _T_81 | spriteVisibleRegs_40; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_705 = 6'h29 == _T_81 | spriteVisibleRegs_41; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_706 = 6'h2a == _T_81 | spriteVisibleRegs_42; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_707 = 6'h2b == _T_81 | spriteVisibleRegs_43; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_708 = 6'h2c == _T_81 | spriteVisibleRegs_44; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_709 = 6'h2d == _T_81 | spriteVisibleRegs_45; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_710 = 6'h2e == _T_81 | spriteVisibleRegs_46; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_711 = 6'h2f == _T_81 | spriteVisibleRegs_47; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_712 = 6'h30 == _T_81 | spriteVisibleRegs_48; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_713 = 6'h31 == _T_81 | spriteVisibleRegs_49; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_714 = 6'h32 == _T_81 | spriteVisibleRegs_50; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_715 = 6'h33 == _T_81 | spriteVisibleRegs_51; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_716 = 6'h34 == _T_81 | spriteVisibleRegs_52; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_717 = 6'h35 == _T_81 | spriteVisibleRegs_53; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_718 = 6'h36 == _T_81 | spriteVisibleRegs_54; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_719 = 6'h37 == _T_81 | spriteVisibleRegs_55; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_720 = 6'h38 == _T_81 | spriteVisibleRegs_56; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_721 = 6'h39 == _T_81 | spriteVisibleRegs_57; // @[\\src\\main\\scala\\GameLogic.scala 125:34 462:{55,55}]
+  wire  _GEN_725 = 6'h3d == _T_81 | _GEN_123; // @[\\src\\main\\scala\\GameLogic.scala 462:{55,55}]
+  wire  _GEN_726 = 6'h3e == _T_81 | _GEN_124; // @[\\src\\main\\scala\\GameLogic.scala 462:{55,55}]
+  wire  _GEN_727 = 6'h3f == _T_81 | _GEN_125; // @[\\src\\main\\scala\\GameLogic.scala 462:{55,55}]
+  wire  _GEN_732 = _T_72 ? _GEN_667 : spriteVisibleRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_733 = _T_72 ? _GEN_668 : spriteVisibleRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_734 = _T_72 ? _GEN_669 : spriteVisibleRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_735 = _T_72 ? _GEN_670 : spriteVisibleRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_736 = _T_72 ? _GEN_671 : spriteVisibleRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_737 = _T_72 ? _GEN_672 : spriteVisibleRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_738 = _T_72 ? _GEN_673 : spriteVisibleRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_739 = _T_72 ? _GEN_674 : spriteVisibleRegs_10; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_740 = _T_72 ? _GEN_675 : spriteVisibleRegs_11; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_741 = _T_72 ? _GEN_676 : spriteVisibleRegs_12; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_742 = _T_72 ? _GEN_677 : _GEN_530; // @[\\src\\main\\scala\\GameLogic.scala 461:69]
+  wire  _GEN_743 = _T_72 ? _GEN_678 : spriteVisibleRegs_14; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_744 = _T_72 ? _GEN_679 : spriteVisibleRegs_15; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_745 = _T_72 ? _GEN_680 : spriteVisibleRegs_16; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_746 = _T_72 ? _GEN_681 : spriteVisibleRegs_17; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_747 = _T_72 ? _GEN_682 : spriteVisibleRegs_18; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_748 = _T_72 ? _GEN_683 : spriteVisibleRegs_19; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_749 = _T_72 ? _GEN_684 : spriteVisibleRegs_20; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_750 = _T_72 ? _GEN_685 : spriteVisibleRegs_21; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_751 = _T_72 ? _GEN_686 : spriteVisibleRegs_22; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_752 = _T_72 ? _GEN_687 : spriteVisibleRegs_23; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_753 = _T_72 ? _GEN_688 : spriteVisibleRegs_24; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_754 = _T_72 ? _GEN_689 : spriteVisibleRegs_25; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_755 = _T_72 ? _GEN_690 : spriteVisibleRegs_26; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_756 = _T_72 ? _GEN_691 : spriteVisibleRegs_27; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_757 = _T_72 ? _GEN_692 : spriteVisibleRegs_28; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_758 = _T_72 ? _GEN_693 : spriteVisibleRegs_29; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_759 = _T_72 ? _GEN_694 : spriteVisibleRegs_30; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_760 = _T_72 ? _GEN_695 : spriteVisibleRegs_31; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_761 = _T_72 ? _GEN_696 : spriteVisibleRegs_32; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_762 = _T_72 ? _GEN_697 : spriteVisibleRegs_33; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_763 = _T_72 ? _GEN_698 : spriteVisibleRegs_34; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_764 = _T_72 ? _GEN_699 : spriteVisibleRegs_35; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_765 = _T_72 ? _GEN_700 : spriteVisibleRegs_36; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_766 = _T_72 ? _GEN_701 : spriteVisibleRegs_37; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_767 = _T_72 ? _GEN_702 : spriteVisibleRegs_38; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_768 = _T_72 ? _GEN_703 : spriteVisibleRegs_39; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_769 = _T_72 ? _GEN_704 : spriteVisibleRegs_40; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_770 = _T_72 ? _GEN_705 : spriteVisibleRegs_41; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_771 = _T_72 ? _GEN_706 : spriteVisibleRegs_42; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_772 = _T_72 ? _GEN_707 : spriteVisibleRegs_43; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_773 = _T_72 ? _GEN_708 : spriteVisibleRegs_44; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_774 = _T_72 ? _GEN_709 : spriteVisibleRegs_45; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_775 = _T_72 ? _GEN_710 : spriteVisibleRegs_46; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_776 = _T_72 ? _GEN_711 : spriteVisibleRegs_47; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_777 = _T_72 ? _GEN_712 : spriteVisibleRegs_48; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_778 = _T_72 ? _GEN_713 : spriteVisibleRegs_49; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_779 = _T_72 ? _GEN_714 : spriteVisibleRegs_50; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_780 = _T_72 ? _GEN_715 : spriteVisibleRegs_51; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_781 = _T_72 ? _GEN_716 : spriteVisibleRegs_52; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_782 = _T_72 ? _GEN_717 : spriteVisibleRegs_53; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_783 = _T_72 ? _GEN_718 : spriteVisibleRegs_54; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_784 = _T_72 ? _GEN_719 : spriteVisibleRegs_55; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_785 = _T_72 ? _GEN_720 : spriteVisibleRegs_56; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_786 = _T_72 ? _GEN_721 : spriteVisibleRegs_57; // @[\\src\\main\\scala\\GameLogic.scala 125:34 461:69]
+  wire  _GEN_790 = _T_72 ? _GEN_725 : _GEN_123; // @[\\src\\main\\scala\\GameLogic.scala 461:69]
+  wire  _GEN_791 = _T_72 ? _GEN_726 : _GEN_124; // @[\\src\\main\\scala\\GameLogic.scala 461:69]
+  wire  _GEN_792 = _T_72 ? _GEN_727 : _GEN_125; // @[\\src\\main\\scala\\GameLogic.scala 461:69]
+  wire [7:0] _GEN_794 = _T_72 ? 8'h19 : _GEN_597; // @[\\src\\main\\scala\\GameLogic.scala 461:69 464:29]
+  wire  _T_83 = lvlReg == 2'h3; // @[\\src\\main\\scala\\GameLogic.scala 468:25]
+  wire [5:0] _T_88 = 6'h24 + nextSpriteToSpawn; // @[\\src\\main\\scala\\GameLogic.scala 471:34]
+  wire  _GEN_798 = 6'h3 == _T_88 | spriteVisibleRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_799 = 6'h4 == _T_88 | spriteVisibleRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_800 = 6'h5 == _T_88 | spriteVisibleRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_801 = 6'h6 == _T_88 | spriteVisibleRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_802 = 6'h7 == _T_88 | spriteVisibleRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_803 = 6'h8 == _T_88 | spriteVisibleRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_804 = 6'h9 == _T_88 | spriteVisibleRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_805 = 6'ha == _T_88 | spriteVisibleRegs_10; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_806 = 6'hb == _T_88 | spriteVisibleRegs_11; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_807 = 6'hc == _T_88 | spriteVisibleRegs_12; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_808 = 6'hd == _T_88 | _GEN_530; // @[\\src\\main\\scala\\GameLogic.scala 471:{55,55}]
+  wire  _GEN_809 = 6'he == _T_88 | spriteVisibleRegs_14; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_810 = 6'hf == _T_88 | spriteVisibleRegs_15; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_811 = 6'h10 == _T_88 | spriteVisibleRegs_16; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_812 = 6'h11 == _T_88 | spriteVisibleRegs_17; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_813 = 6'h12 == _T_88 | spriteVisibleRegs_18; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_814 = 6'h13 == _T_88 | spriteVisibleRegs_19; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_815 = 6'h14 == _T_88 | spriteVisibleRegs_20; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_816 = 6'h15 == _T_88 | spriteVisibleRegs_21; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_817 = 6'h16 == _T_88 | spriteVisibleRegs_22; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_818 = 6'h17 == _T_88 | spriteVisibleRegs_23; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_819 = 6'h18 == _T_88 | spriteVisibleRegs_24; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_820 = 6'h19 == _T_88 | spriteVisibleRegs_25; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_821 = 6'h1a == _T_88 | spriteVisibleRegs_26; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_822 = 6'h1b == _T_88 | spriteVisibleRegs_27; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_823 = 6'h1c == _T_88 | spriteVisibleRegs_28; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_824 = 6'h1d == _T_88 | spriteVisibleRegs_29; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_825 = 6'h1e == _T_88 | spriteVisibleRegs_30; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_826 = 6'h1f == _T_88 | spriteVisibleRegs_31; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_827 = 6'h20 == _T_88 | spriteVisibleRegs_32; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_828 = 6'h21 == _T_88 | spriteVisibleRegs_33; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_829 = 6'h22 == _T_88 | spriteVisibleRegs_34; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_830 = 6'h23 == _T_88 | spriteVisibleRegs_35; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_831 = 6'h24 == _T_88 | spriteVisibleRegs_36; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_832 = 6'h25 == _T_88 | spriteVisibleRegs_37; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_833 = 6'h26 == _T_88 | spriteVisibleRegs_38; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_834 = 6'h27 == _T_88 | spriteVisibleRegs_39; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_835 = 6'h28 == _T_88 | spriteVisibleRegs_40; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_836 = 6'h29 == _T_88 | spriteVisibleRegs_41; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_837 = 6'h2a == _T_88 | spriteVisibleRegs_42; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_838 = 6'h2b == _T_88 | spriteVisibleRegs_43; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_839 = 6'h2c == _T_88 | spriteVisibleRegs_44; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_840 = 6'h2d == _T_88 | spriteVisibleRegs_45; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_841 = 6'h2e == _T_88 | spriteVisibleRegs_46; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_842 = 6'h2f == _T_88 | spriteVisibleRegs_47; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_843 = 6'h30 == _T_88 | spriteVisibleRegs_48; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_844 = 6'h31 == _T_88 | spriteVisibleRegs_49; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_845 = 6'h32 == _T_88 | spriteVisibleRegs_50; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_846 = 6'h33 == _T_88 | spriteVisibleRegs_51; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_847 = 6'h34 == _T_88 | spriteVisibleRegs_52; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_848 = 6'h35 == _T_88 | spriteVisibleRegs_53; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_849 = 6'h36 == _T_88 | spriteVisibleRegs_54; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_850 = 6'h37 == _T_88 | spriteVisibleRegs_55; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_851 = 6'h38 == _T_88 | spriteVisibleRegs_56; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_852 = 6'h39 == _T_88 | spriteVisibleRegs_57; // @[\\src\\main\\scala\\GameLogic.scala 125:34 471:{55,55}]
+  wire  _GEN_856 = 6'h3d == _T_88 | _GEN_123; // @[\\src\\main\\scala\\GameLogic.scala 471:{55,55}]
+  wire  _GEN_857 = 6'h3e == _T_88 | _GEN_124; // @[\\src\\main\\scala\\GameLogic.scala 471:{55,55}]
+  wire  _GEN_858 = 6'h3f == _T_88 | _GEN_125; // @[\\src\\main\\scala\\GameLogic.scala 471:{55,55}]
+  wire  _GEN_863 = _T_72 ? _GEN_798 : spriteVisibleRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_864 = _T_72 ? _GEN_799 : spriteVisibleRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_865 = _T_72 ? _GEN_800 : spriteVisibleRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_866 = _T_72 ? _GEN_801 : spriteVisibleRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_867 = _T_72 ? _GEN_802 : spriteVisibleRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_868 = _T_72 ? _GEN_803 : spriteVisibleRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_869 = _T_72 ? _GEN_804 : spriteVisibleRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_870 = _T_72 ? _GEN_805 : spriteVisibleRegs_10; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_871 = _T_72 ? _GEN_806 : spriteVisibleRegs_11; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_872 = _T_72 ? _GEN_807 : spriteVisibleRegs_12; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_873 = _T_72 ? _GEN_808 : _GEN_530; // @[\\src\\main\\scala\\GameLogic.scala 470:69]
+  wire  _GEN_874 = _T_72 ? _GEN_809 : spriteVisibleRegs_14; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_875 = _T_72 ? _GEN_810 : spriteVisibleRegs_15; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_876 = _T_72 ? _GEN_811 : spriteVisibleRegs_16; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_877 = _T_72 ? _GEN_812 : spriteVisibleRegs_17; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_878 = _T_72 ? _GEN_813 : spriteVisibleRegs_18; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_879 = _T_72 ? _GEN_814 : spriteVisibleRegs_19; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_880 = _T_72 ? _GEN_815 : spriteVisibleRegs_20; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_881 = _T_72 ? _GEN_816 : spriteVisibleRegs_21; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_882 = _T_72 ? _GEN_817 : spriteVisibleRegs_22; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_883 = _T_72 ? _GEN_818 : spriteVisibleRegs_23; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_884 = _T_72 ? _GEN_819 : spriteVisibleRegs_24; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_885 = _T_72 ? _GEN_820 : spriteVisibleRegs_25; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_886 = _T_72 ? _GEN_821 : spriteVisibleRegs_26; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_887 = _T_72 ? _GEN_822 : spriteVisibleRegs_27; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_888 = _T_72 ? _GEN_823 : spriteVisibleRegs_28; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_889 = _T_72 ? _GEN_824 : spriteVisibleRegs_29; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_890 = _T_72 ? _GEN_825 : spriteVisibleRegs_30; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_891 = _T_72 ? _GEN_826 : spriteVisibleRegs_31; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_892 = _T_72 ? _GEN_827 : spriteVisibleRegs_32; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_893 = _T_72 ? _GEN_828 : spriteVisibleRegs_33; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_894 = _T_72 ? _GEN_829 : spriteVisibleRegs_34; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_895 = _T_72 ? _GEN_830 : spriteVisibleRegs_35; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_896 = _T_72 ? _GEN_831 : spriteVisibleRegs_36; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_897 = _T_72 ? _GEN_832 : spriteVisibleRegs_37; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_898 = _T_72 ? _GEN_833 : spriteVisibleRegs_38; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_899 = _T_72 ? _GEN_834 : spriteVisibleRegs_39; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_900 = _T_72 ? _GEN_835 : spriteVisibleRegs_40; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_901 = _T_72 ? _GEN_836 : spriteVisibleRegs_41; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_902 = _T_72 ? _GEN_837 : spriteVisibleRegs_42; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_903 = _T_72 ? _GEN_838 : spriteVisibleRegs_43; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_904 = _T_72 ? _GEN_839 : spriteVisibleRegs_44; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_905 = _T_72 ? _GEN_840 : spriteVisibleRegs_45; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_906 = _T_72 ? _GEN_841 : spriteVisibleRegs_46; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_907 = _T_72 ? _GEN_842 : spriteVisibleRegs_47; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_908 = _T_72 ? _GEN_843 : spriteVisibleRegs_48; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_909 = _T_72 ? _GEN_844 : spriteVisibleRegs_49; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_910 = _T_72 ? _GEN_845 : spriteVisibleRegs_50; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_911 = _T_72 ? _GEN_846 : spriteVisibleRegs_51; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_912 = _T_72 ? _GEN_847 : spriteVisibleRegs_52; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_913 = _T_72 ? _GEN_848 : spriteVisibleRegs_53; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_914 = _T_72 ? _GEN_849 : spriteVisibleRegs_54; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_915 = _T_72 ? _GEN_850 : spriteVisibleRegs_55; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_916 = _T_72 ? _GEN_851 : spriteVisibleRegs_56; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_917 = _T_72 ? _GEN_852 : spriteVisibleRegs_57; // @[\\src\\main\\scala\\GameLogic.scala 125:34 470:69]
+  wire  _GEN_921 = _T_72 ? _GEN_856 : _GEN_123; // @[\\src\\main\\scala\\GameLogic.scala 470:69]
+  wire  _GEN_922 = _T_72 ? _GEN_857 : _GEN_124; // @[\\src\\main\\scala\\GameLogic.scala 470:69]
+  wire  _GEN_923 = _T_72 ? _GEN_858 : _GEN_125; // @[\\src\\main\\scala\\GameLogic.scala 470:69]
+  wire [7:0] _GEN_925 = _T_72 ? 8'h14 : _GEN_597; // @[\\src\\main\\scala\\GameLogic.scala 470:69 473:29]
+  wire  _GEN_929 = lvlReg == 2'h3 ? _GEN_863 : spriteVisibleRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_930 = lvlReg == 2'h3 ? _GEN_864 : spriteVisibleRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_931 = lvlReg == 2'h3 ? _GEN_865 : spriteVisibleRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_932 = lvlReg == 2'h3 ? _GEN_866 : spriteVisibleRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_933 = lvlReg == 2'h3 ? _GEN_867 : spriteVisibleRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_934 = lvlReg == 2'h3 ? _GEN_868 : spriteVisibleRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_935 = lvlReg == 2'h3 ? _GEN_869 : spriteVisibleRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_936 = lvlReg == 2'h3 ? _GEN_870 : spriteVisibleRegs_10; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_937 = lvlReg == 2'h3 ? _GEN_871 : spriteVisibleRegs_11; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_938 = lvlReg == 2'h3 ? _GEN_872 : spriteVisibleRegs_12; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_939 = lvlReg == 2'h3 ? _GEN_873 : _GEN_530; // @[\\src\\main\\scala\\GameLogic.scala 468:34]
+  wire  _GEN_940 = lvlReg == 2'h3 ? _GEN_874 : spriteVisibleRegs_14; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_941 = lvlReg == 2'h3 ? _GEN_875 : spriteVisibleRegs_15; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_942 = lvlReg == 2'h3 ? _GEN_876 : spriteVisibleRegs_16; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_943 = lvlReg == 2'h3 ? _GEN_877 : spriteVisibleRegs_17; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_944 = lvlReg == 2'h3 ? _GEN_878 : spriteVisibleRegs_18; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_945 = lvlReg == 2'h3 ? _GEN_879 : spriteVisibleRegs_19; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_946 = lvlReg == 2'h3 ? _GEN_880 : spriteVisibleRegs_20; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_947 = lvlReg == 2'h3 ? _GEN_881 : spriteVisibleRegs_21; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_948 = lvlReg == 2'h3 ? _GEN_882 : spriteVisibleRegs_22; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_949 = lvlReg == 2'h3 ? _GEN_883 : spriteVisibleRegs_23; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_950 = lvlReg == 2'h3 ? _GEN_884 : spriteVisibleRegs_24; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_951 = lvlReg == 2'h3 ? _GEN_885 : spriteVisibleRegs_25; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_952 = lvlReg == 2'h3 ? _GEN_886 : spriteVisibleRegs_26; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_953 = lvlReg == 2'h3 ? _GEN_887 : spriteVisibleRegs_27; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_954 = lvlReg == 2'h3 ? _GEN_888 : spriteVisibleRegs_28; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_955 = lvlReg == 2'h3 ? _GEN_889 : spriteVisibleRegs_29; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_956 = lvlReg == 2'h3 ? _GEN_890 : spriteVisibleRegs_30; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_957 = lvlReg == 2'h3 ? _GEN_891 : spriteVisibleRegs_31; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_958 = lvlReg == 2'h3 ? _GEN_892 : spriteVisibleRegs_32; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_959 = lvlReg == 2'h3 ? _GEN_893 : spriteVisibleRegs_33; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_960 = lvlReg == 2'h3 ? _GEN_894 : spriteVisibleRegs_34; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_961 = lvlReg == 2'h3 ? _GEN_895 : spriteVisibleRegs_35; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_962 = lvlReg == 2'h3 ? _GEN_896 : spriteVisibleRegs_36; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_963 = lvlReg == 2'h3 ? _GEN_897 : spriteVisibleRegs_37; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_964 = lvlReg == 2'h3 ? _GEN_898 : spriteVisibleRegs_38; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_965 = lvlReg == 2'h3 ? _GEN_899 : spriteVisibleRegs_39; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_966 = lvlReg == 2'h3 ? _GEN_900 : spriteVisibleRegs_40; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_967 = lvlReg == 2'h3 ? _GEN_901 : spriteVisibleRegs_41; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_968 = lvlReg == 2'h3 ? _GEN_902 : spriteVisibleRegs_42; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_969 = lvlReg == 2'h3 ? _GEN_903 : spriteVisibleRegs_43; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_970 = lvlReg == 2'h3 ? _GEN_904 : spriteVisibleRegs_44; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_971 = lvlReg == 2'h3 ? _GEN_905 : spriteVisibleRegs_45; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_972 = lvlReg == 2'h3 ? _GEN_906 : spriteVisibleRegs_46; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_973 = lvlReg == 2'h3 ? _GEN_907 : spriteVisibleRegs_47; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_974 = lvlReg == 2'h3 ? _GEN_908 : spriteVisibleRegs_48; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_975 = lvlReg == 2'h3 ? _GEN_909 : spriteVisibleRegs_49; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_976 = lvlReg == 2'h3 ? _GEN_910 : spriteVisibleRegs_50; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_977 = lvlReg == 2'h3 ? _GEN_911 : spriteVisibleRegs_51; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_978 = lvlReg == 2'h3 ? _GEN_912 : spriteVisibleRegs_52; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_979 = lvlReg == 2'h3 ? _GEN_913 : spriteVisibleRegs_53; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_980 = lvlReg == 2'h3 ? _GEN_914 : spriteVisibleRegs_54; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_981 = lvlReg == 2'h3 ? _GEN_915 : spriteVisibleRegs_55; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_982 = lvlReg == 2'h3 ? _GEN_916 : spriteVisibleRegs_56; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_983 = lvlReg == 2'h3 ? _GEN_917 : spriteVisibleRegs_57; // @[\\src\\main\\scala\\GameLogic.scala 125:34 468:34]
+  wire  _GEN_987 = lvlReg == 2'h3 ? _GEN_921 : _GEN_123; // @[\\src\\main\\scala\\GameLogic.scala 468:34]
+  wire  _GEN_988 = lvlReg == 2'h3 ? _GEN_922 : _GEN_124; // @[\\src\\main\\scala\\GameLogic.scala 468:34]
+  wire  _GEN_989 = lvlReg == 2'h3 ? _GEN_923 : _GEN_125; // @[\\src\\main\\scala\\GameLogic.scala 468:34]
+  wire [5:0] _GEN_990 = lvlReg == 2'h3 ? _GEN_662 : nextSpriteToSpawn; // @[\\src\\main\\scala\\GameLogic.scala 232:34 468:34]
+  wire [7:0] _GEN_991 = lvlReg == 2'h3 ? _GEN_925 : spawnDelayCounter; // @[\\src\\main\\scala\\GameLogic.scala 231:34 468:34]
+  wire  _GEN_995 = lvlReg == 2'h2 ? _GEN_732 : _GEN_929; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_996 = lvlReg == 2'h2 ? _GEN_733 : _GEN_930; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_997 = lvlReg == 2'h2 ? _GEN_734 : _GEN_931; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_998 = lvlReg == 2'h2 ? _GEN_735 : _GEN_932; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_999 = lvlReg == 2'h2 ? _GEN_736 : _GEN_933; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1000 = lvlReg == 2'h2 ? _GEN_737 : _GEN_934; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1001 = lvlReg == 2'h2 ? _GEN_738 : _GEN_935; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1002 = lvlReg == 2'h2 ? _GEN_739 : _GEN_936; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1003 = lvlReg == 2'h2 ? _GEN_740 : _GEN_937; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1004 = lvlReg == 2'h2 ? _GEN_741 : _GEN_938; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1005 = lvlReg == 2'h2 ? _GEN_742 : _GEN_939; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1006 = lvlReg == 2'h2 ? _GEN_743 : _GEN_940; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1007 = lvlReg == 2'h2 ? _GEN_744 : _GEN_941; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1008 = lvlReg == 2'h2 ? _GEN_745 : _GEN_942; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1009 = lvlReg == 2'h2 ? _GEN_746 : _GEN_943; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1010 = lvlReg == 2'h2 ? _GEN_747 : _GEN_944; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1011 = lvlReg == 2'h2 ? _GEN_748 : _GEN_945; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1012 = lvlReg == 2'h2 ? _GEN_749 : _GEN_946; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1013 = lvlReg == 2'h2 ? _GEN_750 : _GEN_947; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1014 = lvlReg == 2'h2 ? _GEN_751 : _GEN_948; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1015 = lvlReg == 2'h2 ? _GEN_752 : _GEN_949; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1016 = lvlReg == 2'h2 ? _GEN_753 : _GEN_950; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1017 = lvlReg == 2'h2 ? _GEN_754 : _GEN_951; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1018 = lvlReg == 2'h2 ? _GEN_755 : _GEN_952; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1019 = lvlReg == 2'h2 ? _GEN_756 : _GEN_953; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1020 = lvlReg == 2'h2 ? _GEN_757 : _GEN_954; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1021 = lvlReg == 2'h2 ? _GEN_758 : _GEN_955; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1022 = lvlReg == 2'h2 ? _GEN_759 : _GEN_956; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1023 = lvlReg == 2'h2 ? _GEN_760 : _GEN_957; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1024 = lvlReg == 2'h2 ? _GEN_761 : _GEN_958; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1025 = lvlReg == 2'h2 ? _GEN_762 : _GEN_959; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1026 = lvlReg == 2'h2 ? _GEN_763 : _GEN_960; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1027 = lvlReg == 2'h2 ? _GEN_764 : _GEN_961; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1028 = lvlReg == 2'h2 ? _GEN_765 : _GEN_962; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1029 = lvlReg == 2'h2 ? _GEN_766 : _GEN_963; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1030 = lvlReg == 2'h2 ? _GEN_767 : _GEN_964; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1031 = lvlReg == 2'h2 ? _GEN_768 : _GEN_965; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1032 = lvlReg == 2'h2 ? _GEN_769 : _GEN_966; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1033 = lvlReg == 2'h2 ? _GEN_770 : _GEN_967; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1034 = lvlReg == 2'h2 ? _GEN_771 : _GEN_968; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1035 = lvlReg == 2'h2 ? _GEN_772 : _GEN_969; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1036 = lvlReg == 2'h2 ? _GEN_773 : _GEN_970; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1037 = lvlReg == 2'h2 ? _GEN_774 : _GEN_971; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1038 = lvlReg == 2'h2 ? _GEN_775 : _GEN_972; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1039 = lvlReg == 2'h2 ? _GEN_776 : _GEN_973; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1040 = lvlReg == 2'h2 ? _GEN_777 : _GEN_974; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1041 = lvlReg == 2'h2 ? _GEN_778 : _GEN_975; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1042 = lvlReg == 2'h2 ? _GEN_779 : _GEN_976; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1043 = lvlReg == 2'h2 ? _GEN_780 : _GEN_977; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1044 = lvlReg == 2'h2 ? _GEN_781 : _GEN_978; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1045 = lvlReg == 2'h2 ? _GEN_782 : _GEN_979; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1046 = lvlReg == 2'h2 ? _GEN_783 : _GEN_980; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1047 = lvlReg == 2'h2 ? _GEN_784 : _GEN_981; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1048 = lvlReg == 2'h2 ? _GEN_785 : _GEN_982; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1049 = lvlReg == 2'h2 ? _GEN_786 : _GEN_983; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1053 = lvlReg == 2'h2 ? _GEN_790 : _GEN_987; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1054 = lvlReg == 2'h2 ? _GEN_791 : _GEN_988; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1055 = lvlReg == 2'h2 ? _GEN_792 : _GEN_989; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire [5:0] _GEN_1056 = lvlReg == 2'h2 ? _GEN_662 : _GEN_990; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire [7:0] _GEN_1057 = lvlReg == 2'h2 ? _GEN_794 : _GEN_991; // @[\\src\\main\\scala\\GameLogic.scala 459:34]
+  wire  _GEN_1071 = lvlReg == 2'h1 ? _GEN_611 : _GEN_1005; // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+  wire  _GEN_1072 = lvlReg == 2'h1 ? _GEN_612 : _GEN_1006; // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+  wire  _T_90 = ~isBlinking; // @[\\src\\main\\scala\\GameLogic.scala 482:12]
+  wire [6:0] _obstacleWidth_T_1 = 5'h1a * 2'h2; // @[\\src\\main\\scala\\GameLogic.scala 487:81]
+  wire [5:0] _obstacleHeight_T_1 = 4'hf * 2'h2; // @[\\src\\main\\scala\\GameLogic.scala 488:83]
+  wire [6:0] _T_93 = spriteScaleTypeRegs_0 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 492:65]
+  wire [10:0] _GEN_2031 = {{4{_T_93[6]}},_T_93}; // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire [10:0] _T_96 = $signed(spriteXRegs_16) + $signed(_GEN_2031); // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire  _T_97 = $signed(spriteXRegs_14) < $signed(_T_96); // @[\\src\\main\\scala\\GameLogic.scala 492:32]
+  wire  _T_98 = spriteVisibleRegs_16 & $signed(spriteXRegs_16) <= 11'sh280 & _T_97; // @[\\src\\main\\scala\\GameLogic.scala 491:63]
+  wire [10:0] _T_101 = $signed(spriteXRegs_14) + 11'sh8; // @[\\src\\main\\scala\\GameLogic.scala 492:110]
+  wire [5:0] _T_104 = spriteScaleTypeRegs_0 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 493:66]
+  wire [9:0] _GEN_2032 = {{4{_T_104[5]}},_T_104}; // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire [9:0] _T_107 = $signed(spriteYRegs_16) + $signed(_GEN_2032); // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire  _T_108 = $signed(spriteYRegs_14) < $signed(_T_107); // @[\\src\\main\\scala\\GameLogic.scala 493:32]
+  wire  _T_109 = _T_98 & $signed(spriteXRegs_16) < $signed(_T_101) & _T_108; // @[\\src\\main\\scala\\GameLogic.scala 492:117]
+  wire [9:0] _T_112 = $signed(spriteYRegs_14) + 10'shb; // @[\\src\\main\\scala\\GameLogic.scala 493:111]
+  wire  _T_114 = _T_109 & $signed(spriteYRegs_16) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 493:74]
+  wire  _GEN_1124 = _T_114 | collisionDetected; // @[\\src\\main\\scala\\GameLogic.scala 494:13 495:31 238:34]
+  wire [6:0] _T_117 = spriteScaleTypeRegs_1 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 492:65]
+  wire [10:0] _GEN_2033 = {{4{_T_117[6]}},_T_117}; // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire [10:0] _T_120 = $signed(spriteXRegs_17) + $signed(_GEN_2033); // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire  _T_121 = $signed(spriteXRegs_14) < $signed(_T_120); // @[\\src\\main\\scala\\GameLogic.scala 492:32]
+  wire  _T_122 = spriteVisibleRegs_17 & $signed(spriteXRegs_17) <= 11'sh280 & _T_121; // @[\\src\\main\\scala\\GameLogic.scala 491:63]
+  wire [5:0] _T_128 = spriteScaleTypeRegs_1 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 493:66]
+  wire [9:0] _GEN_2034 = {{4{_T_128[5]}},_T_128}; // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire [9:0] _T_131 = $signed(spriteYRegs_17) + $signed(_GEN_2034); // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire  _T_132 = $signed(spriteYRegs_14) < $signed(_T_131); // @[\\src\\main\\scala\\GameLogic.scala 493:32]
+  wire  _T_133 = _T_122 & $signed(spriteXRegs_17) < $signed(_T_101) & _T_132; // @[\\src\\main\\scala\\GameLogic.scala 492:117]
+  wire  _T_138 = _T_133 & $signed(spriteYRegs_17) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 493:74]
+  wire [6:0] _T_141 = spriteScaleTypeRegs_2 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 492:65]
+  wire [10:0] _GEN_2035 = {{4{_T_141[6]}},_T_141}; // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire [10:0] _T_144 = $signed(spriteXRegs_18) + $signed(_GEN_2035); // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire  _T_145 = $signed(spriteXRegs_14) < $signed(_T_144); // @[\\src\\main\\scala\\GameLogic.scala 492:32]
+  wire  _T_146 = spriteVisibleRegs_18 & $signed(spriteXRegs_18) <= 11'sh280 & _T_145; // @[\\src\\main\\scala\\GameLogic.scala 491:63]
+  wire [5:0] _T_152 = spriteScaleTypeRegs_2 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 493:66]
+  wire [9:0] _GEN_2036 = {{4{_T_152[5]}},_T_152}; // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire [9:0] _T_155 = $signed(spriteYRegs_18) + $signed(_GEN_2036); // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire  _T_156 = $signed(spriteYRegs_14) < $signed(_T_155); // @[\\src\\main\\scala\\GameLogic.scala 493:32]
+  wire  _T_157 = _T_146 & $signed(spriteXRegs_18) < $signed(_T_101) & _T_156; // @[\\src\\main\\scala\\GameLogic.scala 492:117]
+  wire  _T_162 = _T_157 & $signed(spriteYRegs_18) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 493:74]
+  wire [6:0] _T_165 = spriteScaleTypeRegs_3 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 492:65]
+  wire [10:0] _GEN_2037 = {{4{_T_165[6]}},_T_165}; // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire [10:0] _T_168 = $signed(spriteXRegs_19) + $signed(_GEN_2037); // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire  _T_169 = $signed(spriteXRegs_14) < $signed(_T_168); // @[\\src\\main\\scala\\GameLogic.scala 492:32]
+  wire  _T_170 = spriteVisibleRegs_19 & $signed(spriteXRegs_19) <= 11'sh280 & _T_169; // @[\\src\\main\\scala\\GameLogic.scala 491:63]
+  wire [5:0] _T_176 = spriteScaleTypeRegs_3 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 493:66]
+  wire [9:0] _GEN_2038 = {{4{_T_176[5]}},_T_176}; // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire [9:0] _T_179 = $signed(spriteYRegs_19) + $signed(_GEN_2038); // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire  _T_180 = $signed(spriteYRegs_14) < $signed(_T_179); // @[\\src\\main\\scala\\GameLogic.scala 493:32]
+  wire  _T_181 = _T_170 & $signed(spriteXRegs_19) < $signed(_T_101) & _T_180; // @[\\src\\main\\scala\\GameLogic.scala 492:117]
+  wire  _T_186 = _T_181 & $signed(spriteYRegs_19) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 493:74]
+  wire [6:0] _T_189 = spriteScaleTypeRegs_4 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 492:65]
+  wire [10:0] _GEN_2039 = {{4{_T_189[6]}},_T_189}; // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire [10:0] _T_192 = $signed(spriteXRegs_20) + $signed(_GEN_2039); // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire  _T_193 = $signed(spriteXRegs_14) < $signed(_T_192); // @[\\src\\main\\scala\\GameLogic.scala 492:32]
+  wire  _T_194 = spriteVisibleRegs_20 & $signed(spriteXRegs_20) <= 11'sh280 & _T_193; // @[\\src\\main\\scala\\GameLogic.scala 491:63]
+  wire [5:0] _T_200 = spriteScaleTypeRegs_4 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 493:66]
+  wire [9:0] _GEN_2040 = {{4{_T_200[5]}},_T_200}; // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire [9:0] _T_203 = $signed(spriteYRegs_20) + $signed(_GEN_2040); // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire  _T_204 = $signed(spriteYRegs_14) < $signed(_T_203); // @[\\src\\main\\scala\\GameLogic.scala 493:32]
+  wire  _T_205 = _T_194 & $signed(spriteXRegs_20) < $signed(_T_101) & _T_204; // @[\\src\\main\\scala\\GameLogic.scala 492:117]
+  wire  _T_210 = _T_205 & $signed(spriteYRegs_20) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 493:74]
+  wire [6:0] _T_213 = spriteScaleTypeRegs_5 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 492:65]
+  wire [10:0] _GEN_2041 = {{4{_T_213[6]}},_T_213}; // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire [10:0] _T_216 = $signed(spriteXRegs_21) + $signed(_GEN_2041); // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire  _T_217 = $signed(spriteXRegs_14) < $signed(_T_216); // @[\\src\\main\\scala\\GameLogic.scala 492:32]
+  wire  _T_218 = spriteVisibleRegs_21 & $signed(spriteXRegs_21) <= 11'sh280 & _T_217; // @[\\src\\main\\scala\\GameLogic.scala 491:63]
+  wire [5:0] _T_224 = spriteScaleTypeRegs_5 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 493:66]
+  wire [9:0] _GEN_2042 = {{4{_T_224[5]}},_T_224}; // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire [9:0] _T_227 = $signed(spriteYRegs_21) + $signed(_GEN_2042); // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire  _T_228 = $signed(spriteYRegs_14) < $signed(_T_227); // @[\\src\\main\\scala\\GameLogic.scala 493:32]
+  wire  _T_229 = _T_218 & $signed(spriteXRegs_21) < $signed(_T_101) & _T_228; // @[\\src\\main\\scala\\GameLogic.scala 492:117]
+  wire  _T_234 = _T_229 & $signed(spriteYRegs_21) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 493:74]
+  wire [6:0] _T_237 = spriteScaleTypeRegs_6 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 492:65]
+  wire [10:0] _GEN_2043 = {{4{_T_237[6]}},_T_237}; // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire [10:0] _T_240 = $signed(spriteXRegs_22) + $signed(_GEN_2043); // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire  _T_241 = $signed(spriteXRegs_14) < $signed(_T_240); // @[\\src\\main\\scala\\GameLogic.scala 492:32]
+  wire  _T_242 = spriteVisibleRegs_22 & $signed(spriteXRegs_22) <= 11'sh280 & _T_241; // @[\\src\\main\\scala\\GameLogic.scala 491:63]
+  wire [5:0] _T_248 = spriteScaleTypeRegs_6 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 493:66]
+  wire [9:0] _GEN_2044 = {{4{_T_248[5]}},_T_248}; // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire [9:0] _T_251 = $signed(spriteYRegs_22) + $signed(_GEN_2044); // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire  _T_252 = $signed(spriteYRegs_14) < $signed(_T_251); // @[\\src\\main\\scala\\GameLogic.scala 493:32]
+  wire  _T_253 = _T_242 & $signed(spriteXRegs_22) < $signed(_T_101) & _T_252; // @[\\src\\main\\scala\\GameLogic.scala 492:117]
+  wire  _T_258 = _T_253 & $signed(spriteYRegs_22) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 493:74]
+  wire [6:0] _T_261 = spriteScaleTypeRegs_7 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 492:65]
+  wire [10:0] _GEN_2045 = {{4{_T_261[6]}},_T_261}; // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire [10:0] _T_264 = $signed(spriteXRegs_23) + $signed(_GEN_2045); // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire  _T_265 = $signed(spriteXRegs_14) < $signed(_T_264); // @[\\src\\main\\scala\\GameLogic.scala 492:32]
+  wire  _T_266 = spriteVisibleRegs_23 & $signed(spriteXRegs_23) <= 11'sh280 & _T_265; // @[\\src\\main\\scala\\GameLogic.scala 491:63]
+  wire [5:0] _T_272 = spriteScaleTypeRegs_7 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 493:66]
+  wire [9:0] _GEN_2046 = {{4{_T_272[5]}},_T_272}; // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire [9:0] _T_275 = $signed(spriteYRegs_23) + $signed(_GEN_2046); // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire  _T_276 = $signed(spriteYRegs_14) < $signed(_T_275); // @[\\src\\main\\scala\\GameLogic.scala 493:32]
+  wire  _T_277 = _T_266 & $signed(spriteXRegs_23) < $signed(_T_101) & _T_276; // @[\\src\\main\\scala\\GameLogic.scala 492:117]
+  wire  _T_282 = _T_277 & $signed(spriteYRegs_23) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 493:74]
+  wire [6:0] _T_285 = spriteScaleTypeRegs_8 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 492:65]
+  wire [10:0] _GEN_2047 = {{4{_T_285[6]}},_T_285}; // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire [10:0] _T_288 = $signed(spriteXRegs_24) + $signed(_GEN_2047); // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire  _T_289 = $signed(spriteXRegs_14) < $signed(_T_288); // @[\\src\\main\\scala\\GameLogic.scala 492:32]
+  wire  _T_290 = spriteVisibleRegs_24 & $signed(spriteXRegs_24) <= 11'sh280 & _T_289; // @[\\src\\main\\scala\\GameLogic.scala 491:63]
+  wire [5:0] _T_296 = spriteScaleTypeRegs_8 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 493:66]
+  wire [9:0] _GEN_2048 = {{4{_T_296[5]}},_T_296}; // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire [9:0] _T_299 = $signed(spriteYRegs_24) + $signed(_GEN_2048); // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire  _T_300 = $signed(spriteYRegs_14) < $signed(_T_299); // @[\\src\\main\\scala\\GameLogic.scala 493:32]
+  wire  _T_301 = _T_290 & $signed(spriteXRegs_24) < $signed(_T_101) & _T_300; // @[\\src\\main\\scala\\GameLogic.scala 492:117]
+  wire  _T_306 = _T_301 & $signed(spriteYRegs_24) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 493:74]
+  wire [6:0] _T_309 = spriteScaleTypeRegs_9 ? _obstacleWidth_T_1 : 7'h1a; // @[\\src\\main\\scala\\GameLogic.scala 492:65]
+  wire [10:0] _GEN_2049 = {{4{_T_309[6]}},_T_309}; // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire [10:0] _T_312 = $signed(spriteXRegs_25) + $signed(_GEN_2049); // @[\\src\\main\\scala\\GameLogic.scala 492:49]
+  wire  _T_313 = $signed(spriteXRegs_14) < $signed(_T_312); // @[\\src\\main\\scala\\GameLogic.scala 492:32]
+  wire  _T_314 = spriteVisibleRegs_25 & $signed(spriteXRegs_25) <= 11'sh280 & _T_313; // @[\\src\\main\\scala\\GameLogic.scala 491:63]
+  wire [5:0] _T_320 = spriteScaleTypeRegs_9 ? _obstacleHeight_T_1 : 6'hf; // @[\\src\\main\\scala\\GameLogic.scala 493:66]
+  wire [9:0] _GEN_2050 = {{4{_T_320[5]}},_T_320}; // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire [9:0] _T_323 = $signed(spriteYRegs_25) + $signed(_GEN_2050); // @[\\src\\main\\scala\\GameLogic.scala 493:49]
+  wire  _T_324 = $signed(spriteYRegs_14) < $signed(_T_323); // @[\\src\\main\\scala\\GameLogic.scala 493:32]
+  wire  _T_325 = _T_314 & $signed(spriteXRegs_25) < $signed(_T_101) & _T_324; // @[\\src\\main\\scala\\GameLogic.scala 492:117]
+  wire  _T_330 = _T_325 & $signed(spriteYRegs_25) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 493:74]
+  wire  _GEN_1133 = _T_330 | (_T_306 | (_T_282 | (_T_258 | (_T_234 | (_T_210 | (_T_186 | (_T_162 | (_T_138 | _GEN_1124))
+    )))))); // @[\\src\\main\\scala\\GameLogic.scala 494:13 495:31]
+  wire  _GEN_1134 = ~isBlinking ? _GEN_1133 : collisionDetected; // @[\\src\\main\\scala\\GameLogic.scala 482:25 238:34]
+  wire [6:0] _obstacleWidth_T_21 = 5'h1d * 2'h2; // @[\\src\\main\\scala\\GameLogic.scala 505:81]
+  wire [6:0] _T_332 = spriteScaleTypeRegs_0 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 510:65]
+  wire [10:0] _GEN_2051 = {{4{_T_332[6]}},_T_332}; // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire [10:0] _T_335 = $signed(spriteXRegs_26) + $signed(_GEN_2051); // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire  _T_336 = $signed(spriteXRegs_14) < $signed(_T_335); // @[\\src\\main\\scala\\GameLogic.scala 510:32]
+  wire  _T_337 = spriteVisibleRegs_26 & _T_336; // @[\\src\\main\\scala\\GameLogic.scala 509:34]
+  wire [9:0] _T_346 = $signed(spriteYRegs_26) + $signed(_GEN_2032); // @[\\src\\main\\scala\\GameLogic.scala 511:49]
+  wire  _T_347 = $signed(spriteYRegs_14) < $signed(_T_346); // @[\\src\\main\\scala\\GameLogic.scala 511:32]
+  wire  _T_348 = _T_337 & $signed(spriteXRegs_26) < $signed(_T_101) & _T_347; // @[\\src\\main\\scala\\GameLogic.scala 510:117]
+  wire  _T_353 = _T_348 & $signed(spriteYRegs_26) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 511:74]
+  wire [6:0] _T_354 = spriteScaleTypeRegs_1 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 510:65]
+  wire [10:0] _GEN_2053 = {{4{_T_354[6]}},_T_354}; // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire [10:0] _T_357 = $signed(spriteXRegs_27) + $signed(_GEN_2053); // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire  _T_358 = $signed(spriteXRegs_14) < $signed(_T_357); // @[\\src\\main\\scala\\GameLogic.scala 510:32]
+  wire  _T_359 = spriteVisibleRegs_27 & _T_358; // @[\\src\\main\\scala\\GameLogic.scala 509:34]
+  wire [9:0] _T_368 = $signed(spriteYRegs_27) + $signed(_GEN_2034); // @[\\src\\main\\scala\\GameLogic.scala 511:49]
+  wire  _T_369 = $signed(spriteYRegs_14) < $signed(_T_368); // @[\\src\\main\\scala\\GameLogic.scala 511:32]
+  wire  _T_370 = _T_359 & $signed(spriteXRegs_27) < $signed(_T_101) & _T_369; // @[\\src\\main\\scala\\GameLogic.scala 510:117]
+  wire  _T_375 = _T_370 & $signed(spriteYRegs_27) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 511:74]
+  wire [6:0] _T_376 = spriteScaleTypeRegs_2 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 510:65]
+  wire [10:0] _GEN_2055 = {{4{_T_376[6]}},_T_376}; // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire [10:0] _T_379 = $signed(spriteXRegs_28) + $signed(_GEN_2055); // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire  _T_380 = $signed(spriteXRegs_14) < $signed(_T_379); // @[\\src\\main\\scala\\GameLogic.scala 510:32]
+  wire  _T_381 = spriteVisibleRegs_28 & _T_380; // @[\\src\\main\\scala\\GameLogic.scala 509:34]
+  wire [9:0] _T_390 = $signed(spriteYRegs_28) + $signed(_GEN_2036); // @[\\src\\main\\scala\\GameLogic.scala 511:49]
+  wire  _T_391 = $signed(spriteYRegs_14) < $signed(_T_390); // @[\\src\\main\\scala\\GameLogic.scala 511:32]
+  wire  _T_392 = _T_381 & $signed(spriteXRegs_28) < $signed(_T_101) & _T_391; // @[\\src\\main\\scala\\GameLogic.scala 510:117]
+  wire  _T_397 = _T_392 & $signed(spriteYRegs_28) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 511:74]
+  wire [6:0] _T_398 = spriteScaleTypeRegs_3 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 510:65]
+  wire [10:0] _GEN_2057 = {{4{_T_398[6]}},_T_398}; // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire [10:0] _T_401 = $signed(spriteXRegs_29) + $signed(_GEN_2057); // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire  _T_402 = $signed(spriteXRegs_14) < $signed(_T_401); // @[\\src\\main\\scala\\GameLogic.scala 510:32]
+  wire  _T_403 = spriteVisibleRegs_29 & _T_402; // @[\\src\\main\\scala\\GameLogic.scala 509:34]
+  wire [9:0] _T_412 = $signed(spriteYRegs_29) + $signed(_GEN_2038); // @[\\src\\main\\scala\\GameLogic.scala 511:49]
+  wire  _T_413 = $signed(spriteYRegs_14) < $signed(_T_412); // @[\\src\\main\\scala\\GameLogic.scala 511:32]
+  wire  _T_414 = _T_403 & $signed(spriteXRegs_29) < $signed(_T_101) & _T_413; // @[\\src\\main\\scala\\GameLogic.scala 510:117]
+  wire  _T_419 = _T_414 & $signed(spriteYRegs_29) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 511:74]
+  wire [6:0] _T_420 = spriteScaleTypeRegs_4 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 510:65]
+  wire [10:0] _GEN_2059 = {{4{_T_420[6]}},_T_420}; // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire [10:0] _T_423 = $signed(spriteXRegs_30) + $signed(_GEN_2059); // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire  _T_424 = $signed(spriteXRegs_14) < $signed(_T_423); // @[\\src\\main\\scala\\GameLogic.scala 510:32]
+  wire  _T_425 = spriteVisibleRegs_30 & _T_424; // @[\\src\\main\\scala\\GameLogic.scala 509:34]
+  wire [9:0] _T_434 = $signed(spriteYRegs_30) + $signed(_GEN_2040); // @[\\src\\main\\scala\\GameLogic.scala 511:49]
+  wire  _T_435 = $signed(spriteYRegs_14) < $signed(_T_434); // @[\\src\\main\\scala\\GameLogic.scala 511:32]
+  wire  _T_436 = _T_425 & $signed(spriteXRegs_30) < $signed(_T_101) & _T_435; // @[\\src\\main\\scala\\GameLogic.scala 510:117]
+  wire  _T_441 = _T_436 & $signed(spriteYRegs_30) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 511:74]
+  wire [6:0] _T_442 = spriteScaleTypeRegs_5 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 510:65]
+  wire [10:0] _GEN_2061 = {{4{_T_442[6]}},_T_442}; // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire [10:0] _T_445 = $signed(spriteXRegs_31) + $signed(_GEN_2061); // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire  _T_446 = $signed(spriteXRegs_14) < $signed(_T_445); // @[\\src\\main\\scala\\GameLogic.scala 510:32]
+  wire  _T_447 = spriteVisibleRegs_31 & _T_446; // @[\\src\\main\\scala\\GameLogic.scala 509:34]
+  wire [9:0] _T_456 = $signed(spriteYRegs_31) + $signed(_GEN_2042); // @[\\src\\main\\scala\\GameLogic.scala 511:49]
+  wire  _T_457 = $signed(spriteYRegs_14) < $signed(_T_456); // @[\\src\\main\\scala\\GameLogic.scala 511:32]
+  wire  _T_458 = _T_447 & $signed(spriteXRegs_31) < $signed(_T_101) & _T_457; // @[\\src\\main\\scala\\GameLogic.scala 510:117]
+  wire  _T_463 = _T_458 & $signed(spriteYRegs_31) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 511:74]
+  wire [6:0] _T_464 = spriteScaleTypeRegs_6 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 510:65]
+  wire [10:0] _GEN_2063 = {{4{_T_464[6]}},_T_464}; // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire [10:0] _T_467 = $signed(spriteXRegs_32) + $signed(_GEN_2063); // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire  _T_468 = $signed(spriteXRegs_14) < $signed(_T_467); // @[\\src\\main\\scala\\GameLogic.scala 510:32]
+  wire  _T_469 = spriteVisibleRegs_32 & _T_468; // @[\\src\\main\\scala\\GameLogic.scala 509:34]
+  wire [9:0] _T_478 = $signed(spriteYRegs_32) + $signed(_GEN_2044); // @[\\src\\main\\scala\\GameLogic.scala 511:49]
+  wire  _T_479 = $signed(spriteYRegs_14) < $signed(_T_478); // @[\\src\\main\\scala\\GameLogic.scala 511:32]
+  wire  _T_480 = _T_469 & $signed(spriteXRegs_32) < $signed(_T_101) & _T_479; // @[\\src\\main\\scala\\GameLogic.scala 510:117]
+  wire  _T_485 = _T_480 & $signed(spriteYRegs_32) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 511:74]
+  wire [6:0] _T_486 = spriteScaleTypeRegs_7 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 510:65]
+  wire [10:0] _GEN_2065 = {{4{_T_486[6]}},_T_486}; // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire [10:0] _T_489 = $signed(spriteXRegs_33) + $signed(_GEN_2065); // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire  _T_490 = $signed(spriteXRegs_14) < $signed(_T_489); // @[\\src\\main\\scala\\GameLogic.scala 510:32]
+  wire  _T_491 = spriteVisibleRegs_33 & _T_490; // @[\\src\\main\\scala\\GameLogic.scala 509:34]
+  wire [9:0] _T_500 = $signed(spriteYRegs_33) + $signed(_GEN_2046); // @[\\src\\main\\scala\\GameLogic.scala 511:49]
+  wire  _T_501 = $signed(spriteYRegs_14) < $signed(_T_500); // @[\\src\\main\\scala\\GameLogic.scala 511:32]
+  wire  _T_502 = _T_491 & $signed(spriteXRegs_33) < $signed(_T_101) & _T_501; // @[\\src\\main\\scala\\GameLogic.scala 510:117]
+  wire  _T_507 = _T_502 & $signed(spriteYRegs_33) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 511:74]
+  wire [6:0] _T_508 = spriteScaleTypeRegs_8 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 510:65]
+  wire [10:0] _GEN_2067 = {{4{_T_508[6]}},_T_508}; // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire [10:0] _T_511 = $signed(spriteXRegs_34) + $signed(_GEN_2067); // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire  _T_512 = $signed(spriteXRegs_14) < $signed(_T_511); // @[\\src\\main\\scala\\GameLogic.scala 510:32]
+  wire  _T_513 = spriteVisibleRegs_34 & _T_512; // @[\\src\\main\\scala\\GameLogic.scala 509:34]
+  wire [9:0] _T_522 = $signed(spriteYRegs_34) + $signed(_GEN_2048); // @[\\src\\main\\scala\\GameLogic.scala 511:49]
+  wire  _T_523 = $signed(spriteYRegs_14) < $signed(_T_522); // @[\\src\\main\\scala\\GameLogic.scala 511:32]
+  wire  _T_524 = _T_513 & $signed(spriteXRegs_34) < $signed(_T_101) & _T_523; // @[\\src\\main\\scala\\GameLogic.scala 510:117]
+  wire  _T_529 = _T_524 & $signed(spriteYRegs_34) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 511:74]
+  wire [6:0] _T_530 = spriteScaleTypeRegs_9 ? _obstacleWidth_T_21 : 7'h1d; // @[\\src\\main\\scala\\GameLogic.scala 510:65]
+  wire [10:0] _GEN_2069 = {{4{_T_530[6]}},_T_530}; // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire [10:0] _T_533 = $signed(spriteXRegs_35) + $signed(_GEN_2069); // @[\\src\\main\\scala\\GameLogic.scala 510:49]
+  wire  _T_534 = $signed(spriteXRegs_14) < $signed(_T_533); // @[\\src\\main\\scala\\GameLogic.scala 510:32]
+  wire  _T_535 = spriteVisibleRegs_35 & _T_534; // @[\\src\\main\\scala\\GameLogic.scala 509:34]
+  wire [9:0] _T_544 = $signed(spriteYRegs_35) + $signed(_GEN_2050); // @[\\src\\main\\scala\\GameLogic.scala 511:49]
+  wire  _T_545 = $signed(spriteYRegs_14) < $signed(_T_544); // @[\\src\\main\\scala\\GameLogic.scala 511:32]
+  wire  _T_546 = _T_535 & $signed(spriteXRegs_35) < $signed(_T_101) & _T_545; // @[\\src\\main\\scala\\GameLogic.scala 510:117]
+  wire  _T_551 = _T_546 & $signed(spriteYRegs_35) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 511:74]
+  wire  _GEN_1144 = _T_551 | (_T_529 | (_T_507 | (_T_485 | (_T_463 | (_T_441 | (_T_419 | (_T_397 | (_T_375 | (_T_353 |
+    _GEN_1134))))))))); // @[\\src\\main\\scala\\GameLogic.scala 512:13 513:31]
+  wire  _GEN_1145 = _T_90 ? _GEN_1144 : _GEN_1134; // @[\\src\\main\\scala\\GameLogic.scala 500:25]
+  wire [7:0] _obstacleWidth_T_41 = 6'h20 * 2'h2; // @[\\src\\main\\scala\\GameLogic.scala 523:81]
+  wire [7:0] _T_553 = spriteScaleTypeRegs_0 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 527:65]
+  wire [10:0] _GEN_2071 = {{3{_T_553[7]}},_T_553}; // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire [10:0] _T_556 = $signed(spriteXRegs_36) + $signed(_GEN_2071); // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire  _T_557 = $signed(spriteXRegs_14) < $signed(_T_556); // @[\\src\\main\\scala\\GameLogic.scala 527:32]
+  wire  _T_558 = spriteVisibleRegs_36 & _T_557; // @[\\src\\main\\scala\\GameLogic.scala 526:34]
+  wire [9:0] _T_567 = $signed(spriteYRegs_36) + $signed(_GEN_2032); // @[\\src\\main\\scala\\GameLogic.scala 528:49]
+  wire  _T_568 = $signed(spriteYRegs_14) < $signed(_T_567); // @[\\src\\main\\scala\\GameLogic.scala 528:32]
+  wire  _T_569 = _T_558 & $signed(spriteXRegs_36) < $signed(_T_101) & _T_568; // @[\\src\\main\\scala\\GameLogic.scala 527:117]
+  wire  _T_574 = _T_569 & $signed(spriteYRegs_36) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 528:74]
+  wire [7:0] _T_575 = spriteScaleTypeRegs_1 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 527:65]
+  wire [10:0] _GEN_2073 = {{3{_T_575[7]}},_T_575}; // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire [10:0] _T_578 = $signed(spriteXRegs_37) + $signed(_GEN_2073); // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire  _T_579 = $signed(spriteXRegs_14) < $signed(_T_578); // @[\\src\\main\\scala\\GameLogic.scala 527:32]
+  wire  _T_580 = spriteVisibleRegs_37 & _T_579; // @[\\src\\main\\scala\\GameLogic.scala 526:34]
+  wire [9:0] _T_589 = $signed(spriteYRegs_37) + $signed(_GEN_2034); // @[\\src\\main\\scala\\GameLogic.scala 528:49]
+  wire  _T_590 = $signed(spriteYRegs_14) < $signed(_T_589); // @[\\src\\main\\scala\\GameLogic.scala 528:32]
+  wire  _T_591 = _T_580 & $signed(spriteXRegs_37) < $signed(_T_101) & _T_590; // @[\\src\\main\\scala\\GameLogic.scala 527:117]
+  wire  _T_596 = _T_591 & $signed(spriteYRegs_37) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 528:74]
+  wire [7:0] _T_597 = spriteScaleTypeRegs_2 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 527:65]
+  wire [10:0] _GEN_2075 = {{3{_T_597[7]}},_T_597}; // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire [10:0] _T_600 = $signed(spriteXRegs_38) + $signed(_GEN_2075); // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire  _T_601 = $signed(spriteXRegs_14) < $signed(_T_600); // @[\\src\\main\\scala\\GameLogic.scala 527:32]
+  wire  _T_602 = spriteVisibleRegs_38 & _T_601; // @[\\src\\main\\scala\\GameLogic.scala 526:34]
+  wire [9:0] _T_611 = $signed(spriteYRegs_38) + $signed(_GEN_2036); // @[\\src\\main\\scala\\GameLogic.scala 528:49]
+  wire  _T_612 = $signed(spriteYRegs_14) < $signed(_T_611); // @[\\src\\main\\scala\\GameLogic.scala 528:32]
+  wire  _T_613 = _T_602 & $signed(spriteXRegs_38) < $signed(_T_101) & _T_612; // @[\\src\\main\\scala\\GameLogic.scala 527:117]
+  wire  _T_618 = _T_613 & $signed(spriteYRegs_38) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 528:74]
+  wire [7:0] _T_619 = spriteScaleTypeRegs_3 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 527:65]
+  wire [10:0] _GEN_2077 = {{3{_T_619[7]}},_T_619}; // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire [10:0] _T_622 = $signed(spriteXRegs_39) + $signed(_GEN_2077); // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire  _T_623 = $signed(spriteXRegs_14) < $signed(_T_622); // @[\\src\\main\\scala\\GameLogic.scala 527:32]
+  wire  _T_624 = spriteVisibleRegs_39 & _T_623; // @[\\src\\main\\scala\\GameLogic.scala 526:34]
+  wire [9:0] _T_633 = $signed(spriteYRegs_39) + $signed(_GEN_2038); // @[\\src\\main\\scala\\GameLogic.scala 528:49]
+  wire  _T_634 = $signed(spriteYRegs_14) < $signed(_T_633); // @[\\src\\main\\scala\\GameLogic.scala 528:32]
+  wire  _T_635 = _T_624 & $signed(spriteXRegs_39) < $signed(_T_101) & _T_634; // @[\\src\\main\\scala\\GameLogic.scala 527:117]
+  wire  _T_640 = _T_635 & $signed(spriteYRegs_39) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 528:74]
+  wire [7:0] _T_641 = spriteScaleTypeRegs_4 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 527:65]
+  wire [10:0] _GEN_2079 = {{3{_T_641[7]}},_T_641}; // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire [10:0] _T_644 = $signed(spriteXRegs_40) + $signed(_GEN_2079); // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire  _T_645 = $signed(spriteXRegs_14) < $signed(_T_644); // @[\\src\\main\\scala\\GameLogic.scala 527:32]
+  wire  _T_646 = spriteVisibleRegs_40 & _T_645; // @[\\src\\main\\scala\\GameLogic.scala 526:34]
+  wire [9:0] _T_655 = $signed(spriteYRegs_40) + $signed(_GEN_2040); // @[\\src\\main\\scala\\GameLogic.scala 528:49]
+  wire  _T_656 = $signed(spriteYRegs_14) < $signed(_T_655); // @[\\src\\main\\scala\\GameLogic.scala 528:32]
+  wire  _T_657 = _T_646 & $signed(spriteXRegs_40) < $signed(_T_101) & _T_656; // @[\\src\\main\\scala\\GameLogic.scala 527:117]
+  wire  _T_662 = _T_657 & $signed(spriteYRegs_40) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 528:74]
+  wire [7:0] _T_663 = spriteScaleTypeRegs_5 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 527:65]
+  wire [10:0] _GEN_2081 = {{3{_T_663[7]}},_T_663}; // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire [10:0] _T_666 = $signed(spriteXRegs_41) + $signed(_GEN_2081); // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire  _T_667 = $signed(spriteXRegs_14) < $signed(_T_666); // @[\\src\\main\\scala\\GameLogic.scala 527:32]
+  wire  _T_668 = spriteVisibleRegs_41 & _T_667; // @[\\src\\main\\scala\\GameLogic.scala 526:34]
+  wire [9:0] _T_677 = $signed(spriteYRegs_41) + $signed(_GEN_2042); // @[\\src\\main\\scala\\GameLogic.scala 528:49]
+  wire  _T_678 = $signed(spriteYRegs_14) < $signed(_T_677); // @[\\src\\main\\scala\\GameLogic.scala 528:32]
+  wire  _T_679 = _T_668 & $signed(spriteXRegs_41) < $signed(_T_101) & _T_678; // @[\\src\\main\\scala\\GameLogic.scala 527:117]
+  wire  _T_684 = _T_679 & $signed(spriteYRegs_41) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 528:74]
+  wire [7:0] _T_685 = spriteScaleTypeRegs_6 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 527:65]
+  wire [10:0] _GEN_2083 = {{3{_T_685[7]}},_T_685}; // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire [10:0] _T_688 = $signed(spriteXRegs_42) + $signed(_GEN_2083); // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire  _T_689 = $signed(spriteXRegs_14) < $signed(_T_688); // @[\\src\\main\\scala\\GameLogic.scala 527:32]
+  wire  _T_690 = spriteVisibleRegs_42 & _T_689; // @[\\src\\main\\scala\\GameLogic.scala 526:34]
+  wire [9:0] _T_699 = $signed(spriteYRegs_42) + $signed(_GEN_2044); // @[\\src\\main\\scala\\GameLogic.scala 528:49]
+  wire  _T_700 = $signed(spriteYRegs_14) < $signed(_T_699); // @[\\src\\main\\scala\\GameLogic.scala 528:32]
+  wire  _T_701 = _T_690 & $signed(spriteXRegs_42) < $signed(_T_101) & _T_700; // @[\\src\\main\\scala\\GameLogic.scala 527:117]
+  wire  _T_706 = _T_701 & $signed(spriteYRegs_42) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 528:74]
+  wire [7:0] _T_707 = spriteScaleTypeRegs_7 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 527:65]
+  wire [10:0] _GEN_2085 = {{3{_T_707[7]}},_T_707}; // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire [10:0] _T_710 = $signed(spriteXRegs_43) + $signed(_GEN_2085); // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire  _T_711 = $signed(spriteXRegs_14) < $signed(_T_710); // @[\\src\\main\\scala\\GameLogic.scala 527:32]
+  wire  _T_712 = spriteVisibleRegs_43 & _T_711; // @[\\src\\main\\scala\\GameLogic.scala 526:34]
+  wire [9:0] _T_721 = $signed(spriteYRegs_43) + $signed(_GEN_2046); // @[\\src\\main\\scala\\GameLogic.scala 528:49]
+  wire  _T_722 = $signed(spriteYRegs_14) < $signed(_T_721); // @[\\src\\main\\scala\\GameLogic.scala 528:32]
+  wire  _T_723 = _T_712 & $signed(spriteXRegs_43) < $signed(_T_101) & _T_722; // @[\\src\\main\\scala\\GameLogic.scala 527:117]
+  wire  _T_728 = _T_723 & $signed(spriteYRegs_43) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 528:74]
+  wire [7:0] _T_729 = spriteScaleTypeRegs_8 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 527:65]
+  wire [10:0] _GEN_2087 = {{3{_T_729[7]}},_T_729}; // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire [10:0] _T_732 = $signed(spriteXRegs_44) + $signed(_GEN_2087); // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire  _T_733 = $signed(spriteXRegs_14) < $signed(_T_732); // @[\\src\\main\\scala\\GameLogic.scala 527:32]
+  wire  _T_734 = spriteVisibleRegs_44 & _T_733; // @[\\src\\main\\scala\\GameLogic.scala 526:34]
+  wire [9:0] _T_743 = $signed(spriteYRegs_44) + $signed(_GEN_2048); // @[\\src\\main\\scala\\GameLogic.scala 528:49]
+  wire  _T_744 = $signed(spriteYRegs_14) < $signed(_T_743); // @[\\src\\main\\scala\\GameLogic.scala 528:32]
+  wire  _T_745 = _T_734 & $signed(spriteXRegs_44) < $signed(_T_101) & _T_744; // @[\\src\\main\\scala\\GameLogic.scala 527:117]
+  wire  _T_750 = _T_745 & $signed(spriteYRegs_44) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 528:74]
+  wire [7:0] _T_751 = spriteScaleTypeRegs_9 ? _obstacleWidth_T_41 : 8'h20; // @[\\src\\main\\scala\\GameLogic.scala 527:65]
+  wire [10:0] _GEN_2089 = {{3{_T_751[7]}},_T_751}; // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire [10:0] _T_754 = $signed(spriteXRegs_45) + $signed(_GEN_2089); // @[\\src\\main\\scala\\GameLogic.scala 527:49]
+  wire  _T_755 = $signed(spriteXRegs_14) < $signed(_T_754); // @[\\src\\main\\scala\\GameLogic.scala 527:32]
+  wire  _T_756 = spriteVisibleRegs_45 & _T_755; // @[\\src\\main\\scala\\GameLogic.scala 526:34]
+  wire [9:0] _T_765 = $signed(spriteYRegs_45) + $signed(_GEN_2050); // @[\\src\\main\\scala\\GameLogic.scala 528:49]
+  wire  _T_766 = $signed(spriteYRegs_14) < $signed(_T_765); // @[\\src\\main\\scala\\GameLogic.scala 528:32]
+  wire  _T_767 = _T_756 & $signed(spriteXRegs_45) < $signed(_T_101) & _T_766; // @[\\src\\main\\scala\\GameLogic.scala 527:117]
+  wire  _T_772 = _T_767 & $signed(spriteYRegs_45) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 528:74]
+  wire  _GEN_1155 = _T_772 | (_T_750 | (_T_728 | (_T_706 | (_T_684 | (_T_662 | (_T_640 | (_T_618 | (_T_596 | (_T_574 |
+    _GEN_1145))))))))); // @[\\src\\main\\scala\\GameLogic.scala 529:13 530:31]
+  wire  _GEN_1156 = _T_90 ? _GEN_1155 : _GEN_1145; // @[\\src\\main\\scala\\GameLogic.scala 518:25]
+  wire [10:0] _T_775 = $signed(spriteXRegs_13) + 11'sh16; // @[\\src\\main\\scala\\GameLogic.scala 538:46]
+  wire  _T_776 = $signed(spriteXRegs_14) < $signed(_T_775); // @[\\src\\main\\scala\\GameLogic.scala 538:28]
+  wire  _T_777 = spriteVisibleRegs_13 & _T_776; // @[\\src\\main\\scala\\GameLogic.scala 537:31]
+  wire [9:0] _T_785 = $signed(spriteYRegs_13) + 10'sh16; // @[\\src\\main\\scala\\GameLogic.scala 539:46]
+  wire  _T_786 = $signed(spriteYRegs_14) < $signed(_T_785); // @[\\src\\main\\scala\\GameLogic.scala 539:28]
+  wire  _T_787 = _T_777 & $signed(spriteXRegs_13) < $signed(_T_101) & _T_786; // @[\\src\\main\\scala\\GameLogic.scala 538:99]
+  wire  _T_792 = _T_787 & $signed(spriteYRegs_13) < $signed(_T_112); // @[\\src\\main\\scala\\GameLogic.scala 539:54]
+  wire [2:0] _livesReg_T_1 = livesReg + 3'h1; // @[\\src\\main\\scala\\GameLogic.scala 543:32]
+  wire [2:0] _GEN_1157 = livesReg < 3'h3 ? _livesReg_T_1 : livesReg; // @[\\src\\main\\scala\\GameLogic.scala 542:30 543:20 222:25]
+  wire [2:0] _GEN_1159 = _T_792 ? _GEN_1157 : livesReg; // @[\\src\\main\\scala\\GameLogic.scala 222:25 540:9]
+  wire  _GEN_1160 = collisionDetected & _T_90 | isBlinking; // @[\\src\\main\\scala\\GameLogic.scala 548:46 549:20 241:27]
+  wire [7:0] _GEN_1161 = collisionDetected & _T_90 ? 8'h0 : blinkCounter; // @[\\src\\main\\scala\\GameLogic.scala 548:46 550:22 239:29]
+  wire [1:0] _GEN_1162 = collisionDetected & _T_90 ? 2'h0 : blinkTimes; // @[\\src\\main\\scala\\GameLogic.scala 548:46 551:20 240:27]
+  wire  _GEN_1163 = blinkCounter < 8'h14 | _GEN_1072; // @[\\src\\main\\scala\\GameLogic.scala 559:41 560:33]
+  wire  _GEN_1164 = blinkCounter < 8'ha ? 1'h0 : _GEN_1163; // @[\\src\\main\\scala\\GameLogic.scala 557:35 558:33]
+  wire [7:0] _blinkCounter_T_1 = blinkCounter + 8'h1; // @[\\src\\main\\scala\\GameLogic.scala 562:38]
+  wire [1:0] _blinkTimes_T_1 = blinkTimes + 2'h1; // @[\\src\\main\\scala\\GameLogic.scala 565:36]
+  wire [7:0] _GEN_1165 = blinkCounter == 8'h14 ? 8'h0 : _blinkCounter_T_1; // @[\\src\\main\\scala\\GameLogic.scala 562:22 563:37 564:24]
+  wire [1:0] _GEN_1166 = blinkCounter == 8'h14 ? _blinkTimes_T_1 : _GEN_1162; // @[\\src\\main\\scala\\GameLogic.scala 563:37 565:22]
+  wire [2:0] _livesReg_T_3 = livesReg - 3'h1; // @[\\src\\main\\scala\\GameLogic.scala 574:34]
+  wire [2:0] _GEN_1167 = livesReg <= 3'h1 ? 3'h0 : _livesReg_T_3; // @[\\src\\main\\scala\\GameLogic.scala 570:33 571:22 574:22]
+  wire [2:0] _GEN_1168 = livesReg <= 3'h1 ? 3'h6 : stateReg; // @[\\src\\main\\scala\\GameLogic.scala 570:33 572:22 113:25]
+  wire  _GEN_1169 = blinkTimes == 2'h3 ? 1'h0 : _GEN_1160; // @[\\src\\main\\scala\\GameLogic.scala 567:34 568:22]
+  wire  _GEN_1170 = blinkTimes == 2'h3 | _GEN_1164; // @[\\src\\main\\scala\\GameLogic.scala 567:34 569:33]
+  wire [2:0] _GEN_1171 = blinkTimes == 2'h3 ? _GEN_1167 : _GEN_1159; // @[\\src\\main\\scala\\GameLogic.scala 567:34]
+  wire [2:0] _GEN_1172 = blinkTimes == 2'h3 ? _GEN_1168 : stateReg; // @[\\src\\main\\scala\\GameLogic.scala 113:25 567:34]
+  wire  _GEN_1173 = blinkTimes == 2'h3 ? 1'h0 : _GEN_1156; // @[\\src\\main\\scala\\GameLogic.scala 567:34 576:29]
+  wire [2:0] _GEN_1179 = isBlinking ? _GEN_1172 : stateReg; // @[\\src\\main\\scala\\GameLogic.scala 555:24 113:25]
+  reg [10:0] spriteXRegs_58_REG; // @[\\src\\main\\scala\\GameLogic.scala 595:35]
+  reg [9:0] spriteYRegs_58_REG; // @[\\src\\main\\scala\\GameLogic.scala 596:35]
+  reg [10:0] spriteXRegs_59_REG; // @[\\src\\main\\scala\\GameLogic.scala 597:35]
+  reg [9:0] spriteYRegs_59_REG; // @[\\src\\main\\scala\\GameLogic.scala 598:35]
+  reg [10:0] spriteXRegs_60_REG; // @[\\src\\main\\scala\\GameLogic.scala 599:35]
+  reg [9:0] spriteYRegs_60_REG; // @[\\src\\main\\scala\\GameLogic.scala 600:35]
+  wire [9:0] _starCnt_T_1 = starCnt + 10'h1; // @[\\src\\main\\scala\\GameLogic.scala 607:28]
+  wire [10:0] _spriteXRegs_58_T_5 = $signed(spriteXRegs_58) + 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 615:44]
+  wire [10:0] _spriteXRegs_59_T_5 = $signed(spriteXRegs_59) + 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 616:44]
+  wire [10:0] _spriteXRegs_60_T_5 = $signed(spriteXRegs_60) + 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 617:44]
+  wire [9:0] _spriteYRegs_58_T_5 = $signed(spriteYRegs_58) + 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 618:44]
+  wire [9:0] _spriteYRegs_59_T_5 = $signed(spriteYRegs_59) + 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 619:44]
+  wire [9:0] _spriteYRegs_60_T_5 = $signed(spriteYRegs_60) + 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 620:44]
+  reg [10:0] spriteXRegs_58_REG_1; // @[\\src\\main\\scala\\GameLogic.scala 623:35]
+  reg [9:0] spriteYRegs_58_REG_1; // @[\\src\\main\\scala\\GameLogic.scala 624:35]
+  reg [10:0] spriteXRegs_59_REG_1; // @[\\src\\main\\scala\\GameLogic.scala 625:35]
+  reg [9:0] spriteYRegs_59_REG_1; // @[\\src\\main\\scala\\GameLogic.scala 626:35]
+  reg [10:0] spriteXRegs_60_REG_1; // @[\\src\\main\\scala\\GameLogic.scala 627:35]
+  reg [9:0] spriteYRegs_60_REG_1; // @[\\src\\main\\scala\\GameLogic.scala 628:35]
+  reg [10:0] spriteXRegs_58_REG_2; // @[\\src\\main\\scala\\GameLogic.scala 651:35]
+  reg [9:0] spriteYRegs_58_REG_2; // @[\\src\\main\\scala\\GameLogic.scala 652:35]
+  reg [10:0] spriteXRegs_59_REG_2; // @[\\src\\main\\scala\\GameLogic.scala 653:35]
+  reg [9:0] spriteYRegs_59_REG_2; // @[\\src\\main\\scala\\GameLogic.scala 654:35]
+  reg [10:0] spriteXRegs_60_REG_2; // @[\\src\\main\\scala\\GameLogic.scala 655:35]
+  reg [9:0] spriteYRegs_60_REG_2; // @[\\src\\main\\scala\\GameLogic.scala 656:35]
+  wire [9:0] _GEN_1182 = starCnt == 10'h168 ? 10'h0 : _starCnt_T_1; // @[\\src\\main\\scala\\GameLogic.scala 678:37 679:17 681:17]
+  wire  _GEN_1183 = starCnt == 10'h12c ? 1'h0 : sprite58ScaleUpHorizontal; // @[\\src\\main\\scala\\GameLogic.scala 664:37 665:35 168:42]
+  wire  _GEN_1184 = starCnt == 10'h12c ? 1'h0 : sprite59ScaleUpHorizontal; // @[\\src\\main\\scala\\GameLogic.scala 664:37 666:35 170:42]
+  wire  _GEN_1185 = starCnt == 10'h12c ? 1'h0 : sprite60ScaleUpHorizontal; // @[\\src\\main\\scala\\GameLogic.scala 664:37 667:35 172:42]
+  wire  _GEN_1186 = starCnt == 10'h12c ? 1'h0 : sprite58ScaleUpVertical; // @[\\src\\main\\scala\\GameLogic.scala 664:37 668:33 169:40]
+  wire  _GEN_1187 = starCnt == 10'h12c ? 1'h0 : sprite59ScaleUpVertical; // @[\\src\\main\\scala\\GameLogic.scala 664:37 669:33 171:40]
+  wire  _GEN_1188 = starCnt == 10'h12c ? 1'h0 : sprite60ScaleUpVertical; // @[\\src\\main\\scala\\GameLogic.scala 664:37 670:33 173:40]
+  wire [10:0] _GEN_1189 = starCnt == 10'h12c ? $signed(_spriteXRegs_58_T_5) : $signed(_GEN_102); // @[\\src\\main\\scala\\GameLogic.scala 664:37 671:25]
+  wire [10:0] _GEN_1190 = starCnt == 10'h12c ? $signed(_spriteXRegs_59_T_5) : $signed(_GEN_104); // @[\\src\\main\\scala\\GameLogic.scala 664:37 672:25]
+  wire [10:0] _GEN_1191 = starCnt == 10'h12c ? $signed(_spriteXRegs_60_T_5) : $signed(_GEN_106); // @[\\src\\main\\scala\\GameLogic.scala 664:37 673:25]
+  wire [9:0] _GEN_1192 = starCnt == 10'h12c ? $signed(_spriteYRegs_58_T_5) : $signed(_GEN_103); // @[\\src\\main\\scala\\GameLogic.scala 664:37 674:25]
+  wire [9:0] _GEN_1193 = starCnt == 10'h12c ? $signed(_spriteYRegs_59_T_5) : $signed(_GEN_105); // @[\\src\\main\\scala\\GameLogic.scala 664:37 675:25]
+  wire [9:0] _GEN_1194 = starCnt == 10'h12c ? $signed(_spriteYRegs_60_T_5) : $signed(_GEN_107); // @[\\src\\main\\scala\\GameLogic.scala 664:37 676:25]
+  wire [9:0] _GEN_1195 = starCnt == 10'h12c ? _starCnt_T_1 : _GEN_1182; // @[\\src\\main\\scala\\GameLogic.scala 664:37 677:17]
+  wire [10:0] _GEN_1196 = starCnt == 10'hf0 ? $signed(spriteXRegs_58_REG_2) : $signed(_GEN_1189); // @[\\src\\main\\scala\\GameLogic.scala 650:37 651:25]
+  wire [9:0] _GEN_1197 = starCnt == 10'hf0 ? $signed(spriteYRegs_58_REG_2) : $signed(_GEN_1192); // @[\\src\\main\\scala\\GameLogic.scala 650:37 652:25]
+  wire [10:0] _GEN_1198 = starCnt == 10'hf0 ? $signed(spriteXRegs_59_REG_2) : $signed(_GEN_1190); // @[\\src\\main\\scala\\GameLogic.scala 650:37 653:25]
+  wire [9:0] _GEN_1199 = starCnt == 10'hf0 ? $signed(spriteYRegs_59_REG_2) : $signed(_GEN_1193); // @[\\src\\main\\scala\\GameLogic.scala 650:37 654:25]
+  wire [10:0] _GEN_1200 = starCnt == 10'hf0 ? $signed(spriteXRegs_60_REG_2) : $signed(_GEN_1191); // @[\\src\\main\\scala\\GameLogic.scala 650:37 655:25]
+  wire [9:0] _GEN_1201 = starCnt == 10'hf0 ? $signed(spriteYRegs_60_REG_2) : $signed(_GEN_1194); // @[\\src\\main\\scala\\GameLogic.scala 650:37 656:25]
+  wire  _GEN_1202 = starCnt == 10'hf0 | _GEN_1183; // @[\\src\\main\\scala\\GameLogic.scala 650:37 657:35]
+  wire  _GEN_1203 = starCnt == 10'hf0 | _GEN_1184; // @[\\src\\main\\scala\\GameLogic.scala 650:37 658:35]
+  wire  _GEN_1204 = starCnt == 10'hf0 | _GEN_1185; // @[\\src\\main\\scala\\GameLogic.scala 650:37 659:35]
+  wire  _GEN_1205 = starCnt == 10'hf0 | _GEN_1186; // @[\\src\\main\\scala\\GameLogic.scala 650:37 660:33]
+  wire  _GEN_1206 = starCnt == 10'hf0 | _GEN_1187; // @[\\src\\main\\scala\\GameLogic.scala 650:37 661:33]
+  wire  _GEN_1207 = starCnt == 10'hf0 | _GEN_1188; // @[\\src\\main\\scala\\GameLogic.scala 650:37 662:33]
+  wire [9:0] _GEN_1208 = starCnt == 10'hf0 ? _starCnt_T_1 : _GEN_1195; // @[\\src\\main\\scala\\GameLogic.scala 650:37 663:17]
+  wire  _GEN_1209 = starCnt == 10'hb4 ? 1'h0 : _GEN_1202; // @[\\src\\main\\scala\\GameLogic.scala 636:37 637:35]
+  wire  _GEN_1210 = starCnt == 10'hb4 ? 1'h0 : _GEN_1203; // @[\\src\\main\\scala\\GameLogic.scala 636:37 638:35]
+  wire  _GEN_1211 = starCnt == 10'hb4 ? 1'h0 : _GEN_1204; // @[\\src\\main\\scala\\GameLogic.scala 636:37 639:35]
+  wire  _GEN_1212 = starCnt == 10'hb4 ? 1'h0 : _GEN_1205; // @[\\src\\main\\scala\\GameLogic.scala 636:37 640:33]
+  wire  _GEN_1213 = starCnt == 10'hb4 ? 1'h0 : _GEN_1206; // @[\\src\\main\\scala\\GameLogic.scala 636:37 641:33]
+  wire  _GEN_1214 = starCnt == 10'hb4 ? 1'h0 : _GEN_1207; // @[\\src\\main\\scala\\GameLogic.scala 636:37 642:33]
+  wire [10:0] _GEN_1215 = starCnt == 10'hb4 ? $signed(_spriteXRegs_58_T_5) : $signed(_GEN_1196); // @[\\src\\main\\scala\\GameLogic.scala 636:37 643:25]
+  wire [10:0] _GEN_1216 = starCnt == 10'hb4 ? $signed(_spriteXRegs_59_T_5) : $signed(_GEN_1198); // @[\\src\\main\\scala\\GameLogic.scala 636:37 644:25]
+  wire [10:0] _GEN_1217 = starCnt == 10'hb4 ? $signed(_spriteXRegs_60_T_5) : $signed(_GEN_1200); // @[\\src\\main\\scala\\GameLogic.scala 636:37 645:25]
+  wire [9:0] _GEN_1218 = starCnt == 10'hb4 ? $signed(_spriteYRegs_58_T_5) : $signed(_GEN_1197); // @[\\src\\main\\scala\\GameLogic.scala 636:37 646:25]
+  wire [9:0] _GEN_1219 = starCnt == 10'hb4 ? $signed(_spriteYRegs_59_T_5) : $signed(_GEN_1199); // @[\\src\\main\\scala\\GameLogic.scala 636:37 647:25]
+  wire [9:0] _GEN_1220 = starCnt == 10'hb4 ? $signed(_spriteYRegs_60_T_5) : $signed(_GEN_1201); // @[\\src\\main\\scala\\GameLogic.scala 636:37 648:25]
+  wire [9:0] _GEN_1221 = starCnt == 10'hb4 ? _starCnt_T_1 : _GEN_1208; // @[\\src\\main\\scala\\GameLogic.scala 636:37 649:17]
+  wire [10:0] _GEN_1222 = starCnt == 10'h78 ? $signed(spriteXRegs_58_REG_1) : $signed(_GEN_1215); // @[\\src\\main\\scala\\GameLogic.scala 622:37 623:25]
+  wire [9:0] _GEN_1223 = starCnt == 10'h78 ? $signed(spriteYRegs_58_REG_1) : $signed(_GEN_1218); // @[\\src\\main\\scala\\GameLogic.scala 622:37 624:25]
+  wire [10:0] _GEN_1224 = starCnt == 10'h78 ? $signed(spriteXRegs_59_REG_1) : $signed(_GEN_1216); // @[\\src\\main\\scala\\GameLogic.scala 622:37 625:25]
+  wire [9:0] _GEN_1225 = starCnt == 10'h78 ? $signed(spriteYRegs_59_REG_1) : $signed(_GEN_1219); // @[\\src\\main\\scala\\GameLogic.scala 622:37 626:25]
+  wire [10:0] _GEN_1226 = starCnt == 10'h78 ? $signed(spriteXRegs_60_REG_1) : $signed(_GEN_1217); // @[\\src\\main\\scala\\GameLogic.scala 622:37 627:25]
+  wire [9:0] _GEN_1227 = starCnt == 10'h78 ? $signed(spriteYRegs_60_REG_1) : $signed(_GEN_1220); // @[\\src\\main\\scala\\GameLogic.scala 622:37 628:25]
+  wire  _GEN_1228 = starCnt == 10'h78 | _GEN_1209; // @[\\src\\main\\scala\\GameLogic.scala 622:37 629:35]
+  wire  _GEN_1229 = starCnt == 10'h78 | _GEN_1210; // @[\\src\\main\\scala\\GameLogic.scala 622:37 630:35]
+  wire  _GEN_1230 = starCnt == 10'h78 | _GEN_1211; // @[\\src\\main\\scala\\GameLogic.scala 622:37 631:35]
+  wire  _GEN_1231 = starCnt == 10'h78 | _GEN_1212; // @[\\src\\main\\scala\\GameLogic.scala 622:37 632:33]
+  wire  _GEN_1232 = starCnt == 10'h78 | _GEN_1213; // @[\\src\\main\\scala\\GameLogic.scala 622:37 633:33]
+  wire  _GEN_1233 = starCnt == 10'h78 | _GEN_1214; // @[\\src\\main\\scala\\GameLogic.scala 622:37 634:33]
+  wire [9:0] _GEN_1234 = starCnt == 10'h78 ? _starCnt_T_1 : _GEN_1221; // @[\\src\\main\\scala\\GameLogic.scala 622:37 635:17]
+  wire  _GEN_1235 = starCnt == 10'h3c ? 1'h0 : _GEN_1228; // @[\\src\\main\\scala\\GameLogic.scala 608:36 609:35]
+  wire  _GEN_1236 = starCnt == 10'h3c ? 1'h0 : _GEN_1229; // @[\\src\\main\\scala\\GameLogic.scala 608:36 610:35]
+  wire  _GEN_1237 = starCnt == 10'h3c ? 1'h0 : _GEN_1230; // @[\\src\\main\\scala\\GameLogic.scala 608:36 611:35]
+  wire  _GEN_1238 = starCnt == 10'h3c ? 1'h0 : _GEN_1231; // @[\\src\\main\\scala\\GameLogic.scala 608:36 612:33]
+  wire  _GEN_1239 = starCnt == 10'h3c ? 1'h0 : _GEN_1232; // @[\\src\\main\\scala\\GameLogic.scala 608:36 613:33]
+  wire  _GEN_1240 = starCnt == 10'h3c ? 1'h0 : _GEN_1233; // @[\\src\\main\\scala\\GameLogic.scala 608:36 614:33]
+  wire [10:0] _GEN_1241 = starCnt == 10'h3c ? $signed(_spriteXRegs_58_T_5) : $signed(_GEN_1222); // @[\\src\\main\\scala\\GameLogic.scala 608:36 615:25]
+  wire [10:0] _GEN_1242 = starCnt == 10'h3c ? $signed(_spriteXRegs_59_T_5) : $signed(_GEN_1224); // @[\\src\\main\\scala\\GameLogic.scala 608:36 616:25]
+  wire [10:0] _GEN_1243 = starCnt == 10'h3c ? $signed(_spriteXRegs_60_T_5) : $signed(_GEN_1226); // @[\\src\\main\\scala\\GameLogic.scala 608:36 617:25]
+  wire [9:0] _GEN_1244 = starCnt == 10'h3c ? $signed(_spriteYRegs_58_T_5) : $signed(_GEN_1223); // @[\\src\\main\\scala\\GameLogic.scala 608:36 618:25]
+  wire [9:0] _GEN_1245 = starCnt == 10'h3c ? $signed(_spriteYRegs_59_T_5) : $signed(_GEN_1225); // @[\\src\\main\\scala\\GameLogic.scala 608:36 619:25]
+  wire [9:0] _GEN_1246 = starCnt == 10'h3c ? $signed(_spriteYRegs_60_T_5) : $signed(_GEN_1227); // @[\\src\\main\\scala\\GameLogic.scala 608:36 620:25]
+  wire [9:0] _GEN_1247 = starCnt == 10'h3c ? _starCnt_T_1 : _GEN_1234; // @[\\src\\main\\scala\\GameLogic.scala 608:36 621:17]
+  wire  _GEN_1254 = starCnt == 10'h0 | _GEN_1235; // @[\\src\\main\\scala\\GameLogic.scala 594:29 601:35]
+  wire  _GEN_1255 = starCnt == 10'h0 | _GEN_1236; // @[\\src\\main\\scala\\GameLogic.scala 594:29 602:35]
+  wire  _GEN_1256 = starCnt == 10'h0 | _GEN_1237; // @[\\src\\main\\scala\\GameLogic.scala 594:29 603:35]
+  wire  _GEN_1257 = starCnt == 10'h0 | _GEN_1238; // @[\\src\\main\\scala\\GameLogic.scala 594:29 604:33]
+  wire  _GEN_1258 = starCnt == 10'h0 | _GEN_1239; // @[\\src\\main\\scala\\GameLogic.scala 594:29 605:33]
+  wire  _GEN_1259 = starCnt == 10'h0 | _GEN_1240; // @[\\src\\main\\scala\\GameLogic.scala 594:29 606:33]
+  wire  _T_815 = $signed(spriteYRegs_3) > 10'sh12c; // @[\\src\\main\\scala\\GameLogic.scala 702:81]
+  wire  _T_817 = $signed(spriteYRegs_3) < 10'sh14c; // @[\\src\\main\\scala\\GameLogic.scala 702:107]
+  wire  _T_818 = $signed(spriteXRegs_3) > 11'she3 & $signed(spriteXRegs_3) < 11'sh103 & $signed(spriteYRegs_3) > 10'sh12c
+     & $signed(spriteYRegs_3) < 10'sh14c; // @[\\src\\main\\scala\\GameLogic.scala 702:89]
+  wire [1:0] _GEN_1262 = io_btnC ? 2'h1 : lvlReg; // @[\\src\\main\\scala\\GameLogic.scala 705:25 706:20 211:23]
+  wire [2:0] _GEN_1263 = io_btnC ? 3'h3 : 3'h4; // @[\\src\\main\\scala\\GameLogic.scala 705:25 707:22 709:22]
+  wire  _T_825 = $signed(spriteXRegs_3) > 11'sh113 & $signed(spriteXRegs_3) < 11'sh133 & _T_815 & _T_817; // @[\\src\\main\\scala\\GameLogic.scala 711:95]
+  wire [1:0] _GEN_1264 = io_btnC ? 2'h2 : lvlReg; // @[\\src\\main\\scala\\GameLogic.scala 714:25 715:20 211:23]
+  wire  _T_832 = $signed(spriteXRegs_3) > 11'sh143 & $signed(spriteXRegs_3) < 11'sh163 & _T_815 & _T_817; // @[\\src\\main\\scala\\GameLogic.scala 720:95]
+  wire [1:0] _GEN_1265 = io_btnC ? 2'h3 : lvlReg; // @[\\src\\main\\scala\\GameLogic.scala 723:25 724:20 211:23]
+  wire  _GEN_1266 = $signed(spriteXRegs_3) > 11'sh143 & $signed(spriteXRegs_3) < 11'sh163 & _T_815 & _T_817 ? 1'h0 : 1'h1
+    ; // @[\\src\\main\\scala\\GameLogic.scala 720:122 699:31 721:33]
+  wire [1:0] _GEN_1268 = $signed(spriteXRegs_3) > 11'sh143 & $signed(spriteXRegs_3) < 11'sh163 & _T_815 & _T_817 ?
+    _GEN_1265 : lvlReg; // @[\\src\\main\\scala\\GameLogic.scala 720:122 211:23]
+  wire [2:0] _GEN_1269 = $signed(spriteXRegs_3) > 11'sh143 & $signed(spriteXRegs_3) < 11'sh163 & _T_815 & _T_817 ?
+    _GEN_1263 : 3'h4; // @[\\src\\main\\scala\\GameLogic.scala 720:122 730:20]
+  wire  _GEN_1270 = $signed(spriteXRegs_3) > 11'sh113 & $signed(spriteXRegs_3) < 11'sh133 & _T_815 & _T_817 ? 1'h0 : 1'h1
+    ; // @[\\src\\main\\scala\\GameLogic.scala 711:122 697:30 712:32]
+  wire [1:0] _GEN_1272 = $signed(spriteXRegs_3) > 11'sh113 & $signed(spriteXRegs_3) < 11'sh133 & _T_815 & _T_817 ?
+    _GEN_1264 : _GEN_1268; // @[\\src\\main\\scala\\GameLogic.scala 711:122]
+  wire [2:0] _GEN_1273 = $signed(spriteXRegs_3) > 11'sh113 & $signed(spriteXRegs_3) < 11'sh133 & _T_815 & _T_817 ?
+    _GEN_1263 : _GEN_1269; // @[\\src\\main\\scala\\GameLogic.scala 711:122]
+  wire  _GEN_1274 = $signed(spriteXRegs_3) > 11'sh113 & $signed(spriteXRegs_3) < 11'sh133 & _T_815 & _T_817 | _GEN_1266; // @[\\src\\main\\scala\\GameLogic.scala 711:122 699:31]
+  wire  _GEN_1275 = $signed(spriteXRegs_3) > 11'sh113 & $signed(spriteXRegs_3) < 11'sh133 & _T_815 & _T_817 ? 1'h0 :
+    _T_832; // @[\\src\\main\\scala\\GameLogic.scala 711:122 700:31]
+  wire  _GEN_1276 = $signed(spriteXRegs_3) > 11'she3 & $signed(spriteXRegs_3) < 11'sh103 & $signed(spriteYRegs_3) > 10'sh12c
+     & $signed(spriteYRegs_3) < 10'sh14c ? 1'h0 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 702:116 695:30 703:32]
+  wire [1:0] _GEN_1278 = $signed(spriteXRegs_3) > 11'she3 & $signed(spriteXRegs_3) < 11'sh103 & $signed(spriteYRegs_3)
+     > 10'sh12c & $signed(spriteYRegs_3) < 10'sh14c ? _GEN_1262 : _GEN_1272; // @[\\src\\main\\scala\\GameLogic.scala 702:116]
+  wire [2:0] _GEN_1279 = $signed(spriteXRegs_3) > 11'she3 & $signed(spriteXRegs_3) < 11'sh103 & $signed(spriteYRegs_3)
+     > 10'sh12c & $signed(spriteYRegs_3) < 10'sh14c ? _GEN_1263 : _GEN_1273; // @[\\src\\main\\scala\\GameLogic.scala 702:116]
   wire  _GEN_1280 = $signed(spriteXRegs_3) > 11'she3 & $signed(spriteXRegs_3) < 11'sh103 & $signed(spriteYRegs_3) > 10'sh12c
-     & $signed(spriteYRegs_3) < 10'sh14c ? 1'h0 : _T_824; // @[\\src\\main\\scala\\GameLogic.scala 700:116 696:31]
+     & $signed(spriteYRegs_3) < 10'sh14c | _GEN_1270; // @[\\src\\main\\scala\\GameLogic.scala 702:116 697:30]
   wire  _GEN_1281 = $signed(spriteXRegs_3) > 11'she3 & $signed(spriteXRegs_3) < 11'sh103 & $signed(spriteYRegs_3) > 10'sh12c
-     & $signed(spriteYRegs_3) < 10'sh14c | _GEN_1273; // @[\\src\\main\\scala\\GameLogic.scala 700:116 697:31]
+     & $signed(spriteYRegs_3) < 10'sh14c ? 1'h0 : _T_825; // @[\\src\\main\\scala\\GameLogic.scala 702:116 698:31]
   wire  _GEN_1282 = $signed(spriteXRegs_3) > 11'she3 & $signed(spriteXRegs_3) < 11'sh103 & $signed(spriteYRegs_3) > 10'sh12c
-     & $signed(spriteYRegs_3) < 10'sh14c ? 1'h0 : _GEN_1274; // @[\\src\\main\\scala\\GameLogic.scala 700:116 698:31]
-  wire [2:0] _GEN_1283 = _T ? 3'h4 : _GEN_1278; // @[\\src\\main\\scala\\GameLogic.scala 688:28 689:18]
-  wire  _GEN_1284 = _T ? spriteVisibleRegs_3 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 688:28 125:34 692:30]
-  wire  _GEN_1285 = _T ? spriteVisibleRegs_7 : _GEN_1275; // @[\\src\\main\\scala\\GameLogic.scala 688:28 125:34]
-  wire  _GEN_1286 = _T ? spriteVisibleRegs_8 : _T_817; // @[\\src\\main\\scala\\GameLogic.scala 688:28 125:34]
-  wire  _GEN_1287 = _T ? spriteVisibleRegs_9 : _GEN_1279; // @[\\src\\main\\scala\\GameLogic.scala 688:28 125:34]
-  wire  _GEN_1288 = _T ? spriteVisibleRegs_10 : _GEN_1280; // @[\\src\\main\\scala\\GameLogic.scala 688:28 125:34]
-  wire  _GEN_1289 = _T ? spriteVisibleRegs_11 : _GEN_1281; // @[\\src\\main\\scala\\GameLogic.scala 688:28 125:34]
-  wire  _GEN_1290 = _T ? spriteVisibleRegs_12 : _GEN_1282; // @[\\src\\main\\scala\\GameLogic.scala 688:28 125:34]
-  wire [1:0] _GEN_1291 = _T ? lvlReg : _GEN_1277; // @[\\src\\main\\scala\\GameLogic.scala 211:23 688:28]
-  wire [9:0] _GEN_1292 = _T_82 ? 10'h280 : viewBoxXReg; // @[\\src\\main\\scala\\GameLogic.scala 756:34 757:21 201:28]
-  wire [8:0] _GEN_1293 = _T_82 ? 9'h1e0 : viewBoxYReg; // @[\\src\\main\\scala\\GameLogic.scala 756:34 758:21 202:28]
-  wire [9:0] _GEN_1294 = _T_75 ? 10'h0 : _GEN_1292; // @[\\src\\main\\scala\\GameLogic.scala 753:34 754:21]
-  wire [8:0] _GEN_1295 = _T_75 ? 9'h1e0 : _GEN_1293; // @[\\src\\main\\scala\\GameLogic.scala 753:34 755:21]
-  wire [9:0] _GEN_1296 = _T_68 ? 10'h280 : _GEN_1294; // @[\\src\\main\\scala\\GameLogic.scala 750:28 751:21]
-  wire [8:0] _GEN_1297 = _T_68 ? 9'h0 : _GEN_1295; // @[\\src\\main\\scala\\GameLogic.scala 750:28 752:21]
-  wire [9:0] _spriteYRegs_14_T_2 = $signed(spriteYRegs_14) + 10'sh2; // @[\\src\\main\\scala\\GameLogic.scala 768:48]
-  wire [9:0] _GEN_1298 = $signed(spriteYRegs_14) < 10'sh1c0 ? $signed(_spriteYRegs_14_T_2) : $signed(_GEN_17); // @[\\src\\main\\scala\\GameLogic.scala 767:48 768:29]
-  wire [9:0] _spriteYRegs_14_T_5 = $signed(spriteYRegs_14) - 10'sh2; // @[\\src\\main\\scala\\GameLogic.scala 772:48]
-  wire [9:0] _GEN_1299 = $signed(spriteYRegs_14) > 10'sh20 ? $signed(_spriteYRegs_14_T_5) : $signed(_GEN_17); // @[\\src\\main\\scala\\GameLogic.scala 771:40 772:29]
-  wire [9:0] _GEN_1300 = io_btnU ? $signed(_GEN_1299) : $signed(_GEN_17); // @[\\src\\main\\scala\\GameLogic.scala 770:29]
-  wire [9:0] _GEN_1301 = io_btnD ? $signed(_GEN_1298) : $signed(_GEN_1300); // @[\\src\\main\\scala\\GameLogic.scala 766:23]
+     & $signed(spriteYRegs_3) < 10'sh14c | _GEN_1274; // @[\\src\\main\\scala\\GameLogic.scala 702:116 699:31]
+  wire  _GEN_1283 = $signed(spriteXRegs_3) > 11'she3 & $signed(spriteXRegs_3) < 11'sh103 & $signed(spriteYRegs_3) > 10'sh12c
+     & $signed(spriteYRegs_3) < 10'sh14c ? 1'h0 : _GEN_1275; // @[\\src\\main\\scala\\GameLogic.scala 702:116 700:31]
+  wire [2:0] _GEN_1284 = _T ? 3'h4 : _GEN_1279; // @[\\src\\main\\scala\\GameLogic.scala 690:28 691:18]
+  wire  _GEN_1285 = _T ? spriteVisibleRegs_3 : 1'h1; // @[\\src\\main\\scala\\GameLogic.scala 690:28 125:34 694:30]
+  wire  _GEN_1286 = _T ? spriteVisibleRegs_7 : _GEN_1276; // @[\\src\\main\\scala\\GameLogic.scala 690:28 125:34]
+  wire  _GEN_1287 = _T ? spriteVisibleRegs_8 : _T_818; // @[\\src\\main\\scala\\GameLogic.scala 690:28 125:34]
+  wire  _GEN_1288 = _T ? spriteVisibleRegs_9 : _GEN_1280; // @[\\src\\main\\scala\\GameLogic.scala 690:28 125:34]
+  wire  _GEN_1289 = _T ? spriteVisibleRegs_10 : _GEN_1281; // @[\\src\\main\\scala\\GameLogic.scala 690:28 125:34]
+  wire  _GEN_1290 = _T ? spriteVisibleRegs_11 : _GEN_1282; // @[\\src\\main\\scala\\GameLogic.scala 690:28 125:34]
+  wire  _GEN_1291 = _T ? spriteVisibleRegs_12 : _GEN_1283; // @[\\src\\main\\scala\\GameLogic.scala 690:28 125:34]
+  wire [1:0] _GEN_1292 = _T ? lvlReg : _GEN_1278; // @[\\src\\main\\scala\\GameLogic.scala 211:23 690:28]
+  wire [9:0] _GEN_1293 = _T_83 ? 10'h280 : viewBoxXReg; // @[\\src\\main\\scala\\GameLogic.scala 758:34 759:21 201:28]
+  wire [8:0] _GEN_1294 = _T_83 ? 9'h1e0 : viewBoxYReg; // @[\\src\\main\\scala\\GameLogic.scala 758:34 760:21 202:28]
+  wire [9:0] _GEN_1295 = _T_76 ? 10'h0 : _GEN_1293; // @[\\src\\main\\scala\\GameLogic.scala 755:34 756:21]
+  wire [8:0] _GEN_1296 = _T_76 ? 9'h1e0 : _GEN_1294; // @[\\src\\main\\scala\\GameLogic.scala 755:34 757:21]
+  wire [9:0] _GEN_1297 = _T_69 ? 10'h280 : _GEN_1295; // @[\\src\\main\\scala\\GameLogic.scala 752:28 753:21]
+  wire [8:0] _GEN_1298 = _T_69 ? 9'h0 : _GEN_1296; // @[\\src\\main\\scala\\GameLogic.scala 752:28 754:21]
+  wire [9:0] _spriteYRegs_14_T_2 = $signed(spriteYRegs_14) + 10'sh2; // @[\\src\\main\\scala\\GameLogic.scala 770:48]
+  wire [9:0] _GEN_1299 = $signed(spriteYRegs_14) < 10'sh1c0 ? $signed(_spriteYRegs_14_T_2) : $signed(_GEN_17); // @[\\src\\main\\scala\\GameLogic.scala 769:48 770:29]
+  wire [9:0] _spriteYRegs_14_T_5 = $signed(spriteYRegs_14) - 10'sh2; // @[\\src\\main\\scala\\GameLogic.scala 774:48]
+  wire [9:0] _GEN_1300 = $signed(spriteYRegs_14) > 10'sh20 ? $signed(_spriteYRegs_14_T_5) : $signed(_GEN_17); // @[\\src\\main\\scala\\GameLogic.scala 773:40 774:29]
+  wire [9:0] _GEN_1301 = io_btnU ? $signed(_GEN_1300) : $signed(_GEN_17); // @[\\src\\main\\scala\\GameLogic.scala 772:29]
+  wire [9:0] _GEN_1302 = io_btnD ? $signed(_GEN_1299) : $signed(_GEN_1301); // @[\\src\\main\\scala\\GameLogic.scala 768:23]
   wire [9:0] _spriteYRegs_3_T_2 = $signed(spriteYRegs_3) + 10'sh2; // @[\\src\\main\\scala\\GameLogic.scala 314:58]
-  wire [9:0] _GEN_1302 = $signed(spriteYRegs_3) < 10'sh1c0 ? $signed(_spriteYRegs_3_T_2) : $signed(_GEN_1); // @[\\src\\main\\scala\\GameLogic.scala 313:51 314:32]
+  wire [9:0] _GEN_1303 = $signed(spriteYRegs_3) < 10'sh1c0 ? $signed(_spriteYRegs_3_T_2) : $signed(_GEN_1); // @[\\src\\main\\scala\\GameLogic.scala 313:51 314:32]
   wire [9:0] _spriteYRegs_3_T_5 = $signed(spriteYRegs_3) - 10'sh2; // @[\\src\\main\\scala\\GameLogic.scala 318:58]
-  wire [9:0] _GEN_1303 = $signed(spriteYRegs_3) > 10'sh20 ? $signed(_spriteYRegs_3_T_5) : $signed(_GEN_1); // @[\\src\\main\\scala\\GameLogic.scala 317:43 318:32]
-  wire [9:0] _GEN_1304 = io_btnU ? $signed(_GEN_1303) : $signed(_GEN_1); // @[\\src\\main\\scala\\GameLogic.scala 316:25]
-  wire [9:0] _GEN_1305 = io_btnD ? $signed(_GEN_1302) : $signed(_GEN_1304); // @[\\src\\main\\scala\\GameLogic.scala 312:19]
+  wire [9:0] _GEN_1304 = $signed(spriteYRegs_3) > 10'sh20 ? $signed(_spriteYRegs_3_T_5) : $signed(_GEN_1); // @[\\src\\main\\scala\\GameLogic.scala 317:43 318:32]
+  wire [9:0] _GEN_1305 = io_btnU ? $signed(_GEN_1304) : $signed(_GEN_1); // @[\\src\\main\\scala\\GameLogic.scala 316:25]
+  wire [9:0] _GEN_1306 = io_btnD ? $signed(_GEN_1303) : $signed(_GEN_1305); // @[\\src\\main\\scala\\GameLogic.scala 312:19]
   wire [10:0] _spriteXRegs_3_T_2 = $signed(spriteXRegs_3) + 11'sh2; // @[\\src\\main\\scala\\GameLogic.scala 323:58]
-  wire [10:0] _GEN_1306 = $signed(spriteXRegs_3) < 11'sh260 ? $signed(_spriteXRegs_3_T_2) : $signed(_GEN_0); // @[\\src\\main\\scala\\GameLogic.scala 322:51 323:32]
+  wire [10:0] _GEN_1307 = $signed(spriteXRegs_3) < 11'sh260 ? $signed(_spriteXRegs_3_T_2) : $signed(_GEN_0); // @[\\src\\main\\scala\\GameLogic.scala 322:51 323:32]
   wire [10:0] _spriteXRegs_3_T_5 = $signed(spriteXRegs_3) - 11'sh2; // @[\\src\\main\\scala\\GameLogic.scala 327:58]
-  wire [10:0] _GEN_1307 = $signed(spriteXRegs_3) > 11'sh20 ? $signed(_spriteXRegs_3_T_5) : $signed(_GEN_0); // @[\\src\\main\\scala\\GameLogic.scala 326:43 327:32]
-  wire [10:0] _GEN_1308 = io_btnL ? $signed(_GEN_1307) : $signed(_GEN_0); // @[\\src\\main\\scala\\GameLogic.scala 325:25]
-  wire [10:0] _GEN_1309 = io_btnR ? $signed(_GEN_1306) : $signed(_GEN_1308); // @[\\src\\main\\scala\\GameLogic.scala 321:19]
-  wire [9:0] _GEN_1310 = _T ? $signed(_GEN_1301) : $signed(_GEN_17); // @[\\src\\main\\scala\\GameLogic.scala 765:28]
-  wire [9:0] _GEN_1311 = _T ? $signed(_GEN_1) : $signed(_GEN_1305); // @[\\src\\main\\scala\\GameLogic.scala 765:28]
-  wire [10:0] _GEN_1312 = _T ? $signed(_GEN_0) : $signed(_GEN_1309); // @[\\src\\main\\scala\\GameLogic.scala 765:28]
-  wire [2:0] _GEN_1313 = livesReg == 3'h0 ? 3'h6 : 3'h5; // @[\\src\\main\\scala\\GameLogic.scala 780:30 781:18 783:18]
-  wire  _cursorOnReturn_T_3 = $signed(spriteYRegs_3) >= 10'sh104; // @[\\src\\main\\scala\\GameLogic.scala 799:24]
+  wire [10:0] _GEN_1308 = $signed(spriteXRegs_3) > 11'sh20 ? $signed(_spriteXRegs_3_T_5) : $signed(_GEN_0); // @[\\src\\main\\scala\\GameLogic.scala 326:43 327:32]
+  wire [10:0] _GEN_1309 = io_btnL ? $signed(_GEN_1308) : $signed(_GEN_0); // @[\\src\\main\\scala\\GameLogic.scala 325:25]
+  wire [10:0] _GEN_1310 = io_btnR ? $signed(_GEN_1307) : $signed(_GEN_1309); // @[\\src\\main\\scala\\GameLogic.scala 321:19]
+  wire [9:0] _GEN_1311 = _T ? $signed(_GEN_1302) : $signed(_GEN_17); // @[\\src\\main\\scala\\GameLogic.scala 767:28]
+  wire [9:0] _GEN_1312 = _T ? $signed(_GEN_1) : $signed(_GEN_1306); // @[\\src\\main\\scala\\GameLogic.scala 767:28]
+  wire [10:0] _GEN_1313 = _T ? $signed(_GEN_0) : $signed(_GEN_1310); // @[\\src\\main\\scala\\GameLogic.scala 767:28]
+  wire [2:0] _GEN_1314 = _T_5 ? 3'h6 : 3'h5; // @[\\src\\main\\scala\\GameLogic.scala 782:30 783:18 785:18]
+  wire  _cursorOnReturn_T_3 = $signed(spriteYRegs_3) >= 10'sh104; // @[\\src\\main\\scala\\GameLogic.scala 801:24]
   wire  _cursorOnReturn_T_4 = $signed(spriteXRegs_3) >= 11'sh120 & $signed(spriteXRegs_3) <= 11'sh160 &
-    _cursorOnReturn_T_3; // @[\\src\\main\\scala\\GameLogic.scala 798:79]
-  wire  cursorOnReturn = _cursorOnReturn_T_4 & $signed(spriteYRegs_3) <= 10'sh124; // @[\\src\\main\\scala\\GameLogic.scala 799:33]
-  wire  _spriteVisibleRegs_52_T = ~cursorOnReturn; // @[\\src\\main\\scala\\GameLogic.scala 801:32]
-  wire  _GEN_1322 = cursorOnReturn & io_btnC | gameOverReturnPressed; // @[\\src\\main\\scala\\GameLogic.scala 813:39 814:31 247:38]
-  wire [2:0] _GEN_1324 = 3'h5 == stateReg ? 3'h0 : stateReg; // @[\\src\\main\\scala\\GameLogic.scala 336:20 821:16 113:25]
-  wire  _GEN_1325 = 3'h6 == stateReg ? 1'h0 : spriteVisibleRegs_14; // @[\\src\\main\\scala\\GameLogic.scala 336:20 788:29 125:34]
-  wire  _GEN_1326 = 3'h6 == stateReg | spriteVisibleRegs_46; // @[\\src\\main\\scala\\GameLogic.scala 336:20 791:29 125:34]
-  wire  _GEN_1327 = 3'h6 == stateReg | spriteVisibleRegs_47; // @[\\src\\main\\scala\\GameLogic.scala 336:20 792:29 125:34]
-  wire  _GEN_1328 = 3'h6 == stateReg | spriteVisibleRegs_48; // @[\\src\\main\\scala\\GameLogic.scala 336:20 793:29 125:34]
-  wire  _GEN_1329 = 3'h6 == stateReg | spriteVisibleRegs_49; // @[\\src\\main\\scala\\GameLogic.scala 336:20 794:29 125:34]
-  wire  _GEN_1330 = 3'h6 == stateReg | spriteVisibleRegs_50; // @[\\src\\main\\scala\\GameLogic.scala 336:20 795:29 125:34]
-  wire  _GEN_1331 = 3'h6 == stateReg | spriteVisibleRegs_51; // @[\\src\\main\\scala\\GameLogic.scala 336:20 796:29 125:34]
-  wire  _GEN_1332 = 3'h6 == stateReg ? ~cursorOnReturn : spriteVisibleRegs_52; // @[\\src\\main\\scala\\GameLogic.scala 336:20 801:29 125:34]
-  wire  _GEN_1333 = 3'h6 == stateReg ? _spriteVisibleRegs_52_T : spriteVisibleRegs_53; // @[\\src\\main\\scala\\GameLogic.scala 336:20 802:29 125:34]
-  wire  _GEN_1334 = 3'h6 == stateReg ? _spriteVisibleRegs_52_T : spriteVisibleRegs_54; // @[\\src\\main\\scala\\GameLogic.scala 336:20 803:29 125:34]
-  wire  _GEN_1335 = 3'h6 == stateReg ? cursorOnReturn : spriteVisibleRegs_55; // @[\\src\\main\\scala\\GameLogic.scala 336:20 804:29 125:34]
-  wire  _GEN_1336 = 3'h6 == stateReg ? cursorOnReturn : spriteVisibleRegs_56; // @[\\src\\main\\scala\\GameLogic.scala 336:20 805:29 125:34]
-  wire  _GEN_1337 = 3'h6 == stateReg ? cursorOnReturn : spriteVisibleRegs_57; // @[\\src\\main\\scala\\GameLogic.scala 336:20 806:29 125:34]
-  wire  _GEN_1338 = 3'h6 == stateReg | spriteVisibleRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 336:20 809:28 125:34]
-  wire [9:0] _GEN_1339 = 3'h6 == stateReg ? $signed(_GEN_1305) : $signed(_GEN_1); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [10:0] _GEN_1340 = 3'h6 == stateReg ? $signed(_GEN_1309) : $signed(_GEN_0); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire  _GEN_1341 = 3'h6 == stateReg ? _GEN_1322 : gameOverReturnPressed; // @[\\src\\main\\scala\\GameLogic.scala 336:20 247:38]
-  wire [2:0] _GEN_1342 = 3'h6 == stateReg ? 3'h5 : _GEN_1324; // @[\\src\\main\\scala\\GameLogic.scala 336:20 817:16]
-  wire  _GEN_1343 = 3'h6 == stateReg ? 1'h0 : 3'h5 == stateReg; // @[\\src\\main\\scala\\GameLogic.scala 336:20 100:22]
-  wire [9:0] _GEN_1344 = 3'h4 == stateReg ? $signed(_GEN_1310) : $signed(_GEN_17); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [9:0] _GEN_1345 = 3'h4 == stateReg ? $signed(_GEN_1311) : $signed(_GEN_1339); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [10:0] _GEN_1346 = 3'h4 == stateReg ? $signed(_GEN_1312) : $signed(_GEN_1340); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [2:0] _GEN_1347 = 3'h4 == stateReg ? _GEN_1313 : _GEN_1342; // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire  _GEN_1348 = 3'h4 == stateReg ? spriteVisibleRegs_14 : _GEN_1325; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1349 = 3'h4 == stateReg ? spriteVisibleRegs_46 : _GEN_1326; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1350 = 3'h4 == stateReg ? spriteVisibleRegs_47 : _GEN_1327; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1351 = 3'h4 == stateReg ? spriteVisibleRegs_48 : _GEN_1328; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1352 = 3'h4 == stateReg ? spriteVisibleRegs_49 : _GEN_1329; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1353 = 3'h4 == stateReg ? spriteVisibleRegs_50 : _GEN_1330; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1354 = 3'h4 == stateReg ? spriteVisibleRegs_51 : _GEN_1331; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1355 = 3'h4 == stateReg ? spriteVisibleRegs_52 : _GEN_1332; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1356 = 3'h4 == stateReg ? spriteVisibleRegs_53 : _GEN_1333; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1357 = 3'h4 == stateReg ? spriteVisibleRegs_54 : _GEN_1334; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1358 = 3'h4 == stateReg ? spriteVisibleRegs_55 : _GEN_1335; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1359 = 3'h4 == stateReg ? spriteVisibleRegs_56 : _GEN_1336; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1360 = 3'h4 == stateReg ? spriteVisibleRegs_57 : _GEN_1337; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1361 = 3'h4 == stateReg ? spriteVisibleRegs_3 : _GEN_1338; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1362 = 3'h4 == stateReg ? gameOverReturnPressed : _GEN_1341; // @[\\src\\main\\scala\\GameLogic.scala 336:20 247:38]
-  wire  _GEN_1363 = 3'h4 == stateReg ? 1'h0 : _GEN_1343; // @[\\src\\main\\scala\\GameLogic.scala 336:20 100:22]
-  wire [5:0] _GEN_1364 = 3'h3 == stateReg ? 6'h0 : nextSpriteToSpawn; // @[\\src\\main\\scala\\GameLogic.scala 336:20 734:25 232:34]
-  wire [7:0] _GEN_1365 = 3'h3 == stateReg ? 8'h0 : spawnDelayCounter; // @[\\src\\main\\scala\\GameLogic.scala 336:20 735:25 231:34]
-  wire [10:0] _GEN_1366 = 3'h3 == stateReg ? $signed(11'sh260) : $signed(_GEN_16); // @[\\src\\main\\scala\\GameLogic.scala 336:20 737:23]
-  wire [9:0] _GEN_1367 = 3'h3 == stateReg ? $signed(10'sh140) : $signed(_GEN_1344); // @[\\src\\main\\scala\\GameLogic.scala 336:20 738:23]
-  wire  _GEN_1368 = 3'h3 == stateReg ? 1'h0 : _GEN_1361; // @[\\src\\main\\scala\\GameLogic.scala 336:20 739:28]
-  wire  _GEN_1369 = 3'h3 == stateReg ? 1'h0 : spriteVisibleRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 336:20 740:28 125:34]
-  wire  _GEN_1370 = 3'h3 == stateReg ? 1'h0 : spriteVisibleRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 336:20 741:28 125:34]
-  wire  _GEN_1371 = 3'h3 == stateReg ? 1'h0 : spriteVisibleRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 336:20 742:28 125:34]
-  wire  _GEN_1372 = 3'h3 == stateReg ? 1'h0 : spriteVisibleRegs_10; // @[\\src\\main\\scala\\GameLogic.scala 336:20 743:29 125:34]
-  wire  _GEN_1373 = 3'h3 == stateReg ? 1'h0 : spriteVisibleRegs_11; // @[\\src\\main\\scala\\GameLogic.scala 336:20 744:29 125:34]
-  wire  _GEN_1374 = 3'h3 == stateReg ? 1'h0 : spriteVisibleRegs_12; // @[\\src\\main\\scala\\GameLogic.scala 336:20 745:29 125:34]
-  wire  _GEN_1375 = 3'h3 == stateReg | _GEN_1348; // @[\\src\\main\\scala\\GameLogic.scala 336:20 746:29]
-  wire  _GEN_1376 = 3'h3 == stateReg | _GEN_123; // @[\\src\\main\\scala\\GameLogic.scala 336:20 747:29]
-  wire  _GEN_1377 = 3'h3 == stateReg | _GEN_124; // @[\\src\\main\\scala\\GameLogic.scala 336:20 748:29]
-  wire  _GEN_1378 = 3'h3 == stateReg | _GEN_125; // @[\\src\\main\\scala\\GameLogic.scala 336:20 749:29]
-  wire [9:0] _GEN_1379 = 3'h3 == stateReg ? _GEN_1296 : viewBoxXReg; // @[\\src\\main\\scala\\GameLogic.scala 336:20 201:28]
-  wire [8:0] _GEN_1380 = 3'h3 == stateReg ? _GEN_1297 : viewBoxYReg; // @[\\src\\main\\scala\\GameLogic.scala 336:20 202:28]
-  wire [2:0] _GEN_1381 = 3'h3 == stateReg ? 3'h4 : _GEN_1347; // @[\\src\\main\\scala\\GameLogic.scala 336:20 760:16]
-  wire [9:0] _GEN_1382 = 3'h3 == stateReg ? $signed(_GEN_1) : $signed(_GEN_1345); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [10:0] _GEN_1383 = 3'h3 == stateReg ? $signed(_GEN_0) : $signed(_GEN_1346); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire  _GEN_1384 = 3'h3 == stateReg ? spriteVisibleRegs_46 : _GEN_1349; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1385 = 3'h3 == stateReg ? spriteVisibleRegs_47 : _GEN_1350; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1386 = 3'h3 == stateReg ? spriteVisibleRegs_48 : _GEN_1351; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1387 = 3'h3 == stateReg ? spriteVisibleRegs_49 : _GEN_1352; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1388 = 3'h3 == stateReg ? spriteVisibleRegs_50 : _GEN_1353; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1389 = 3'h3 == stateReg ? spriteVisibleRegs_51 : _GEN_1354; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1390 = 3'h3 == stateReg ? spriteVisibleRegs_52 : _GEN_1355; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1391 = 3'h3 == stateReg ? spriteVisibleRegs_53 : _GEN_1356; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1392 = 3'h3 == stateReg ? spriteVisibleRegs_54 : _GEN_1357; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1393 = 3'h3 == stateReg ? spriteVisibleRegs_55 : _GEN_1358; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1394 = 3'h3 == stateReg ? spriteVisibleRegs_56 : _GEN_1359; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1395 = 3'h3 == stateReg ? spriteVisibleRegs_57 : _GEN_1360; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
-  wire  _GEN_1396 = 3'h3 == stateReg ? gameOverReturnPressed : _GEN_1362; // @[\\src\\main\\scala\\GameLogic.scala 336:20 247:38]
-  wire  _GEN_1397 = 3'h3 == stateReg ? 1'h0 : _GEN_1363; // @[\\src\\main\\scala\\GameLogic.scala 336:20 100:22]
-  wire  _GEN_1432 = 3'h2 == stateReg ? 1'h0 : _GEN_1397; // @[\\src\\main\\scala\\GameLogic.scala 336:20 100:22]
-  wire [26:0] _GEN_1435 = 3'h1 == stateReg ? $signed(_GEN_398) : $signed({{16{_GEN_18[10]}},_GEN_18}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire  _GEN_1438 = 3'h1 == stateReg ? _GEN_401 : spriteScaleTypeRegs_0; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  wire [26:0] _GEN_1440 = 3'h1 == stateReg ? $signed(_GEN_403) : $signed({{16{_GEN_20[10]}},_GEN_20}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire  _GEN_1443 = 3'h1 == stateReg ? _GEN_406 : spriteScaleTypeRegs_1; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  wire [26:0] _GEN_1445 = 3'h1 == stateReg ? $signed(_GEN_408) : $signed({{16{_GEN_22[10]}},_GEN_22}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire  _GEN_1448 = 3'h1 == stateReg ? _GEN_411 : spriteScaleTypeRegs_2; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  wire [26:0] _GEN_1450 = 3'h1 == stateReg ? $signed(_GEN_413) : $signed({{16{_GEN_24[10]}},_GEN_24}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire  _GEN_1453 = 3'h1 == stateReg ? _GEN_416 : spriteScaleTypeRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  wire [26:0] _GEN_1455 = 3'h1 == stateReg ? $signed(_GEN_418) : $signed({{16{_GEN_26[10]}},_GEN_26}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire  _GEN_1458 = 3'h1 == stateReg ? _GEN_421 : spriteScaleTypeRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  wire [26:0] _GEN_1460 = 3'h1 == stateReg ? $signed(_GEN_423) : $signed({{16{_GEN_28[10]}},_GEN_28}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire  _GEN_1463 = 3'h1 == stateReg ? _GEN_426 : spriteScaleTypeRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  wire [26:0] _GEN_1465 = 3'h1 == stateReg ? $signed(_GEN_428) : $signed({{16{_GEN_30[10]}},_GEN_30}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire  _GEN_1468 = 3'h1 == stateReg ? _GEN_431 : spriteScaleTypeRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  wire [26:0] _GEN_1470 = 3'h1 == stateReg ? $signed(_GEN_433) : $signed({{16{_GEN_32[10]}},_GEN_32}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire  _GEN_1473 = 3'h1 == stateReg ? _GEN_436 : spriteScaleTypeRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  wire [26:0] _GEN_1475 = 3'h1 == stateReg ? $signed(_GEN_438) : $signed({{16{_GEN_34[10]}},_GEN_34}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire  _GEN_1478 = 3'h1 == stateReg ? _GEN_441 : spriteScaleTypeRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  wire [26:0] _GEN_1480 = 3'h1 == stateReg ? $signed(_GEN_443) : $signed({{16{_GEN_36[10]}},_GEN_36}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire  _GEN_1483 = 3'h1 == stateReg ? _GEN_446 : spriteScaleTypeRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  wire [26:0] _GEN_1485 = 3'h1 == stateReg ? $signed(_GEN_448) : $signed({{16{_GEN_38[10]}},_GEN_38}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1489 = 3'h1 == stateReg ? $signed(_GEN_452) : $signed({{16{_GEN_40[10]}},_GEN_40}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1493 = 3'h1 == stateReg ? $signed(_GEN_456) : $signed({{16{_GEN_42[10]}},_GEN_42}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1497 = 3'h1 == stateReg ? $signed(_GEN_460) : $signed({{16{_GEN_44[10]}},_GEN_44}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1501 = 3'h1 == stateReg ? $signed(_GEN_464) : $signed({{16{_GEN_46[10]}},_GEN_46}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1505 = 3'h1 == stateReg ? $signed(_GEN_468) : $signed({{16{_GEN_48[10]}},_GEN_48}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1509 = 3'h1 == stateReg ? $signed(_GEN_472) : $signed({{16{_GEN_50[10]}},_GEN_50}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1513 = 3'h1 == stateReg ? $signed(_GEN_476) : $signed({{16{_GEN_52[10]}},_GEN_52}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1517 = 3'h1 == stateReg ? $signed(_GEN_480) : $signed({{16{_GEN_54[10]}},_GEN_54}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1521 = 3'h1 == stateReg ? $signed(_GEN_484) : $signed({{16{_GEN_56[10]}},_GEN_56}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1525 = 3'h1 == stateReg ? $signed(_GEN_488) : $signed({{16{_GEN_58[10]}},_GEN_58}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1529 = 3'h1 == stateReg ? $signed(_GEN_492) : $signed({{16{_GEN_60[10]}},_GEN_60}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1533 = 3'h1 == stateReg ? $signed(_GEN_496) : $signed({{16{_GEN_62[10]}},_GEN_62}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1537 = 3'h1 == stateReg ? $signed(_GEN_500) : $signed({{16{_GEN_64[10]}},_GEN_64}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1541 = 3'h1 == stateReg ? $signed(_GEN_504) : $signed({{16{_GEN_66[10]}},_GEN_66}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1545 = 3'h1 == stateReg ? $signed(_GEN_508) : $signed({{16{_GEN_68[10]}},_GEN_68}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1549 = 3'h1 == stateReg ? $signed(_GEN_512) : $signed({{16{_GEN_70[10]}},_GEN_70}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1553 = 3'h1 == stateReg ? $signed(_GEN_516) : $signed({{16{_GEN_72[10]}},_GEN_72}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1557 = 3'h1 == stateReg ? $signed(_GEN_520) : $signed({{16{_GEN_74[10]}},_GEN_74}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1561 = 3'h1 == stateReg ? $signed(_GEN_524) : $signed({{16{_GEN_76[10]}},_GEN_76}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire  _GEN_1661 = 3'h1 == stateReg ? 1'h0 : _GEN_1432; // @[\\src\\main\\scala\\GameLogic.scala 336:20 100:22]
-  wire  _GEN_1673 = 3'h0 == stateReg ? _GEN_195 : _GEN_114; // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1721 = 3'h0 == stateReg ? $signed({{16{_GEN_18[10]}},_GEN_18}) : $signed(_GEN_1435); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1726 = 3'h0 == stateReg ? $signed({{16{_GEN_20[10]}},_GEN_20}) : $signed(_GEN_1440); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1731 = 3'h0 == stateReg ? $signed({{16{_GEN_22[10]}},_GEN_22}) : $signed(_GEN_1445); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1736 = 3'h0 == stateReg ? $signed({{16{_GEN_24[10]}},_GEN_24}) : $signed(_GEN_1450); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1741 = 3'h0 == stateReg ? $signed({{16{_GEN_26[10]}},_GEN_26}) : $signed(_GEN_1455); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1746 = 3'h0 == stateReg ? $signed({{16{_GEN_28[10]}},_GEN_28}) : $signed(_GEN_1460); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1751 = 3'h0 == stateReg ? $signed({{16{_GEN_30[10]}},_GEN_30}) : $signed(_GEN_1465); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1756 = 3'h0 == stateReg ? $signed({{16{_GEN_32[10]}},_GEN_32}) : $signed(_GEN_1470); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1761 = 3'h0 == stateReg ? $signed({{16{_GEN_34[10]}},_GEN_34}) : $signed(_GEN_1475); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1766 = 3'h0 == stateReg ? $signed({{16{_GEN_36[10]}},_GEN_36}) : $signed(_GEN_1480); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1771 = 3'h0 == stateReg ? $signed({{16{_GEN_38[10]}},_GEN_38}) : $signed(_GEN_1485); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1775 = 3'h0 == stateReg ? $signed({{16{_GEN_40[10]}},_GEN_40}) : $signed(_GEN_1489); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1779 = 3'h0 == stateReg ? $signed({{16{_GEN_42[10]}},_GEN_42}) : $signed(_GEN_1493); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1783 = 3'h0 == stateReg ? $signed({{16{_GEN_44[10]}},_GEN_44}) : $signed(_GEN_1497); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1787 = 3'h0 == stateReg ? $signed({{16{_GEN_46[10]}},_GEN_46}) : $signed(_GEN_1501); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1791 = 3'h0 == stateReg ? $signed({{16{_GEN_48[10]}},_GEN_48}) : $signed(_GEN_1505); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1795 = 3'h0 == stateReg ? $signed({{16{_GEN_50[10]}},_GEN_50}) : $signed(_GEN_1509); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1799 = 3'h0 == stateReg ? $signed({{16{_GEN_52[10]}},_GEN_52}) : $signed(_GEN_1513); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1803 = 3'h0 == stateReg ? $signed({{16{_GEN_54[10]}},_GEN_54}) : $signed(_GEN_1517); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1807 = 3'h0 == stateReg ? $signed({{16{_GEN_56[10]}},_GEN_56}) : $signed(_GEN_1521); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1811 = 3'h0 == stateReg ? $signed({{16{_GEN_58[10]}},_GEN_58}) : $signed(_GEN_1525); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1815 = 3'h0 == stateReg ? $signed({{16{_GEN_60[10]}},_GEN_60}) : $signed(_GEN_1529); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1819 = 3'h0 == stateReg ? $signed({{16{_GEN_62[10]}},_GEN_62}) : $signed(_GEN_1533); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1823 = 3'h0 == stateReg ? $signed({{16{_GEN_64[10]}},_GEN_64}) : $signed(_GEN_1537); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1827 = 3'h0 == stateReg ? $signed({{16{_GEN_66[10]}},_GEN_66}) : $signed(_GEN_1541); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1831 = 3'h0 == stateReg ? $signed({{16{_GEN_68[10]}},_GEN_68}) : $signed(_GEN_1545); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1835 = 3'h0 == stateReg ? $signed({{16{_GEN_70[10]}},_GEN_70}) : $signed(_GEN_1549); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1839 = 3'h0 == stateReg ? $signed({{16{_GEN_72[10]}},_GEN_72}) : $signed(_GEN_1553); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1843 = 3'h0 == stateReg ? $signed({{16{_GEN_74[10]}},_GEN_74}) : $signed(_GEN_1557); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_1847 = 3'h0 == stateReg ? $signed({{16{_GEN_76[10]}},_GEN_76}) : $signed(_GEN_1561); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-  wire [26:0] _GEN_2090 = reset ? $signed(27'sh0) : $signed(_GEN_1721); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2092 = reset ? $signed(27'sh0) : $signed(_GEN_1726); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2094 = reset ? $signed(27'sh0) : $signed(_GEN_1731); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2096 = reset ? $signed(27'sh0) : $signed(_GEN_1736); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2098 = reset ? $signed(27'sh0) : $signed(_GEN_1741); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2100 = reset ? $signed(27'sh0) : $signed(_GEN_1746); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2102 = reset ? $signed(27'sh0) : $signed(_GEN_1751); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2104 = reset ? $signed(27'sh0) : $signed(_GEN_1756); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2106 = reset ? $signed(27'sh0) : $signed(_GEN_1761); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2108 = reset ? $signed(27'sh0) : $signed(_GEN_1766); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2110 = reset ? $signed(27'sh0) : $signed(_GEN_1771); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2112 = reset ? $signed(27'sh0) : $signed(_GEN_1775); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2114 = reset ? $signed(27'sh0) : $signed(_GEN_1779); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2116 = reset ? $signed(27'sh0) : $signed(_GEN_1783); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2118 = reset ? $signed(27'sh0) : $signed(_GEN_1787); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2120 = reset ? $signed(27'sh0) : $signed(_GEN_1791); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2122 = reset ? $signed(27'sh0) : $signed(_GEN_1795); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2124 = reset ? $signed(27'sh0) : $signed(_GEN_1799); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2126 = reset ? $signed(27'sh0) : $signed(_GEN_1803); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2128 = reset ? $signed(27'sh0) : $signed(_GEN_1807); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2130 = reset ? $signed(27'sh0) : $signed(_GEN_1811); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2132 = reset ? $signed(27'sh0) : $signed(_GEN_1815); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2134 = reset ? $signed(27'sh0) : $signed(_GEN_1819); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2136 = reset ? $signed(27'sh0) : $signed(_GEN_1823); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2138 = reset ? $signed(27'sh0) : $signed(_GEN_1827); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2140 = reset ? $signed(27'sh0) : $signed(_GEN_1831); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2142 = reset ? $signed(27'sh0) : $signed(_GEN_1835); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2144 = reset ? $signed(27'sh0) : $signed(_GEN_1839); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2146 = reset ? $signed(27'sh0) : $signed(_GEN_1843); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-  wire [26:0] _GEN_2148 = reset ? $signed(27'sh0) : $signed(_GEN_1847); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    _cursorOnReturn_T_3; // @[\\src\\main\\scala\\GameLogic.scala 800:79]
+  wire  cursorOnReturn = _cursorOnReturn_T_4 & $signed(spriteYRegs_3) <= 10'sh124; // @[\\src\\main\\scala\\GameLogic.scala 801:33]
+  wire  _spriteVisibleRegs_52_T = ~cursorOnReturn; // @[\\src\\main\\scala\\GameLogic.scala 803:32]
+  wire  _GEN_1323 = cursorOnReturn & io_btnC | gameOverReturnPressed; // @[\\src\\main\\scala\\GameLogic.scala 815:39 816:31 247:38]
+  wire [2:0] _GEN_1325 = 3'h5 == stateReg ? 3'h0 : stateReg; // @[\\src\\main\\scala\\GameLogic.scala 336:20 823:16 113:25]
+  wire  _GEN_1326 = 3'h6 == stateReg ? 1'h0 : spriteVisibleRegs_14; // @[\\src\\main\\scala\\GameLogic.scala 336:20 790:29 125:34]
+  wire  _GEN_1327 = 3'h6 == stateReg | spriteVisibleRegs_46; // @[\\src\\main\\scala\\GameLogic.scala 336:20 793:29 125:34]
+  wire  _GEN_1328 = 3'h6 == stateReg | spriteVisibleRegs_47; // @[\\src\\main\\scala\\GameLogic.scala 336:20 794:29 125:34]
+  wire  _GEN_1329 = 3'h6 == stateReg | spriteVisibleRegs_48; // @[\\src\\main\\scala\\GameLogic.scala 336:20 795:29 125:34]
+  wire  _GEN_1330 = 3'h6 == stateReg | spriteVisibleRegs_49; // @[\\src\\main\\scala\\GameLogic.scala 336:20 796:29 125:34]
+  wire  _GEN_1331 = 3'h6 == stateReg | spriteVisibleRegs_50; // @[\\src\\main\\scala\\GameLogic.scala 336:20 797:29 125:34]
+  wire  _GEN_1332 = 3'h6 == stateReg | spriteVisibleRegs_51; // @[\\src\\main\\scala\\GameLogic.scala 336:20 798:29 125:34]
+  wire  _GEN_1333 = 3'h6 == stateReg ? ~cursorOnReturn : spriteVisibleRegs_52; // @[\\src\\main\\scala\\GameLogic.scala 336:20 803:29 125:34]
+  wire  _GEN_1334 = 3'h6 == stateReg ? _spriteVisibleRegs_52_T : spriteVisibleRegs_53; // @[\\src\\main\\scala\\GameLogic.scala 336:20 804:29 125:34]
+  wire  _GEN_1335 = 3'h6 == stateReg ? _spriteVisibleRegs_52_T : spriteVisibleRegs_54; // @[\\src\\main\\scala\\GameLogic.scala 336:20 805:29 125:34]
+  wire  _GEN_1336 = 3'h6 == stateReg ? cursorOnReturn : spriteVisibleRegs_55; // @[\\src\\main\\scala\\GameLogic.scala 336:20 806:29 125:34]
+  wire  _GEN_1337 = 3'h6 == stateReg ? cursorOnReturn : spriteVisibleRegs_56; // @[\\src\\main\\scala\\GameLogic.scala 336:20 807:29 125:34]
+  wire  _GEN_1338 = 3'h6 == stateReg ? cursorOnReturn : spriteVisibleRegs_57; // @[\\src\\main\\scala\\GameLogic.scala 336:20 808:29 125:34]
+  wire  _GEN_1339 = 3'h6 == stateReg | spriteVisibleRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 336:20 811:28 125:34]
+  wire [9:0] _GEN_1340 = 3'h6 == stateReg ? $signed(_GEN_1306) : $signed(_GEN_1); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [10:0] _GEN_1341 = 3'h6 == stateReg ? $signed(_GEN_1310) : $signed(_GEN_0); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire  _GEN_1342 = 3'h6 == stateReg ? _GEN_1323 : gameOverReturnPressed; // @[\\src\\main\\scala\\GameLogic.scala 336:20 247:38]
+  wire [2:0] _GEN_1343 = 3'h6 == stateReg ? 3'h5 : _GEN_1325; // @[\\src\\main\\scala\\GameLogic.scala 336:20 819:16]
+  wire  _GEN_1344 = 3'h6 == stateReg ? 1'h0 : 3'h5 == stateReg; // @[\\src\\main\\scala\\GameLogic.scala 336:20 100:22]
+  wire [9:0] _GEN_1345 = 3'h4 == stateReg ? $signed(_GEN_1311) : $signed(_GEN_17); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [9:0] _GEN_1346 = 3'h4 == stateReg ? $signed(_GEN_1312) : $signed(_GEN_1340); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [10:0] _GEN_1347 = 3'h4 == stateReg ? $signed(_GEN_1313) : $signed(_GEN_1341); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [2:0] _GEN_1348 = 3'h4 == stateReg ? _GEN_1314 : _GEN_1343; // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire  _GEN_1349 = 3'h4 == stateReg ? spriteVisibleRegs_14 : _GEN_1326; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1350 = 3'h4 == stateReg ? spriteVisibleRegs_46 : _GEN_1327; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1351 = 3'h4 == stateReg ? spriteVisibleRegs_47 : _GEN_1328; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1352 = 3'h4 == stateReg ? spriteVisibleRegs_48 : _GEN_1329; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1353 = 3'h4 == stateReg ? spriteVisibleRegs_49 : _GEN_1330; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1354 = 3'h4 == stateReg ? spriteVisibleRegs_50 : _GEN_1331; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1355 = 3'h4 == stateReg ? spriteVisibleRegs_51 : _GEN_1332; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1356 = 3'h4 == stateReg ? spriteVisibleRegs_52 : _GEN_1333; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1357 = 3'h4 == stateReg ? spriteVisibleRegs_53 : _GEN_1334; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1358 = 3'h4 == stateReg ? spriteVisibleRegs_54 : _GEN_1335; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1359 = 3'h4 == stateReg ? spriteVisibleRegs_55 : _GEN_1336; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1360 = 3'h4 == stateReg ? spriteVisibleRegs_56 : _GEN_1337; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1361 = 3'h4 == stateReg ? spriteVisibleRegs_57 : _GEN_1338; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1362 = 3'h4 == stateReg ? spriteVisibleRegs_3 : _GEN_1339; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1363 = 3'h4 == stateReg ? gameOverReturnPressed : _GEN_1342; // @[\\src\\main\\scala\\GameLogic.scala 336:20 247:38]
+  wire  _GEN_1364 = 3'h4 == stateReg ? 1'h0 : _GEN_1344; // @[\\src\\main\\scala\\GameLogic.scala 336:20 100:22]
+  wire [5:0] _GEN_1365 = 3'h3 == stateReg ? 6'h0 : nextSpriteToSpawn; // @[\\src\\main\\scala\\GameLogic.scala 336:20 736:25 232:34]
+  wire [7:0] _GEN_1366 = 3'h3 == stateReg ? 8'h0 : spawnDelayCounter; // @[\\src\\main\\scala\\GameLogic.scala 336:20 737:25 231:34]
+  wire [10:0] _GEN_1367 = 3'h3 == stateReg ? $signed(11'sh260) : $signed(_GEN_16); // @[\\src\\main\\scala\\GameLogic.scala 336:20 739:23]
+  wire [9:0] _GEN_1368 = 3'h3 == stateReg ? $signed(10'sh140) : $signed(_GEN_1345); // @[\\src\\main\\scala\\GameLogic.scala 336:20 740:23]
+  wire  _GEN_1369 = 3'h3 == stateReg ? 1'h0 : _GEN_1362; // @[\\src\\main\\scala\\GameLogic.scala 336:20 741:28]
+  wire  _GEN_1370 = 3'h3 == stateReg ? 1'h0 : spriteVisibleRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 336:20 742:28 125:34]
+  wire  _GEN_1371 = 3'h3 == stateReg ? 1'h0 : spriteVisibleRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 336:20 743:28 125:34]
+  wire  _GEN_1372 = 3'h3 == stateReg ? 1'h0 : spriteVisibleRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 336:20 744:28 125:34]
+  wire  _GEN_1373 = 3'h3 == stateReg ? 1'h0 : spriteVisibleRegs_10; // @[\\src\\main\\scala\\GameLogic.scala 336:20 745:29 125:34]
+  wire  _GEN_1374 = 3'h3 == stateReg ? 1'h0 : spriteVisibleRegs_11; // @[\\src\\main\\scala\\GameLogic.scala 336:20 746:29 125:34]
+  wire  _GEN_1375 = 3'h3 == stateReg ? 1'h0 : spriteVisibleRegs_12; // @[\\src\\main\\scala\\GameLogic.scala 336:20 747:29 125:34]
+  wire  _GEN_1376 = 3'h3 == stateReg | _GEN_1349; // @[\\src\\main\\scala\\GameLogic.scala 336:20 748:29]
+  wire  _GEN_1377 = 3'h3 == stateReg | _GEN_123; // @[\\src\\main\\scala\\GameLogic.scala 336:20 749:29]
+  wire  _GEN_1378 = 3'h3 == stateReg | _GEN_124; // @[\\src\\main\\scala\\GameLogic.scala 336:20 750:29]
+  wire  _GEN_1379 = 3'h3 == stateReg | _GEN_125; // @[\\src\\main\\scala\\GameLogic.scala 336:20 751:29]
+  wire [9:0] _GEN_1380 = 3'h3 == stateReg ? _GEN_1297 : viewBoxXReg; // @[\\src\\main\\scala\\GameLogic.scala 336:20 201:28]
+  wire [8:0] _GEN_1381 = 3'h3 == stateReg ? _GEN_1298 : viewBoxYReg; // @[\\src\\main\\scala\\GameLogic.scala 336:20 202:28]
+  wire [2:0] _GEN_1382 = 3'h3 == stateReg ? 3'h4 : _GEN_1348; // @[\\src\\main\\scala\\GameLogic.scala 336:20 762:16]
+  wire [9:0] _GEN_1383 = 3'h3 == stateReg ? $signed(_GEN_1) : $signed(_GEN_1346); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [10:0] _GEN_1384 = 3'h3 == stateReg ? $signed(_GEN_0) : $signed(_GEN_1347); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire  _GEN_1385 = 3'h3 == stateReg ? spriteVisibleRegs_46 : _GEN_1350; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1386 = 3'h3 == stateReg ? spriteVisibleRegs_47 : _GEN_1351; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1387 = 3'h3 == stateReg ? spriteVisibleRegs_48 : _GEN_1352; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1388 = 3'h3 == stateReg ? spriteVisibleRegs_49 : _GEN_1353; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1389 = 3'h3 == stateReg ? spriteVisibleRegs_50 : _GEN_1354; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1390 = 3'h3 == stateReg ? spriteVisibleRegs_51 : _GEN_1355; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1391 = 3'h3 == stateReg ? spriteVisibleRegs_52 : _GEN_1356; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1392 = 3'h3 == stateReg ? spriteVisibleRegs_53 : _GEN_1357; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1393 = 3'h3 == stateReg ? spriteVisibleRegs_54 : _GEN_1358; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1394 = 3'h3 == stateReg ? spriteVisibleRegs_55 : _GEN_1359; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1395 = 3'h3 == stateReg ? spriteVisibleRegs_56 : _GEN_1360; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1396 = 3'h3 == stateReg ? spriteVisibleRegs_57 : _GEN_1361; // @[\\src\\main\\scala\\GameLogic.scala 336:20 125:34]
+  wire  _GEN_1397 = 3'h3 == stateReg ? gameOverReturnPressed : _GEN_1363; // @[\\src\\main\\scala\\GameLogic.scala 336:20 247:38]
+  wire  _GEN_1398 = 3'h3 == stateReg ? 1'h0 : _GEN_1364; // @[\\src\\main\\scala\\GameLogic.scala 336:20 100:22]
+  wire  _GEN_1433 = 3'h2 == stateReg ? 1'h0 : _GEN_1398; // @[\\src\\main\\scala\\GameLogic.scala 336:20 100:22]
+  wire [26:0] _GEN_1436 = 3'h1 == stateReg ? $signed(_GEN_399) : $signed({{16{_GEN_18[10]}},_GEN_18}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire  _GEN_1439 = 3'h1 == stateReg ? _GEN_402 : spriteScaleTypeRegs_0; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  wire [26:0] _GEN_1441 = 3'h1 == stateReg ? $signed(_GEN_404) : $signed({{16{_GEN_20[10]}},_GEN_20}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire  _GEN_1444 = 3'h1 == stateReg ? _GEN_407 : spriteScaleTypeRegs_1; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  wire [26:0] _GEN_1446 = 3'h1 == stateReg ? $signed(_GEN_409) : $signed({{16{_GEN_22[10]}},_GEN_22}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire  _GEN_1449 = 3'h1 == stateReg ? _GEN_412 : spriteScaleTypeRegs_2; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  wire [26:0] _GEN_1451 = 3'h1 == stateReg ? $signed(_GEN_414) : $signed({{16{_GEN_24[10]}},_GEN_24}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire  _GEN_1454 = 3'h1 == stateReg ? _GEN_417 : spriteScaleTypeRegs_3; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  wire [26:0] _GEN_1456 = 3'h1 == stateReg ? $signed(_GEN_419) : $signed({{16{_GEN_26[10]}},_GEN_26}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire  _GEN_1459 = 3'h1 == stateReg ? _GEN_422 : spriteScaleTypeRegs_4; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  wire [26:0] _GEN_1461 = 3'h1 == stateReg ? $signed(_GEN_424) : $signed({{16{_GEN_28[10]}},_GEN_28}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire  _GEN_1464 = 3'h1 == stateReg ? _GEN_427 : spriteScaleTypeRegs_5; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  wire [26:0] _GEN_1466 = 3'h1 == stateReg ? $signed(_GEN_429) : $signed({{16{_GEN_30[10]}},_GEN_30}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire  _GEN_1469 = 3'h1 == stateReg ? _GEN_432 : spriteScaleTypeRegs_6; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  wire [26:0] _GEN_1471 = 3'h1 == stateReg ? $signed(_GEN_434) : $signed({{16{_GEN_32[10]}},_GEN_32}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire  _GEN_1474 = 3'h1 == stateReg ? _GEN_437 : spriteScaleTypeRegs_7; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  wire [26:0] _GEN_1476 = 3'h1 == stateReg ? $signed(_GEN_439) : $signed({{16{_GEN_34[10]}},_GEN_34}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire  _GEN_1479 = 3'h1 == stateReg ? _GEN_442 : spriteScaleTypeRegs_8; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  wire [26:0] _GEN_1481 = 3'h1 == stateReg ? $signed(_GEN_444) : $signed({{16{_GEN_36[10]}},_GEN_36}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire  _GEN_1484 = 3'h1 == stateReg ? _GEN_447 : spriteScaleTypeRegs_9; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  wire [26:0] _GEN_1486 = 3'h1 == stateReg ? $signed(_GEN_449) : $signed({{16{_GEN_38[10]}},_GEN_38}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1490 = 3'h1 == stateReg ? $signed(_GEN_453) : $signed({{16{_GEN_40[10]}},_GEN_40}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1494 = 3'h1 == stateReg ? $signed(_GEN_457) : $signed({{16{_GEN_42[10]}},_GEN_42}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1498 = 3'h1 == stateReg ? $signed(_GEN_461) : $signed({{16{_GEN_44[10]}},_GEN_44}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1502 = 3'h1 == stateReg ? $signed(_GEN_465) : $signed({{16{_GEN_46[10]}},_GEN_46}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1506 = 3'h1 == stateReg ? $signed(_GEN_469) : $signed({{16{_GEN_48[10]}},_GEN_48}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1510 = 3'h1 == stateReg ? $signed(_GEN_473) : $signed({{16{_GEN_50[10]}},_GEN_50}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1514 = 3'h1 == stateReg ? $signed(_GEN_477) : $signed({{16{_GEN_52[10]}},_GEN_52}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1518 = 3'h1 == stateReg ? $signed(_GEN_481) : $signed({{16{_GEN_54[10]}},_GEN_54}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1522 = 3'h1 == stateReg ? $signed(_GEN_485) : $signed({{16{_GEN_56[10]}},_GEN_56}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1526 = 3'h1 == stateReg ? $signed(_GEN_489) : $signed({{16{_GEN_58[10]}},_GEN_58}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1530 = 3'h1 == stateReg ? $signed(_GEN_493) : $signed({{16{_GEN_60[10]}},_GEN_60}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1534 = 3'h1 == stateReg ? $signed(_GEN_497) : $signed({{16{_GEN_62[10]}},_GEN_62}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1538 = 3'h1 == stateReg ? $signed(_GEN_501) : $signed({{16{_GEN_64[10]}},_GEN_64}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1542 = 3'h1 == stateReg ? $signed(_GEN_505) : $signed({{16{_GEN_66[10]}},_GEN_66}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1546 = 3'h1 == stateReg ? $signed(_GEN_509) : $signed({{16{_GEN_68[10]}},_GEN_68}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1550 = 3'h1 == stateReg ? $signed(_GEN_513) : $signed({{16{_GEN_70[10]}},_GEN_70}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1554 = 3'h1 == stateReg ? $signed(_GEN_517) : $signed({{16{_GEN_72[10]}},_GEN_72}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1558 = 3'h1 == stateReg ? $signed(_GEN_521) : $signed({{16{_GEN_74[10]}},_GEN_74}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1562 = 3'h1 == stateReg ? $signed(_GEN_525) : $signed({{16{_GEN_76[10]}},_GEN_76}); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire  _GEN_1662 = 3'h1 == stateReg ? 1'h0 : _GEN_1433; // @[\\src\\main\\scala\\GameLogic.scala 336:20 100:22]
+  wire  _GEN_1674 = 3'h0 == stateReg ? _GEN_196 : _GEN_114; // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1722 = 3'h0 == stateReg ? $signed({{16{_GEN_18[10]}},_GEN_18}) : $signed(_GEN_1436); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1727 = 3'h0 == stateReg ? $signed({{16{_GEN_20[10]}},_GEN_20}) : $signed(_GEN_1441); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1732 = 3'h0 == stateReg ? $signed({{16{_GEN_22[10]}},_GEN_22}) : $signed(_GEN_1446); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1737 = 3'h0 == stateReg ? $signed({{16{_GEN_24[10]}},_GEN_24}) : $signed(_GEN_1451); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1742 = 3'h0 == stateReg ? $signed({{16{_GEN_26[10]}},_GEN_26}) : $signed(_GEN_1456); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1747 = 3'h0 == stateReg ? $signed({{16{_GEN_28[10]}},_GEN_28}) : $signed(_GEN_1461); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1752 = 3'h0 == stateReg ? $signed({{16{_GEN_30[10]}},_GEN_30}) : $signed(_GEN_1466); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1757 = 3'h0 == stateReg ? $signed({{16{_GEN_32[10]}},_GEN_32}) : $signed(_GEN_1471); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1762 = 3'h0 == stateReg ? $signed({{16{_GEN_34[10]}},_GEN_34}) : $signed(_GEN_1476); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1767 = 3'h0 == stateReg ? $signed({{16{_GEN_36[10]}},_GEN_36}) : $signed(_GEN_1481); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1772 = 3'h0 == stateReg ? $signed({{16{_GEN_38[10]}},_GEN_38}) : $signed(_GEN_1486); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1776 = 3'h0 == stateReg ? $signed({{16{_GEN_40[10]}},_GEN_40}) : $signed(_GEN_1490); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1780 = 3'h0 == stateReg ? $signed({{16{_GEN_42[10]}},_GEN_42}) : $signed(_GEN_1494); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1784 = 3'h0 == stateReg ? $signed({{16{_GEN_44[10]}},_GEN_44}) : $signed(_GEN_1498); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1788 = 3'h0 == stateReg ? $signed({{16{_GEN_46[10]}},_GEN_46}) : $signed(_GEN_1502); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1792 = 3'h0 == stateReg ? $signed({{16{_GEN_48[10]}},_GEN_48}) : $signed(_GEN_1506); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1796 = 3'h0 == stateReg ? $signed({{16{_GEN_50[10]}},_GEN_50}) : $signed(_GEN_1510); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1800 = 3'h0 == stateReg ? $signed({{16{_GEN_52[10]}},_GEN_52}) : $signed(_GEN_1514); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1804 = 3'h0 == stateReg ? $signed({{16{_GEN_54[10]}},_GEN_54}) : $signed(_GEN_1518); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1808 = 3'h0 == stateReg ? $signed({{16{_GEN_56[10]}},_GEN_56}) : $signed(_GEN_1522); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1812 = 3'h0 == stateReg ? $signed({{16{_GEN_58[10]}},_GEN_58}) : $signed(_GEN_1526); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1816 = 3'h0 == stateReg ? $signed({{16{_GEN_60[10]}},_GEN_60}) : $signed(_GEN_1530); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1820 = 3'h0 == stateReg ? $signed({{16{_GEN_62[10]}},_GEN_62}) : $signed(_GEN_1534); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1824 = 3'h0 == stateReg ? $signed({{16{_GEN_64[10]}},_GEN_64}) : $signed(_GEN_1538); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1828 = 3'h0 == stateReg ? $signed({{16{_GEN_66[10]}},_GEN_66}) : $signed(_GEN_1542); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1832 = 3'h0 == stateReg ? $signed({{16{_GEN_68[10]}},_GEN_68}) : $signed(_GEN_1546); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1836 = 3'h0 == stateReg ? $signed({{16{_GEN_70[10]}},_GEN_70}) : $signed(_GEN_1550); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1840 = 3'h0 == stateReg ? $signed({{16{_GEN_72[10]}},_GEN_72}) : $signed(_GEN_1554); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1844 = 3'h0 == stateReg ? $signed({{16{_GEN_74[10]}},_GEN_74}) : $signed(_GEN_1558); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_1848 = 3'h0 == stateReg ? $signed({{16{_GEN_76[10]}},_GEN_76}) : $signed(_GEN_1562); // @[\\src\\main\\scala\\GameLogic.scala 336:20]
+  wire [26:0] _GEN_2091 = reset ? $signed(27'sh0) : $signed(_GEN_1722); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2093 = reset ? $signed(27'sh0) : $signed(_GEN_1727); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2095 = reset ? $signed(27'sh0) : $signed(_GEN_1732); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2097 = reset ? $signed(27'sh0) : $signed(_GEN_1737); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2099 = reset ? $signed(27'sh0) : $signed(_GEN_1742); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2101 = reset ? $signed(27'sh0) : $signed(_GEN_1747); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2103 = reset ? $signed(27'sh0) : $signed(_GEN_1752); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2105 = reset ? $signed(27'sh0) : $signed(_GEN_1757); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2107 = reset ? $signed(27'sh0) : $signed(_GEN_1762); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2109 = reset ? $signed(27'sh0) : $signed(_GEN_1767); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2111 = reset ? $signed(27'sh0) : $signed(_GEN_1772); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2113 = reset ? $signed(27'sh0) : $signed(_GEN_1776); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2115 = reset ? $signed(27'sh0) : $signed(_GEN_1780); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2117 = reset ? $signed(27'sh0) : $signed(_GEN_1784); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2119 = reset ? $signed(27'sh0) : $signed(_GEN_1788); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2121 = reset ? $signed(27'sh0) : $signed(_GEN_1792); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2123 = reset ? $signed(27'sh0) : $signed(_GEN_1796); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2125 = reset ? $signed(27'sh0) : $signed(_GEN_1800); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2127 = reset ? $signed(27'sh0) : $signed(_GEN_1804); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2129 = reset ? $signed(27'sh0) : $signed(_GEN_1808); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2131 = reset ? $signed(27'sh0) : $signed(_GEN_1812); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2133 = reset ? $signed(27'sh0) : $signed(_GEN_1816); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2135 = reset ? $signed(27'sh0) : $signed(_GEN_1820); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2137 = reset ? $signed(27'sh0) : $signed(_GEN_1824); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2139 = reset ? $signed(27'sh0) : $signed(_GEN_1828); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2141 = reset ? $signed(27'sh0) : $signed(_GEN_1832); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2143 = reset ? $signed(27'sh0) : $signed(_GEN_1836); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2145 = reset ? $signed(27'sh0) : $signed(_GEN_1840); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2147 = reset ? $signed(27'sh0) : $signed(_GEN_1844); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+  wire [26:0] _GEN_2149 = reset ? $signed(27'sh0) : $signed(_GEN_1848); // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
   Difficulty difficulty ( // @[\\src\\main\\scala\\GameLogic.scala 209:26]
     .clock(difficulty_clock),
     .reset(difficulty_reset),
@@ -15089,75 +15093,75 @@ module GameLogic(
   assign io_spriteVisible_61 = spriteVisibleRegs_61; // @[\\src\\main\\scala\\GameLogic.scala 177:25]
   assign io_spriteVisible_62 = spriteVisibleRegs_62; // @[\\src\\main\\scala\\GameLogic.scala 177:25]
   assign io_spriteVisible_63 = spriteVisibleRegs_63; // @[\\src\\main\\scala\\GameLogic.scala 177:25]
-  assign io_spriteScaleUpHorizontal_16 = 3'h0 == stateReg ? spriteScaleTypeRegs_0 : _GEN_1438; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_17 = 3'h0 == stateReg ? spriteScaleTypeRegs_1 : _GEN_1443; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_18 = 3'h0 == stateReg ? spriteScaleTypeRegs_2 : _GEN_1448; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_19 = 3'h0 == stateReg ? spriteScaleTypeRegs_3 : _GEN_1453; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_20 = 3'h0 == stateReg ? spriteScaleTypeRegs_4 : _GEN_1458; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_21 = 3'h0 == stateReg ? spriteScaleTypeRegs_5 : _GEN_1463; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_22 = 3'h0 == stateReg ? spriteScaleTypeRegs_6 : _GEN_1468; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_23 = 3'h0 == stateReg ? spriteScaleTypeRegs_7 : _GEN_1473; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_24 = 3'h0 == stateReg ? spriteScaleTypeRegs_8 : _GEN_1478; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_25 = 3'h0 == stateReg ? spriteScaleTypeRegs_9 : _GEN_1483; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_26 = 3'h0 == stateReg ? spriteScaleTypeRegs_0 : _GEN_1438; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_27 = 3'h0 == stateReg ? spriteScaleTypeRegs_1 : _GEN_1443; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_28 = 3'h0 == stateReg ? spriteScaleTypeRegs_2 : _GEN_1448; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_29 = 3'h0 == stateReg ? spriteScaleTypeRegs_3 : _GEN_1453; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_30 = 3'h0 == stateReg ? spriteScaleTypeRegs_4 : _GEN_1458; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_31 = 3'h0 == stateReg ? spriteScaleTypeRegs_5 : _GEN_1463; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_32 = 3'h0 == stateReg ? spriteScaleTypeRegs_6 : _GEN_1468; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_33 = 3'h0 == stateReg ? spriteScaleTypeRegs_7 : _GEN_1473; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_34 = 3'h0 == stateReg ? spriteScaleTypeRegs_8 : _GEN_1478; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_35 = 3'h0 == stateReg ? spriteScaleTypeRegs_9 : _GEN_1483; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_36 = 3'h0 == stateReg ? spriteScaleTypeRegs_0 : _GEN_1438; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_37 = 3'h0 == stateReg ? spriteScaleTypeRegs_1 : _GEN_1443; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_38 = 3'h0 == stateReg ? spriteScaleTypeRegs_2 : _GEN_1448; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_39 = 3'h0 == stateReg ? spriteScaleTypeRegs_3 : _GEN_1453; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_40 = 3'h0 == stateReg ? spriteScaleTypeRegs_4 : _GEN_1458; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_41 = 3'h0 == stateReg ? spriteScaleTypeRegs_5 : _GEN_1463; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_42 = 3'h0 == stateReg ? spriteScaleTypeRegs_6 : _GEN_1468; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_43 = 3'h0 == stateReg ? spriteScaleTypeRegs_7 : _GEN_1473; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_44 = 3'h0 == stateReg ? spriteScaleTypeRegs_8 : _GEN_1478; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
-  assign io_spriteScaleUpHorizontal_45 = 3'h0 == stateReg ? spriteScaleTypeRegs_9 : _GEN_1483; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_16 = 3'h0 == stateReg ? spriteScaleTypeRegs_0 : _GEN_1439; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_17 = 3'h0 == stateReg ? spriteScaleTypeRegs_1 : _GEN_1444; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_18 = 3'h0 == stateReg ? spriteScaleTypeRegs_2 : _GEN_1449; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_19 = 3'h0 == stateReg ? spriteScaleTypeRegs_3 : _GEN_1454; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_20 = 3'h0 == stateReg ? spriteScaleTypeRegs_4 : _GEN_1459; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_21 = 3'h0 == stateReg ? spriteScaleTypeRegs_5 : _GEN_1464; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_22 = 3'h0 == stateReg ? spriteScaleTypeRegs_6 : _GEN_1469; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_23 = 3'h0 == stateReg ? spriteScaleTypeRegs_7 : _GEN_1474; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_24 = 3'h0 == stateReg ? spriteScaleTypeRegs_8 : _GEN_1479; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_25 = 3'h0 == stateReg ? spriteScaleTypeRegs_9 : _GEN_1484; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_26 = 3'h0 == stateReg ? spriteScaleTypeRegs_0 : _GEN_1439; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_27 = 3'h0 == stateReg ? spriteScaleTypeRegs_1 : _GEN_1444; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_28 = 3'h0 == stateReg ? spriteScaleTypeRegs_2 : _GEN_1449; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_29 = 3'h0 == stateReg ? spriteScaleTypeRegs_3 : _GEN_1454; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_30 = 3'h0 == stateReg ? spriteScaleTypeRegs_4 : _GEN_1459; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_31 = 3'h0 == stateReg ? spriteScaleTypeRegs_5 : _GEN_1464; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_32 = 3'h0 == stateReg ? spriteScaleTypeRegs_6 : _GEN_1469; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_33 = 3'h0 == stateReg ? spriteScaleTypeRegs_7 : _GEN_1474; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_34 = 3'h0 == stateReg ? spriteScaleTypeRegs_8 : _GEN_1479; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_35 = 3'h0 == stateReg ? spriteScaleTypeRegs_9 : _GEN_1484; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_36 = 3'h0 == stateReg ? spriteScaleTypeRegs_0 : _GEN_1439; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_37 = 3'h0 == stateReg ? spriteScaleTypeRegs_1 : _GEN_1444; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_38 = 3'h0 == stateReg ? spriteScaleTypeRegs_2 : _GEN_1449; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_39 = 3'h0 == stateReg ? spriteScaleTypeRegs_3 : _GEN_1454; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_40 = 3'h0 == stateReg ? spriteScaleTypeRegs_4 : _GEN_1459; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_41 = 3'h0 == stateReg ? spriteScaleTypeRegs_5 : _GEN_1464; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_42 = 3'h0 == stateReg ? spriteScaleTypeRegs_6 : _GEN_1469; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_43 = 3'h0 == stateReg ? spriteScaleTypeRegs_7 : _GEN_1474; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_44 = 3'h0 == stateReg ? spriteScaleTypeRegs_8 : _GEN_1479; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
+  assign io_spriteScaleUpHorizontal_45 = 3'h0 == stateReg ? spriteScaleTypeRegs_9 : _GEN_1484; // @[\\src\\main\\scala\\GameLogic.scala 336:20 187:35]
   assign io_spriteScaleUpHorizontal_58 = sprite58ScaleUpHorizontal; // @[\\src\\main\\scala\\GameLogic.scala 193:34]
   assign io_spriteScaleUpHorizontal_59 = sprite59ScaleUpHorizontal; // @[\\src\\main\\scala\\GameLogic.scala 195:34]
   assign io_spriteScaleUpHorizontal_60 = sprite60ScaleUpHorizontal; // @[\\src\\main\\scala\\GameLogic.scala 197:34]
-  assign io_spriteScaleUpVertical_16 = 3'h0 == stateReg ? spriteScaleTypeRegs_0 : _GEN_1438; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_17 = 3'h0 == stateReg ? spriteScaleTypeRegs_1 : _GEN_1443; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_18 = 3'h0 == stateReg ? spriteScaleTypeRegs_2 : _GEN_1448; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_19 = 3'h0 == stateReg ? spriteScaleTypeRegs_3 : _GEN_1453; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_20 = 3'h0 == stateReg ? spriteScaleTypeRegs_4 : _GEN_1458; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_21 = 3'h0 == stateReg ? spriteScaleTypeRegs_5 : _GEN_1463; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_22 = 3'h0 == stateReg ? spriteScaleTypeRegs_6 : _GEN_1468; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_23 = 3'h0 == stateReg ? spriteScaleTypeRegs_7 : _GEN_1473; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_24 = 3'h0 == stateReg ? spriteScaleTypeRegs_8 : _GEN_1478; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_25 = 3'h0 == stateReg ? spriteScaleTypeRegs_9 : _GEN_1483; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_26 = 3'h0 == stateReg ? spriteScaleTypeRegs_0 : _GEN_1438; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_27 = 3'h0 == stateReg ? spriteScaleTypeRegs_1 : _GEN_1443; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_28 = 3'h0 == stateReg ? spriteScaleTypeRegs_2 : _GEN_1448; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_29 = 3'h0 == stateReg ? spriteScaleTypeRegs_3 : _GEN_1453; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_30 = 3'h0 == stateReg ? spriteScaleTypeRegs_4 : _GEN_1458; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_31 = 3'h0 == stateReg ? spriteScaleTypeRegs_5 : _GEN_1463; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_32 = 3'h0 == stateReg ? spriteScaleTypeRegs_6 : _GEN_1468; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_33 = 3'h0 == stateReg ? spriteScaleTypeRegs_7 : _GEN_1473; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_34 = 3'h0 == stateReg ? spriteScaleTypeRegs_8 : _GEN_1478; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_35 = 3'h0 == stateReg ? spriteScaleTypeRegs_9 : _GEN_1483; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_36 = 3'h0 == stateReg ? spriteScaleTypeRegs_0 : _GEN_1438; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_37 = 3'h0 == stateReg ? spriteScaleTypeRegs_1 : _GEN_1443; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_38 = 3'h0 == stateReg ? spriteScaleTypeRegs_2 : _GEN_1448; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_39 = 3'h0 == stateReg ? spriteScaleTypeRegs_3 : _GEN_1453; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_40 = 3'h0 == stateReg ? spriteScaleTypeRegs_4 : _GEN_1458; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_41 = 3'h0 == stateReg ? spriteScaleTypeRegs_5 : _GEN_1463; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_42 = 3'h0 == stateReg ? spriteScaleTypeRegs_6 : _GEN_1468; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_43 = 3'h0 == stateReg ? spriteScaleTypeRegs_7 : _GEN_1473; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_44 = 3'h0 == stateReg ? spriteScaleTypeRegs_8 : _GEN_1478; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
-  assign io_spriteScaleUpVertical_45 = 3'h0 == stateReg ? spriteScaleTypeRegs_9 : _GEN_1483; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_16 = 3'h0 == stateReg ? spriteScaleTypeRegs_0 : _GEN_1439; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_17 = 3'h0 == stateReg ? spriteScaleTypeRegs_1 : _GEN_1444; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_18 = 3'h0 == stateReg ? spriteScaleTypeRegs_2 : _GEN_1449; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_19 = 3'h0 == stateReg ? spriteScaleTypeRegs_3 : _GEN_1454; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_20 = 3'h0 == stateReg ? spriteScaleTypeRegs_4 : _GEN_1459; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_21 = 3'h0 == stateReg ? spriteScaleTypeRegs_5 : _GEN_1464; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_22 = 3'h0 == stateReg ? spriteScaleTypeRegs_6 : _GEN_1469; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_23 = 3'h0 == stateReg ? spriteScaleTypeRegs_7 : _GEN_1474; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_24 = 3'h0 == stateReg ? spriteScaleTypeRegs_8 : _GEN_1479; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_25 = 3'h0 == stateReg ? spriteScaleTypeRegs_9 : _GEN_1484; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_26 = 3'h0 == stateReg ? spriteScaleTypeRegs_0 : _GEN_1439; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_27 = 3'h0 == stateReg ? spriteScaleTypeRegs_1 : _GEN_1444; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_28 = 3'h0 == stateReg ? spriteScaleTypeRegs_2 : _GEN_1449; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_29 = 3'h0 == stateReg ? spriteScaleTypeRegs_3 : _GEN_1454; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_30 = 3'h0 == stateReg ? spriteScaleTypeRegs_4 : _GEN_1459; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_31 = 3'h0 == stateReg ? spriteScaleTypeRegs_5 : _GEN_1464; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_32 = 3'h0 == stateReg ? spriteScaleTypeRegs_6 : _GEN_1469; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_33 = 3'h0 == stateReg ? spriteScaleTypeRegs_7 : _GEN_1474; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_34 = 3'h0 == stateReg ? spriteScaleTypeRegs_8 : _GEN_1479; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_35 = 3'h0 == stateReg ? spriteScaleTypeRegs_9 : _GEN_1484; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_36 = 3'h0 == stateReg ? spriteScaleTypeRegs_0 : _GEN_1439; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_37 = 3'h0 == stateReg ? spriteScaleTypeRegs_1 : _GEN_1444; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_38 = 3'h0 == stateReg ? spriteScaleTypeRegs_2 : _GEN_1449; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_39 = 3'h0 == stateReg ? spriteScaleTypeRegs_3 : _GEN_1454; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_40 = 3'h0 == stateReg ? spriteScaleTypeRegs_4 : _GEN_1459; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_41 = 3'h0 == stateReg ? spriteScaleTypeRegs_5 : _GEN_1464; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_42 = 3'h0 == stateReg ? spriteScaleTypeRegs_6 : _GEN_1469; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_43 = 3'h0 == stateReg ? spriteScaleTypeRegs_7 : _GEN_1474; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_44 = 3'h0 == stateReg ? spriteScaleTypeRegs_8 : _GEN_1479; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
+  assign io_spriteScaleUpVertical_45 = 3'h0 == stateReg ? spriteScaleTypeRegs_9 : _GEN_1484; // @[\\src\\main\\scala\\GameLogic.scala 336:20 188:33]
   assign io_spriteScaleUpVertical_58 = sprite58ScaleUpVertical; // @[\\src\\main\\scala\\GameLogic.scala 194:32]
   assign io_spriteScaleUpVertical_59 = sprite59ScaleUpVertical; // @[\\src\\main\\scala\\GameLogic.scala 196:32]
   assign io_spriteScaleUpVertical_60 = sprite60ScaleUpVertical; // @[\\src\\main\\scala\\GameLogic.scala 198:32]
   assign io_viewBoxX = viewBoxXReg; // @[\\src\\main\\scala\\GameLogic.scala 205:15]
   assign io_viewBoxY = viewBoxYReg; // @[\\src\\main\\scala\\GameLogic.scala 206:15]
-  assign io_frameUpdateDone = 3'h0 == stateReg ? 1'h0 : _GEN_1661; // @[\\src\\main\\scala\\GameLogic.scala 336:20 100:22]
+  assign io_frameUpdateDone = 3'h0 == stateReg ? 1'h0 : _GEN_1662; // @[\\src\\main\\scala\\GameLogic.scala 336:20 100:22]
   assign difficulty_clock = clock;
   assign difficulty_reset = reset;
   assign difficulty_io_level = lvlReg; // @[\\src\\main\\scala\\GameLogic.scala 212:23]
@@ -15172,19 +15176,19 @@ module GameLogic(
         if (gameOverReturnPressed) begin // @[\\src\\main\\scala\\GameLogic.scala 339:37]
           stateReg <= 3'h2; // @[\\src\\main\\scala\\GameLogic.scala 342:20]
         end else begin
-          stateReg <= 3'h6; // @[\\src\\main\\scala\\GameLogic.scala 344:20]
+          stateReg <= _GEN_126;
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (livesReg > 3'h0) begin // @[\\src\\main\\scala\\GameLogic.scala 682:28]
-        stateReg <= 3'h2; // @[\\src\\main\\scala\\GameLogic.scala 683:18]
+      if (livesReg > 3'h0) begin // @[\\src\\main\\scala\\GameLogic.scala 684:28]
+        stateReg <= 3'h2; // @[\\src\\main\\scala\\GameLogic.scala 685:18]
       end else begin
-        stateReg <= _GEN_1178;
+        stateReg <= _GEN_1179;
       end
     end else if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      stateReg <= _GEN_1283;
+      stateReg <= _GEN_1284;
     end else begin
-      stateReg <= _GEN_1381;
+      stateReg <= _GEN_1382;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 121:28]
       spriteXRegs_3 <= 11'sh0; // @[\\src\\main\\scala\\GameLogic.scala 121:28]
@@ -15195,7 +15199,7 @@ module GameLogic(
     end else if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteXRegs_3 <= _GEN_0;
     end else begin
-      spriteXRegs_3 <= _GEN_1383;
+      spriteXRegs_3 <= _GEN_1384;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 121:28]
       spriteXRegs_7 <= 11'sh0; // @[\\src\\main\\scala\\GameLogic.scala 121:28]
@@ -15232,8 +15236,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteXRegs_13 <= _GEN_14;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteXRegs_13 <= _GEN_396;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteXRegs_13 <= _GEN_397;
       end else begin
         spriteXRegs_13 <= _GEN_14;
       end
@@ -15249,38 +15253,38 @@ module GameLogic(
     end else if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteXRegs_14 <= _GEN_16;
     end else begin
-      spriteXRegs_14 <= _GEN_1366;
+      spriteXRegs_14 <= _GEN_1367;
     end
-    spriteXRegs_16 <= _GEN_2090[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_17 <= _GEN_2092[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_18 <= _GEN_2094[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_19 <= _GEN_2096[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_20 <= _GEN_2098[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_21 <= _GEN_2100[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_22 <= _GEN_2102[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_23 <= _GEN_2104[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_24 <= _GEN_2106[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_25 <= _GEN_2108[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_26 <= _GEN_2110[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_27 <= _GEN_2112[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_28 <= _GEN_2114[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_29 <= _GEN_2116[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_30 <= _GEN_2118[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_31 <= _GEN_2120[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_32 <= _GEN_2122[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_33 <= _GEN_2124[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_34 <= _GEN_2126[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_35 <= _GEN_2128[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_36 <= _GEN_2130[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_37 <= _GEN_2132[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_38 <= _GEN_2134[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_39 <= _GEN_2136[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_40 <= _GEN_2138[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_41 <= _GEN_2140[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_42 <= _GEN_2142[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_43 <= _GEN_2144[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_44 <= _GEN_2146[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
-    spriteXRegs_45 <= _GEN_2148[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_16 <= _GEN_2091[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_17 <= _GEN_2093[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_18 <= _GEN_2095[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_19 <= _GEN_2097[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_20 <= _GEN_2099[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_21 <= _GEN_2101[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_22 <= _GEN_2103[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_23 <= _GEN_2105[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_24 <= _GEN_2107[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_25 <= _GEN_2109[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_26 <= _GEN_2111[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_27 <= _GEN_2113[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_28 <= _GEN_2115[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_29 <= _GEN_2117[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_30 <= _GEN_2119[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_31 <= _GEN_2121[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_32 <= _GEN_2123[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_33 <= _GEN_2125[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_34 <= _GEN_2127[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_35 <= _GEN_2129[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_36 <= _GEN_2131[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_37 <= _GEN_2133[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_38 <= _GEN_2135[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_39 <= _GEN_2137[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_40 <= _GEN_2139[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_41 <= _GEN_2141[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_42 <= _GEN_2143[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_43 <= _GEN_2145[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_44 <= _GEN_2147[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
+    spriteXRegs_45 <= _GEN_2149[10:0]; // @[\\src\\main\\scala\\GameLogic.scala 121:{28,28}]
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 121:28]
       spriteXRegs_46 <= 11'sh0; // @[\\src\\main\\scala\\GameLogic.scala 121:28]
     end else if (initializePositions) begin // @[\\src\\main\\scala\\GameLogic.scala 131:29]
@@ -15346,10 +15350,10 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteXRegs_58 <= _GEN_102;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (starCnt == 10'h0) begin // @[\\src\\main\\scala\\GameLogic.scala 592:29]
-        spriteXRegs_58 <= spriteXRegs_58_REG; // @[\\src\\main\\scala\\GameLogic.scala 593:25]
+      if (starCnt == 10'h0) begin // @[\\src\\main\\scala\\GameLogic.scala 594:29]
+        spriteXRegs_58 <= spriteXRegs_58_REG; // @[\\src\\main\\scala\\GameLogic.scala 595:25]
       end else begin
-        spriteXRegs_58 <= _GEN_1240;
+        spriteXRegs_58 <= _GEN_1241;
       end
     end else begin
       spriteXRegs_58 <= _GEN_102;
@@ -15359,10 +15363,10 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteXRegs_59 <= _GEN_104;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (starCnt == 10'h0) begin // @[\\src\\main\\scala\\GameLogic.scala 592:29]
-        spriteXRegs_59 <= spriteXRegs_59_REG; // @[\\src\\main\\scala\\GameLogic.scala 595:25]
+      if (starCnt == 10'h0) begin // @[\\src\\main\\scala\\GameLogic.scala 594:29]
+        spriteXRegs_59 <= spriteXRegs_59_REG; // @[\\src\\main\\scala\\GameLogic.scala 597:25]
       end else begin
-        spriteXRegs_59 <= _GEN_1241;
+        spriteXRegs_59 <= _GEN_1242;
       end
     end else begin
       spriteXRegs_59 <= _GEN_104;
@@ -15372,10 +15376,10 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteXRegs_60 <= _GEN_106;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (starCnt == 10'h0) begin // @[\\src\\main\\scala\\GameLogic.scala 592:29]
-        spriteXRegs_60 <= spriteXRegs_60_REG; // @[\\src\\main\\scala\\GameLogic.scala 597:25]
+      if (starCnt == 10'h0) begin // @[\\src\\main\\scala\\GameLogic.scala 594:29]
+        spriteXRegs_60 <= spriteXRegs_60_REG; // @[\\src\\main\\scala\\GameLogic.scala 599:25]
       end else begin
-        spriteXRegs_60 <= _GEN_1242;
+        spriteXRegs_60 <= _GEN_1243;
       end
     end else begin
       spriteXRegs_60 <= _GEN_106;
@@ -15404,7 +15408,7 @@ module GameLogic(
     end else if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_3 <= _GEN_1;
     end else begin
-      spriteYRegs_3 <= _GEN_1382;
+      spriteYRegs_3 <= _GEN_1383;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 122:28]
       spriteYRegs_7 <= 10'sh0; // @[\\src\\main\\scala\\GameLogic.scala 122:28]
@@ -15441,8 +15445,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_13 <= _GEN_15;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_13 <= _GEN_394;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_13 <= _GEN_395;
       end else begin
         spriteYRegs_13 <= _GEN_15;
       end
@@ -15458,15 +15462,15 @@ module GameLogic(
     end else if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_14 <= _GEN_17;
     end else begin
-      spriteYRegs_14 <= _GEN_1367;
+      spriteYRegs_14 <= _GEN_1368;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 122:28]
       spriteYRegs_16 <= 10'sh0; // @[\\src\\main\\scala\\GameLogic.scala 122:28]
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_16 <= _GEN_19;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_16 <= _GEN_244;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_16 <= _GEN_245;
       end else begin
         spriteYRegs_16 <= _GEN_19;
       end
@@ -15478,8 +15482,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_17 <= _GEN_21;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_17 <= _GEN_249;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_17 <= _GEN_250;
       end else begin
         spriteYRegs_17 <= _GEN_21;
       end
@@ -15491,8 +15495,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_18 <= _GEN_23;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_18 <= _GEN_254;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_18 <= _GEN_255;
       end else begin
         spriteYRegs_18 <= _GEN_23;
       end
@@ -15504,8 +15508,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_19 <= _GEN_25;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_19 <= _GEN_259;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_19 <= _GEN_260;
       end else begin
         spriteYRegs_19 <= _GEN_25;
       end
@@ -15517,8 +15521,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_20 <= _GEN_27;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_20 <= _GEN_264;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_20 <= _GEN_265;
       end else begin
         spriteYRegs_20 <= _GEN_27;
       end
@@ -15530,8 +15534,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_21 <= _GEN_29;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_21 <= _GEN_269;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_21 <= _GEN_270;
       end else begin
         spriteYRegs_21 <= _GEN_29;
       end
@@ -15543,8 +15547,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_22 <= _GEN_31;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_22 <= _GEN_274;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_22 <= _GEN_275;
       end else begin
         spriteYRegs_22 <= _GEN_31;
       end
@@ -15556,8 +15560,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_23 <= _GEN_33;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_23 <= _GEN_279;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_23 <= _GEN_280;
       end else begin
         spriteYRegs_23 <= _GEN_33;
       end
@@ -15569,8 +15573,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_24 <= _GEN_35;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_24 <= _GEN_284;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_24 <= _GEN_285;
       end else begin
         spriteYRegs_24 <= _GEN_35;
       end
@@ -15582,8 +15586,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_25 <= _GEN_37;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_25 <= _GEN_289;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_25 <= _GEN_290;
       end else begin
         spriteYRegs_25 <= _GEN_37;
       end
@@ -15595,8 +15599,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_26 <= _GEN_39;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_26 <= _GEN_294;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_26 <= _GEN_295;
       end else begin
         spriteYRegs_26 <= _GEN_39;
       end
@@ -15608,8 +15612,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_27 <= _GEN_41;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_27 <= _GEN_299;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_27 <= _GEN_300;
       end else begin
         spriteYRegs_27 <= _GEN_41;
       end
@@ -15621,8 +15625,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_28 <= _GEN_43;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_28 <= _GEN_304;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_28 <= _GEN_305;
       end else begin
         spriteYRegs_28 <= _GEN_43;
       end
@@ -15634,8 +15638,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_29 <= _GEN_45;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_29 <= _GEN_309;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_29 <= _GEN_310;
       end else begin
         spriteYRegs_29 <= _GEN_45;
       end
@@ -15647,8 +15651,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_30 <= _GEN_47;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_30 <= _GEN_314;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_30 <= _GEN_315;
       end else begin
         spriteYRegs_30 <= _GEN_47;
       end
@@ -15660,8 +15664,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_31 <= _GEN_49;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_31 <= _GEN_319;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_31 <= _GEN_320;
       end else begin
         spriteYRegs_31 <= _GEN_49;
       end
@@ -15673,8 +15677,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_32 <= _GEN_51;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_32 <= _GEN_324;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_32 <= _GEN_325;
       end else begin
         spriteYRegs_32 <= _GEN_51;
       end
@@ -15686,8 +15690,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_33 <= _GEN_53;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_33 <= _GEN_329;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_33 <= _GEN_330;
       end else begin
         spriteYRegs_33 <= _GEN_53;
       end
@@ -15699,8 +15703,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_34 <= _GEN_55;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_34 <= _GEN_334;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_34 <= _GEN_335;
       end else begin
         spriteYRegs_34 <= _GEN_55;
       end
@@ -15712,8 +15716,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_35 <= _GEN_57;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_35 <= _GEN_339;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_35 <= _GEN_340;
       end else begin
         spriteYRegs_35 <= _GEN_57;
       end
@@ -15725,8 +15729,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_36 <= _GEN_59;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_36 <= _GEN_344;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_36 <= _GEN_345;
       end else begin
         spriteYRegs_36 <= _GEN_59;
       end
@@ -15738,8 +15742,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_37 <= _GEN_61;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_37 <= _GEN_349;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_37 <= _GEN_350;
       end else begin
         spriteYRegs_37 <= _GEN_61;
       end
@@ -15751,8 +15755,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_38 <= _GEN_63;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_38 <= _GEN_354;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_38 <= _GEN_355;
       end else begin
         spriteYRegs_38 <= _GEN_63;
       end
@@ -15764,8 +15768,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_39 <= _GEN_65;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_39 <= _GEN_359;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_39 <= _GEN_360;
       end else begin
         spriteYRegs_39 <= _GEN_65;
       end
@@ -15777,8 +15781,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_40 <= _GEN_67;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_40 <= _GEN_364;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_40 <= _GEN_365;
       end else begin
         spriteYRegs_40 <= _GEN_67;
       end
@@ -15790,8 +15794,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_41 <= _GEN_69;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_41 <= _GEN_369;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_41 <= _GEN_370;
       end else begin
         spriteYRegs_41 <= _GEN_69;
       end
@@ -15803,8 +15807,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_42 <= _GEN_71;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_42 <= _GEN_374;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_42 <= _GEN_375;
       end else begin
         spriteYRegs_42 <= _GEN_71;
       end
@@ -15816,8 +15820,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_43 <= _GEN_73;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_43 <= _GEN_379;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_43 <= _GEN_380;
       end else begin
         spriteYRegs_43 <= _GEN_73;
       end
@@ -15829,8 +15833,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_44 <= _GEN_75;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_44 <= _GEN_384;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_44 <= _GEN_385;
       end else begin
         spriteYRegs_44 <= _GEN_75;
       end
@@ -15842,8 +15846,8 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_45 <= _GEN_77;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        spriteYRegs_45 <= _GEN_389;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        spriteYRegs_45 <= _GEN_390;
       end else begin
         spriteYRegs_45 <= _GEN_77;
       end
@@ -15915,10 +15919,10 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_58 <= _GEN_103;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (starCnt == 10'h0) begin // @[\\src\\main\\scala\\GameLogic.scala 592:29]
-        spriteYRegs_58 <= spriteYRegs_58_REG; // @[\\src\\main\\scala\\GameLogic.scala 594:25]
+      if (starCnt == 10'h0) begin // @[\\src\\main\\scala\\GameLogic.scala 594:29]
+        spriteYRegs_58 <= spriteYRegs_58_REG; // @[\\src\\main\\scala\\GameLogic.scala 596:25]
       end else begin
-        spriteYRegs_58 <= _GEN_1243;
+        spriteYRegs_58 <= _GEN_1244;
       end
     end else begin
       spriteYRegs_58 <= _GEN_103;
@@ -15928,10 +15932,10 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_59 <= _GEN_105;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (starCnt == 10'h0) begin // @[\\src\\main\\scala\\GameLogic.scala 592:29]
-        spriteYRegs_59 <= spriteYRegs_59_REG; // @[\\src\\main\\scala\\GameLogic.scala 596:25]
+      if (starCnt == 10'h0) begin // @[\\src\\main\\scala\\GameLogic.scala 594:29]
+        spriteYRegs_59 <= spriteYRegs_59_REG; // @[\\src\\main\\scala\\GameLogic.scala 598:25]
       end else begin
-        spriteYRegs_59 <= _GEN_1244;
+        spriteYRegs_59 <= _GEN_1245;
       end
     end else begin
       spriteYRegs_59 <= _GEN_105;
@@ -15941,10 +15945,10 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteYRegs_60 <= _GEN_107;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (starCnt == 10'h0) begin // @[\\src\\main\\scala\\GameLogic.scala 592:29]
-        spriteYRegs_60 <= spriteYRegs_60_REG; // @[\\src\\main\\scala\\GameLogic.scala 598:25]
+      if (starCnt == 10'h0) begin // @[\\src\\main\\scala\\GameLogic.scala 594:29]
+        spriteYRegs_60 <= spriteYRegs_60_REG; // @[\\src\\main\\scala\\GameLogic.scala 600:25]
       end else begin
-        spriteYRegs_60 <= _GEN_1245;
+        spriteYRegs_60 <= _GEN_1246;
       end
     end else begin
       spriteYRegs_60 <= _GEN_107;
@@ -15968,27 +15972,27 @@ module GameLogic(
       spriteVisibleRegs_3 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (io_newFrame) begin // @[\\src\\main\\scala\\GameLogic.scala 338:25]
-        spriteVisibleRegs_3 <= _GEN_138;
+        spriteVisibleRegs_3 <= _GEN_139;
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_3 <= _GEN_600;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_3 <= _GEN_601;
       end else begin
-        spriteVisibleRegs_3 <= _GEN_994;
+        spriteVisibleRegs_3 <= _GEN_995;
       end
     end else if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      spriteVisibleRegs_3 <= _GEN_1284;
+      spriteVisibleRegs_3 <= _GEN_1285;
     end else begin
-      spriteVisibleRegs_3 <= _GEN_1368;
+      spriteVisibleRegs_3 <= _GEN_1369;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_4 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-          spriteVisibleRegs_4 <= _GEN_601;
+        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+          spriteVisibleRegs_4 <= _GEN_602;
         end else begin
-          spriteVisibleRegs_4 <= _GEN_995;
+          spriteVisibleRegs_4 <= _GEN_996;
         end
       end
     end
@@ -15996,10 +16000,10 @@ module GameLogic(
       spriteVisibleRegs_5 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-          spriteVisibleRegs_5 <= _GEN_602;
+        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+          spriteVisibleRegs_5 <= _GEN_603;
         end else begin
-          spriteVisibleRegs_5 <= _GEN_996;
+          spriteVisibleRegs_5 <= _GEN_997;
         end
       end
     end
@@ -16007,10 +16011,10 @@ module GameLogic(
       spriteVisibleRegs_6 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-          spriteVisibleRegs_6 <= _GEN_603;
+        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+          spriteVisibleRegs_6 <= _GEN_604;
         end else begin
-          spriteVisibleRegs_6 <= _GEN_997;
+          spriteVisibleRegs_6 <= _GEN_998;
         end
       end
     end
@@ -16018,100 +16022,100 @@ module GameLogic(
       spriteVisibleRegs_7 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-          spriteVisibleRegs_7 <= _GEN_604;
+        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+          spriteVisibleRegs_7 <= _GEN_605;
         end else begin
-          spriteVisibleRegs_7 <= _GEN_998;
+          spriteVisibleRegs_7 <= _GEN_999;
         end
       end else if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        spriteVisibleRegs_7 <= _GEN_1285;
+        spriteVisibleRegs_7 <= _GEN_1286;
       end else begin
-        spriteVisibleRegs_7 <= _GEN_1369;
+        spriteVisibleRegs_7 <= _GEN_1370;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_8 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-          spriteVisibleRegs_8 <= _GEN_605;
+        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+          spriteVisibleRegs_8 <= _GEN_606;
         end else begin
-          spriteVisibleRegs_8 <= _GEN_999;
+          spriteVisibleRegs_8 <= _GEN_1000;
         end
       end else if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        spriteVisibleRegs_8 <= _GEN_1286;
+        spriteVisibleRegs_8 <= _GEN_1287;
       end else begin
-        spriteVisibleRegs_8 <= _GEN_1370;
+        spriteVisibleRegs_8 <= _GEN_1371;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_9 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-          spriteVisibleRegs_9 <= _GEN_606;
+        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+          spriteVisibleRegs_9 <= _GEN_607;
         end else begin
-          spriteVisibleRegs_9 <= _GEN_1000;
+          spriteVisibleRegs_9 <= _GEN_1001;
         end
       end else if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        spriteVisibleRegs_9 <= _GEN_1287;
+        spriteVisibleRegs_9 <= _GEN_1288;
       end else begin
-        spriteVisibleRegs_9 <= _GEN_1371;
+        spriteVisibleRegs_9 <= _GEN_1372;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_10 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-          spriteVisibleRegs_10 <= _GEN_607;
+        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+          spriteVisibleRegs_10 <= _GEN_608;
         end else begin
-          spriteVisibleRegs_10 <= _GEN_1001;
+          spriteVisibleRegs_10 <= _GEN_1002;
         end
       end else if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        spriteVisibleRegs_10 <= _GEN_1288;
+        spriteVisibleRegs_10 <= _GEN_1289;
       end else begin
-        spriteVisibleRegs_10 <= _GEN_1372;
+        spriteVisibleRegs_10 <= _GEN_1373;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_11 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-          spriteVisibleRegs_11 <= _GEN_608;
+        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+          spriteVisibleRegs_11 <= _GEN_609;
         end else begin
-          spriteVisibleRegs_11 <= _GEN_1002;
+          spriteVisibleRegs_11 <= _GEN_1003;
         end
       end else if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        spriteVisibleRegs_11 <= _GEN_1289;
+        spriteVisibleRegs_11 <= _GEN_1290;
       end else begin
-        spriteVisibleRegs_11 <= _GEN_1373;
+        spriteVisibleRegs_11 <= _GEN_1374;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_12 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-          spriteVisibleRegs_12 <= _GEN_609;
+        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+          spriteVisibleRegs_12 <= _GEN_610;
         end else begin
-          spriteVisibleRegs_12 <= _GEN_1003;
+          spriteVisibleRegs_12 <= _GEN_1004;
         end
       end else if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        spriteVisibleRegs_12 <= _GEN_1290;
+        spriteVisibleRegs_12 <= _GEN_1291;
       end else begin
-        spriteVisibleRegs_12 <= _GEN_1374;
+        spriteVisibleRegs_12 <= _GEN_1375;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_13 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (_T_791) begin // @[\\src\\main\\scala\\GameLogic.scala 538:9]
-          spriteVisibleRegs_13 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 539:31]
+        if (_T_792) begin // @[\\src\\main\\scala\\GameLogic.scala 540:9]
+          spriteVisibleRegs_13 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 541:31]
         end else begin
-          spriteVisibleRegs_13 <= _GEN_1070;
+          spriteVisibleRegs_13 <= _GEN_1071;
         end
       end
     end
@@ -16124,22 +16128,22 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (isBlinking) begin // @[\\src\\main\\scala\\GameLogic.scala 553:24]
-        spriteVisibleRegs_14 <= _GEN_1169;
+      if (isBlinking) begin // @[\\src\\main\\scala\\GameLogic.scala 555:24]
+        spriteVisibleRegs_14 <= _GEN_1170;
       end else begin
-        spriteVisibleRegs_14 <= _GEN_1071;
+        spriteVisibleRegs_14 <= _GEN_1072;
       end
     end else if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      spriteVisibleRegs_14 <= _GEN_1375;
+      spriteVisibleRegs_14 <= _GEN_1376;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_15 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-          spriteVisibleRegs_15 <= _GEN_612;
+        if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+          spriteVisibleRegs_15 <= _GEN_613;
         end else begin
-          spriteVisibleRegs_15 <= _GEN_1006;
+          spriteVisibleRegs_15 <= _GEN_1007;
         end
       end
     end
@@ -16152,10 +16156,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_16 <= _GEN_613;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_16 <= _GEN_614;
       end else begin
-        spriteVisibleRegs_16 <= _GEN_1007;
+        spriteVisibleRegs_16 <= _GEN_1008;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16167,10 +16171,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_17 <= _GEN_614;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_17 <= _GEN_615;
       end else begin
-        spriteVisibleRegs_17 <= _GEN_1008;
+        spriteVisibleRegs_17 <= _GEN_1009;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16182,10 +16186,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_18 <= _GEN_615;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_18 <= _GEN_616;
       end else begin
-        spriteVisibleRegs_18 <= _GEN_1009;
+        spriteVisibleRegs_18 <= _GEN_1010;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16197,10 +16201,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_19 <= _GEN_616;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_19 <= _GEN_617;
       end else begin
-        spriteVisibleRegs_19 <= _GEN_1010;
+        spriteVisibleRegs_19 <= _GEN_1011;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16212,10 +16216,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_20 <= _GEN_617;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_20 <= _GEN_618;
       end else begin
-        spriteVisibleRegs_20 <= _GEN_1011;
+        spriteVisibleRegs_20 <= _GEN_1012;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16227,10 +16231,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_21 <= _GEN_618;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_21 <= _GEN_619;
       end else begin
-        spriteVisibleRegs_21 <= _GEN_1012;
+        spriteVisibleRegs_21 <= _GEN_1013;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16242,10 +16246,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_22 <= _GEN_619;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_22 <= _GEN_620;
       end else begin
-        spriteVisibleRegs_22 <= _GEN_1013;
+        spriteVisibleRegs_22 <= _GEN_1014;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16257,10 +16261,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_23 <= _GEN_620;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_23 <= _GEN_621;
       end else begin
-        spriteVisibleRegs_23 <= _GEN_1014;
+        spriteVisibleRegs_23 <= _GEN_1015;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16272,10 +16276,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_24 <= _GEN_621;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_24 <= _GEN_622;
       end else begin
-        spriteVisibleRegs_24 <= _GEN_1015;
+        spriteVisibleRegs_24 <= _GEN_1016;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16287,10 +16291,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_25 <= _GEN_622;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_25 <= _GEN_623;
       end else begin
-        spriteVisibleRegs_25 <= _GEN_1016;
+        spriteVisibleRegs_25 <= _GEN_1017;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16302,10 +16306,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_26 <= _GEN_623;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_26 <= _GEN_624;
       end else begin
-        spriteVisibleRegs_26 <= _GEN_1017;
+        spriteVisibleRegs_26 <= _GEN_1018;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16317,10 +16321,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_27 <= _GEN_624;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_27 <= _GEN_625;
       end else begin
-        spriteVisibleRegs_27 <= _GEN_1018;
+        spriteVisibleRegs_27 <= _GEN_1019;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16332,10 +16336,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_28 <= _GEN_625;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_28 <= _GEN_626;
       end else begin
-        spriteVisibleRegs_28 <= _GEN_1019;
+        spriteVisibleRegs_28 <= _GEN_1020;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16347,10 +16351,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_29 <= _GEN_626;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_29 <= _GEN_627;
       end else begin
-        spriteVisibleRegs_29 <= _GEN_1020;
+        spriteVisibleRegs_29 <= _GEN_1021;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16362,10 +16366,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_30 <= _GEN_627;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_30 <= _GEN_628;
       end else begin
-        spriteVisibleRegs_30 <= _GEN_1021;
+        spriteVisibleRegs_30 <= _GEN_1022;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16377,10 +16381,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_31 <= _GEN_628;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_31 <= _GEN_629;
       end else begin
-        spriteVisibleRegs_31 <= _GEN_1022;
+        spriteVisibleRegs_31 <= _GEN_1023;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16392,10 +16396,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_32 <= _GEN_629;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_32 <= _GEN_630;
       end else begin
-        spriteVisibleRegs_32 <= _GEN_1023;
+        spriteVisibleRegs_32 <= _GEN_1024;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16407,10 +16411,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_33 <= _GEN_630;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_33 <= _GEN_631;
       end else begin
-        spriteVisibleRegs_33 <= _GEN_1024;
+        spriteVisibleRegs_33 <= _GEN_1025;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16422,10 +16426,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_34 <= _GEN_631;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_34 <= _GEN_632;
       end else begin
-        spriteVisibleRegs_34 <= _GEN_1025;
+        spriteVisibleRegs_34 <= _GEN_1026;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16437,10 +16441,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_35 <= _GEN_632;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_35 <= _GEN_633;
       end else begin
-        spriteVisibleRegs_35 <= _GEN_1026;
+        spriteVisibleRegs_35 <= _GEN_1027;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16452,10 +16456,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_36 <= _GEN_633;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_36 <= _GEN_634;
       end else begin
-        spriteVisibleRegs_36 <= _GEN_1027;
+        spriteVisibleRegs_36 <= _GEN_1028;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16467,10 +16471,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_37 <= _GEN_634;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_37 <= _GEN_635;
       end else begin
-        spriteVisibleRegs_37 <= _GEN_1028;
+        spriteVisibleRegs_37 <= _GEN_1029;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16482,10 +16486,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_38 <= _GEN_635;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_38 <= _GEN_636;
       end else begin
-        spriteVisibleRegs_38 <= _GEN_1029;
+        spriteVisibleRegs_38 <= _GEN_1030;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16497,10 +16501,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_39 <= _GEN_636;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_39 <= _GEN_637;
       end else begin
-        spriteVisibleRegs_39 <= _GEN_1030;
+        spriteVisibleRegs_39 <= _GEN_1031;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16512,10 +16516,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_40 <= _GEN_637;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_40 <= _GEN_638;
       end else begin
-        spriteVisibleRegs_40 <= _GEN_1031;
+        spriteVisibleRegs_40 <= _GEN_1032;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16527,10 +16531,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_41 <= _GEN_638;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_41 <= _GEN_639;
       end else begin
-        spriteVisibleRegs_41 <= _GEN_1032;
+        spriteVisibleRegs_41 <= _GEN_1033;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16542,10 +16546,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_42 <= _GEN_639;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_42 <= _GEN_640;
       end else begin
-        spriteVisibleRegs_42 <= _GEN_1033;
+        spriteVisibleRegs_42 <= _GEN_1034;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16557,10 +16561,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_43 <= _GEN_640;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_43 <= _GEN_641;
       end else begin
-        spriteVisibleRegs_43 <= _GEN_1034;
+        spriteVisibleRegs_43 <= _GEN_1035;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16572,10 +16576,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_44 <= _GEN_641;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_44 <= _GEN_642;
       end else begin
-        spriteVisibleRegs_44 <= _GEN_1035;
+        spriteVisibleRegs_44 <= _GEN_1036;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16587,10 +16591,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_45 <= _GEN_642;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_45 <= _GEN_643;
       end else begin
-        spriteVisibleRegs_45 <= _GEN_1036;
+        spriteVisibleRegs_45 <= _GEN_1037;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16602,13 +16606,13 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_46 <= _GEN_643;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_46 <= _GEN_644;
       end else begin
-        spriteVisibleRegs_46 <= _GEN_1037;
+        spriteVisibleRegs_46 <= _GEN_1038;
       end
     end else if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      spriteVisibleRegs_46 <= _GEN_1384;
+      spriteVisibleRegs_46 <= _GEN_1385;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_47 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16619,13 +16623,13 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_47 <= _GEN_644;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_47 <= _GEN_645;
       end else begin
-        spriteVisibleRegs_47 <= _GEN_1038;
+        spriteVisibleRegs_47 <= _GEN_1039;
       end
     end else if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      spriteVisibleRegs_47 <= _GEN_1385;
+      spriteVisibleRegs_47 <= _GEN_1386;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_48 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16636,13 +16640,13 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_48 <= _GEN_645;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_48 <= _GEN_646;
       end else begin
-        spriteVisibleRegs_48 <= _GEN_1039;
+        spriteVisibleRegs_48 <= _GEN_1040;
       end
     end else if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      spriteVisibleRegs_48 <= _GEN_1386;
+      spriteVisibleRegs_48 <= _GEN_1387;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_49 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16653,13 +16657,13 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_49 <= _GEN_646;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_49 <= _GEN_647;
       end else begin
-        spriteVisibleRegs_49 <= _GEN_1040;
+        spriteVisibleRegs_49 <= _GEN_1041;
       end
     end else if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      spriteVisibleRegs_49 <= _GEN_1387;
+      spriteVisibleRegs_49 <= _GEN_1388;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_50 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16670,13 +16674,13 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_50 <= _GEN_647;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_50 <= _GEN_648;
       end else begin
-        spriteVisibleRegs_50 <= _GEN_1041;
+        spriteVisibleRegs_50 <= _GEN_1042;
       end
     end else if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      spriteVisibleRegs_50 <= _GEN_1388;
+      spriteVisibleRegs_50 <= _GEN_1389;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_51 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16687,13 +16691,13 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_51 <= _GEN_648;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_51 <= _GEN_649;
       end else begin
-        spriteVisibleRegs_51 <= _GEN_1042;
+        spriteVisibleRegs_51 <= _GEN_1043;
       end
     end else if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      spriteVisibleRegs_51 <= _GEN_1389;
+      spriteVisibleRegs_51 <= _GEN_1390;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_52 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16704,13 +16708,13 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_52 <= _GEN_649;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_52 <= _GEN_650;
       end else begin
-        spriteVisibleRegs_52 <= _GEN_1043;
+        spriteVisibleRegs_52 <= _GEN_1044;
       end
     end else if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      spriteVisibleRegs_52 <= _GEN_1390;
+      spriteVisibleRegs_52 <= _GEN_1391;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_53 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16721,13 +16725,13 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_53 <= _GEN_650;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_53 <= _GEN_651;
       end else begin
-        spriteVisibleRegs_53 <= _GEN_1044;
+        spriteVisibleRegs_53 <= _GEN_1045;
       end
     end else if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      spriteVisibleRegs_53 <= _GEN_1391;
+      spriteVisibleRegs_53 <= _GEN_1392;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_54 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16738,13 +16742,13 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_54 <= _GEN_651;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_54 <= _GEN_652;
       end else begin
-        spriteVisibleRegs_54 <= _GEN_1045;
+        spriteVisibleRegs_54 <= _GEN_1046;
       end
     end else if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      spriteVisibleRegs_54 <= _GEN_1392;
+      spriteVisibleRegs_54 <= _GEN_1393;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_55 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16755,13 +16759,13 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_55 <= _GEN_652;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_55 <= _GEN_653;
       end else begin
-        spriteVisibleRegs_55 <= _GEN_1046;
+        spriteVisibleRegs_55 <= _GEN_1047;
       end
     end else if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      spriteVisibleRegs_55 <= _GEN_1393;
+      spriteVisibleRegs_55 <= _GEN_1394;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_56 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16772,13 +16776,13 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_56 <= _GEN_653;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_56 <= _GEN_654;
       end else begin
-        spriteVisibleRegs_56 <= _GEN_1047;
+        spriteVisibleRegs_56 <= _GEN_1048;
       end
     end else if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      spriteVisibleRegs_56 <= _GEN_1394;
+      spriteVisibleRegs_56 <= _GEN_1395;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_57 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16789,33 +16793,33 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_57 <= _GEN_654;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_57 <= _GEN_655;
       end else begin
-        spriteVisibleRegs_57 <= _GEN_1048;
+        spriteVisibleRegs_57 <= _GEN_1049;
       end
     end else if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      spriteVisibleRegs_57 <= _GEN_1395;
+      spriteVisibleRegs_57 <= _GEN_1396;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_58 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        spriteVisibleRegs_58 <= _T_82;
+        spriteVisibleRegs_58 <= _T_83;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_59 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        spriteVisibleRegs_59 <= _T_82;
+        spriteVisibleRegs_59 <= _T_83;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_60 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        spriteVisibleRegs_60 <= _T_82;
+        spriteVisibleRegs_60 <= _T_83;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
@@ -16823,52 +16827,52 @@ module GameLogic(
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteVisibleRegs_61 <= _GEN_123;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_61 <= _GEN_658;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_61 <= _GEN_659;
       end else begin
-        spriteVisibleRegs_61 <= _GEN_1052;
+        spriteVisibleRegs_61 <= _GEN_1053;
       end
     end else if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteVisibleRegs_61 <= _GEN_123;
     end else begin
-      spriteVisibleRegs_61 <= _GEN_1376;
+      spriteVisibleRegs_61 <= _GEN_1377;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_62 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteVisibleRegs_62 <= _GEN_124;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_62 <= _GEN_659;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_62 <= _GEN_660;
       end else begin
-        spriteVisibleRegs_62 <= _GEN_1053;
+        spriteVisibleRegs_62 <= _GEN_1054;
       end
     end else if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteVisibleRegs_62 <= _GEN_124;
     end else begin
-      spriteVisibleRegs_62 <= _GEN_1377;
+      spriteVisibleRegs_62 <= _GEN_1378;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 125:34]
       spriteVisibleRegs_63 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 125:34]
     end else if (3'h0 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteVisibleRegs_63 <= _GEN_125;
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spriteVisibleRegs_63 <= _GEN_660;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spriteVisibleRegs_63 <= _GEN_661;
       end else begin
-        spriteVisibleRegs_63 <= _GEN_1054;
+        spriteVisibleRegs_63 <= _GEN_1055;
       end
     end else if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       spriteVisibleRegs_63 <= _GEN_125;
     end else begin
-      spriteVisibleRegs_63 <= _GEN_1378;
+      spriteVisibleRegs_63 <= _GEN_1379;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 126:36]
       spriteScaleTypeRegs_0 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 126:36]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-          spriteScaleTypeRegs_0 <= _GEN_345;
+        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+          spriteScaleTypeRegs_0 <= _GEN_346;
         end
       end
     end
@@ -16876,8 +16880,8 @@ module GameLogic(
       spriteScaleTypeRegs_1 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 126:36]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-          spriteScaleTypeRegs_1 <= _GEN_350;
+        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+          spriteScaleTypeRegs_1 <= _GEN_351;
         end
       end
     end
@@ -16885,8 +16889,8 @@ module GameLogic(
       spriteScaleTypeRegs_2 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 126:36]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-          spriteScaleTypeRegs_2 <= _GEN_355;
+        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+          spriteScaleTypeRegs_2 <= _GEN_356;
         end
       end
     end
@@ -16894,8 +16898,8 @@ module GameLogic(
       spriteScaleTypeRegs_3 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 126:36]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-          spriteScaleTypeRegs_3 <= _GEN_360;
+        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+          spriteScaleTypeRegs_3 <= _GEN_361;
         end
       end
     end
@@ -16903,8 +16907,8 @@ module GameLogic(
       spriteScaleTypeRegs_4 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 126:36]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-          spriteScaleTypeRegs_4 <= _GEN_365;
+        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+          spriteScaleTypeRegs_4 <= _GEN_366;
         end
       end
     end
@@ -16912,8 +16916,8 @@ module GameLogic(
       spriteScaleTypeRegs_5 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 126:36]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-          spriteScaleTypeRegs_5 <= _GEN_370;
+        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+          spriteScaleTypeRegs_5 <= _GEN_371;
         end
       end
     end
@@ -16921,8 +16925,8 @@ module GameLogic(
       spriteScaleTypeRegs_6 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 126:36]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-          spriteScaleTypeRegs_6 <= _GEN_375;
+        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+          spriteScaleTypeRegs_6 <= _GEN_376;
         end
       end
     end
@@ -16930,8 +16934,8 @@ module GameLogic(
       spriteScaleTypeRegs_7 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 126:36]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-          spriteScaleTypeRegs_7 <= _GEN_380;
+        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+          spriteScaleTypeRegs_7 <= _GEN_381;
         end
       end
     end
@@ -16939,8 +16943,8 @@ module GameLogic(
       spriteScaleTypeRegs_8 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 126:36]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-          spriteScaleTypeRegs_8 <= _GEN_385;
+        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+          spriteScaleTypeRegs_8 <= _GEN_386;
         end
       end
     end
@@ -16948,52 +16952,52 @@ module GameLogic(
       spriteScaleTypeRegs_9 <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 126:36]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-          spriteScaleTypeRegs_9 <= _GEN_390;
+        if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+          spriteScaleTypeRegs_9 <= _GEN_391;
         end
       end
     end
-    initializePositions <= reset | _GEN_1673; // @[\\src\\main\\scala\\GameLogic.scala 130:{36,36}]
+    initializePositions <= reset | _GEN_1674; // @[\\src\\main\\scala\\GameLogic.scala 130:{36,36}]
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 168:42]
       sprite58ScaleUpHorizontal <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 168:42]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        sprite58ScaleUpHorizontal <= _GEN_1253;
+        sprite58ScaleUpHorizontal <= _GEN_1254;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 169:40]
       sprite58ScaleUpVertical <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 169:40]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        sprite58ScaleUpVertical <= _GEN_1256;
+        sprite58ScaleUpVertical <= _GEN_1257;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 170:42]
       sprite59ScaleUpHorizontal <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 170:42]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        sprite59ScaleUpHorizontal <= _GEN_1254;
+        sprite59ScaleUpHorizontal <= _GEN_1255;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 171:40]
       sprite59ScaleUpVertical <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 171:40]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        sprite59ScaleUpVertical <= _GEN_1257;
+        sprite59ScaleUpVertical <= _GEN_1258;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 172:42]
       sprite60ScaleUpHorizontal <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 172:42]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        sprite60ScaleUpHorizontal <= _GEN_1255;
+        sprite60ScaleUpHorizontal <= _GEN_1256;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 173:40]
       sprite60ScaleUpVertical <= 1'h0; // @[\\src\\main\\scala\\GameLogic.scala 173:40]
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        sprite60ScaleUpVertical <= _GEN_1258;
+        sprite60ScaleUpVertical <= _GEN_1259;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 201:28]
@@ -17001,7 +17005,7 @@ module GameLogic(
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (!(3'h1 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
         if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-          viewBoxXReg <= _GEN_1379;
+          viewBoxXReg <= _GEN_1380;
         end
       end
     end
@@ -17010,7 +17014,7 @@ module GameLogic(
     end else if (!(3'h0 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (!(3'h1 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
         if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-          viewBoxYReg <= _GEN_1380;
+          viewBoxYReg <= _GEN_1381;
         end
       end
     end
@@ -17024,7 +17028,7 @@ module GameLogic(
       end
     end else if (!(3'h1 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (3'h2 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        lvlReg <= _GEN_1291;
+        lvlReg <= _GEN_1292;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 222:25]
@@ -17036,10 +17040,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (isBlinking) begin // @[\\src\\main\\scala\\GameLogic.scala 553:24]
-        livesReg <= _GEN_1170;
+      if (isBlinking) begin // @[\\src\\main\\scala\\GameLogic.scala 555:24]
+        livesReg <= _GEN_1171;
       end else begin
-        livesReg <= _GEN_1158;
+        livesReg <= _GEN_1159;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 225:29]
@@ -17051,8 +17055,8 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 357:29]
-        extraLifeCnt <= _GEN_395;
+      if (_T) begin // @[\\src\\main\\scala\\GameLogic.scala 359:29]
+        extraLifeCnt <= _GEN_396;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 231:34]
@@ -17064,13 +17068,13 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        spawnDelayCounter <= _GEN_662;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        spawnDelayCounter <= _GEN_663;
       end else begin
-        spawnDelayCounter <= _GEN_1056;
+        spawnDelayCounter <= _GEN_1057;
       end
     end else if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      spawnDelayCounter <= _GEN_1365;
+      spawnDelayCounter <= _GEN_1366;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 232:34]
       nextSpriteToSpawn <= 6'h0; // @[\\src\\main\\scala\\GameLogic.scala 232:34]
@@ -17081,13 +17085,13 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 448:28]
-        nextSpriteToSpawn <= _GEN_661;
+      if (lvlReg == 2'h1) begin // @[\\src\\main\\scala\\GameLogic.scala 450:28]
+        nextSpriteToSpawn <= _GEN_662;
       end else begin
-        nextSpriteToSpawn <= _GEN_1055;
+        nextSpriteToSpawn <= _GEN_1056;
       end
     end else if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      nextSpriteToSpawn <= _GEN_1364;
+      nextSpriteToSpawn <= _GEN_1365;
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 235:24]
       starCnt <= 10'h0; // @[\\src\\main\\scala\\GameLogic.scala 235:24]
@@ -17098,10 +17102,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (starCnt == 10'h0) begin // @[\\src\\main\\scala\\GameLogic.scala 592:29]
-        starCnt <= _starCnt_T_1; // @[\\src\\main\\scala\\GameLogic.scala 605:17]
+      if (starCnt == 10'h0) begin // @[\\src\\main\\scala\\GameLogic.scala 594:29]
+        starCnt <= _starCnt_T_1; // @[\\src\\main\\scala\\GameLogic.scala 607:17]
       end else begin
-        starCnt <= _GEN_1246;
+        starCnt <= _GEN_1247;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 238:34]
@@ -17113,10 +17117,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (isBlinking) begin // @[\\src\\main\\scala\\GameLogic.scala 553:24]
-        collisionDetected <= _GEN_1172;
+      if (isBlinking) begin // @[\\src\\main\\scala\\GameLogic.scala 555:24]
+        collisionDetected <= _GEN_1173;
       end else begin
-        collisionDetected <= _GEN_1155;
+        collisionDetected <= _GEN_1156;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 239:29]
@@ -17128,10 +17132,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (isBlinking) begin // @[\\src\\main\\scala\\GameLogic.scala 553:24]
-        blinkCounter <= _GEN_1164;
+      if (isBlinking) begin // @[\\src\\main\\scala\\GameLogic.scala 555:24]
+        blinkCounter <= _GEN_1165;
       end else begin
-        blinkCounter <= _GEN_1160;
+        blinkCounter <= _GEN_1161;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 240:27]
@@ -17143,10 +17147,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (isBlinking) begin // @[\\src\\main\\scala\\GameLogic.scala 553:24]
-        blinkTimes <= _GEN_1165;
+      if (isBlinking) begin // @[\\src\\main\\scala\\GameLogic.scala 555:24]
+        blinkTimes <= _GEN_1166;
       end else begin
-        blinkTimes <= _GEN_1161;
+        blinkTimes <= _GEN_1162;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 241:27]
@@ -17158,10 +17162,10 @@ module GameLogic(
         end
       end
     end else if (3'h1 == stateReg) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-      if (isBlinking) begin // @[\\src\\main\\scala\\GameLogic.scala 553:24]
-        isBlinking <= _GEN_1168;
+      if (isBlinking) begin // @[\\src\\main\\scala\\GameLogic.scala 555:24]
+        isBlinking <= _GEN_1169;
       end else begin
-        isBlinking <= _GEN_1159;
+        isBlinking <= _GEN_1160;
       end
     end
     if (reset) begin // @[\\src\\main\\scala\\GameLogic.scala 247:38]
@@ -17174,27 +17178,27 @@ module GameLogic(
       end
     end else if (!(3'h1 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
       if (!(3'h2 == stateReg)) begin // @[\\src\\main\\scala\\GameLogic.scala 336:20]
-        gameOverReturnPressed <= _GEN_1396;
+        gameOverReturnPressed <= _GEN_1397;
       end
     end
-    spriteXRegs_58_REG <= $signed(spriteXRegs_59) - 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 593:52]
-    spriteYRegs_58_REG <= $signed(spriteYRegs_59) - 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 594:52]
-    spriteXRegs_59_REG <= $signed(spriteXRegs_60) - 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 595:52]
-    spriteYRegs_59_REG <= $signed(spriteYRegs_60) - 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 596:52]
-    spriteXRegs_60_REG <= $signed(spriteXRegs_58) - 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 597:52]
-    spriteYRegs_60_REG <= $signed(spriteYRegs_58) - 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 598:52]
-    spriteXRegs_58_REG_1 <= $signed(spriteXRegs_59) - 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 621:52]
-    spriteYRegs_58_REG_1 <= $signed(spriteYRegs_59) - 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 622:52]
-    spriteXRegs_59_REG_1 <= $signed(spriteXRegs_60) - 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 623:52]
-    spriteYRegs_59_REG_1 <= $signed(spriteYRegs_60) - 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 624:52]
-    spriteXRegs_60_REG_1 <= $signed(spriteXRegs_58) - 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 625:52]
-    spriteYRegs_60_REG_1 <= $signed(spriteYRegs_58) - 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 626:52]
-    spriteXRegs_58_REG_2 <= $signed(spriteXRegs_59) - 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 649:52]
-    spriteYRegs_58_REG_2 <= $signed(spriteYRegs_59) - 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 650:52]
-    spriteXRegs_59_REG_2 <= $signed(spriteXRegs_60) - 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 651:52]
-    spriteYRegs_59_REG_2 <= $signed(spriteYRegs_60) - 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 652:52]
-    spriteXRegs_60_REG_2 <= $signed(spriteXRegs_58) - 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 653:52]
-    spriteYRegs_60_REG_2 <= $signed(spriteYRegs_58) - 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 654:52]
+    spriteXRegs_58_REG <= $signed(spriteXRegs_59) - 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 595:52]
+    spriteYRegs_58_REG <= $signed(spriteYRegs_59) - 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 596:52]
+    spriteXRegs_59_REG <= $signed(spriteXRegs_60) - 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 597:52]
+    spriteYRegs_59_REG <= $signed(spriteYRegs_60) - 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 598:52]
+    spriteXRegs_60_REG <= $signed(spriteXRegs_58) - 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 599:52]
+    spriteYRegs_60_REG <= $signed(spriteYRegs_58) - 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 600:52]
+    spriteXRegs_58_REG_1 <= $signed(spriteXRegs_59) - 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 623:52]
+    spriteYRegs_58_REG_1 <= $signed(spriteYRegs_59) - 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 624:52]
+    spriteXRegs_59_REG_1 <= $signed(spriteXRegs_60) - 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 625:52]
+    spriteYRegs_59_REG_1 <= $signed(spriteYRegs_60) - 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 626:52]
+    spriteXRegs_60_REG_1 <= $signed(spriteXRegs_58) - 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 627:52]
+    spriteYRegs_60_REG_1 <= $signed(spriteYRegs_58) - 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 628:52]
+    spriteXRegs_58_REG_2 <= $signed(spriteXRegs_59) - 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 651:52]
+    spriteYRegs_58_REG_2 <= $signed(spriteYRegs_59) - 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 652:52]
+    spriteXRegs_59_REG_2 <= $signed(spriteXRegs_60) - 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 653:52]
+    spriteYRegs_59_REG_2 <= $signed(spriteYRegs_60) - 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 654:52]
+    spriteXRegs_60_REG_2 <= $signed(spriteXRegs_58) - 11'sh10; // @[\\src\\main\\scala\\GameLogic.scala 655:52]
+    spriteYRegs_60_REG_2 <= $signed(spriteYRegs_58) - 10'sh10; // @[\\src\\main\\scala\\GameLogic.scala 656:52]
   end
 // Register and memory initialization
 `ifdef RANDOMIZE_GARBAGE_ASSIGN

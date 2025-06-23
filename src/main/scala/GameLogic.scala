@@ -339,9 +339,11 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         when(gameOverReturnPressed) {
           resetGame()
           gameOverReturnPressed := false.B
-          stateReg := menu
-        }.otherwise {
+          stateReg := menu // or autonomousMove if you want to skip menu
+        }.elsewhen(livesReg === 0.U) {
           stateReg := gameOver
+        }.otherwise {
+          stateReg := autonomousMove // <-- go to autonomousMove here
         }
       }
     }
