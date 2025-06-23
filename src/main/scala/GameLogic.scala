@@ -109,7 +109,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   // Write here your game logic
   // (you might need to change the initialization values above)
   /////////////////////////////////////////////////////////////////
-  val idle :: autonomousMove :: menu :: lvl1 :: lvl2 :: lvl3 :: move :: slut :: Nil = Enum(8)
+  val idle :: autonomousMove :: menu :: lvl1 :: lvl2 :: lvl3 :: move :: slut :: gameOver :: Nil = Enum(9)
   val stateReg = RegInit(idle)
 
   //===========================================
@@ -199,7 +199,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   //Dificulty control variables
   val difficulty = Module(new Difficulty)
   val speed = difficulty.io.speed
-  val damage = difficulty.io.damage
   val lvlReg = RegInit(0.U(2.W))
   difficulty.io.level := lvlReg
   val spawnCounter = RegInit(0.U(8.W))
@@ -208,6 +207,13 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
   //Score Register
   val scoreReg = RegInit(0.U(16.W))
+  val currentScore = difficulty.io.score
+
+  //Liv Reg
+  val livesReg = RegInit(3.U(3.W)) // Start med 3 liv
+
+  //nulstil speed
+  difficulty.io.resetSpeed := (stateReg === menu && livesReg === 3.U)
 
   //First time spawning sprites registers
   val spawnDelayCounter = RegInit(0.U(8.W))
@@ -242,6 +248,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     is(autonomousMove) {
 
       //=================OBSTACLES RANDOM RESPAWNING===================
+      //Scoring
+      scoreReg := currentScore
       // Spawn logic
       spawnCounter := Mux(spawnReady, 0.U, spawnCounter + 1.U)
       val spawnConditions = (lvlReg =/= 0.U) //&& spawnReady
@@ -253,7 +261,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           when(spriteXRegs(i) >= 640.S) {
             spriteXRegs(i) := -32.S
             spriteYRegs(i) := (lfsr.io.out(i - 16) * 2.U).asSInt
-            scoreReg := scoreReg + lvlReg
           }.elsewhen(spriteVisibleRegs(i)) {
             spriteXRegs(i) := spriteXRegs(i) + speed
           }
@@ -263,7 +270,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           when(spriteXRegs(i) >= 640.S) {
             spriteXRegs(i) := -32.S
             spriteYRegs(i) := (lfsr.io.out(i - 26) * 2.U).asSInt
-            scoreReg := scoreReg + lvlReg
           }.elsewhen(spriteVisibleRegs(i)) {
             spriteXRegs(i) := spriteXRegs(i) + speed
           }
@@ -273,7 +279,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           when(spriteXRegs(i) >= 640.S) {
             spriteXRegs(i) := -32.S
             spriteYRegs(i) := (lfsr.io.out(i - 16) * 2.U).asSInt
-            scoreReg := scoreReg + lvlReg
           }.elsewhen(spriteVisibleRegs(i)) {
             spriteXRegs(i) := spriteXRegs(i) + speed
           }
@@ -367,6 +372,12 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           isBlinking := false.B
           spriteVisibleRegs(14) := true.B
           collisionDetected := false.B
+          when(livesReg === 0.U) {
+            stateReg := gameOver
+          }
+          when(livesReg =/= 0.U) {
+            livesReg := livesReg - 1.U
+          }
         }
       }
 
@@ -608,6 +619,36 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }
       }
       stateReg := slut
+    }
+    is(gameOver) {
+      // Deaktiver spilaktiviteter og vis game over-sprites
+      spriteVisibleRegs(14) := false.B // skjul spiller
+
+      // Game Over tekst
+      spriteVisibleRegs(46) := true.B
+      spriteVisibleRegs(47) := true.B
+      spriteVisibleRegs(48) := true.B
+      spriteVisibleRegs(49) := true.B
+      spriteVisibleRegs(50) := true.B
+      spriteVisibleRegs(51) := true.B
+      // Return-knap
+      spriteVisibleRegs(52) := true.B
+      spriteVisibleRegs(53) := true.B
+      spriteVisibleRegs(54) := true.B
+      spriteVisibleRegs(55) := true.B
+      spriteVisibleRegs(56) := true.B
+      spriteVisibleRegs(57) := true.B
+
+      // Cursor tilbage til aktiv
+      spriteVisibleRegs(3)  := true.B
+
+      // Hvis spilleren trykker knap, og cursor peger på return
+      when(spriteXRegs(3) > 260.S && spriteXRegs(3) < 380.S && spriteYRegs(3) > 290.S && spriteYRegs(3) < 340.S && io.btnC) {
+        stateReg := menu
+        lvlReg := 0.U
+        livesReg := 3.U
+        scoreReg := 0.U
+      }
     }
 
     is(slut) {
