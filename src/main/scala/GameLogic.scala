@@ -243,6 +243,9 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   //Counts how many cycles are spent in move state
   val moveCnt = RegInit(0.U(5.W))
 
+  //When game is over and return is pressed
+  val gameOverReturnPressed = RegInit(false.B)
+
   //LFSR for pseudo random numberselection
   val lfsr = Module(new LFSR)
 
@@ -333,7 +336,13 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   switch(stateReg) {
     is(idle) {
       when(io.newFrame) {
-        stateReg := autonomousMove
+        when(gameOverReturnPressed) {
+          resetGame()
+          gameOverReturnPressed := false.B
+          stateReg := menu
+        }.otherwise {
+          stateReg := gameOver
+        }
       }
     }
 
@@ -802,12 +811,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       moveAllround(3)
 
       when(cursorOnReturn && io.btnC) {
-        // Reset alt
-        resetGame()
-        stateReg := menu
-      }.otherwise {
-        stateReg := slut
+        gameOverReturnPressed := true.B
       }
+
+      stateReg := slut
     }
     is(slut) {
       io.frameUpdateDone := true.B
