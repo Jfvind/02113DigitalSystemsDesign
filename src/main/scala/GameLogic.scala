@@ -206,7 +206,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val lvlReg = RegInit(0.U(2.W))
   difficulty.io.level := lvlReg
   val spawnCounter = RegInit(0.U(8.W))
-  val spawnReady = spawnCounter === difficulty.io.spawnInterval
+  val spawnReady = spawnCounter >= difficulty.io.spawnInterval
 
 
   //Score Register
@@ -477,13 +477,13 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         when(blinkTimes === 3.U) {
           isBlinking := false.B
           spriteVisibleRegs(14) := true.B
-          collisionDetected := false.B
-          when(livesReg === 0.U) {
+          when(livesReg <= 1.U) {
+            livesReg := 0.U
             stateReg := gameOver
-          }
-          when(livesReg =/= 0.U) {
+          }.otherwise {
             livesReg := livesReg - 1.U
           }
+          collisionDetected := false.B
         }
       }
 
