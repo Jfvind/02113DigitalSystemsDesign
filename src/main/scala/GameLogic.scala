@@ -109,7 +109,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   // Write here your game logic
   // (you might need to change the initialization values above)
   /////////////////////////////////////////////////////////////////
-  val idle :: autonomousMove :: menu :: lvl1 :: lvl2 :: lvl3 :: move :: slut :: gameOver :: Nil = Enum(9)
+  val idle :: autonomousMove :: menu :: lvlInit :: move :: slut :: gameOver :: Nil = Enum(7)
   val stateReg = RegInit(idle)
 
   //===========================================
@@ -241,6 +241,31 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   //LFSR for pseudo random numberselection
   val lfsr = Module(new LFSR)
 
+  //=================Score and health=================
+  when(lvlReg =/= 0.U) {
+    when(livesReg === 3.U) {
+      spriteVisibleRegs(61) := true.B
+      spriteVisibleRegs(62) := true.B
+      spriteVisibleRegs(63) := true.B
+    }.elsewhen(livesReg === 2.U) {
+      spriteVisibleRegs(61) := true.B
+      spriteVisibleRegs(62) := true.B
+      spriteVisibleRegs(63) := false.B
+    }.elsewhen(livesReg === 1.U) {
+      spriteVisibleRegs(61) := true.B
+      spriteVisibleRegs(62) := false.B
+      spriteVisibleRegs(63) := false.B
+    }.otherwise {
+      spriteVisibleRegs(61) := false.B
+      spriteVisibleRegs(62) := false.B
+      spriteVisibleRegs(63) := false.B
+    }
+  }.otherwise {
+    spriteVisibleRegs(61) := false.B
+    spriteVisibleRegs(62) := false.B
+    spriteVisibleRegs(63) := false.B
+  }
+
   //===========================================
   //===========STATE MACHINE===================
   //===========================================
@@ -253,26 +278,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     }
 
     is(autonomousMove) {
-
-      //=================Score and health=================
-      when(livesReg === 3.U) {
-        spriteVisibleRegs(61) := true.B
-        spriteVisibleRegs(62) := true.B
-        spriteVisibleRegs(63) := true.B
-      }.elsewhen(livesReg === 2.U) {
-        spriteVisibleRegs(61) := true.B
-        spriteVisibleRegs(62) := true.B
-        spriteVisibleRegs(63) := false.B
-      }.elsewhen(livesReg === 1.U) {
-        spriteVisibleRegs(61) := true.B
-        spriteVisibleRegs(62) := false.B
-        spriteVisibleRegs(63) := false.B
-      }.otherwise {
-        spriteVisibleRegs(61) := false.B
-        spriteVisibleRegs(62) := false.B
-        spriteVisibleRegs(63) := false.B
-      }
-
       //=================OBSTACLES RANDOM RESPAWNING + RAND SCALE===================
       //Scoring
       scoreReg := currentScore
@@ -612,7 +617,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           spriteVisibleRegs(8) := true.B
           when(io.btnC) {
             lvlReg := 1.U
-            stateReg := lvl1
+            stateReg := lvlInit
           }.otherwise {
             stateReg := move
           }
@@ -621,7 +626,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           spriteVisibleRegs(10) := true.B
           when(io.btnC) {
             lvlReg := 2.U
-            stateReg := lvl2
+            stateReg := lvlInit
           }.otherwise {
             stateReg := move
           }
@@ -630,7 +635,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           spriteVisibleRegs(12) := true.B
           when(io.btnC) {
             lvlReg := 3.U
-            stateReg := lvl3
+            stateReg := lvlInit
           }.otherwise {
             stateReg := move
           }
@@ -640,7 +645,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       }
     }
 
-    is(lvl1) {
+    is(lvlInit) {
+      nextSpriteToSpawn := 0.U
+      spawnDelayCounter := 0.U
+
       spriteXRegs(14) := (640-32).S
       spriteYRegs(14) := 320.S
       spriteVisibleRegs(3) := false.B
@@ -654,49 +662,16 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       spriteVisibleRegs(61) := true.B
       spriteVisibleRegs(62) := true.B
       spriteVisibleRegs(63) := true.B
-      viewBoxXReg := 640.U
-      viewBoxYReg := 0.U
-
-      stateReg := move
-    }
-
-    is(lvl2) {
-      spriteXRegs(14) := (640-32).S
-      spriteYRegs(14) := 320.S
-      spriteVisibleRegs(3) := false.B
-      spriteVisibleRegs(7) := false.B
-      spriteVisibleRegs(8) := false.B
-      spriteVisibleRegs(9) := false.B
-      spriteVisibleRegs(10) := false.B
-      spriteVisibleRegs(11) := false.B
-      spriteVisibleRegs(12) := false.B
-      spriteVisibleRegs(14) := true.B
-      spriteVisibleRegs(61) := true.B
-      spriteVisibleRegs(62) := true.B
-      spriteVisibleRegs(63) := true.B
-      viewBoxXReg := 0.U
-      viewBoxYReg := 480.U
-
-      stateReg := move
-    }
-
-    is(lvl3) {
-      spriteXRegs(14) := (640-32).S
-      spriteYRegs(14) := 320.S
-      spriteVisibleRegs(3) := false.B
-      spriteVisibleRegs(7) := false.B
-      spriteVisibleRegs(8) := false.B
-      spriteVisibleRegs(9) := false.B
-      spriteVisibleRegs(10) := false.B
-      spriteVisibleRegs(11) := false.B
-      spriteVisibleRegs(12) := false.B
-      spriteVisibleRegs(14) := true.B
-      spriteVisibleRegs(61) := true.B
-      spriteVisibleRegs(62) := true.B
-      spriteVisibleRegs(63) := true.B
-      viewBoxXReg := 640.U
-      viewBoxYReg := 480.U
-
+      when(lvlReg === 1.U) {
+        viewBoxXReg := 640.U
+        viewBoxYReg := 0.U
+      }.elsewhen(lvlReg === 2.U) {
+        viewBoxXReg := 0.U
+        viewBoxYReg := 480.U
+      }.elsewhen(lvlReg === 3.U) {
+        viewBoxXReg := 640.U
+        viewBoxYReg := 480.U
+      }
       stateReg := move
     }
 
