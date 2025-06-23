@@ -260,7 +260,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         for (i <- 16 to 25) {
           when(spriteXRegs(i) >= 640.S) {
             spriteXRegs(i) := -32.S
-            spriteYRegs(i) := (lfsr.io.out(i - 16) * 2.U).asSInt
+            spriteYRegs(i) := (lfsr.io.out(i - 16)).asSInt
           }.elsewhen(spriteVisibleRegs(i)) {
             spriteXRegs(i) := spriteXRegs(i) + speed
           }
@@ -269,7 +269,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         for (i <- 26 to 35) {
           when(spriteXRegs(i) >= 640.S) {
             spriteXRegs(i) := -32.S
-            spriteYRegs(i) := (lfsr.io.out(i - 26) * 2.U).asSInt
+            spriteYRegs(i) := (lfsr.io.out(i - 26)).asSInt
           }.elsewhen(spriteVisibleRegs(i)) {
             spriteXRegs(i) := spriteXRegs(i) + speed
           }
@@ -278,7 +278,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         for (i <- 36 to 45) {
           when(spriteXRegs(i) >= 640.S) {
             spriteXRegs(i) := -32.S
-            spriteYRegs(i) := (lfsr.io.out(i - 16) * 2.U).asSInt
+            spriteYRegs(i) := (lfsr.io.out(i - 16)).asSInt
           }.elsewhen(spriteVisibleRegs(i)) {
             spriteXRegs(i) := spriteXRegs(i) + speed
           }
