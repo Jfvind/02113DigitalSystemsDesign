@@ -117,11 +117,15 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   //===========================================
 
   //TRegisters holding X,Y positions and visibility and flips of the sprites
+  // Register that represents the scaletype of the respective obstacles
   val spriteXRegs = RegInit(VecInit(Seq.fill(61)(0.S(11.W))))
   val spriteYRegs = RegInit(VecInit(Seq.fill(61)(0.S(10.W))))
   val spriteFlipHorizontalRegs = RegInit(VecInit(Seq.fill(61)(false.B)))
   val spriteFlipVerticalRegs = RegInit(VecInit(Seq.fill(61)(false.B)))
   val spriteVisibleRegs = RegInit(VecInit(Seq.fill(61)(false.B)))
+  val spriteScaleTypeRegs = RegInit(VecInit(Seq.fill(30)(0.U(1.W)))) // 30 registers, type 0/1 --> scale 1x/2x
+
+
 
   // Define initial positions as a lookup table
   val initializePositions = RegInit(true.B)
@@ -247,7 +251,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
     is(autonomousMove) {
 
-      //=================OBSTACLES RANDOM RESPAWNING===================
+      //=================OBSTACLES RANDOM RESPAWNING + RAND SCALE===================
       //Scoring
       scoreReg := currentScore
       // Spawn logic
@@ -258,29 +262,83 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         //Sprites respawning on the left side, when exiting viewbox on the right side and move logic
         //lvl1 obstacles
         for (i <- 16 to 25) {
+          val index = i - 16
+
           when(spriteXRegs(i) >= 640.S) {
             spriteXRegs(i) := -32.S
             spriteYRegs(i) := (lfsr.io.out(i - 16) * 2.U).asSInt
+
+            // Logik for skaleringsType
+            when(lsfr.io.out(index)(8) === 0.U) {
+              spriteScaleTypeRegs(index) := 0.U // Sæt type 0 
+            } .otherwise {
+              spriteScaleTypeRegs(index) := 1.U // Sæt type 1
+            }
           }.elsewhen(spriteVisibleRegs(i)) {
             spriteXRegs(i) := spriteXRegs(i) + speed
+          }
+
+          // Logik for selveste skaleringen
+          when(spriteScaleTypeRegs(index) === 0.U) {
+            io.spriteScaleUpHorizontal(i) := false.B // Ingen skalering i x-retning
+            io.spriteScaleUpVertical(i) := false.B // Ingen skalering i y-retning
+          } .otherwise {
+            io.spriteScaleUpHorizontal := true.B // 2x skalering i x-retning
+            io.spriteScaleUpVertical := true.B // 2x skalering i y-retning
           }
         }
         //lvl2 obstacles
         for (i <- 26 to 35) {
+          val index = i - 26
+
           when(spriteXRegs(i) >= 640.S) {
             spriteXRegs(i) := -32.S
             spriteYRegs(i) := (lfsr.io.out(i - 26) * 2.U).asSInt
+
+            // Logik for skaleringstype
+            when (lsfr.io.out(index)(8) === 0.U) {
+              spriteScaleTypeRegs(index) := 0.U
+            } .otherwise {
+              spriteScaleTypeRegs(index) := 1.U
+            }
           }.elsewhen(spriteVisibleRegs(i)) {
             spriteXRegs(i) := spriteXRegs(i) + speed
+          }
+
+          // Logik for selveste skaleringen
+          when(spriteScaleTypeRegs(index) === 0.U) {
+            io.spriteScaleUpHorizontal(i) := false.B // ingen skalering i x-retning
+            io.spriteScaleUpVertical(i) := false.b // ingen skalering i y-retning
+          } .otherwise {
+            io.spriteScaleUpHorizontal(i) := true.B // 2x skalering i x-retning
+            io.spriteScaleUpVertical(i) := true.B // 2x skalering i y-retning
           }
         }
         //lvl3 obstacles
         for (i <- 36 to 45) {
+          val index = i - 36
+
           when(spriteXRegs(i) >= 640.S) {
             spriteXRegs(i) := -32.S
             spriteYRegs(i) := (lfsr.io.out(i - 16) * 2.U).asSInt
+
+            // Logik for sklaringstype
+            when (lsfr.io.out(index)(8) === 0.U) {
+              spriteScaleTypeRegs(index) := 0.U
+            } .otherwise {
+              spriteScaleTypeRegs(index) := 1.U 
+            }
           }.elsewhen(spriteVisibleRegs(i)) {
             spriteXRegs(i) := spriteXRegs(i) + speed
+          }
+
+          // Logik for selveste skaleringen
+          when (spriteScaleTypeRegs(index) === 0.U) {
+            io.spriteScaleUpHorizontal(i) := false.b // ingen skalering i x-retning
+            io.spriteScaleUpVertical(i) := false.b // ingen skalering i y-retning
+          } .otherwise {
+            io.spriteScaleUpHorizontal(i) := true.b // 2x skalering i x-retning
+            io. spriteScaleUpVertical(i) := true.b // 2x skalering i y-retning
           }
         }
       }
