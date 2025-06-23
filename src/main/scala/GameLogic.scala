@@ -295,12 +295,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
             spriteXRegs(i) := -32.S
             spriteYRegs(i) := (lfsr.io.out(i - 16)).asSInt
 
-            // Logik for skaleringsType
-            when(lfsr.io.out(index)(8) === 0.U) {
-              spriteScaleTypeRegs(index) := 0.U // Sæt type 0 
-            } .otherwise {
-              spriteScaleTypeRegs(index) := 1.U // Sæt type 1
-            }
+            spriteScaleTypeRegs(index) := lfsr.io.out(index)(8)
+           
           }.elsewhen(spriteVisibleRegs(i)) {
             spriteXRegs(i) := spriteXRegs(i) + speed
           }
@@ -322,12 +318,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
             spriteXRegs(i) := -32.S
             spriteYRegs(i) := (lfsr.io.out(i - 26)).asSInt
 
-            // Logik for skaleringstype
-            when (lfsr.io.out(index)(8) === 0.U) {
-              spriteScaleTypeRegs(index) := 0.U
-            } .otherwise {
-              spriteScaleTypeRegs(index) := 1.U
-            }
+            spriteScaleTypeRegs(index) := lfsr.io.out(index)(8)
+
           }.elsewhen(spriteVisibleRegs(i)) {
             spriteXRegs(i) := spriteXRegs(i) + speed
           }
@@ -349,12 +341,9 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
             spriteXRegs(i) := -32.S
             spriteYRegs(i) := (lfsr.io.out(i - 16)).asSInt
 
-            // Logik for sklaringstype
-            when (lfsr.io.out(index)(8) === 0.U) {
-              spriteScaleTypeRegs(index) := 0.U
-            } .otherwise {
-              spriteScaleTypeRegs(index) := 1.U 
-            }
+
+            spriteScaleTypeRegs(index) := lfsr.io.out(index)(8)
+
           }.elsewhen(spriteVisibleRegs(i)) {
             spriteXRegs(i) := spriteXRegs(i) + speed
           }
