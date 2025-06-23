@@ -448,10 +448,16 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       //lvl1 obstacles
       when(!isBlinking) {
         for (i <- 16 to 25) {
+          val index = i - 16
+          val baseWidth = 26.U
+          val baseHeight = 15.U
+          val obstacleWidth = Mux(spriteScaleTypeRegs(index) === 1.U, baseWidth * 2.U, baseWidth)
+          val obstacleHeight = Mux(spriteScaleTypeRegs(index) === 1.U, baseHeight * 2.U, baseHeight)
+
           when(
             spriteVisibleRegs(i) && (spriteXRegs(i) <= 640.S) &&
-              (spriteXRegs(14) < spriteXRegs(i) + 26.S) && (spriteXRegs(i) < spriteXRegs(14) + 8.S) &&
-              (spriteYRegs(14) < spriteYRegs(i) + 15.S) && (spriteYRegs(i) < spriteYRegs(14) + 11.S)
+              (spriteXRegs(14) < spriteXRegs(i) + obstacleWidth.asSInt) && (spriteXRegs(i) < spriteXRegs(14) + 8.S) &&
+              (spriteYRegs(14) < spriteYRegs(i) + obstacleHeight.asSInt) && (spriteYRegs(i) < spriteYRegs(14) + 11.S)
           ) {
             collisionDetected := true.B
           }
@@ -460,10 +466,16 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       //lvl2 obstacles
       when(!isBlinking) {
         for (i <- 26 to 35) {
+          val index = i - 26
+          val baseWidth = 29.U
+          val baseHeight = 15.U
+          val obstacleWidth = Mux(spriteScaleTypeRegs(index) === 1.U, baseWidth * 2.U, baseWidth)
+          val obstacleHeight = Mux(spriteScaleTypeRegs(index) === 1.U, baseHeight * 2.U, baseHeight)
+
           when(
             spriteVisibleRegs(i) &&
-              (spriteXRegs(14) < spriteXRegs(i) + 29.S) && (spriteXRegs(i) < spriteXRegs(14) + 8.S) &&
-              (spriteYRegs(14) < spriteYRegs(i) + 15.S) && (spriteYRegs(i) < spriteYRegs(14) + 11.S)
+              (spriteXRegs(14) < spriteXRegs(i) + obstacleWidth.asSInt) && (spriteXRegs(i) < spriteXRegs(14) + 8.S) &&
+              (spriteYRegs(14) < spriteYRegs(i) + obstacleHeight.asSInt) && (spriteYRegs(i) < spriteYRegs(14) + 11.S)
           ) {
             collisionDetected := true.B
           }
@@ -472,10 +484,15 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       //lvl3 obstacles
       when(!isBlinking) {
         for (i <- 36 to 45) {
+          val index = i - 36
+          val baseWidth = 32.U
+          val baseHeight = 15.U
+          val obstacleWidth = Mux(spriteScaleTypeRegs(index) === 1.U, baseWidth * 2.U, baseWidth)
+          val obstacleHeight = Mux(spriteScaleTypeRegs(index) === 1.U, baseHeight * 2.U, baseHeight)
           when(
             spriteVisibleRegs(i) &&
-              (spriteXRegs(14) < spriteXRegs(i) + 32.S) && (spriteXRegs(i) < spriteXRegs(14) + 8.S) &&
-              (spriteYRegs(14) < spriteYRegs(i) + 15.S) && (spriteYRegs(i) < spriteYRegs(14) + 11.S)
+              (spriteXRegs(14) < spriteXRegs(i) + obstacleWidth.asSInt) && (spriteXRegs(i) < spriteXRegs(14) + 8.S) &&
+              (spriteYRegs(14) < spriteYRegs(i) + obstacleHeight.asSInt) && (spriteYRegs(i) < spriteYRegs(14) + 11.S)
           ) {
             collisionDetected := true.B
           }
