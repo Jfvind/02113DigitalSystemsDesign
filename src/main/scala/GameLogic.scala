@@ -118,11 +118,11 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
   //TRegisters holding X,Y positions and visibility and flips of the sprites
   // Register that represents the scaletype of the respective obstacles
-  val spriteXRegs = RegInit(VecInit(Seq.fill(61)(0.S(11.W))))
-  val spriteYRegs = RegInit(VecInit(Seq.fill(61)(0.S(10.W))))
-  val spriteFlipHorizontalRegs = RegInit(VecInit(Seq.fill(61)(false.B)))
-  val spriteFlipVerticalRegs = RegInit(VecInit(Seq.fill(61)(false.B)))
-  val spriteVisibleRegs = RegInit(VecInit(Seq.fill(61)(false.B)))
+  val spriteXRegs = RegInit(VecInit(Seq.fill(64)(0.S(11.W))))
+  val spriteYRegs = RegInit(VecInit(Seq.fill(64)(0.S(10.W))))
+  val spriteFlipHorizontalRegs = RegInit(VecInit(Seq.fill(64)(false.B)))
+  val spriteFlipVerticalRegs = RegInit(VecInit(Seq.fill(64)(false.B)))
+  val spriteVisibleRegs = RegInit(VecInit(Seq.fill(64)(false.B)))
   val spriteScaleTypeRegs = RegInit(VecInit(Seq.fill(30)(0.U(1.W)))) // 30 registers, type 0/1 --> scale 1x/2x
 
 
@@ -153,8 +153,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     (47, 20, 290), (48, 20, 290), (49, 20, 290), (50, 20, 290), (51, 20, 290),
     (52, 20, 290), //Return x6
     (53, 20, 290), (54, 20, 290), (55, 20, 290), (56, 20, 290), (57, 20, 290),
-    (58, 320, 20), //Star x3
-    (59, 500, 70), (60, 150, 100)
+    (58, 320, 20), (59, 500, 70), (60, 150, 100), //star x3
+    (61, 20, 20), (62, 60, 20), (63, 100, 20) //heart 3x
     ).map { case (id, x, y) => (id.U, x.S, y.S) }
 
     // Initialize in a loop
@@ -216,6 +216,9 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   //Liv Reg
   val livesReg = RegInit(3.U(3.W)) // Start med 3 liv
 
+  //Extra life (power-up) counter
+  val extraLifeCnt = RegInit(0.U(10.W))
+
   //nulstil speed
   difficulty.io.resetSpeed := (stateReg === menu && livesReg === 3.U)
 
@@ -250,6 +253,25 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     }
 
     is(autonomousMove) {
+
+      //=================Score and health=================
+      when(livesReg === 3.U) {
+        spriteVisibleRegs(61) := true.B
+        spriteVisibleRegs(62) := true.B
+        spriteVisibleRegs(63) := true.B
+      }.elsewhen(livesReg === 2.U) {
+        spriteVisibleRegs(61) := true.B
+        spriteVisibleRegs(62) := true.B
+        spriteVisibleRegs(63) := false.B
+      }.elsewhen(livesReg === 1.U) {
+        spriteVisibleRegs(61) := true.B
+        spriteVisibleRegs(62) := false.B
+        spriteVisibleRegs(63) := false.B
+      }.otherwise {
+        spriteVisibleRegs(61) := false.B
+        spriteVisibleRegs(62) := false.B
+        spriteVisibleRegs(63) := false.B
+      }
 
       //=================OBSTACLES RANDOM RESPAWNING + RAND SCALE===================
       //Scoring
@@ -341,6 +363,17 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
             io. spriteScaleUpVertical(i) := true.B // 2x skalering i y-retning
           }
         }
+
+        //spawning extra life
+        when(extraLifeCnt === 600.U) {
+          spriteVisibleRegs(13) := true.B
+          extraLifeCnt := 0.U
+        }.otherwise {
+          extraLifeCnt := extraLifeCnt + 1.U
+        }
+        when(spriteXRegs(13) >= 640.S) {
+          spriteVisibleRegs(13) := false.B
+        }
       }
 
       //==============OBSTACLES FIRST SPAWN===============
@@ -404,6 +437,16 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         ) {
           collisionDetected := true.B
         }
+      }
+
+      //extra life collision
+      when(
+        spriteVisibleRegs(13) &&
+        (spriteXRegs(14) < spriteXRegs(13) + 22.S) && (spriteXRegs(13) < spriteXRegs(14) + 8.S) &&
+        (spriteYRegs(14) < spriteYRegs(13) + 22.S) && (spriteYRegs(13) < spriteYRegs(14) + 11.S)
+      ) {
+        spriteVisibleRegs(13) := false.B
+        livesReg := livesReg + 1.U
       }
 
       // Start blinking if collision detected and not already blinking
@@ -603,6 +646,9 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       spriteVisibleRegs(11) := false.B
       spriteVisibleRegs(12) := false.B
       spriteVisibleRegs(14) := true.B
+      spriteVisibleRegs(61) := true.B
+      spriteVisibleRegs(62) := true.B
+      spriteVisibleRegs(63) := true.B
       viewBoxXReg := 640.U
       viewBoxYReg := 0.U
 
@@ -620,6 +666,9 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       spriteVisibleRegs(11) := false.B
       spriteVisibleRegs(12) := false.B
       spriteVisibleRegs(14) := true.B
+      spriteVisibleRegs(61) := true.B
+      spriteVisibleRegs(62) := true.B
+      spriteVisibleRegs(63) := true.B
       viewBoxXReg := 0.U
       viewBoxYReg := 480.U
 
@@ -637,6 +686,9 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       spriteVisibleRegs(11) := false.B
       spriteVisibleRegs(12) := false.B
       spriteVisibleRegs(14) := true.B
+      spriteVisibleRegs(61) := true.B
+      spriteVisibleRegs(62) := true.B
+      spriteVisibleRegs(63) := true.B
       viewBoxXReg := 640.U
       viewBoxYReg := 480.U
 
