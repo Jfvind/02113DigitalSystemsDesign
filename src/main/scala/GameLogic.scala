@@ -462,7 +462,9 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         (spriteYRegs(14) < spriteYRegs(13) + 22.S) && (spriteYRegs(13) < spriteYRegs(14) + 11.S)
       ) {
         spriteVisibleRegs(13) := false.B
-        livesReg := livesReg + 1.U
+        when(livesReg < 3.U) {
+          livesReg := livesReg + 1.U
+        }
       }
 
       // Start blinking if collision detected and not already blinking
