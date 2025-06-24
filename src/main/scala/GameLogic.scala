@@ -387,11 +387,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       scoreReg := currentScore
 
       // Logik for at starte writecounter process
-<<<<<<< HEAD
       when (io.newFrame && !scoreWriteActive && lvlReg =/= 0.U) {
-=======
-      when (~scoreWriteActive) {
->>>>>>> 37d859aca1549ea83918e82fb1918a03a377754b
         scoreWriteCounter := 0.U
         scoreWriteActive := true.B
       }
