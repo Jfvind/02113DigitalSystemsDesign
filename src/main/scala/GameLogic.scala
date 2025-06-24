@@ -201,6 +201,15 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val viewBoxXReg = RegInit(0.U(10.W))
   val viewBoxYReg = RegInit(0.U(9.W))
 
+  //Two registers: one counting clockcycles to write score to backbuffer,
+  //               and another that is high as long as we should write to the bacbuffer,
+  //               depending on the register that counts the clockcycles
+  val scoreWriteCounter = RegInit(5.U(3.W)) // 5 = inaktiv
+  val scoreWriteActive = RegInit(false.B)
+
+  // wire, that holds digits for score
+  val digits = Wire(Vec(4, UInt(4.W)))
+
   //Connecting registers to the graphic engine
   io.viewBoxX := viewBoxXReg
   io.viewBoxY := viewBoxYReg
@@ -330,6 +339,29 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     }
   }
 
+  //Helpfunction: converting digits 0-9 to the correct tile position
+  def mapDigitToTile(digit: UInt): UInt = {
+    MuxLookup(digit, 5.U, Seq(
+      0.U -> 5.U,   // Digit 0  → Backtile 5
+      1.U -> 7.U,   // Digit 1  → Backtile 7
+      2.U -> 8.U,   // Digit 2  → Backtile 8
+      3.U -> 9.U,   // Digit 3  → Backtile 9
+      4.U -> 6.U,   // Digit 4  → Backtile 6
+      5.U -> 59.U,  // Digit 5  → Backtile 59
+      6.U -> 60.U,  // Digit 6  → Backtile 60
+      7.U -> 61.U,  // Digit 7  → Backtile 61
+      8.U -> 62.U,  // Digit 8  → Backtile 62
+      9.U -> 63.U   // Digit 9  → Backtile 63
+    ))
+  } 
+
+  // Base backtile adresses depending on the active lvl
+  val baseAddress = MuxLookup(lvlReg, 36.U, Seq(
+    1.U -> 36.U,   // Level 1: tiles 36–39
+    2.U -> 616.U,  // Level 2: tiles 616–619
+    3.U -> 636.U   // Level 3: tiles 636–639
+  ))
+
 
   //===========================================
   //===========STATE MACHINE===================
@@ -354,6 +386,19 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       //=================OBSTACLES RANDOM RESPAWNING + RAND SCALE===================
       //Scoring
       scoreReg := currentScore
+
+      // Exracting single digit logic for thousands, hundreds, tens and ones
+      digits(0) := scoreReg / 1000.U
+      digits(1) := (scoreReg % 1000.U) / 100.U
+      digits(2) := (scoreReg % 100.U) / 10.U
+      digits(3) := scoreReg % 10.U
+
+      // Logik for at starte writecounter process
+      when (tick && !scoreWriteActive) {
+        scoreWriteCounter := 0.U
+        scoreWriteActive := true.B
+      }
+
       // Spawn logic
       spawnCounter := Mux(spawnReady, 0.U, spawnCounter + 1.U)
       val spawnConditions = (lvlReg =/= 0.U) //&& spawnReady
@@ -825,6 +870,27 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     is(slut) {
       io.frameUpdateDone := true.B
       stateReg := idle
+    }
+  }
+
+  // Global logic controlling the write of the score to the backbuffer
+  when (scoreWriteActive && lvlReg =/= 0.U) {
+    // Activate backbuffer-write
+    io.backBufferWriteEnable := true.B
+
+    // Find tile-placement for current numbertype (1000, 100, 10 and 1's)
+    io.backBufferWriteData := mapDigitToTile(digits(scoreWriteCounter))
+
+    // Determine the adress for the respective level, depending on numbertype position
+    io.backBufferWriteAddress := baseAddress + scoreWriteCounter
+
+    // Go to the next number in the next cycle
+    scoreWriteCounter := scoreWriteCounter + 1.U
+
+    // Stop writing, if we have just written the last number in a score "s"
+    when (scoreWriteCounter === 3.U) {
+      scoreWriteActive := false.B
+      scoreWriteCounter := 5.U
     }
   }
 }
