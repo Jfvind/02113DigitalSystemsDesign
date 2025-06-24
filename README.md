@@ -59,11 +59,11 @@ In Vivado press ``generate bitstream`` and ok a couple of times, in approx. 6 mi
 - Sprite 50 = VER
 - Sprite 51 = R
 - Sprite 52 = RE
-- Sprite 53 = RE_2
-- Sprite 54 = TU
-- Sprite 55 = TU_2
-- Sprite 56 = RN
-- Sprite 57 = RN_2
+- Sprite 53 = TU
+- Sprite 54 = RN
+- Sprite 55 = RE_1
+- Sprite 56 = TU_1
+- Sprite 57 = RN_1
 - Sprite 58 = Star_1
 - Sprite 59 = Star_2
 - Sprite 60 = Star_3
