@@ -12,6 +12,7 @@ In Vivado press ``generate bitstream`` and ok a couple of times, in approx. 6 mi
 ## Memory files mapping
 **Sprites:**
 - Sprite 3 = Cursor foot
+- Sprite 6 = Sjerneskud powerup
 - Sprite 7 = lvl1_1 (1-tal)
 - Sprite 8 = lvl1_2 (1-tal)
 - Sprite 9 = lvl2_1 (2-tal)
@@ -69,17 +70,10 @@ In Vivado press ``generate bitstream`` and ok a couple of times, in approx. 6 mi
 - Sprite 61 = Heart
 - Sprite 62 = Heart_2
 - Sprite 63 = Heart_3
-- Sprite 64 = 0
-- Sprite 65 = 4
-- sprite 66 = 5
-- sprite 67 = 6
-- sprite 68 = 7
-- sprite 69 = 8
-- sprite 70 = 9
-- Sprite 71 = sjerneskud powerup
--
 
 **Backtiles:**
+- Backtile 5 = 0
+- Backtile 6 = 4
 - Backtile 10 = lvl1_1
 - Backtile 11 = lvl1_2
 - Backtile 12 = lvl1_3
@@ -129,3 +123,8 @@ In Vivado press ``generate bitstream`` and ok a couple of times, in approx. 6 mi
 - Backtile 56 = Moon_5_3
 - Backtile 57 = Moon_5_4
 - Backtile 58 = Moon_5_5
+- Backtile 59 = 5
+- Backtile 60 = 6
+- Backtile 61 = 7
+- Backtile 62 = 8
+- Backtile 63 = 9
