@@ -201,15 +201,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val viewBoxXReg = RegInit(0.U(10.W))
   val viewBoxYReg = RegInit(0.U(9.W))
 
-  //Two registers: one counting clockcycles to write score to backbuffer,
-  //               and another that is high as long as we should write to the bacbuffer,
-  //               depending on the register that counts the clockcycles
-  val scoreWriteCounter = RegInit(5.U(3.W)) // 5 = inaktiv
-  val scoreWriteActive = RegInit(false.B)
-
-  // wire, that holds digits for score
-  val digits = Wire(Vec(4, UInt(4.W)))
-
   //Connecting registers to the graphic engine
   io.viewBoxX := viewBoxXReg
   io.viewBoxY := viewBoxYReg
@@ -227,6 +218,14 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val scoreReg = RegInit(0.U(16.W))
   val currentScore = difficulty.io.score
   val highScoreReg = RegInit(0.U(16.W))
+  val digits = Wire(Vec(4, UInt(4.W))) // 1000, 100, 10, 1's 
+  val scoreWriteActive = RegInit(false.B) // er vi igang med at skrive?
+  val scoreWriteCounter = RegInit(0.U(2.W)) // Værdier 0-3
+
+  digits(0) := scoreReg / 1000.U
+  digits(1) := (scoreReg % 1000.U) / 100.U
+  digits(2) := (scoreReg % 100.U)   / 10.U
+  digits(3) :=  scoreReg % 10.U
 
   //Liv Reg
   val livesReg = RegInit(3.U(3.W)) // Start med 3 liv
@@ -341,7 +340,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
   //Helpfunction: converting digits 0-9 to the correct tile position
   def mapDigitToTile(digit: UInt): UInt = {
-    MuxLookup(digit, 5.U, Seq(
+    MuxLookup(digit, 5.U)(Seq(
       0.U -> 5.U,   // Digit 0  → Backtile 5
       1.U -> 7.U,   // Digit 1  → Backtile 7
       2.U -> 8.U,   // Digit 2  → Backtile 8
@@ -356,7 +355,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   } 
 
   // Base backtile adresses depending on the active lvl
-  val baseAddress = MuxLookup(lvlReg, 36.U, Seq(
+  val baseAddress = MuxLookup(lvlReg, 36.U)(Seq(
     1.U -> 36.U,   // Level 1: tiles 36–39
     2.U -> 616.U,  // Level 2: tiles 616–619
     3.U -> 636.U   // Level 3: tiles 636–639
@@ -387,14 +386,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       //Scoring
       scoreReg := currentScore
 
-      // Exracting single digit logic for thousands, hundreds, tens and ones
-      digits(0) := scoreReg / 1000.U
-      digits(1) := (scoreReg % 1000.U) / 100.U
-      digits(2) := (scoreReg % 100.U) / 10.U
-      digits(3) := scoreReg % 10.U
-
       // Logik for at starte writecounter process
-      when (tick && !scoreWriteActive) {
+      when (io.newFrame && !scoreWriteActive && lvlReg =/= 0.U) {
         scoreWriteCounter := 0.U
         scoreWriteActive := true.B
       }
@@ -890,7 +883,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     // Stop writing, if we have just written the last number in a score "sequence"
     when (scoreWriteCounter === 3.U) {
       scoreWriteActive := false.B
-      scoreWriteCounter := 5.U
+      scoreWriteCounter := 0.U
     }
   }
 }
