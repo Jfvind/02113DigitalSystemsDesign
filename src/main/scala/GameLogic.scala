@@ -319,9 +319,9 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   ))
 
   def hsRestoreTile(level: UInt): UInt = MuxLookup(level, 10.U)(Seq(
-    1.U -> 10.U,
-    2.U -> 21.U,
-    3.U -> 29.U
+    1.U -> 11.U,
+    2.U -> 23.U,
+    3.U -> 31.U
   ))
 
 
