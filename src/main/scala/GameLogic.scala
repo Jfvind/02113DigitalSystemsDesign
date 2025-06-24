@@ -390,12 +390,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       //Scoring
       scoreReg := currentScore
 
-      // Logik for at starte writecounter process
-      when (io.newFrame && !scoreWriteActive && lvlReg =/= 0.U) {
-        scoreWriteCounter := 0.U
-        scoreWriteActive := true.B
-      }
-
       // Spawn logic
       spawnCounter := Mux(spawnReady, 0.U, spawnCounter + 1.U)
       val spawnConditions = (lvlReg =/= 0.U) //&& spawnReady
@@ -903,6 +897,13 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       stateReg := idle
     }
   }
+
+  // Trigger: start skrivning af score én gang hver frame i alle states
+  when (io.newFrame && !scoreWriteActive && lvlReg =/= 0.U) {
+    scoreWriteCounter := 0.U
+    scoreWriteActive  := true.B
+  }
+
 
   // Global logic controlling the write of the score to the backbuffer
   when (scoreWriteActive && lvlReg =/= 0.U) {
