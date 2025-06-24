@@ -217,7 +217,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   //Score Register
   val scoreReg = RegInit(0.U(16.W))
   val currentScore = difficulty.io.score
-  val highScoreReg = RegInit(0.U(16.W))
+  val highScore = RegInit(VecInit(Seq.fill(3)(0.U(16.W))))
   val digits = Wire(Vec(4, UInt(4.W))) // 1000, 100, 10, 1's 
   val scoreWriteActive = RegInit(false.B) // er vi igang med at skrive?
   val scoreWriteCounter = RegInit(0.U(2.W)) // Værdier 0-3
@@ -285,6 +285,36 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     spriteVisibleRegs(62) := false.B
     spriteVisibleRegs(63) := false.B
   }
+
+  val goWriteActive   = RegInit(false.B)   // skriver vi HS lige nu?
+  val goWriteCounter  = RegInit(0.U(3.W))  // 0..4  (tile-3 + 4 cifre)
+
+  // 35 / 615 / 635  (tile-3 kommer her)
+  // 36–39 / 616–619 / 636–639  (cifrene)
+  def hsBaseAddr(level: UInt): UInt = MuxLookup(level, 35.U)(Seq(
+    1.U -> 427.U,
+    2.U -> 1007.U,
+    3.U -> 1027.U
+  ))
+
+  def hsRestoreTile(level: UInt): UInt = MuxLookup(level, 10.U)(Seq(
+    1.U -> 10.U,
+    2.U -> 21.U,
+    3.U -> 29.U
+  ))
+
+
+
+  // 4 cifre fra highScore for aktuelt level – bruges i gameOver
+  val hsVecIdx   = Mux(lvlReg === 0.U, 0.U, lvlReg - 1.U)   // lvlReg 1|2|3 → 0|1|2
+  val curHiScore = highScore(hsVecIdx)
+
+  val hiDigits = Wire(Vec(4, UInt(4.W)))
+  hiDigits(0) := curHiScore / 1000.U
+  hiDigits(1) := (curHiScore % 1000.U) / 100.U
+  hiDigits(2) := (curHiScore % 100.U)  / 10.U
+  hiDigits(3) :=  curHiScore % 10.U
+
 
   //?==========================================
   // -----------Helperfunktioner -------
@@ -374,6 +404,11 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     is(idle) {
       when(io.newFrame) {
         when(gameOverReturnPressed) {
+          // før resetGame()
+          io.backBufferWriteEnable  := true.B
+          io.backBufferWriteAddress := hsBaseAddr(lvlReg)
+          io.backBufferWriteData    := hsRestoreTile(lvlReg)
+
           resetGame()
           gameOverReturnPressed := false.B
           stateReg := menu // or autonomousMove if you want to skip menu
@@ -887,9 +922,35 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       when(cursorOnReturn && io.btnC) {
         gameOverReturnPressed := true.B
       }
-      when(scoreReg > highScoreReg) {
-        highScoreReg := scoreReg
+      when(scoreReg > highScore(lvlReg - 1.U)) {
+        highScore(lvlReg - 1.U) := scoreReg
       }
+
+      // Start sekvensen en gang når vi går ind i gameOver
+      when(!goWriteActive) {
+        goWriteActive  := true.B
+        goWriteCounter := 0.U
+      }
+
+      // Selve skrivet
+      when(goWriteActive) {
+        io.backBufferWriteEnable := true.B
+        io.backBufferWriteAddress := hsBaseAddr(lvlReg) + goWriteCounter
+
+        io.backBufferWriteData :=
+          Mux(goWriteCounter === 0.U,        // første step = tile-3
+            3.U,                           // tile-id 3  (HS-ikon)
+            mapDigitToTile(hiDigits(goWriteCounter - 1.U)) // ellers cifre
+          )
+
+        goWriteCounter := goWriteCounter + 1.U
+        when(goWriteCounter === 4.U) {       // vi har skrevet 0..4
+          goWriteActive  := false.B
+          goWriteCounter := 0.U
+        }
+      }
+
+
       stateReg := slut
     }
     is(slut) {
@@ -899,14 +960,14 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   }
 
   // Trigger: start skrivning af score én gang hver frame i alle states
-  when (io.newFrame && !scoreWriteActive && lvlReg =/= 0.U) {
+  when(io.newFrame && !scoreWriteActive && lvlReg =/= 0.U && stateReg =/= gameOver){
     scoreWriteCounter := 0.U
     scoreWriteActive  := true.B
   }
 
 
   // Global logic controlling the write of the score to the backbuffer
-  when (scoreWriteActive && lvlReg =/= 0.U) {
+  when(scoreWriteActive && lvlReg =/= 0.U && stateReg =/= gameOver){
     // Activate backbuffer-write
     io.backBufferWriteEnable := true.B
 
