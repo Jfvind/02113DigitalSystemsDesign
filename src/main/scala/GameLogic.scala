@@ -497,6 +497,13 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }.otherwise {
           shootingStarCnt := shootingStarCnt + 1.U
         }
+
+        when(spriteVisibleRegs(6)) {
+          spriteXRegs(6) := spriteXRegs(6) + 2.S
+        }
+        when(spriteXRegs(6) >= 640.S) {
+          spriteVisibleRegs(6) := false.B
+        }
       }
 
       //==============OBSTACLES FIRST SPAWN===============
