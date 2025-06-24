@@ -387,7 +387,11 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       scoreReg := currentScore
 
       // Logik for at starte writecounter process
+<<<<<<< HEAD
       when (io.newFrame && !scoreWriteActive && lvlReg =/= 0.U) {
+=======
+      when (~scoreWriteActive) {
+>>>>>>> 37d859aca1549ea83918e82fb1918a03a377754b
         scoreWriteCounter := 0.U
         scoreWriteActive := true.B
       }
@@ -404,7 +408,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
           when(spriteXRegs(i) >= 640.S) {
             spriteXRegs(i) := -32.S
-            spriteYRegs(i) := (100.U + (lfsr.io.out(i - 16))).asSInt
+            spriteYRegs(i) := (lfsr.io.out(i - 16) % 481.U).asSInt
 
             spriteScaleTypeRegs(index) := lfsr.io.out(index + 10)(0)
 
@@ -427,7 +431,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
           when(spriteXRegs(i) >= 640.S) {
             spriteXRegs(i) := -32.S
-            spriteYRegs(i) := (100.U + (lfsr.io.out(i - 26))).asSInt
+            spriteYRegs(i) := (lfsr.io.out(i - 26) % 481.U).asSInt
 
             spriteScaleTypeRegs(index) := lfsr.io.out(index + 10)(0)
 
@@ -450,7 +454,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
           when(spriteXRegs(i) >= 640.S) {
             spriteXRegs(i) := -32.S
-            spriteYRegs(i) := (100.U + (lfsr.io.out(i - 16))).asSInt
+            spriteYRegs(i) := (lfsr.io.out(i - 16) % 481.U).asSInt
 
 
             spriteScaleTypeRegs(index) := lfsr.io.out(index + 10)(0)
