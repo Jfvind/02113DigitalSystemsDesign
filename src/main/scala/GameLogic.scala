@@ -408,7 +408,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
           when(spriteXRegs(i) >= 640.S) {
             spriteXRegs(i) := -32.S
-            spriteYRegs(i) := (lfsr.io.out(i - 16) % 481.U).asSInt
+            spriteYRegs(i) := (lfsr.io.out(i - 16) + 100.U).asSInt
 
             spriteScaleTypeRegs(index) := lfsr.io.out(index + 10)(0)
 
@@ -431,7 +431,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
           when(spriteXRegs(i) >= 640.S) {
             spriteXRegs(i) := -32.S
-            spriteYRegs(i) := (lfsr.io.out(i - 26) % 481.U).asSInt
+            spriteYRegs(i) := (lfsr.io.out(i - 26) + 100.U).asSInt
 
             spriteScaleTypeRegs(index) := lfsr.io.out(index + 10)(0)
 
@@ -454,7 +454,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
           when(spriteXRegs(i) >= 640.S) {
             spriteXRegs(i) := -32.S
-            spriteYRegs(i) := (lfsr.io.out(i - 16) % 481.U).asSInt
+            spriteYRegs(i) := (lfsr.io.out(i - 16) + 100.U).asSInt
 
 
             spriteScaleTypeRegs(index) := lfsr.io.out(index + 10)(0)
@@ -886,6 +886,33 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       spriteVisibleRegs(57) := cursorOnReturn
 
       //========Your score and highscore===========
+      // Registers for write sequence logic
+      val writeSeqActive = RegInit(false.B)
+      val writeSeqCounter = RegInit(0.U(4.W))
+      val writeSeqLen = 8.U // 4 digits for score + 4 digits for highscore
+
+      // Structure for backbuffer write sequence
+      case class WriteSeq(data: UInt, addr: UInt)
+      val backBufferWriteSeq = Wire(Vec(8, new Bundle {
+        val data = UInt(io.backBufferWriteData.getWidth.W)
+        val addr = UInt(io.backBufferWriteAddress.getWidth.W)
+      }))
+
+      // Prepare digits for score and highscore
+      val highDigits = Wire(Vec(4, UInt(4.W)))
+      highDigits(0) := highScoreReg / 1000.U
+      highDigits(1) := (highScoreReg % 1000.U) / 100.U
+      highDigits(2) := (highScoreReg % 100.U) / 10.U
+      highDigits(3) := highScoreReg % 10.U
+
+      // Fill the sequence: first score, then highscore
+      for (i <- 0 until 4) {
+        backBufferWriteSeq(i).data := mapDigitToTile(digits(i))
+        backBufferWriteSeq(i).addr := baseAddress + i.U
+        backBufferWriteSeq(i + 4).data := mapDigitToTile(highDigits(i))
+        backBufferWriteSeq(i + 4).addr := baseAddress + 8.U + i.U // e.g. highscore at offset +8
+      }
+
       // Start the sequence (for example, when entering gameOver)
       when (!writeSeqActive) {
         writeSeqCounter := 0.U
