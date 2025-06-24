@@ -284,6 +284,29 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     spriteVisibleRegs(63) := false.B
   }
 
+  //============Your score and Highscore display=========
+  when(lvlReg === 1.U) {
+    val backBufferWriteSeq = Seq(
+    (4.U, 347.U),  // (data, address)
+    (3.U, 427.U)
+    )
+  }.elsewhen(lvlReg === 2.U) {
+    val backBufferWriteSeq = Seq(
+    (4.U, 927.U),  // (data, address)
+    (3.U, 1007.U)
+    )
+  }.elsewhen(lvlReg === 3.U) {
+    val backBufferWriteSeq = Seq(
+    (4.U, 947.U),  // (data, address)
+    (3.U, 1027.U)
+    )
+  }.otherwise {
+    val backBufferWriteSeq = Seq()
+  }
+  val writeSeqLen = backBufferWriteSeq.length.U
+  val writeSeqCounter = RegInit(0.U(log2Ceil(backBufferWriteSeq.length + 1).W))
+  val writeSeqActive = RegInit(false.B)
+
   //?==========================================
   // -----------Helperfunktioner -------
   //===========================================
@@ -858,6 +881,24 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       spriteVisibleRegs(56) := cursorOnReturn
       spriteVisibleRegs(57) := cursorOnReturn
 
+      //========Your score and highscore===========
+      // Start the sequence (for example, when entering gameOver)
+      when (!writeSeqActive) {
+        writeSeqCounter := 0.U
+        writeSeqActive := true.B
+      }
+
+      // Write logic
+      when (writeSeqActive && writeSeqCounter < writeSeqLen) {
+        io.backBufferWriteData := backBufferWriteSeq(writeSeqCounter)._1
+        io.backBufferWriteAddress := backBufferWriteSeq(writeSeqCounter)._2
+        io.backBufferWriteEnable := true.B
+        writeSeqCounter := writeSeqCounter + 1.U
+      }.otherwise {
+        io.backBufferWriteEnable := false.B
+        writeSeqActive := false.B
+      }
+
       // Cursor tilbage til aktiv
       spriteVisibleRegs(3) := true.B
 
@@ -872,6 +913,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       stateReg := slut
     }
     is(slut) {
+      io.backBufferWriteEnable := false.B
       io.frameUpdateDone := true.B
       stateReg := idle
     }
