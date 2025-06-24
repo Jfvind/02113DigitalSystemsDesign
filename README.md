@@ -74,6 +74,9 @@ In Vivado press ``generate bitstream`` and ok a couple of times, in approx. 6 mi
 **Backtiles:**
 - Backtile 5 = 0
 - Backtile 6 = 4
+- Backtile 7 = 1
+- Backtile 8 = 2
+- Backtile 9 = 3
 - Backtile 10 = lvl1_1
 - Backtile 11 = lvl1_2
 - Backtile 12 = lvl1_3
