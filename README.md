@@ -1,6 +1,14 @@
 # 02113DigitalSystemsDesign
 Project following the DTU course 02113 Digital Systems Design Project, to make a videogame in ChiselHDL.
 
+## Playing game
+Download the repo and open the position, use the scala build tool (can be found as 'scala' in VSCode extensions), and type
+```
+sbt run
+```
+When run is succesfull, open Xilinx Vivado application and press open project ``..\02113DigitalSystemsDesign\vivado\Basys3Game\Basys3Game.xpr`` (note that if using the Nexys7, open Nexys7Game instead. Possibly you need to add the memory files by hand in vivado when using Nexys7).\\
+In Vivado press ``generate bitstream`` and ok a couple of times, in approx. 6 minutes the FPGA can be programmed in 'hardware manager' in vivado.
+
 **Sprites:**
 - Sprite 3 = Cursor foot
 - Sprite 7 = lvl1_1 (1-tal)
