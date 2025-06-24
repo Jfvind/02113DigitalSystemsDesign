@@ -217,6 +217,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   //Score Register
   val scoreReg = RegInit(0.U(16.W))
   val currentScore = difficulty.io.score
+  val highScoreReg = RegInit(0.U(16.W))
 
   //Liv Reg
   val livesReg = RegInit(3.U(3.W)) // Start med 3 liv
@@ -816,7 +817,9 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       when(cursorOnReturn && io.btnC) {
         gameOverReturnPressed := true.B
       }
-
+      when(scoreReg > highScoreReg) {
+        highScoreReg := scoreReg
+      }
       stateReg := slut
     }
     is(slut) {
