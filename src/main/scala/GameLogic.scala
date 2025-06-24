@@ -225,7 +225,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val extraLifeCnt = RegInit(0.U(10.W))
 
   //nulstil speed
-  difficulty.io.resetSpeed := (stateReg === menu && livesReg === 3.U)
+  difficulty.io.resetSpeed := (gameOverReturnPressed)
 
   //First time spawning sprites registers
   val spawnDelayCounter = RegInit(0.U(8.W))
@@ -328,6 +328,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       }
     }
   }
+
 
   //===========================================
   //===========STATE MACHINE===================
