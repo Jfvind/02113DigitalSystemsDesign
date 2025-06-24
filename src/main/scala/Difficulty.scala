@@ -34,7 +34,7 @@ class Difficulty extends Module {
     speedCnt := speedCnt + 1.U
   }
 
-  def saturatingSub(a: UInt, b: UInt): UInt = Mux(a > b, a - b, 0.U) //Vigtig for underflow
+  def saturatingSub(a: UInt, b: UInt): UInt = Mux(a >= b, a - b, 0.U) //Vigtig for underflow
 
   val timeInSeconds = speedCnt >> 4 // ca. 1/s
   val scaledTime = timeInSeconds >> 3
