@@ -887,7 +887,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     // Go to the next number in the next cycle
     scoreWriteCounter := scoreWriteCounter + 1.U
 
-    // Stop writing, if we have just written the last number in a score "s"
+    // Stop writing, if we have just written the last number in a score "sequence"
     when (scoreWriteCounter === 3.U) {
       scoreWriteActive := false.B
       scoreWriteCounter := 5.U
