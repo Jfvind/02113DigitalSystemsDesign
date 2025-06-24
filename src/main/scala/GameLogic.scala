@@ -99,11 +99,15 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   //Setting frame done to zero
   io.frameUpdateDone := false.B
 
+  //sound stop
+  val stopTune0Pulse = WireDefault(false.B)
+  val stopTune1Pulse = WireDefault(false.B)
+
   //Setting sound engine outputs to zero
   io.startTune := Seq.fill(TuneNumber)(false.B)
-  io.stopTune := Seq.fill(TuneNumber)(false.B)
-  io.pauseTune := Seq.fill(TuneNumber)(false.B)
   io.tuneId := 0.U
+  io.stopTune(0) := stopTune0Pulse
+  io.stopTune(1) := stopTune1Pulse
 
   /////////////////////////////////////////////////////////////////
   // Write here your game logic
@@ -260,6 +264,15 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
   //LFSR for pseudo random numberselection
   val lfsr = Module(new LFSR)
+
+  //sound Reg
+  // Sound control for tune 0 (life pickup)
+  val tune0Active   = RegInit(false.B)
+  val tune0Counter  = RegInit(0.U(6.W))
+
+  // Sound control for tune 1 (asteroid hit)
+  val tune1Active   = RegInit(false.B)
+  val tune1Counter  = RegInit(0.U(6.W))
 
   //=================Score and health=================
   when(lvlReg =/= 0.U) {
@@ -635,6 +648,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         spriteVisibleRegs(13) := false.B
         when(livesReg < 3.U) {
           livesReg := livesReg + 1.U
+          io.tuneId := 0.U
+          io.startTune(0) := true.B
+          tune0Active := true.B
+          tune0Counter := 0.U
         }
       }
 
@@ -679,6 +696,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
             livesReg := livesReg - 1.U
           }
           collisionDetected := false.B
+          io.tuneId := 1.U
+          io.startTune(1) := true.B
+          tune1Active := true.B
+          tune1Counter := 0.U
         }
       }
 
@@ -1009,6 +1030,21 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     when (scoreWriteCounter === 3.U) {
       scoreWriteActive := false.B
       scoreWriteCounter := 0.U
+    }
+  }
+  when(tune0Active) {
+    tune0Counter := tune0Counter + 1.U
+    when(tune0Counter === 30.U) {
+      stopTune0Pulse := true.B
+      tune0Active := false.B
+    }
+  }
+
+  when(tune1Active) {
+    tune1Counter := tune1Counter + 1.U
+    when(tune1Counter === 30.U) {
+      stopTune1Pulse := true.B
+      tune1Active := false.B
     }
   }
 }
