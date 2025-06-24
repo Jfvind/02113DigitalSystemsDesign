@@ -44,7 +44,8 @@ class Difficulty extends Module {
     2.U -> 1.S,
     3.U -> 2.S
   ))
-  val rawSpeed = 1.S + (scaledTime.asSInt * speedFactor)
+  val progression = scaledTime * scaledTime
+  val rawSpeed = 2.S + (progression.asSInt * speedFactor)
 
   val speedCap = MuxLookup(io.level, 10.S)(Seq(
     1.U -> 12.S,
@@ -65,5 +66,6 @@ class Difficulty extends Module {
     2.U -> 3.U,
     3.U -> 5.U
   ))
-  io.score := timeInSeconds * scoreMultiplier
+  val dynamicMultiplier = Mux(timeInSeconds > 30.U, scoreMultiplier + 2.U, scoreMultiplier)
+  io.score := timeInSeconds * dynamicMultiplier
 }
