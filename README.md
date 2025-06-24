@@ -69,6 +69,15 @@ In Vivado press ``generate bitstream`` and ok a couple of times, in approx. 6 mi
 - Sprite 61 = Heart
 - Sprite 62 = Heart_2
 - Sprite 63 = Heart_3
+- Sprite 64 = 0
+- Sprite 65 = 4
+- sprite 66 = 5
+- sprite 67 = 6
+- sprite 68 = 7
+- sprite 69 = 8
+- sprite 70 = 9
+- Sprite 71 = sjerneskud powerup
+-
 
 **Backtiles:**
 - Backtile 10 = lvl1_1
