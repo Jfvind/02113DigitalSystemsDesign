@@ -211,64 +211,36 @@ read_mem {
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_99.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_73.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_72.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_123.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_107.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_116.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_80.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_65.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_114.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_122.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_71.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_74.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_108.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_66.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_113.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_117.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_83.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_75.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_104.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_109.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_70.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_88.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_121.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_120.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_103.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_76.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_127.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_82.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_89.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_77.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_102.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_115.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_81.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_110.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_69.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_94.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_86.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_78.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_101.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_93.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_95.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_87.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_126.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_79.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_96.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_92.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_100.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_97.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_112.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_84.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_91.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_118.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_125.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_67.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_105.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_111.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_124.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_98.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_106.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_85.mem
-  C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_119.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_68.mem
   C:/DTU-local/Repos/02113DigitalSystemsDesign/memory_init/sprite_init_90.mem
 }

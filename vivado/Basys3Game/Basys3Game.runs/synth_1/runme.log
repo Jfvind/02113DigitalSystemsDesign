@@ -8,12 +8,12 @@
   **** SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
   **** IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
   **** SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-  **** Start of session at: Tue Jun 24 11:07:32 2025
+  **** Start of session at: Tue Jun 24 11:21:18 2025
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source Top.tcl -notrace
-create_project: Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 539.566 ; gain = 236.031
+create_project: Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 539.984 ; gain = 237.762
 Command: synth_design -top Top -part xc7a35tcpg236-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
@@ -22,12 +22,12 @@ INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Device 21-9227] Part: xc7a35tcpg236-1 does not have CEAM library.
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 28252
+INFO: [Synth 8-7075] Helper process launched with PID 46012
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1387.441 ; gain = 448.934
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1388.867 ; gain = 449.438
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'Top' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:26677]
-INFO: [Synth 8-6157] synthesizing module 'GameTop' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:24805]
+INFO: [Synth 8-6157] synthesizing module 'Top' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:25809]
+INFO: [Synth 8-6157] synthesizing module 'GameTop' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:24077]
 INFO: [Synth 8-6157] synthesizing module 'GraphicEngineVGA' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5562]
 INFO: [Synth 8-6157] synthesizing module 'Memory' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:1]
 INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf' [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:11]
@@ -910,113 +910,113 @@ INFO: [Common 17-14] Message 'Synth 8-3876' appears 100 times and further instan
 	Parameter ADDR_WIDTH bound to: 10 - type: integer 
 	Parameter DATA_WIDTH bound to: 7 - type: integer 
 	Parameter LOAD_FILE bound to: memory_init/sprite_init_127.mem - type: string 
-WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:25826]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:25014]
 	Parameter ADDR_WIDTH bound to: 8 - type: integer 
 	Parameter DATA_WIDTH bound to: 28 - type: integer 
 	Parameter LOAD_FILE bound to: memory_init/tune_init_0.mem - type: string 
 	Parameter ADDR_WIDTH bound to: 8 - type: integer 
 	Parameter DATA_WIDTH bound to: 28 - type: integer 
 	Parameter LOAD_FILE bound to: memory_init/tune_init_1.mem - type: string 
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12494]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:13949]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12496]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:13957]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12500]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:13973]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12502]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:13981]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12504]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:13989]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12522]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14061]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_64_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12620]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_64_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14453]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_65_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12622]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_65_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14461]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_66_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12624]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_66_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14469]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_67_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12626]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_67_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14477]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_68_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12628]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_68_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14485]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_69_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12630]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_69_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14493]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_70_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12632]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_70_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14501]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_71_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12634]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_71_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14509]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_72_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12636]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_72_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14517]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_73_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12638]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_73_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14525]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_74_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12640]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_74_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14533]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_75_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12642]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_75_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14541]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_76_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12644]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_76_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14549]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_77_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12646]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_77_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14557]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_78_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12648]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_78_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14565]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_79_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12650]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_79_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14573]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_80_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12652]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_80_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14581]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_81_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12654]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_81_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14589]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_82_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12656]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_82_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14597]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_83_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12658]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_83_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14605]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_84_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12660]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_84_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14613]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_85_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12662]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_85_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14621]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_86_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12664]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_86_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14629]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_87_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12666]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_87_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14637]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_88_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12668]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_88_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14645]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_89_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12670]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_89_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14653]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_90_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12672]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_90_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14661]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_91_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12674]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_91_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14669]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_92_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12676]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_92_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14677]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_93_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12678]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_93_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14685]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_94_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12680]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_94_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14693]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_95_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12682]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_95_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14701]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_96_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12684]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_96_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14709]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_97_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12686]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_97_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14717]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_98_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12688]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_98_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14725]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_99_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12690]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_99_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14733]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_100_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12692]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_100_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14741]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_101_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12694]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_101_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14749]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_102_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12696]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_102_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14757]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_103_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12698]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_103_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14765]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_104_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12700]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_104_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14773]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_105_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12702]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_105_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14781]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_106_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12704]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_106_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14789]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_107_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12706]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_107_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14797]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12466]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:13921]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12468]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:13929]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12472]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:13945]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12474]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:13953]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12476]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:13961]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12494]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14033]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_64_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12592]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_64_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14425]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_65_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12594]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_65_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14433]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_66_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12596]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_66_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14441]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_67_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12598]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_67_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14449]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_68_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12600]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_68_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14457]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_69_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12602]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_69_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14465]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_70_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12604]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_70_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14473]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_71_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12606]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_71_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14481]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_72_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12608]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_72_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14489]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_73_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12610]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_73_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14497]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_74_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12612]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_74_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14505]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_75_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12614]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_75_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14513]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_76_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12616]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_76_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14521]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_77_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12618]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_77_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14529]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_78_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12620]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_78_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14537]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_79_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12622]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_79_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14545]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_80_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12624]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_80_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14553]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_81_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12626]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_81_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14561]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_82_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12628]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_82_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14569]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_83_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12630]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_83_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14577]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_84_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12632]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_84_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14585]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_85_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12634]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_85_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14593]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_86_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12636]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_86_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14601]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_87_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12638]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_87_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14609]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_88_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12640]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_88_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14617]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_89_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12642]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_89_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14625]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_90_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12644]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_90_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14633]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_91_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12646]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_91_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14641]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_92_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12648]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_92_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14649]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_93_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12650]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_93_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14657]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_94_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12652]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_94_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14665]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_95_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12654]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_95_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14673]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_96_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12656]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_96_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14681]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_97_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12658]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_97_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14689]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_98_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12660]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_98_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14697]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_99_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12662]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_99_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14705]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_100_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12664]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_100_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14713]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_101_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12666]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_101_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14721]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_102_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12668]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_102_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14729]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_103_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12670]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_103_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14737]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_104_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12672]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_104_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14745]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_105_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12674]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_105_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14753]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_106_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12676]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_106_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14761]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_107_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12678]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_107_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14769]
 INFO: [Common 17-14] Message 'Synth 8-6014' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 WARNING: [Synth 8-3917] design Top has port io_led_0 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_1 driven by constant 0
@@ -1037,18 +1037,18 @@ WARNING: [Synth 8-7129] Port io_sw_5 in module Top is either unconnected or has 
 WARNING: [Synth 8-7129] Port io_sw_6 in module Top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_sw_7 in module Top is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1735.070 ; gain = 796.562
+Finished RTL Elaboration : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1728.840 ; gain = 789.410
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1735.070 ; gain = 796.562
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1728.840 ; gain = 789.410
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1735.070 ; gain = 796.562
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1728.840 ; gain = 789.410
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.281 . Memory (MB): peak = 1735.070 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.240 . Memory (MB): peak = 1728.840 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -1059,26 +1059,26 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/Top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1743.625 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1741.047 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.052 . Memory (MB): peak = 1743.625 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.051 . Memory (MB): peak = 1741.047 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:27 ; elapsed = 00:00:30 . Memory (MB): peak = 1743.625 ; gain = 805.117
+Finished Constraint Validation : Time (s): cpu = 00:00:26 ; elapsed = 00:00:29 . Memory (MB): peak = 1741.047 ; gain = 801.617
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:27 ; elapsed = 00:00:30 . Memory (MB): peak = 1743.625 ; gain = 805.117
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:26 ; elapsed = 00:00:29 . Memory (MB): peak = 1741.047 ; gain = 801.617
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:27 ; elapsed = 00:00:30 . Memory (MB): peak = 1743.625 ; gain = 805.117
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 1741.047 ; gain = 801.617
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'stateReg_reg' in module 'GameLogic'
 ---------------------------------------------------------------------------------------------------
@@ -1095,7 +1095,7 @@ INFO: [Synth 8-802] inferred FSM for state register 'stateReg_reg' in module 'Ga
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'stateReg_reg' using encoding 'sequential' in module 'GameLogic'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 1743.625 ; gain = 805.117
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:34 ; elapsed = 00:00:37 . Memory (MB): peak = 1741.047 ; gain = 801.617
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -1127,7 +1127,7 @@ Detailed RTL Component Info :
 	                4 Bit    Registers := 3     
 	                3 Bit    Registers := 1     
 	                2 Bit    Registers := 4     
-	                1 Bit    Registers := 884   
+	                1 Bit    Registers := 856   
 +---RAMs : 
 	              12K Bit	(2048 X 6 bit)          RAMs := 3     
 	               7K Bit	(1024 X 7 bit)          RAMs := 192   
@@ -1158,8 +1158,8 @@ Detailed RTL Component Info :
 	  18 Input    3 Bit        Muxes := 1     
 	   2 Input    2 Bit        Muxes := 15    
 	   3 Input    2 Bit        Muxes := 2     
-	   2 Input    1 Bit        Muxes := 352   
-	   3 Input    1 Bit        Muxes := 244   
+	   2 Input    1 Bit        Muxes := 324   
+	   3 Input    1 Bit        Muxes := 216   
 	   4 Input    1 Bit        Muxes := 9     
 	   5 Input    1 Bit        Muxes := 2     
 	   6 Input    1 Bit        Muxes := 2     
@@ -1204,7 +1204,7 @@ WARNING: [Synth 8-7257] Removed RAM (backTileMemories_53/ramsSpWf/RAM_reg) due t
 WARNING: [Synth 8-7257] Removed RAM (backTileMemories_33/ramsSpWf/RAM_reg) due to inactive write enable.
 WARNING: [Synth 8-7257] Removed RAM (backTileMemories_17/ramsSpWf/RAM_reg) due to inactive write enable.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:00 ; elapsed = 00:01:05 . Memory (MB): peak = 1743.625 ; gain = 805.117
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:02 ; elapsed = 00:01:08 . Memory (MB): peak = 1741.047 ; gain = 801.617
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-5835] Resources of type BRAM have been overutilized. Used = 190, Available = 100. Will try to implement using LUT-RAM. 
 ---------------------------------------------------------------------------------
@@ -1236,15 +1236,15 @@ Block RAM: Preliminary Mapping Report (see note below)
 |RamInitSpWf__parameterized77:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized77:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized77:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized77:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized78:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized77:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized76:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized75:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
@@ -1329,15 +1329,12 @@ Distributed RAM: Preliminary Mapping Report (see note below)
 |Top         | spriteMemories_4/ramsSpWf/RAM_reg   | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_5/ramsSpWf/RAM_reg   | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_6/ramsSpWf/RAM_reg   | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|Top         | spriteMemories_14/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_15/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_17/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | spriteMemories_18/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_19/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | spriteMemories_20/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_21/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | spriteMemories_22/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_23/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | spriteMemories_24/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_25/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_26/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_27/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
@@ -1350,23 +1347,29 @@ Distributed RAM: Preliminary Mapping Report (see note below)
 |Top         | spriteMemories_35/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_36/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_37/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|Top         | spriteMemories_38/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_39/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_40/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_41/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_42/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|Top         | spriteMemories_43/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|Top         | spriteMemories_44/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_46/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_47/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_48/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | spriteMemories_49/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_50/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_51/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_52/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|Top         | spriteMemories_53/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_54/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_55/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_56/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|Top         | spriteMemories_57/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_58/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_59/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_60/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|Top         | spriteMemories_61/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|Top         | spriteMemories_62/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_63/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_64/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_65/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
@@ -1410,9 +1413,6 @@ Distributed RAM: Preliminary Mapping Report (see note below)
 |Top         | spriteMemories_103/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_104/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_105/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | spriteMemories_106/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | spriteMemories_107/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | spriteMemories_108/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 +------------+-------------------------------------+-----------+----------------------+-----------------+
 
 Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
@@ -1423,13 +1423,13 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:08 ; elapsed = 00:01:13 . Memory (MB): peak = 1743.625 ; gain = 805.117
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:10 ; elapsed = 00:01:16 . Memory (MB): peak = 1741.047 ; gain = 801.617
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:20 ; elapsed = 00:01:25 . Memory (MB): peak = 1773.457 ; gain = 834.949
+Finished Timing Optimization : Time (s): cpu = 00:01:21 ; elapsed = 00:01:28 . Memory (MB): peak = 1780.664 ; gain = 841.234
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1460,15 +1460,15 @@ Block RAM: Final Mapping Report
 |RamInitSpWf__parameterized77:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized77:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized77:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized77:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized78:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized77:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized76:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized75:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
@@ -1552,15 +1552,12 @@ Distributed RAM: Final Mapping Report
 |Top         | spriteMemories_4/ramsSpWf/RAM_reg   | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_5/ramsSpWf/RAM_reg   | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_6/ramsSpWf/RAM_reg   | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|Top         | spriteMemories_14/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_15/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_17/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | spriteMemories_18/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_19/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | spriteMemories_20/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_21/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | spriteMemories_22/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_23/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | spriteMemories_24/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_25/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_26/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_27/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
@@ -1573,23 +1570,29 @@ Distributed RAM: Final Mapping Report
 |Top         | spriteMemories_35/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_36/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_37/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|Top         | spriteMemories_38/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_39/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_40/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_41/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_42/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|Top         | spriteMemories_43/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|Top         | spriteMemories_44/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_46/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_47/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_48/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | spriteMemories_49/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_50/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_51/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_52/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|Top         | spriteMemories_53/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_54/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_55/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_56/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|Top         | spriteMemories_57/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_58/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_59/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_60/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|Top         | spriteMemories_61/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|Top         | spriteMemories_62/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_63/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_64/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_65/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
@@ -1633,9 +1636,6 @@ Distributed RAM: Final Mapping Report
 |Top         | spriteMemories_103/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_104/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 |Top         | spriteMemories_105/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | spriteMemories_106/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | spriteMemories_107/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | spriteMemories_108/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
 +------------+-------------------------------------+-----------+----------------------+-----------------+
 
 ---------------------------------------------------------------------------------
@@ -1644,6 +1644,9 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_106/ramsSpWf/RAM_reg' (RAMB18E1) to 'gameTop/graphicEngineVGA/spriteMemories_107/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_107/ramsSpWf/RAM_reg' (RAMB18E1) to 'gameTop/graphicEngineVGA/spriteMemories_108/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_108/ramsSpWf/RAM_reg' (RAMB18E1) to 'gameTop/graphicEngineVGA/spriteMemories_109/ramsSpWf/RAM_reg'
 INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_109/ramsSpWf/RAM_reg' (RAMB18E1) to 'gameTop/graphicEngineVGA/spriteMemories_110/ramsSpWf/RAM_reg'
 INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_110/ramsSpWf/RAM_reg' (RAMB18E1) to 'gameTop/graphicEngineVGA/spriteMemories_111/ramsSpWf/RAM_reg'
 INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_111/ramsSpWf/RAM_reg' (RAMB18E1) to 'gameTop/graphicEngineVGA/spriteMemories_112/ramsSpWf/RAM_reg'
@@ -1662,15 +1665,15 @@ INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_
 INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_124/ramsSpWf/RAM_reg' (RAMB18E1) to 'gameTop/graphicEngineVGA/spriteMemories_125/ramsSpWf/RAM_reg'
 INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_125/ramsSpWf/RAM_reg' (RAMB18E1) to 'gameTop/graphicEngineVGA/spriteMemories_126/ramsSpWf/RAM_reg'
 INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/spriteMemories_126/ramsSpWf/RAM_reg' (RAMB18E1) to 'gameTop/graphicEngineVGA/spriteMemories_127/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_63/ramsSpWf/RAM_reg' (RAMB18E1_15) to 'gameTop/graphicEngineVGA/backTileMemories_62/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_62/ramsSpWf/RAM_reg' (RAMB18E1_15) to 'gameTop/graphicEngineVGA/backTileMemories_61/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_61/ramsSpWf/RAM_reg' (RAMB18E1_15) to 'gameTop/graphicEngineVGA/backTileMemories_60/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_60/ramsSpWf/RAM_reg' (RAMB18E1_15) to 'gameTop/graphicEngineVGA/backTileMemories_59/ramsSpWf/RAM_reg'
-INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_22/ramsSpWf/RAM_reg' (RAMB18E1_48) to 'gameTop/graphicEngineVGA/backTileMemories_21/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_63/ramsSpWf/RAM_reg' (RAMB18E1_14) to 'gameTop/graphicEngineVGA/backTileMemories_62/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_62/ramsSpWf/RAM_reg' (RAMB18E1_14) to 'gameTop/graphicEngineVGA/backTileMemories_61/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_61/ramsSpWf/RAM_reg' (RAMB18E1_14) to 'gameTop/graphicEngineVGA/backTileMemories_60/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_60/ramsSpWf/RAM_reg' (RAMB18E1_14) to 'gameTop/graphicEngineVGA/backTileMemories_59/ramsSpWf/RAM_reg'
+INFO: [Synth 8-223] decloning instance 'gameTop/graphicEngineVGA/backTileMemories_22/ramsSpWf/RAM_reg' (RAMB18E1_47) to 'gameTop/graphicEngineVGA/backTileMemories_21/ramsSpWf/RAM_reg'
 INFO: [Synth 8-7052] The timing for the instance gameTop/graphicEngineVGA/backBufferRestoreMemory/ramsSpWf/RAM_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance gameTop/graphicEngineVGA/backBufferShadowMemory/ramsSpWf/RAM_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:26 ; elapsed = 00:01:32 . Memory (MB): peak = 1788.336 ; gain = 849.828
+Finished Technology Mapping : Time (s): cpu = 00:01:26 ; elapsed = 00:01:34 . Memory (MB): peak = 1794.844 ; gain = 855.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -1688,37 +1691,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:32 ; elapsed = 00:01:39 . Memory (MB): peak = 1788.336 ; gain = 849.828
+Finished IO Insertion : Time (s): cpu = 00:01:32 ; elapsed = 00:01:39 . Memory (MB): peak = 1794.844 ; gain = 855.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:32 ; elapsed = 00:01:39 . Memory (MB): peak = 1788.336 ; gain = 849.828
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:32 ; elapsed = 00:01:39 . Memory (MB): peak = 1794.844 ; gain = 855.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:36 ; elapsed = 00:01:43 . Memory (MB): peak = 1788.336 ; gain = 849.828
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:34 ; elapsed = 00:01:41 . Memory (MB): peak = 1794.844 ; gain = 855.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:36 ; elapsed = 00:01:43 . Memory (MB): peak = 1788.336 ; gain = 849.828
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:34 ; elapsed = 00:01:41 . Memory (MB): peak = 1794.844 ; gain = 855.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:37 ; elapsed = 00:01:44 . Memory (MB): peak = 1788.336 ; gain = 849.828
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:34 ; elapsed = 00:01:42 . Memory (MB): peak = 1794.844 ; gain = 855.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:37 ; elapsed = 00:01:44 . Memory (MB): peak = 1788.336 ; gain = 849.828
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:34 ; elapsed = 00:01:42 . Memory (MB): peak = 1794.844 ; gain = 855.414
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1755,46 +1758,45 @@ Report Cell Usage:
 +------+----------+------+
 |1     |BUFG      |     1|
 |2     |CARRY4    |  1075|
-|3     |LUT1      |  1080|
-|4     |LUT2      |  1915|
-|5     |LUT3      |  1055|
-|6     |LUT4      |   524|
-|7     |LUT5      |  1009|
-|8     |LUT6      |  1700|
-|9     |MUXF7     |   254|
-|10    |MUXF8     |    96|
+|3     |LUT1      |  1079|
+|4     |LUT2      |  1926|
+|5     |LUT3      |  1001|
+|6     |LUT4      |   542|
+|7     |LUT5      |  1023|
+|8     |LUT6      |  1695|
+|9     |MUXF7     |   260|
+|10    |MUXF8     |    78|
 |11    |RAM256X1S |  2520|
-|12    |RAMB18E1  |    72|
+|12    |RAMB18E1  |    71|
 |82    |SRL16E    |    12|
-|83    |FDRE      |  4017|
+|83    |FDRE      |  4018|
 |84    |FDSE      |    99|
 |85    |IBUF      |     7|
 |86    |OBUF      |    26|
 +------+----------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:38 ; elapsed = 00:01:45 . Memory (MB): peak = 1788.336 ; gain = 849.828
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:34 ; elapsed = 00:01:42 . Memory (MB): peak = 1794.844 ; gain = 855.414
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 30 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:18 ; elapsed = 00:01:40 . Memory (MB): peak = 1788.336 ; gain = 841.273
-Synthesis Optimization Complete : Time (s): cpu = 00:01:38 ; elapsed = 00:01:45 . Memory (MB): peak = 1788.336 ; gain = 849.828
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:16 ; elapsed = 00:01:37 . Memory (MB): peak = 1794.844 ; gain = 843.207
+Synthesis Optimization Complete : Time (s): cpu = 00:01:35 ; elapsed = 00:01:42 . Memory (MB): peak = 1794.844 ; gain = 855.414
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.554 . Memory (MB): peak = 1789.277 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 4017 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 7 CPU seconds
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.182 . Memory (MB): peak = 1795.836 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 4004 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 2 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.036 . Memory (MB): peak = 1798.008 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 1803.535 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 2520 instances were transformed.
   RAM256X1S => RAM256X1S (MUXF7(x2), MUXF8, RAMS64E(x4)): 2520 instances
 
-Synth Design complete | Checksum: ea1c399a
+Synth Design complete | Checksum: eb5c4cfc
 INFO: [Common 17-83] Releasing license: Synthesis
-347 Infos, 144 Warnings, 0 Critical Warnings and 0 Errors encountered.
+350 Infos, 144 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:02:08 ; elapsed = 00:02:18 . Memory (MB): peak = 1798.008 ; gain = 1258.441
-Write ShapeDB Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.323 . Memory (MB): peak = 1798.008 ; gain = 0.000
+synth_design: Time (s): cpu = 00:01:45 ; elapsed = 00:01:54 . Memory (MB): peak = 1803.535 ; gain = 1263.551
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.077 . Memory (MB): peak = 1803.535 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/DTU-local/Repos/02113DigitalSystemsDesign/vivado/Basys3Game/Basys3Game.runs/synth_1/Top.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:08 ; elapsed = 00:00:06 . Memory (MB): peak = 1798.008 ; gain = 0.000
 INFO: [Vivado 12-24828] Executing command : report_utilization -file Top_utilization_synth.rpt -pb Top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Jun 24 11:10:12 2025...
+INFO: [Common 17-206] Exiting Vivado at Tue Jun 24 11:23:29 2025...
