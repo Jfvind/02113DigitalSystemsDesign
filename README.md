@@ -9,7 +9,7 @@ Project following the DTU course 02113 Digital Systems Design Project, to make a
 - Sprite 10 = lvl2_2 (2-tal)
 - Sprite 11 = lvl3_1 (3-tal)
 - Sprite 12 = lvl3_2
-- Sprite 13 = 
+- Sprite 13 = Extra life
 - Sprite 14 = Rumskib
 - Sprite 15 = God skib
 - Sprite 16 = Seagul
