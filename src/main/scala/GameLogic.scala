@@ -285,26 +285,39 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   }
 
   //============Your score and Highscore display=========
-  when(lvlReg === 1.U) {
-    val backBufferWriteSeq = Seq(
-    (4.U, 347.U),  // (data, address)
-    (3.U, 427.U)
-    )
-  }.elsewhen(lvlReg === 2.U) {
-    val backBufferWriteSeq = Seq(
-    (4.U, 927.U),  // (data, address)
-    (3.U, 1007.U)
-    )
-  }.elsewhen(lvlReg === 3.U) {
-    val backBufferWriteSeq = Seq(
-    (4.U, 947.U),  // (data, address)
-    (3.U, 1027.U)
-    )
-  }.otherwise {
-    val backBufferWriteSeq = Seq()
+  class BackBufferWrite extends Bundle {
+    val data = UInt(log2Up(BackTileNumber).W)
+    val addr = UInt(11.W)
   }
-  val writeSeqLen = backBufferWriteSeq.length.U
-  val writeSeqCounter = RegInit(0.U(log2Ceil(backBufferWriteSeq.length + 1).W))
+  val backBufferWriteSeq = Reg(Vec(2, new BackBufferWrite))
+  val backBufferWriteSeqLen = Reg(UInt(2.W))
+  when(lvlReg === 1.U) {
+    backBufferWriteSeq(0).data := 4.U
+    backBufferWriteSeq(0).addr := 347.U
+    backBufferWriteSeq(1).data := 3.U
+    backBufferWriteSeq(1).addr := 427.U
+    backBufferWriteSeqLen := 2.U
+  }.elsewhen(lvlReg === 2.U) {
+    backBufferWriteSeq(0).data := 4.U
+    backBufferWriteSeq(0).addr := 927.U
+    backBufferWriteSeq(1).data := 3.U
+    backBufferWriteSeq(1).addr := 1007.U
+    backBufferWriteSeqLen := 2.U
+  }.elsewhen(lvlReg === 3.U) {
+    backBufferWriteSeq(0).data := 4.U
+    backBufferWriteSeq(0).addr := 947.U
+    backBufferWriteSeq(1).data := 3.U
+    backBufferWriteSeq(1).addr := 1027.U
+    backBufferWriteSeqLen := 2.U
+  }.otherwise {
+    backBufferWriteSeq(0).data := 0.U
+    backBufferWriteSeq(0).addr := 0.U
+    backBufferWriteSeq(1).data := 0.U
+    backBufferWriteSeq(1).addr := 0.U
+    backBufferWriteSeqLen := 0.U
+  }
+  val writeSeqLen = backBufferWriteSeqLen
+  val writeSeqCounter = RegInit(0.U(2.W))
   val writeSeqActive = RegInit(false.B)
 
   //?==========================================
@@ -513,7 +526,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         when(shootingStarCnt === 800.U) {
           spriteXRegs(6) := -32.S
           spriteVisibleRegs(6) := true.B
-          spriteYRegs(6) := (lsfr.io.out(0)).asSInt
+          spriteYRegs(6) := (lfsr.io.out(0)).asSInt
           extraLifeCnt := 0.U
         }.otherwise {
           shootingStarCnt := shootingStarCnt + 1.U
@@ -890,8 +903,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
       // Write logic
       when (writeSeqActive && writeSeqCounter < writeSeqLen) {
-        io.backBufferWriteData := backBufferWriteSeq(writeSeqCounter)._1
-        io.backBufferWriteAddress := backBufferWriteSeq(writeSeqCounter)._2
+        io.backBufferWriteData := backBufferWriteSeq(writeSeqCounter).data
+        io.backBufferWriteAddress := backBufferWriteSeq(writeSeqCounter).addr
         io.backBufferWriteEnable := true.B
         writeSeqCounter := writeSeqCounter + 1.U
       }.otherwise {
