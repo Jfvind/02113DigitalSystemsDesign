@@ -8,12 +8,12 @@
   **** SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
   **** IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
   **** SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-  **** Start of session at: Tue Jun 24 12:51:15 2025
+  **** Start of session at: Tue Jun 24 15:59:29 2025
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source Top.tcl -notrace
-create_project: Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 537.758 ; gain = 236.035
+create_project: Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 537.770 ; gain = 233.801
 Command: synth_design -top Top -part xc7a35tcpg236-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
@@ -22,13 +22,13 @@ INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Device 21-9227] Part: xc7a35tcpg236-1 does not have CEAM library.
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 30712
+INFO: [Synth 8-7075] Helper process launched with PID 1352
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1386.430 ; gain = 447.273
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1388.684 ; gain = 447.438
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'Top' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:24690]
-INFO: [Synth 8-6157] synthesizing module 'GameTop' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:23138]
-INFO: [Synth 8-6157] synthesizing module 'GraphicEngineVGA' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:5562]
+INFO: [Synth 8-6157] synthesizing module 'Top' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:19578]
+INFO: [Synth 8-6157] synthesizing module 'GameTop' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:17997]
+INFO: [Synth 8-6157] synthesizing module 'GraphicEngineVGA' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:3642]
 INFO: [Synth 8-6157] synthesizing module 'Memory' [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:1]
 INFO: [Synth 8-6157] synthesizing module 'RamInitSpWf' [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:11]
 	Parameter ADDR_WIDTH bound to: 10 - type: integer 
@@ -718,370 +718,35 @@ INFO: [Common 17-14] Message 'Synth 8-3876' appears 100 times and further instan
 	Parameter ADDR_WIDTH bound to: 10 - type: integer 
 	Parameter DATA_WIDTH bound to: 7 - type: integer 
 	Parameter LOAD_FILE bound to: memory_init/sprite_init_63.mem - type: string 
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_64.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_64.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_65.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_65.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_66.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_66.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_67.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_67.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_68.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_68.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_69.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_69.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_70.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_70.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_71.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_71.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_72.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_72.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_73.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_73.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_74.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_74.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_75.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_75.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_76.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_76.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_77.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_77.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_78.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_78.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_79.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_79.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_80.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_80.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_81.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_81.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_82.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_82.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_83.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_83.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_84.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_84.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_85.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_85.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_86.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_86.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_87.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_87.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_88.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_88.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_89.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_89.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_90.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_90.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_91.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_91.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_92.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_92.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_93.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_93.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_94.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_94.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_95.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_95.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_96.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_96.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_97.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_97.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_98.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_98.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_99.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_99.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_100.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_100.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_101.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_101.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_102.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_102.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_103.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_103.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_104.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_104.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_105.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_105.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_106.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_106.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_107.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_107.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_108.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_108.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_109.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_109.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_110.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_110.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_111.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_111.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_112.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_112.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_113.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_113.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_114.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_114.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_115.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_115.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_116.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_116.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_117.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_117.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_118.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_118.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_119.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_119.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_120.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_120.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_121.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_121.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_122.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_122.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_123.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_123.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_124.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_124.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_125.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_125.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_126.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_126.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-	Parameter DATA_WIDTH bound to: 7 - type: integer 
-	Parameter LOAD_FILE bound to: memory_init/sprite_init_127.mem - type: string 
-CRITICAL WARNING: [Synth 8-4445] could not open $readmem data file 'memory_init/sprite_init_127.mem'; please make sure the file is added to project and has read permission, ignoring [C:/DTU-local/Repos/02113DigitalSystemsDesign/RamInitSpWf.v:34]
-WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:23967]
+WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:18844]
 	Parameter ADDR_WIDTH bound to: 8 - type: integer 
 	Parameter DATA_WIDTH bound to: 28 - type: integer 
 	Parameter LOAD_FILE bound to: memory_init/tune_init_0.mem - type: string 
 	Parameter ADDR_WIDTH bound to: 8 - type: integer 
 	Parameter DATA_WIDTH bound to: 28 - type: integer 
 	Parameter LOAD_FILE bound to: memory_init/tune_init_1.mem - type: string 
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12430]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:13885]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12432]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:13893]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12436]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:13909]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12438]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:13917]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12440]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_6_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:13925]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12458]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:13997]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_64_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12556]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_64_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14389]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_65_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12558]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_65_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14397]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_66_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12560]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_66_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14405]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_67_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12562]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_67_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14413]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_68_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12564]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_68_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14421]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_69_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12566]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_69_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14429]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_70_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12568]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_70_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14437]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_71_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12570]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_71_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14445]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_72_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12572]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_72_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14453]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_73_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12574]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_73_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14461]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_74_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12576]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_74_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14469]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_75_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12578]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_75_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14477]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_76_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12580]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_76_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14485]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_77_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12582]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_77_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14493]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_78_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12584]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_78_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14501]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_79_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12586]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_79_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14509]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_80_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12588]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_80_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14517]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_81_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12590]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_81_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14525]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_82_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12592]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_82_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14533]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_83_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12594]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_83_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14541]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_84_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12596]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_84_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14549]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_85_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12598]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_85_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14557]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_86_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12600]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_86_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14565]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_87_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12602]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_87_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14573]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_88_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12604]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_88_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14581]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_89_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12606]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_89_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14589]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_90_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12608]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_90_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14597]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_91_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12610]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_91_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14605]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_92_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12612]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_92_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14613]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_93_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12614]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_93_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14621]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_94_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12616]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_94_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14629]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_95_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12618]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_95_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14637]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_96_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12620]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_96_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14645]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_97_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12622]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_97_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14653]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_98_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12624]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_98_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14661]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_99_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12626]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_99_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14669]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_100_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12628]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_100_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14677]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_101_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12630]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_101_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14685]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_102_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12632]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_102_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14693]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_103_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12634]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_103_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14701]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_104_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12636]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_104_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14709]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_105_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12638]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_105_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14717]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_106_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12640]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_106_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14725]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_107_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:12642]
-WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_107_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14733]
-INFO: [Common 17-14] Message 'Synth 8-6014' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:8627]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_1_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:9908]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:8629]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_2_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:9916]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:8633]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_4_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:9932]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:8635]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_5_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:9940]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_0_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:8655]
+WARNING: [Synth 8-6014] Unused sequential element multiHotPriortyReductionTree_io_selectInput_15_pipeReg_1_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:10020]
+WARNING: [Synth 8-6014] Unused sequential element spriteXRegs_58_REG_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14766]
+WARNING: [Synth 8-6014] Unused sequential element spriteYRegs_58_REG_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14767]
+WARNING: [Synth 8-6014] Unused sequential element spriteXRegs_59_REG_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14768]
+WARNING: [Synth 8-6014] Unused sequential element spriteYRegs_59_REG_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14769]
+WARNING: [Synth 8-6014] Unused sequential element spriteXRegs_60_REG_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14770]
+WARNING: [Synth 8-6014] Unused sequential element spriteYRegs_60_REG_1_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14771]
+WARNING: [Synth 8-6014] Unused sequential element spriteXRegs_58_REG_2_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14740]
+WARNING: [Synth 8-6014] Unused sequential element spriteYRegs_58_REG_2_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14741]
+WARNING: [Synth 8-6014] Unused sequential element spriteXRegs_59_REG_2_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14742]
+WARNING: [Synth 8-6014] Unused sequential element spriteYRegs_59_REG_2_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14743]
+WARNING: [Synth 8-6014] Unused sequential element spriteXRegs_60_REG_2_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14744]
+WARNING: [Synth 8-6014] Unused sequential element spriteYRegs_60_REG_2_reg was removed.  [C:/DTU-local/Repos/02113DigitalSystemsDesign/Top.v:14745]
 WARNING: [Synth 8-3917] design Top has port io_led_0 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_1 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_2 driven by constant 0
@@ -1090,7 +755,6 @@ WARNING: [Synth 8-3917] design Top has port io_led_4 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_5 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_6 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_7 driven by constant 0
-WARNING: [Synth 8-3917] design Top has port io_backBufferWriteError driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_soundOut driven by constant 0
 WARNING: [Synth 8-7129] Port io_sw_0 in module Top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_sw_1 in module Top is either unconnected or has no load
@@ -1101,18 +765,18 @@ WARNING: [Synth 8-7129] Port io_sw_5 in module Top is either unconnected or has 
 WARNING: [Synth 8-7129] Port io_sw_6 in module Top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_sw_7 in module Top is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:13 ; elapsed = 00:00:16 . Memory (MB): peak = 1706.031 ; gain = 766.875
+Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1705.348 ; gain = 764.102
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:17 . Memory (MB): peak = 1706.031 ; gain = 766.875
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1705.348 ; gain = 764.102
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:17 . Memory (MB): peak = 1706.031 ; gain = 766.875
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1705.348 ; gain = 764.102
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.235 . Memory (MB): peak = 1706.031 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.230 . Memory (MB): peak = 1705.348 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -1123,26 +787,26 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/Top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1810.074 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1809.715 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.041 . Memory (MB): peak = 1810.074 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.035 . Memory (MB): peak = 1809.715 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 1810.074 ; gain = 870.918
+Finished Constraint Validation : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1809.715 ; gain = 868.469
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 1810.074 ; gain = 870.918
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1809.715 ; gain = 868.469
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 1810.074 ; gain = 870.918
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 1809.715 ; gain = 868.469
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'stateReg_reg' in module 'GameLogic'
 ---------------------------------------------------------------------------------------------------
@@ -1159,7 +823,7 @@ INFO: [Synth 8-802] inferred FSM for state register 'stateReg_reg' in module 'Ga
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'stateReg_reg' using encoding 'sequential' in module 'GameLogic'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:31 ; elapsed = 00:00:36 . Memory (MB): peak = 1810.074 ; gain = 870.918
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1809.715 ; gain = 868.469
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -1167,64 +831,69 @@ Start RTL Component Statistics
 Detailed RTL Component Info : 
 +---Adders : 
 	   2 Input   27 Bit       Adders := 1     
-	   3 Input   12 Bit       Adders := 88    
-	   3 Input   11 Bit       Adders := 88    
-	   2 Input   11 Bit       Adders := 74    
-	   2 Input   10 Bit       Adders := 67    
+	   3 Input   12 Bit       Adders := 90    
+	   2 Input   11 Bit       Adders := 76    
+	   3 Input   11 Bit       Adders := 90    
+	   2 Input   10 Bit       Adders := 49    
+	   2 Input    9 Bit       Adders := 1     
 	   2 Input    8 Bit       Adders := 4     
 	   2 Input    4 Bit       Adders := 1     
-	   2 Input    3 Bit       Adders := 1     
-	   2 Input    2 Bit       Adders := 3     
+	   2 Input    3 Bit       Adders := 2     
+	   2 Input    2 Bit       Adders := 4     
 +---XORs : 
 	   4 Input      1 Bit         XORs := 1     
 +---Registers : 
 	               64 Bit    Registers := 1     
 	               28 Bit    Registers := 2     
 	               19 Bit    Registers := 1     
+	               16 Bit    Registers := 2     
 	               12 Bit    Registers := 4     
-	               11 Bit    Registers := 109   
-	               10 Bit    Registers := 137   
-	                9 Bit    Registers := 2     
+	               11 Bit    Registers := 112   
+	               10 Bit    Registers := 140   
+	                9 Bit    Registers := 3     
 	                8 Bit    Registers := 4     
-	                7 Bit    Registers := 256   
-	                6 Bit    Registers := 135   
+	                7 Bit    Registers := 192   
+	                6 Bit    Registers := 72    
 	                4 Bit    Registers := 3     
 	                3 Bit    Registers := 1     
-	                2 Bit    Registers := 5     
-	                1 Bit    Registers := 820   
+	                2 Bit    Registers := 6     
+	                1 Bit    Registers := 569   
 +---RAMs : 
 	              12K Bit	(2048 X 6 bit)          RAMs := 3     
-	               7K Bit	(1024 X 7 bit)          RAMs := 192   
+	               7K Bit	(1024 X 7 bit)          RAMs := 128   
 	               7K Bit	(256 X 28 bit)          RAMs := 2     
 +---Muxes : 
-	   2 Input   24 Bit        Muxes := 1     
-	   2 Input   11 Bit        Muxes := 134   
-	   3 Input   11 Bit        Muxes := 106   
+	   2 Input   24 Bit        Muxes := 2     
+	   2 Input   11 Bit        Muxes := 139   
 	   7 Input   11 Bit        Muxes := 1     
-	   2 Input   10 Bit        Muxes := 84    
-	   4 Input   10 Bit        Muxes := 1     
-	   6 Input   10 Bit        Muxes := 2     
+	   3 Input   11 Bit        Muxes := 106   
+	   2 Input   10 Bit        Muxes := 87    
 	   3 Input   10 Bit        Muxes := 39    
-	   2 Input    9 Bit        Muxes := 14    
-	   3 Input    9 Bit        Muxes := 1     
+	   6 Input   10 Bit        Muxes := 2     
+	   4 Input   10 Bit        Muxes := 1     
+	   2 Input    9 Bit        Muxes := 17    
 	   4 Input    9 Bit        Muxes := 2     
-	   2 Input    8 Bit        Muxes := 32    
+	   3 Input    9 Bit        Muxes := 2     
+	   2 Input    8 Bit        Muxes := 34    
+	   3 Input    8 Bit        Muxes := 3     
 	   4 Input    8 Bit        Muxes := 2     
-	   3 Input    8 Bit        Muxes := 2     
 	   2 Input    7 Bit        Muxes := 20    
-	   2 Input    6 Bit        Muxes := 142   
+	   2 Input    6 Bit        Muxes := 79    
 	   3 Input    6 Bit        Muxes := 1     
+	   6 Input    6 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 65    
 	   3 Input    5 Bit        Muxes := 96    
-	   2 Input    5 Bit        Muxes := 61    
-	   2 Input    3 Bit        Muxes := 4     
-	   4 Input    3 Bit        Muxes := 1     
+	   4 Input    4 Bit        Muxes := 2     
+	   2 Input    4 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 6     
 	   3 Input    3 Bit        Muxes := 1     
 	  18 Input    3 Bit        Muxes := 1     
-	   2 Input    2 Bit        Muxes := 15    
+	   4 Input    3 Bit        Muxes := 1     
 	   3 Input    2 Bit        Muxes := 2     
-	   2 Input    1 Bit        Muxes := 288   
-	   3 Input    1 Bit        Muxes := 180   
+	   2 Input    2 Bit        Muxes := 16    
+	   2 Input    1 Bit        Muxes := 301   
 	   4 Input    1 Bit        Muxes := 9     
+	   3 Input    1 Bit        Muxes := 180   
 	   5 Input    1 Bit        Muxes := 2     
 	   6 Input    1 Bit        Muxes := 2     
 	   7 Input    1 Bit        Muxes := 3     
@@ -1252,7 +921,6 @@ WARNING: [Synth 8-3917] design Top has port io_led_4 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_5 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_6 driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_led_7 driven by constant 0
-WARNING: [Synth 8-3917] design Top has port io_backBufferWriteError driven by constant 0
 WARNING: [Synth 8-3917] design Top has port io_soundOut driven by constant 0
 WARNING: [Synth 8-7129] Port io_sw_0 in module Top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_sw_1 in module Top is either unconnected or has no load
@@ -1263,76 +931,17 @@ WARNING: [Synth 8-7129] Port io_sw_5 in module Top is either unconnected or has 
 WARNING: [Synth 8-7129] Port io_sw_6 in module Top is either unconnected or has no load
 WARNING: [Synth 8-7129] Port io_sw_7 in module Top is either unconnected or has no load
 WARNING: [Synth 8-7257] Removed RAM (backTileMemories_17/ramsSpWf/RAM_reg) due to inactive write enable.
+WARNING: [Synth 8-6014] Unused sequential element backTileMemories_17/ramsSpWf/RAM_reg was removed. 
 WARNING: [Synth 8-7257] Removed RAM (backTileMemories_33/ramsSpWf/RAM_reg) due to inactive write enable.
+WARNING: [Synth 8-6014] Unused sequential element backTileMemories_33/ramsSpWf/RAM_reg was removed. 
 WARNING: [Synth 8-7257] Removed RAM (backTileMemories_53/ramsSpWf/RAM_reg) due to inactive write enable.
+WARNING: [Synth 8-6014] Unused sequential element backTileMemories_53/ramsSpWf/RAM_reg was removed. 
 WARNING: [Synth 8-7257] Removed RAM (backTileMemories_57/ramsSpWf/RAM_reg) due to inactive write enable.
+WARNING: [Synth 8-6014] Unused sequential element backTileMemories_57/ramsSpWf/RAM_reg was removed. 
 WARNING: [Synth 8-7257] Removed RAM (backTileMemories_58/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_64/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_65/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_66/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_67/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_68/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_69/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_70/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_71/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_72/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_73/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_74/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_75/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_76/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_77/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_78/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_79/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_80/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_81/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_82/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_83/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_84/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_85/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_86/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_87/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_88/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_89/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_90/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_91/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_92/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_93/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_94/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_95/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_96/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_97/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_98/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_99/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_100/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_101/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_102/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_103/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_104/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_105/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_106/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_107/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_108/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_109/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_110/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_111/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_112/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_113/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_114/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_115/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_116/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_117/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_118/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_119/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_120/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_121/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_122/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_123/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_124/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_125/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_126/ramsSpWf/RAM_reg) due to inactive write enable.
-WARNING: [Synth 8-7257] Removed RAM (spriteMemories_127/ramsSpWf/RAM_reg) due to inactive write enable.
+WARNING: [Synth 8-6014] Unused sequential element backTileMemories_58/ramsSpWf/RAM_reg was removed. 
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:19 ; elapsed = 00:01:29 . Memory (MB): peak = 1810.074 ; gain = 870.918
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:24 ; elapsed = 00:01:27 . Memory (MB): peak = 1852.723 ; gain = 911.477
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-5835] Resources of type BRAM have been overutilized. Used = 126, Available = 100. Will try to implement using LUT-RAM. 
 ---------------------------------------------------------------------------------
@@ -1376,7 +985,7 @@ Block RAM: Preliminary Mapping Report (see note below)
 |RamInitSpWf__parameterized60:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized61:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized62:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|Top                            | backBufferShadowMemory/ramsSpWf/RAM_reg | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|gameTopi_4/graphicEngineVGA    | backBufferShadowMemory/ramsSpWf/RAM_reg | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized63:  | RAM_reg                                 | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized64:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized65:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
@@ -1385,11 +994,11 @@ Block RAM: Preliminary Mapping Report (see note below)
 |RamInitSpWf__parameterized68:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized69:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized70:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized71:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized6:   | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized72:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized73:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized7:   | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized74:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized75:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized8:   | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized76:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized77:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized78:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
@@ -1402,6 +1011,12 @@ Block RAM: Preliminary Mapping Report (see note below)
 |RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
@@ -1414,70 +1029,64 @@ Block RAM: Preliminary Mapping Report (see note below)
 |RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized110: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized111: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized112: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized113: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized114: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized115: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized116: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized117: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized118: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized119: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized120: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized121: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized122: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized123: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized124: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized77:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized77:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized77:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|Top                            | backBufferMemory/ramsSpWf/RAM_reg       | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized123: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|gameTopi_4/graphicEngineVGA    | backBufferMemory/ramsSpWf/RAM_reg       | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 +-------------------------------+-----------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 
 Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
 
 Distributed RAM: Preliminary Mapping Report (see note below)
-+------------+--------------------------------------+-----------+----------------------+-----------------+
-|Module Name | RTL Object                           | Inference | Size (Depth x Width) | Primitives      | 
-+------------+--------------------------------------+-----------+----------------------+-----------------+
-|Top         | backTileMemories_0/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_1/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_2/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_3/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_4/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_5/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_6/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_7/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_8/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_9/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_10/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_11/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_12/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_13/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_14/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_15/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_16/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_18/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_19/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_20/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_21/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_22/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_23/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_24/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_25/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_26/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-+------------+--------------------------------------+-----------+----------------------+-----------------+
++----------------------------+--------------------------------------+-----------+----------------------+-----------------+
+|Module Name                 | RTL Object                           | Inference | Size (Depth x Width) | Primitives      | 
++----------------------------+--------------------------------------+-----------+----------------------+-----------------+
+|gameTopi_4/graphicEngineVGA | backTileMemories_0/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_1/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_2/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_3/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_4/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_5/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_6/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_7/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_8/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_9/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_10/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_11/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_12/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_13/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_14/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_15/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_16/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_18/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_19/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_20/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_21/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_22/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_23/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_24/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_25/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_26/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
++----------------------------+--------------------------------------+-----------+----------------------+-----------------+
 
 Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
 ---------------------------------------------------------------------------------
@@ -1487,13 +1096,14 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:30 ; elapsed = 00:01:41 . Memory (MB): peak = 1810.074 ; gain = 870.918
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:30 ; elapsed = 00:01:34 . Memory (MB): peak = 1852.723 ; gain = 911.477
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
+info: optimization accepted worst group hill climbing move (-4130.0/oG.CP 226.0ps)
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:46 ; elapsed = 00:01:58 . Memory (MB): peak = 1810.074 ; gain = 870.918
+Finished Timing Optimization : Time (s): cpu = 00:02:07 ; elapsed = 00:02:12 . Memory (MB): peak = 1902.121 ; gain = 960.875
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1536,7 +1146,7 @@ Block RAM: Final Mapping Report
 |RamInitSpWf__parameterized60:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized61:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized62:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|Top                            | backBufferShadowMemory/ramsSpWf/RAM_reg | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|gameTopi_4/graphicEngineVGA    | backBufferShadowMemory/ramsSpWf/RAM_reg | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized63:  | RAM_reg                                 | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized64:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized65:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
@@ -1545,11 +1155,11 @@ Block RAM: Final Mapping Report
 |RamInitSpWf__parameterized68:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized69:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized70:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized71:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized6:   | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized72:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized73:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized7:   | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized74:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized75:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized8:   | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized76:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized77:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized78:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
@@ -1562,6 +1172,12 @@ Block RAM: Final Mapping Report
 |RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
@@ -1574,69 +1190,63 @@ Block RAM: Final Mapping Report
 |RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized79:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized110: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized111: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized112: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized113: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized114: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized115: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized116: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized117: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized118: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized119: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized120: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized121: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized122: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|RamInitSpWf__parameterized123: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized124: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized77:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized77:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 |RamInitSpWf__parameterized77:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|Top                            | backBufferMemory/ramsSpWf/RAM_reg       | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized123: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized100: | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized90:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
-|RamInitSpWf__parameterized80:  | RAM_reg                                 | 1 K x 7(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
+|gameTopi_4/graphicEngineVGA    | backBufferMemory/ramsSpWf/RAM_reg       | 2 K x 6(WRITE_FIRST)   | W | R |                        |   |   | Port A           | 1      | 0      | 
 +-------------------------------+-----------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 
 
 Distributed RAM: Final Mapping Report
-+------------+--------------------------------------+-----------+----------------------+-----------------+
-|Module Name | RTL Object                           | Inference | Size (Depth x Width) | Primitives      | 
-+------------+--------------------------------------+-----------+----------------------+-----------------+
-|Top         | backTileMemories_0/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_1/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_2/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_3/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_4/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_5/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_6/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_7/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_8/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_9/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_10/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_11/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_12/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_13/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_14/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_15/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_16/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_18/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_19/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_20/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_21/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_22/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_23/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_24/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_25/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-|Top         | backTileMemories_26/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
-+------------+--------------------------------------+-----------+----------------------+-----------------+
++----------------------------+--------------------------------------+-----------+----------------------+-----------------+
+|Module Name                 | RTL Object                           | Inference | Size (Depth x Width) | Primitives      | 
++----------------------------+--------------------------------------+-----------+----------------------+-----------------+
+|gameTopi_4/graphicEngineVGA | backTileMemories_0/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_1/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_2/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_3/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_4/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_5/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_6/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_7/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_8/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_9/ramsSpWf/RAM_reg  | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_10/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_11/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_12/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_13/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_14/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_15/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_16/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_18/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_19/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_20/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_21/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_22/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_23/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_24/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_25/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
+|gameTopi_4/graphicEngineVGA | backTileMemories_26/ramsSpWf/RAM_reg | Implied   | 1 K x 7              | RAM256X1S x 28  | 
++----------------------------+--------------------------------------+-----------+----------------------+-----------------+
 
 ---------------------------------------------------------------------------------
 Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1647,7 +1257,7 @@ Start Technology Mapping
 INFO: [Synth 8-7052] The timing for the instance gameTop/graphicEngineVGA/backBufferShadowMemory/ramsSpWf/RAM_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance gameTop/graphicEngineVGA/backBufferRestoreMemory/ramsSpWf/RAM_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:55 ; elapsed = 00:02:07 . Memory (MB): peak = 1810.074 ; gain = 870.918
+Finished Technology Mapping : Time (s): cpu = 00:02:11 ; elapsed = 00:02:17 . Memory (MB): peak = 1913.934 ; gain = 972.688
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -1665,37 +1275,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:02:05 ; elapsed = 00:02:17 . Memory (MB): peak = 1810.074 ; gain = 870.918
+Finished IO Insertion : Time (s): cpu = 00:02:16 ; elapsed = 00:02:22 . Memory (MB): peak = 1913.934 ; gain = 972.688
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:02:05 ; elapsed = 00:02:17 . Memory (MB): peak = 1810.074 ; gain = 870.918
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:16 ; elapsed = 00:02:22 . Memory (MB): peak = 1913.934 ; gain = 972.688
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:06 ; elapsed = 00:02:19 . Memory (MB): peak = 1810.074 ; gain = 870.918
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:17 ; elapsed = 00:02:23 . Memory (MB): peak = 1913.934 ; gain = 972.688
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:02:06 ; elapsed = 00:02:19 . Memory (MB): peak = 1810.074 ; gain = 870.918
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:17 ; elapsed = 00:02:23 . Memory (MB): peak = 1913.934 ; gain = 972.688
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:02:07 ; elapsed = 00:02:19 . Memory (MB): peak = 1810.074 ; gain = 870.918
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:17 ; elapsed = 00:02:23 . Memory (MB): peak = 1913.934 ; gain = 972.688
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:02:07 ; elapsed = 00:02:19 . Memory (MB): peak = 1810.074 ; gain = 870.918
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:18 ; elapsed = 00:02:23 . Memory (MB): peak = 1913.934 ; gain = 972.688
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1706,8 +1316,8 @@ Static Shift Register Report:
 |Module Name | RTL Name                                              | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
 +------------+-------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 |Top         | gameTop/graphicEngineVGA/pixelColourVGA_pipeReg_0_reg | 3      | 1     | NO           | NO                 | YES               | 1      | 0       | 
-|Top         | gameTop/graphicEngineVGA/io_Vsync_pipeReg_0_reg       | 4      | 1     | NO           | NO                 | YES               | 1      | 0       | 
 |Top         | gameTop/graphicEngineVGA/io_Hsync_pipeReg_0_reg       | 4      | 1     | NO           | NO                 | YES               | 1      | 0       | 
+|Top         | gameTop/graphicEngineVGA/io_Vsync_pipeReg_0_reg       | 4      | 1     | NO           | NO                 | YES               | 1      | 0       | 
 |Top         | gameTop/gameLogic/lfsr/history_9_reg[8]               | 11     | 5     | YES          | NO                 | YES               | 5      | 0       | 
 |Top         | gameTop/gameLogic/lfsr/history_9_reg[2]               | 9      | 1     | YES          | NO                 | YES               | 1      | 0       | 
 |Top         | gameTop/gameLogic/lfsr/reg__reg[34]                   | 4      | 3     | YES          | NO                 | YES               | 3      | 0       | 
@@ -1731,47 +1341,46 @@ Report Cell Usage:
 |      |Cell      |Count |
 +------+----------+------+
 |1     |BUFG      |     1|
-|2     |CARRY4    |  1075|
-|3     |LUT1      |  1096|
-|4     |LUT2      |  1946|
-|5     |LUT3      |   978|
-|6     |LUT4      |   528|
-|7     |LUT5      |   818|
-|8     |LUT6      |  1123|
+|2     |CARRY4    |  1199|
+|3     |LUT1      |  1278|
+|4     |LUT2      |  2041|
+|5     |LUT3      |   928|
+|6     |LUT4      |   446|
+|7     |LUT5      |  1024|
+|8     |LUT6      |  1452|
 |9     |MUXF7     |   158|
 |10    |MUXF8     |    36|
 |11    |RAM256X1S |   728|
-|12    |RAMB18E1  |    77|
-|71    |SRL16E    |    12|
-|72    |FDRE      |  3086|
-|73    |FDSE      |   118|
-|74    |IBUF      |     7|
-|75    |OBUF      |    26|
+|12    |RAMB18E1  |    83|
+|82    |SRL16E    |    12|
+|83    |FDRE      |  3032|
+|84    |FDSE      |    43|
+|85    |IBUF      |     7|
+|86    |OBUF      |    26|
 +------+----------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:02:07 ; elapsed = 00:02:19 . Memory (MB): peak = 1810.074 ; gain = 870.918
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:18 ; elapsed = 00:02:23 . Memory (MB): peak = 1913.934 ; gain = 972.688
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 158 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:49 ; elapsed = 00:02:15 . Memory (MB): peak = 1810.074 ; gain = 766.875
-Synthesis Optimization Complete : Time (s): cpu = 00:02:07 ; elapsed = 00:02:19 . Memory (MB): peak = 1810.074 ; gain = 870.918
+Synthesis finished with 0 errors, 0 critical warnings and 29 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:02:02 ; elapsed = 00:02:19 . Memory (MB): peak = 1913.934 ; gain = 868.320
+Synthesis Optimization Complete : Time (s): cpu = 00:02:18 ; elapsed = 00:02:23 . Memory (MB): peak = 1913.934 ; gain = 972.688
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.229 . Memory (MB): peak = 1810.074 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 2074 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.153 . Memory (MB): peak = 1913.934 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 2204 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1810.074 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1913.934 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 728 instances were transformed.
   RAM256X1S => RAM256X1S (MUXF7(x2), MUXF8, RAMS64E(x4)): 728 instances
 
-Synth Design complete | Checksum: 448071a2
+Synth Design complete | Checksum: 7f6b0e60
 INFO: [Common 17-83] Releasing license: Synthesis
-324 Infos, 208 Warnings, 64 Critical Warnings and 0 Errors encountered.
+323 Infos, 69 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:02:16 ; elapsed = 00:02:30 . Memory (MB): peak = 1810.074 ; gain = 1272.316
-INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.044 . Memory (MB): peak = 1810.074 ; gain = 0.000
+synth_design: Time (s): cpu = 00:02:25 ; elapsed = 00:02:32 . Memory (MB): peak = 1913.934 ; gain = 1376.164
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.047 . Memory (MB): peak = 1913.934 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'C:/DTU-local/Repos/02113DigitalSystemsDesign/vivado/Basys3Game/Basys3Game.runs/synth_1/Top.dcp' has been generated.
 INFO: [Vivado 12-24828] Executing command : report_utilization -file Top_utilization_synth.rpt -pb Top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Jun 24 12:54:00 2025...
+INFO: [Common 17-206] Exiting Vivado at Tue Jun 24 16:02:18 2025...

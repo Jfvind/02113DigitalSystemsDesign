@@ -885,6 +885,24 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       spriteVisibleRegs(56) := cursorOnReturn
       spriteVisibleRegs(57) := cursorOnReturn
 
+      //========Your score and highscore===========
+      // Start the sequence (for example, when entering gameOver)
+      when (!writeSeqActive) {
+        writeSeqCounter := 0.U
+        writeSeqActive := true.B
+      }
+
+      // Write logic
+      when (writeSeqActive && writeSeqCounter < writeSeqLen) {
+        io.backBufferWriteData := backBufferWriteSeq(writeSeqCounter).data
+        io.backBufferWriteAddress := backBufferWriteSeq(writeSeqCounter).addr
+        io.backBufferWriteEnable := true.B
+        writeSeqCounter := writeSeqCounter + 1.U
+      }.otherwise {
+        io.backBufferWriteEnable := false.B
+        writeSeqActive := false.B
+      }
+
       // Cursor tilbage til aktiv
       spriteVisibleRegs(3) := true.B
 
