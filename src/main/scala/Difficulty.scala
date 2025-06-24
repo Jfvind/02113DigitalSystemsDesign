@@ -45,7 +45,7 @@ class Difficulty extends Module {
     2.U -> 1.S,
     3.U -> 2.S
   ))
-  val progression = scaledTime * 3.U
+  val progression = scaledTime * 2.U
   val rawSpeed = 2.S + (progression.asSInt * speedFactor)
 
   val speedCap = MuxLookup(io.level, 10.S)(Seq(
