@@ -105,6 +105,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
   //Setting sound engine outputs to zero
   io.startTune := Seq.fill(TuneNumber)(false.B)
+  io.stopTune := Seq.fill(TuneNumber)(false.B)
+  io.pauseTune := Seq.fill(TuneNumber)(false.B)
   io.tuneId := 0.U
   io.stopTune(0) := stopTune0Pulse
   io.stopTune(1) := stopTune1Pulse
