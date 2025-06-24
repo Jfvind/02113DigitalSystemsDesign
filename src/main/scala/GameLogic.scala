@@ -118,11 +118,11 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
   //TRegisters holding X,Y positions and visibility and flips of the sprites
   // Register that represents the scaletype of the respective obstacles
-  val spriteXRegs = RegInit(VecInit(Seq.fill(128)(0.S(11.W))))
-  val spriteYRegs = RegInit(VecInit(Seq.fill(128)(0.S(10.W))))
-  val spriteFlipHorizontalRegs = RegInit(VecInit(Seq.fill(128)(false.B)))
-  val spriteFlipVerticalRegs = RegInit(VecInit(Seq.fill(128)(false.B)))
-  val spriteVisibleRegs = RegInit(VecInit(Seq.fill(128)(false.B)))
+  val spriteXRegs = RegInit(VecInit(Seq.fill(100)(0.S(11.W))))
+  val spriteYRegs = RegInit(VecInit(Seq.fill(100)(0.S(10.W))))
+  val spriteFlipHorizontalRegs = RegInit(VecInit(Seq.fill(100)(false.B)))
+  val spriteFlipVerticalRegs = RegInit(VecInit(Seq.fill(100)(false.B)))
+  val spriteVisibleRegs = RegInit(VecInit(Seq.fill(100)(false.B)))
   val spriteScaleTypeRegs = RegInit(VecInit(Seq.fill(30)(0.U(1.W)))) // 30 registers, type 0/1 --> scale 1x/2x
 
 
@@ -161,13 +161,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       (80, 0, 0), (81, 0, 0), (82, 0, 0), (83, 0, 0), (84, 0, 0),
       (85, 0, 0), (86, 0, 0), (87, 0, 0), (88, 0, 0), (89, 0, 0),
       (90, 0, 0), (91, 0, 0), (92, 0, 0), (93, 0, 0), (94, 0, 0),
-      (95, 0, 0), (96, 0, 0), (97, 0, 0), (98, 0, 0), (99, 0, 0),
-      (100, 0, 0), (101, 0, 0), (102, 0, 0), (103, 0, 0), (104, 0, 0),
-      (105, 0, 0), (106, 0, 0), (107, 0, 0), (108, 0, 0), (109, 0, 0),
-      (110, 0, 0), (111, 0, 0), (112, 0, 0), (113, 0, 0), (114, 0, 0),
-      (115, 0, 0), (116, 0, 0), (117, 0, 0), (118, 0, 0), (119, 0, 0),
-      (120, 0, 0), (121, 0, 0), (122, 0, 0), (123, 0, 0), (124, 0, 0),
-      (125, 0, 0), (126, 0, 0), (127, 0, 0),
+      (95, 0, 0), (96, 0, 0), (97, 0, 0), (98, 0, 0), (99, 0, 0)
     ).map { case (id, x, y) => (id.U, x.S, y.S) }
 
     // Initialize in a loop
@@ -187,10 +181,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite60ScaleUpVertical = RegInit(false.B)
 
   //Connecting registers to outputs
-  for (i <- 3 to 127) {
+  for (i <- 3 to 99) {
     io.spriteVisible(i) := spriteVisibleRegs(i)
   }
-  for (i <- 3 to 127) {
+  for (i <- 3 to 99) {
     io.spriteXPosition(i) := spriteXRegs(i)
     io.spriteYPosition(i) := spriteYRegs(i)
     io.spriteFlipHorizontal(i) := spriteFlipHorizontalRegs(i)
