@@ -72,6 +72,8 @@ In Vivado press ``generate bitstream`` and ok a couple of times, in approx. 6 mi
 - Sprite 63 = Heart_3
 
 **Backtiles:**
+- Backtile 3 = HI
+- Backtile 4 = YOU
 - Backtile 5 = 0
 - Backtile 6 = 4
 - Backtile 7 = 1
