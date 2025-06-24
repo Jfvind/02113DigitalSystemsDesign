@@ -118,11 +118,11 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
   //TRegisters holding X,Y positions and visibility and flips of the sprites
   // Register that represents the scaletype of the respective obstacles
-  val spriteXRegs = RegInit(VecInit(Seq.fill(64)(0.S(11.W))))
-  val spriteYRegs = RegInit(VecInit(Seq.fill(64)(0.S(10.W))))
-  val spriteFlipHorizontalRegs = RegInit(VecInit(Seq.fill(64)(false.B)))
-  val spriteFlipVerticalRegs = RegInit(VecInit(Seq.fill(64)(false.B)))
-  val spriteVisibleRegs = RegInit(VecInit(Seq.fill(64)(false.B)))
+  val spriteXRegs = RegInit(VecInit(Seq.fill(128)(0.S(11.W))))
+  val spriteYRegs = RegInit(VecInit(Seq.fill(128)(0.S(10.W))))
+  val spriteFlipHorizontalRegs = RegInit(VecInit(Seq.fill(128)(false.B)))
+  val spriteFlipVerticalRegs = RegInit(VecInit(Seq.fill(128)(false.B)))
+  val spriteVisibleRegs = RegInit(VecInit(Seq.fill(128)(false.B)))
   val spriteScaleTypeRegs = RegInit(VecInit(Seq.fill(30)(0.U(1.W)))) // 30 registers, type 0/1 --> scale 1x/2x
 
 
@@ -153,7 +153,21 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       (52, 272, 260), //Return x6
       (53, 304, 260), (54, 336, 260), (55, 272, 260), (56, 304, 260), (57, 336, 260),
       (58, 320, 20), (59, 500, 70), (60, 150, 100), //star x3
-      (61, 20, 20), (62, 60, 20), (63, 100, 20) //heart 3x
+      (61, 20, 20), (62, 60, 20), (63, 100, 20), //heart 3x
+      (64, 0, 0),
+      (65, 0, 0), (66, 0, 0), (67, 0, 0), (68, 0, 0), (69, 0, 0),
+      (70, 0, 0), (71, 0, 0), (72, 0, 0), (73, 0, 0), (74, 0, 0),
+      (75, 0, 0), (76, 0, 0), (77, 0, 0), (78, 0, 0), (79, 0, 0),
+      (80, 0, 0), (81, 0, 0), (82, 0, 0), (83, 0, 0), (84, 0, 0),
+      (85, 0, 0), (86, 0, 0), (87, 0, 0), (88, 0, 0), (89, 0, 0),
+      (90, 0, 0), (91, 0, 0), (92, 0, 0), (93, 0, 0), (94, 0, 0),
+      (95, 0, 0), (96, 0, 0), (97, 0, 0), (98, 0, 0), (99, 0, 0),
+      (100, 0, 0), (101, 0, 0), (102, 0, 0), (103, 0, 0), (104, 0, 0),
+      (105, 0, 0), (106, 0, 0), (107, 0, 0), (108, 0, 0), (109, 0, 0),
+      (110, 0, 0), (111, 0, 0), (112, 0, 0), (113, 0, 0), (114, 0, 0),
+      (115, 0, 0), (116, 0, 0), (117, 0, 0), (118, 0, 0), (119, 0, 0),
+      (120, 0, 0), (121, 0, 0), (122, 0, 0), (123, 0, 0), (124, 0, 0),
+      (125, 0, 0), (126, 0, 0), (127, 0, 0),
     ).map { case (id, x, y) => (id.U, x.S, y.S) }
 
     // Initialize in a loop
@@ -173,10 +187,10 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val sprite60ScaleUpVertical = RegInit(false.B)
 
   //Connecting registers to outputs
-  for (i <- 3 to 63) {
+  for (i <- 3 to 127) {
     io.spriteVisible(i) := spriteVisibleRegs(i)
   }
-  for (i <- 3 to 63) {
+  for (i <- 3 to 127) {
     io.spriteXPosition(i) := spriteXRegs(i)
     io.spriteYPosition(i) := spriteYRegs(i)
     io.spriteFlipHorizontal(i) := spriteFlipHorizontalRegs(i)
@@ -225,8 +239,11 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   //Extra life (power-up) counter
   val extraLifeCnt = RegInit(0.U(10.W))
 
+  //When game is over and return is pressed
+  val gameOverReturnPressed = RegInit(false.B)
+
   //nulstil speed
-  difficulty.io.resetSpeed := (gameOverReturnPressed)
+  difficulty.io.resetSpeed := gameOverReturnPressed
 
   //First time spawning sprites registers
   val spawnDelayCounter = RegInit(0.U(8.W))
@@ -243,9 +260,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
   //Counts how many cycles are spent in move state
   val moveCnt = RegInit(0.U(5.W))
-
-  //When game is over and return is pressed
-  val gameOverReturnPressed = RegInit(false.B)
 
   //LFSR for pseudo random numberselection
   val lfsr = Module(new LFSR)
@@ -800,7 +814,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       spriteVisibleRegs(51) := true.B
       // Return-knap
       val cursorOnReturn = (spriteXRegs(3) + 28.S) >= 272.S && (spriteXRegs(3) + 28.S) <= 368.S &&
-        (spriteYRegs(3) + 7.U) >= 260.S && (spriteYRegs(3) + 7.U) <= 292.S
+        (spriteYRegs(3) + 7.S) >= 260.S && (spriteYRegs(3) + 7.S) <= 292.S
 
       spriteVisibleRegs(52) := !cursorOnReturn
       spriteVisibleRegs(53) := !cursorOnReturn
