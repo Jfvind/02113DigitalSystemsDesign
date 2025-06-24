@@ -289,6 +289,12 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   val goWriteActive   = RegInit(false.B)   // skriver vi HS lige nu?
   val goWriteCounter  = RegInit(0.U(3.W))  // 0..4  (tile-3 + 4 cifre)
 
+  // --- klargøring til at kunne nulstille HI-ikon + 4 cifre ---
+  val prevLvl       = RegInit(0.U(2.W))   // husker sidste aktive level
+  val restoreActive = RegInit(false.B)    // er vi i gang med at skrive baggrunden tilbage?
+  val restoreCnt    = RegInit(0.U(3.W))   // 0‥4 (ikon + 4 cifre)
+
+
   // 35 / 615 / 635  (tile-3 kommer her)
   // 36–39 / 616–619 / 636–639  (cifrene)
   def hsBaseAddr(level: UInt): UInt = MuxLookup(level, 35.U)(Seq(
@@ -404,13 +410,12 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     is(idle) {
       when(io.newFrame) {
         when(gameOverReturnPressed) {
-          // før resetGame()
-          io.backBufferWriteEnable  := true.B
-          io.backBufferWriteAddress := hsBaseAddr(lvlReg)
-          io.backBufferWriteData    := hsRestoreTile(lvlReg)
+          restoreActive := true.B
+          prevLvl := lvlReg
 
           resetGame()
           gameOverReturnPressed := false.B
+
           stateReg := menu // or autonomousMove if you want to skip menu
         }.elsewhen(livesReg === 0.U) {
           stateReg := gameOver
@@ -958,6 +963,26 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       stateReg := idle
     }
   }
+
+  // ------------------------------------------------------------
+  //  BAGGRUNDS-RESTORE  (HI-ikon + 4 cifre) efter Game-Over
+  // ------------------------------------------------------------
+  when (restoreActive) {
+    /* 1) slå skrivning til bagbufferen */
+    io.backBufferWriteEnable  := true.B
+    /* 2) adresse = det gamle level + position i rækken */
+    io.backBufferWriteAddress := hsBaseAddr(prevLvl) + restoreCnt
+    /* 3) data  = det baggrundstile-id der hører til netop dét level */
+    io.backBufferWriteData    := hsRestoreTile(prevLvl)
+
+    /* 4) næste position (0‥4).  Stop når vi er færdige. */
+    restoreCnt := restoreCnt + 1.U
+    when (restoreCnt === 4.U) {      // ikon + 4 cifre skrevet
+      restoreActive := false.B
+      restoreCnt    := 0.U
+    }
+  }
+
 
   // Trigger: start skrivning af score én gang hver frame i alle states
   when(io.newFrame && !scoreWriteActive && lvlReg =/= 0.U && stateReg =/= gameOver){
