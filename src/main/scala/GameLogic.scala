@@ -233,6 +233,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   //Extra life (power-up) counter
   val extraLifeCnt = RegInit(0.U(10.W))
   val shootingStarCnt = RegInit(0.U(10.W))
+  val slowdownTimer = RegInit(0.U(9.W)) // Tæller op til 300 (≈ 5 sekunder ved 60Hz)
+  difficulty.io.slowMode := false.B
 
   //When game is over and return is pressed
   val gameOverReturnPressed = RegInit(false.B)
@@ -490,8 +492,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         when(shootingStarCnt === 800.U) {
           spriteXRegs(6) := -32.S
           spriteVisibleRegs(6) := true.B
-          spriteYRegs(6) := (lsfr.io.out(0)).asSInt
-          extraLifeCnt := 0.U
+          spriteYRegs(6) := (lfsr.io.out(0)).asSInt
+          shootingStarCnt := 0.U
         }.otherwise {
           shootingStarCnt := shootingStarCnt + 1.U
         }
@@ -594,6 +596,17 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           livesReg := livesReg + 1.U
         }
       }
+
+      when(
+        spriteVisibleRegs(6) &&
+          (spriteXRegs(14) < spriteXRegs(6) + 22.S) && (spriteXRegs(6) < spriteXRegs(14) + 8.S) &&
+          (spriteYRegs(14) < spriteYRegs(6) + 22.S) && (spriteYRegs(6) < spriteYRegs(14) + 11.S)
+      ) {
+        spriteVisibleRegs(6) := false.B
+        slowdownTimer := 300.U // Aktiver 5 sekunder slow mode
+      }
+
+
 
       // Start blinking if collision detected and not already blinking
       when(collisionDetected && !isBlinking) {
@@ -732,9 +745,16 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         starCnt := starCnt + 1.U
       }
 
+      when(slowdownTimer =/= 0.U) {
+        slowdownTimer := slowdownTimer - 1.U
+      }
+
+      difficulty.io.slowMode := slowdownTimer =/= 0.U
+
       when(livesReg > 0.U) {
         stateReg := menu
       }
+
     }
 
     is(menu) {

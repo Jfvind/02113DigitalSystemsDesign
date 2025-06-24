@@ -8,6 +8,7 @@ class Difficulty extends Module {
     val spawnInterval = Output(UInt(8.W))
     val resetSpeed = Input(Bool())
     val score = Output(UInt(16.W))
+    val slowMode = Input(Bool())
   })
 
   val speedCnt = RegInit(0.U(27.W))
@@ -52,7 +53,9 @@ class Difficulty extends Module {
     2.U -> 16.S,
     3.U -> 22.S
   ))
-  io.speed := Mux(rawSpeed > speedCap, speedCap, rawSpeed)
+  val effectiveSpeed = Mux(rawSpeed > speedCap, speedCap, rawSpeed)
+  val finalSpeed = Mux(io.slowMode, 1.S, effectiveSpeed)
+  io.speed := finalSpeed
 
   val rawSpawn = MuxLookup(io.level, 80.U)(Seq(
     1.U -> saturatingSub(100.U, timeInSeconds),
