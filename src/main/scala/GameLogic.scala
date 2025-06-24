@@ -232,6 +232,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
 
   //Extra life (power-up) counter
   val extraLifeCnt = RegInit(0.U(10.W))
+  val shootingStarCnt = RegInit(0.U(10.W))
 
   //When game is over and return is pressed
   val gameOverReturnPressed = RegInit(false.B)
@@ -294,6 +295,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
     spawnDelayCounter := 0.U
     nextSpriteToSpawn := 0.U
     extraLifeCnt := 0.U
+    shootingStarCnt := 0.U
     starCnt := 0.U
     collisionDetected := false.B
     isBlinking := false.B
@@ -483,6 +485,15 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         }
         when(spriteXRegs(13) >= 640.S) {
           spriteVisibleRegs(13) := false.B
+        }
+
+        when(shootingStarCnt === 800.U) {
+          spriteXRegs(6) := -32.S
+          spriteVisibleRegs(6) := true.B
+          spriteYRegs(6) := (lsfr.io.out(0)).asSInt
+          extraLifeCnt := 0.U
+        }.otherwise {
+          shootingStarCnt := shootingStarCnt + 1.U
         }
       }
 
