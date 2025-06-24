@@ -9,6 +9,7 @@ sbt run
 When run is succesfull, open Xilinx Vivado application and press open project ``..\02113DigitalSystemsDesign\vivado\Basys3Game\Basys3Game.xpr`` (note that if using the Nexys7, open Nexys7Game instead. Possibly you need to add the memory files by hand in vivado when using Nexys7).\
 In Vivado press ``generate bitstream`` and ok a couple of times, in approx. 6 minutes the FPGA can be programmed in 'hardware manager' in vivado.
 
+## Memory files mapping
 **Sprites:**
 - Sprite 3 = Cursor foot
 - Sprite 7 = lvl1_1 (1-tal)
