@@ -18955,7 +18955,7 @@ circuit Top :
                     spriteYRegs[14] <= _spriteYRegs_14_T_2 @[\\src\\main\\scala\\GameLogic.scala 905:29]
                 else :
                   when io.btnU : @[\\src\\main\\scala\\GameLogic.scala 907:29]
-                    node _T_863 = gt(spriteYRegs[14], asSInt(UInt<7>("h20"))) @[\\src\\main\\scala\\GameLogic.scala 908:32]
+                    node _T_863 = gt(spriteYRegs[14], asSInt(UInt<8>("h40"))) @[\\src\\main\\scala\\GameLogic.scala 908:32]
                     when _T_863 : @[\\src\\main\\scala\\GameLogic.scala 908:40]
                       node _spriteYRegs_14_T_3 = sub(spriteYRegs[14], asSInt(UInt<3>("h2"))) @[\\src\\main\\scala\\GameLogic.scala 909:48]
                       node _spriteYRegs_14_T_4 = tail(_spriteYRegs_14_T_3, 1) @[\\src\\main\\scala\\GameLogic.scala 909:48]
@@ -19144,7 +19144,7 @@ circuit Top :
       node _io_backBufferWriteData_T_25 = eq(UInt<1>("h1"), prevLvl) @[\\src\\main\\scala\\GameLogic.scala 321:64]
       node _io_backBufferWriteData_T_26 = mux(_io_backBufferWriteData_T_25, UInt<4>("hb"), UInt<4>("ha")) @[\\src\\main\\scala\\GameLogic.scala 321:64]
       node _io_backBufferWriteData_T_27 = eq(UInt<2>("h2"), prevLvl) @[\\src\\main\\scala\\GameLogic.scala 321:64]
-      node _io_backBufferWriteData_T_28 = mux(_io_backBufferWriteData_T_27, UInt<5>("h17"), _io_backBufferWriteData_T_26) @[\\src\\main\\scala\\GameLogic.scala 321:64]
+      node _io_backBufferWriteData_T_28 = mux(_io_backBufferWriteData_T_27, UInt<5>("h18"), _io_backBufferWriteData_T_26) @[\\src\\main\\scala\\GameLogic.scala 321:64]
       node _io_backBufferWriteData_T_29 = eq(UInt<2>("h3"), prevLvl) @[\\src\\main\\scala\\GameLogic.scala 321:64]
       node _io_backBufferWriteData_T_30 = mux(_io_backBufferWriteData_T_29, UInt<5>("h1f"), _io_backBufferWriteData_T_28) @[\\src\\main\\scala\\GameLogic.scala 321:64]
       io.backBufferWriteData <= _io_backBufferWriteData_T_30 @[\\src\\main\\scala\\GameLogic.scala 999:31]

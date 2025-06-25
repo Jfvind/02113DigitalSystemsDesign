@@ -15034,7 +15034,7 @@ module GameLogic(
   wire [9:0] _spriteYRegs_14_T_2 = $signed(spriteYRegs_14) + 10'sh2; // @[\\src\\main\\scala\\GameLogic.scala 905:48]
   wire [9:0] _GEN_1337 = $signed(spriteYRegs_14) < 10'sh1c0 ? $signed(_spriteYRegs_14_T_2) : $signed(_GEN_17); // @[\\src\\main\\scala\\GameLogic.scala 904:48 905:29]
   wire [9:0] _spriteYRegs_14_T_5 = $signed(spriteYRegs_14) - 10'sh2; // @[\\src\\main\\scala\\GameLogic.scala 909:48]
-  wire [9:0] _GEN_1338 = $signed(spriteYRegs_14) > 10'sh20 ? $signed(_spriteYRegs_14_T_5) : $signed(_GEN_17); // @[\\src\\main\\scala\\GameLogic.scala 908:40 909:29]
+  wire [9:0] _GEN_1338 = $signed(spriteYRegs_14) > 10'sh40 ? $signed(_spriteYRegs_14_T_5) : $signed(_GEN_17); // @[\\src\\main\\scala\\GameLogic.scala 908:40 909:29]
   wire [9:0] _GEN_1339 = io_btnU ? $signed(_GEN_1338) : $signed(_GEN_17); // @[\\src\\main\\scala\\GameLogic.scala 907:29]
   wire [9:0] _GEN_1340 = io_btnD ? $signed(_GEN_1337) : $signed(_GEN_1339); // @[\\src\\main\\scala\\GameLogic.scala 903:23]
   wire [9:0] _spriteYRegs_3_T_2 = $signed(spriteYRegs_3) + 10'sh2; // @[\\src\\main\\scala\\GameLogic.scala 378:58]
@@ -15295,7 +15295,7 @@ module GameLogic(
   wire [10:0] _GEN_2260 = {{8'd0}, restoreCnt}; // @[\\src\\main\\scala\\GameLogic.scala 997:54]
   wire [10:0] _io_backBufferWriteAddress_T_15 = _io_backBufferWriteAddress_T_13 + _GEN_2260; // @[\\src\\main\\scala\\GameLogic.scala 997:54]
   wire [3:0] _io_backBufferWriteData_T_26 = _io_backBufferWriteAddress_T_8 ? 4'hb : 4'ha; // @[\\src\\main\\scala\\GameLogic.scala 321:64]
-  wire [4:0] _io_backBufferWriteData_T_28 = _io_backBufferWriteAddress_T_10 ? 5'h17 : {{1'd0},
+  wire [4:0] _io_backBufferWriteData_T_28 = _io_backBufferWriteAddress_T_10 ? 5'h18 : {{1'd0},
     _io_backBufferWriteData_T_26}; // @[\\src\\main\\scala\\GameLogic.scala 321:64]
   wire [4:0] _io_backBufferWriteData_T_30 = _io_backBufferWriteAddress_T_12 ? 5'h1f : _io_backBufferWriteData_T_28; // @[\\src\\main\\scala\\GameLogic.scala 321:64]
   wire [2:0] _restoreCnt_T_1 = restoreCnt + 3'h1; // @[\\src\\main\\scala\\GameLogic.scala 1002:30]

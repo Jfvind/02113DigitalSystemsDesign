@@ -905,7 +905,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
             spriteYRegs(14) := spriteYRegs(14) + 2.S
           }
         }.elsewhen(io.btnU) {
-          when(spriteYRegs(14) > 32.S) {
+          when(spriteYRegs(14) > 64.S) {
             spriteYRegs(14) := spriteYRegs(14) - 2.S
           }
         }
