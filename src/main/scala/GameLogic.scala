@@ -429,7 +429,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           prevLvl := lvlReg
 
           resetGame()
-          gameOverReturnPressed := false.B
+          //gameOverReturnPressed := false.B
 
           stateReg := menu // or autonomousMove if you want to skip menu
         }.elsewhen(livesReg === 0.U) {
@@ -871,7 +871,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       nextSpriteToSpawn := 0.U
       spawnDelayCounter := 0.U
 
-      scoreReg := 0.U
+      //scoreReg := 0.U
+      gameOverReturnPressed := false.B //keeps the second counter in difficulty at 0 untill level is selected (moving to lvlInit)
 
       spriteXRegs(14) := (640 - 32).S
       spriteYRegs(14) := 320.S
