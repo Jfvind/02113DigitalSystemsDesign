@@ -344,7 +344,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   def resetGame(): Unit = {
     lvlReg := 0.U
     livesReg := 3.U
-    scoreReg := 0.U
+    //scoreReg := 0.U
     spawnDelayCounter := 0.U
     nextSpriteToSpawn := 0.U
     extraLifeCnt := 0.U

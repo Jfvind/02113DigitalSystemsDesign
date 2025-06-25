@@ -16699,7 +16699,6 @@ circuit Top :
           prevLvl <= lvlReg @[\\src\\main\\scala\\GameLogic.scala 429:19]
           lvlReg <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 345:12]
           livesReg <= UInt<2>("h3") @[\\src\\main\\scala\\GameLogic.scala 346:14]
-          scoreReg <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 347:14]
           spawnDelayCounter <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 348:23]
           nextSpriteToSpawn <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 349:23]
           extraLifeCnt <= UInt<1>("h0") @[\\src\\main\\scala\\GameLogic.scala 350:18]
