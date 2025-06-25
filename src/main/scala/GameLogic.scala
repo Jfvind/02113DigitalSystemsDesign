@@ -871,6 +871,8 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       nextSpriteToSpawn := 0.U
       spawnDelayCounter := 0.U
 
+      scoreReg := 0.U
+
       spriteXRegs(14) := (640 - 32).S
       spriteYRegs(14) := 320.S
       spriteVisibleRegs(3) := false.B
