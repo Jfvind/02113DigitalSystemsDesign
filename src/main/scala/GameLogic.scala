@@ -245,8 +245,11 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   //When game is over and return is pressed
   val gameOverReturnPressed = RegInit(false.B)
 
+  //used to reset score when level is selected
+  val startLvlPressed = RegInit(false.B)
+
   //nulstil speed
-  difficulty.io.resetSpeed := gameOverReturnPressed
+  difficulty.io.resetSpeed := gameOverReturnPressed || startLvlPressed
 
   //First time spawning sprites registers
   val spawnDelayCounter = RegInit(0.U(8.W))
@@ -429,7 +432,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
           prevLvl := lvlReg
 
           resetGame()
-          //gameOverReturnPressed := false.B
+          gameOverReturnPressed := false.B
 
           stateReg := menu // or autonomousMove if you want to skip menu
         }.elsewhen(livesReg === 0.U) {
@@ -871,8 +874,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       nextSpriteToSpawn := 0.U
       spawnDelayCounter := 0.U
 
-      //scoreReg := 0.U
-      gameOverReturnPressed := false.B //keeps the second counter in difficulty at 0 untill level is selected (moving to lvlInit)
+      startLvlPressed := true.B
 
       spriteXRegs(14) := (640 - 32).S
       spriteYRegs(14) := 320.S
@@ -915,6 +917,11 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       }.otherwise {
         //Moving all four directions for foot-cursor
         moveAllround(3)
+      }
+
+      //deassert score reset signal
+      when(startLvlPressed) {
+        startLvlPressed := false.B
       }
 
       when(livesReg === 0.U) {
