@@ -1,6 +1,9 @@
 # 02113DigitalSystemsDesign
 Project following the DTU course 02113 Digital Systems Design Project, to make a videogame in ChiselHDL.
 
+## Watching the Gameplay
+After cloning the repo, type ``git lfs pull``. If you don't have LFS downloaded install it first with ``git lfs install``.
+
 ## Playing game
 Download the repo and open the position, use the scala build tool (can be found as 'scala' in VSCode extensions), and type
 ```
