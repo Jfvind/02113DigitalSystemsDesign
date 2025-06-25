@@ -347,7 +347,6 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
   def resetGame(): Unit = {
     lvlReg := 0.U
     livesReg := 3.U
-    //scoreReg := 0.U
     spawnDelayCounter := 0.U
     nextSpriteToSpawn := 0.U
     extraLifeCnt := 0.U
@@ -874,7 +873,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
       nextSpriteToSpawn := 0.U
       spawnDelayCounter := 0.U
 
-      startLvlPressed := true.B
+      startLvlPressed := true.B //insures scores are reset when choosing a level
 
       spriteXRegs(14) := (640 - 32).S
       spriteYRegs(14) := 320.S
@@ -919,7 +918,7 @@ class GameLogic(SpriteNumber: Int, BackTileNumber: Int, TuneNumber: Int) extends
         moveAllround(3)
       }
 
-      //deassert score reset signal
+      //deassert score reset signal from lvlInit
       when(startLvlPressed) {
         startLvlPressed := false.B
       }
